@@ -4,4 +4,8 @@ project/target
 target
 tmp
 .history
+.settings
+.project
+.classpath
+eclipse
 dist

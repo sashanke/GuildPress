@@ -1,0 +1,68 @@
+*{ Display a post in one of these modes: 'full', 'home' or 'teaser' }*
+#{if _as != 'full'}<div class="box bottom">#{/if}
+<div class="artheadline" style="background: black url(${play.configuration.getProperty("conf.artworksdir")}${_post.image}) no-repeat top center  !important;">
+	<div class="artheadlinshadow">
+		<div class="postdate"><div>${_post.postedAt.format('dd')}</div><span>${_post.postedAt.format('MMM')}</span></div>
+    	<h2 class="post-title">
+    		<a href="@{Application.show(_post.id)}">${_post.title}</a>
+		</h2>
+		
+	</div>
+</div>
+
+<div class="post ${_as == 'teaser' ? 'teaser' : ''}">
+	
+
+    #{if _as != 'teaser'}
+        <div class="post-content">
+            ${_post.content.nl2br()}
+        </div>
+    #{/if}
+    
+    <div class="colBreak clear"></div>
+        <div class="post-metadata">
+
+<span class="ico_link date"><a href="#nyi" title="${_post.postedAt.format('HH:mm')}" rel="bookmark">${_post.postedAt.format('dd. MMM yyyy')}</a></span>
+<span class="ico_link comments"><a href="@{Application.show(_post.id)}" title="Kommentiere ${_post.title}">${_post.comments.size() ?: 'Keine'} Kommentar${_post.comments.size().pluralize('e')}</a></span>
+#{if _post.tags}
+<span class="ico_link tags">
+#{list items:_post.tags, as:'tag'}
+    <a href="@{Application.listTagged(tag.name)}" rel="tag">${tag}</a>${tag_isLast ? '' : ', '}
+#{/list}
+    </span>
+#{/if}
+<span class="ico_link author"><a href="#nyi" title="Zeige alle Beiträge von ${_post.author.fullname}">${_post.author.fullname}</a></span>
+
+    </div>
+    <br>
+</div>
+
+
+
+#{if _as == 'full'}
+    <div class="comments">
+        <h3>
+            ${_post.comments.size() ?: 'no'} 
+            comment${_post.comments.size().pluralize()}
+        </h3>
+        
+        #{list items:_post.comments, as:'comment'}
+            <div class="comment">
+                <div class="comment-metadata">
+                    <span class="comment-author">by ${comment.author},</span>
+                    <span class="comment-date">
+                        ${comment.postedAt.format('dd MMM yy')}
+                    </span>
+                </div>
+                <div class="comment-content">
+                    <div class="about">Detail: </div>
+                    ${comment.content.escape().nl2br()}
+                </div>
+            </div>
+        #{/list}
+    </div>
+#{/if}
+
+#{if _as != 'full'}</div>#{/if}
+
+<div class="clear"></div>

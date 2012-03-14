@@ -1,0 +1,22 @@
+#{extends 'main.html' /}
+#{set title: 'Raid vom' + ' - ' + guildTitle /}
+#{set moreScripts:'<script type="text/javascript" src="/public/javascripts/raidtracker.js" charset="utf-8"></script><script type="text/javascript" src="/public/javascripts/jquery.dataTables.js" charset="utf-8"></script>'.raw() /}
+#{set moreStyles:'<link rel="stylesheet" type="text/css" media="screen" href="/public/stylesheets/raidtracker.css" /><link rel="stylesheet" type="text/css" media="screen" href="/public/stylesheets/jquery.dataTables.css" />'.raw() /}
+<div class="box">
+	<div class="artheadline" style="background: black url(${randomArtwork})} no-repeat top center  !important;">
+		<div class="artheadlinshadow">
+			<div class="postdate"></div>
+    		<h2 class="post-title">
+    			<a href="@{RaidTracker.index()}" id="raiditem"></a>
+			</h2>
+		</div>
+	</div>
+	<div class="post">
+        <div class="post-content">
+        	<div class="clear"></div>
+     		<div class="colBreak clear"></div>
+     		<br>
+			<div class="clear"></div>
+        </div>
+	</div>
+</div>

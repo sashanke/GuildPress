@@ -1,0 +1,54 @@
+#{extends 'main.html' /}
+#{set title: 'Mitgliederverzeichnis - ' + guildTitle /}
+<div class="box">
+	<div class="artheadline" style="background: black url(${play.configuration.getProperty("conf.artworksdir")}Nagrand.jpg) no-repeat top center  !important;">
+		<div class="artheadlinshadow">
+			<div class="postdate"></div>
+    		<h2 class="post-title">
+    			<a href="@{MitgliederVerzeichnis.index()}">Mitgliederverzeichnis</a>
+			</h2>
+		</div>
+	</div>
+	<div class="post">
+        <div class="post-content">
+        	<form method="get" action="@{MitgliederVerzeichnis.index()}" class="c_search">       
+			<select name="rank">
+				<option value="">Wähle einen Rang</option>
+				#{list items:granks, as:'rank'}
+				<option value="${rank.rank}"  #{if (params.rank != null && params.rank != "") && rank.rank.toLong() == params.rank.toLong()} selected="selected" #{/if} >${rank.name}</option>
+				#{/list}
+			</select>
+			
+			<select name="cclass">
+				<option value="">Wähle einen Klasse</option>
+				#{list items:cclasses, as:'classs'}
+				<option value="${classs.ccId}" #{if (params.cclass != null && params.cclass != "") && classs.ccId.toLong() == params.cclass.toLong()} selected="selected" #{/if} >${classs.name}</option>
+				#{/list}
+			</select>
+			
+			<select name="race">
+				<option value="">Wähle einen Rasse</option>
+				#{list items:craces, as:'race'}
+				<option value="${race.crId}" #{if (params.race != null && params.race != "") && race.crId.toLong() == params.race.toLong()} selected="selected" #{/if} >${race.name}</option>
+				#{/list}
+			</select>
+			<input name="search" value="${params.search}"  type="text" size="30" maxlength="30">
+			<a href="#" onclick="$('.c_search').submit(); return false;"></a>
+     		</form>
+     <div class="colBreak clear"></div>
+     <br>
+        	<div class="roster">
+			#{list items:members, as:'member'}
+				<div class="avatar">
+					<a href="@{Application.character(member.name.toLowerCase().urlEncode())}">
+						<img src="@{Avatar.getGuildAvatar(member.name)}" height="84" width="84" alt="${member.name}s avatar" />
+					</a>
+					<div class="character-rank"><a href="@{MitgliederVerzeichnis.index()}?rank=${member.rank.rank}"><img class="noborder" src="/public/images/ranks/${member.rank.rank}.png" height="16" width="16" alt="${member.name}s rank" /></a></div>
+					<div class="character-name"><a href="/character/${member.name.toLowerCase().urlEncode()}" class="character character-member character-unverified character-${member.cclass.name.toLowerCase()} character-class-wow character-class-wow-${member.cclass.name.toLowerCase()} character-name-${member.name.toLowerCase()}">${member.name}</a></div>
+				</div>
+			#{/list}
+			</div>
+			<div class="clear"></div>
+        </div>
+	</div>
+</div>

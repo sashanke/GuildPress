@@ -1,0 +1,103 @@
+h1 {
+    background: #111;
+    margin: 0;
+    color: gold;
+    padding: 7px 14px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+h1 a {
+    position: absolute;
+    right: 1em;
+    color: lightblue;
+}
+
+#thread {
+    /*position: fixed;
+    top: 50px;
+    left: 14px;
+    right: 14px;
+    bottom: 100px;*/
+    height:415px;
+    background: transparent;
+    padding: 1px;
+    overflow-y: scroll;
+}
+
+.message {
+    border-bottom: 1px solid #12202E;
+    position: relative;
+}
+
+.message h2 {
+    background: transparent;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    text-align: right;
+
+}
+
+.message span {
+    background: transparent;
+
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    text-align: right;
+
+}
+
+.message p {
+    font-size: 12px;
+    padding: 5px;
+    margin: 0 0 0 110px;
+}
+
+.message.you * {
+    background: #222427;
+}
+
+.message.notice * {
+    background: #0E0F11;
+}
+
+.message.important * {
+    background: red;
+    color: #fff;
+}
+
+.message.notice h2 {
+    visibility: hidden;
+}
+
+.message.notice p {
+    margin: 0;
+    padding-left: 115px;
+}
+
+#newMessage {
+
+}
+
+#newMessage #message {
+    width: 400px;
+}
+
+img.emoteicon {
+	height:14px;
+}

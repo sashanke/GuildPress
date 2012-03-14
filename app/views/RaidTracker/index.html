@@ -1,0 +1,211 @@
+#{extends 'main.html' /}
+#{set title: 'Raid Übersicht - ' + guildTitle /}
+#{set moreScripts:'<script type="text/javascript" src="/public/javascripts/raidtracker.js" charset="utf-8"></script><script type="text/javascript" src="/public/javascripts/jquery.dataTables.js" charset="utf-8"></script>'.raw() /}
+#{set moreStyles:'<link rel="stylesheet" type="text/css" media="screen" href="/public/stylesheets/raidtracker.css" /><link rel="stylesheet" type="text/css" media="screen" href="/public/stylesheets/jquery.dataTables.css" />'.raw() /}
+
+
+
+<div class="box">
+	<div class="artheadline" style="background: black url(${play.configuration.getProperty("conf.artworksdir")}deathwing2.jpg) no-repeat top center  !important;">
+		<div class="artheadlinshadow">
+			<div class="postdate"></div>
+    		<h2 class="post-title">
+    			<a href="@{RaidTracker.index()}">Raid Übersicht</a>
+			</h2>
+		</div>
+	</div>
+	<div class="post">
+        <div class="post-content">
+        	<div class="clear"></div>
+        	<form method="get" action="@{RaidTracker.index()}" id="switch-pool" style="float:right">       
+				<select name="selpool">
+					#{list items:pools, as:'pool'}
+					<option value="${pool.id}" #{if (selpool != null && pool.isMainRaid)} selected="selected" #{/if} #{if (selpool != null && selpool != "") && pool.id.toLong() == selpool.toLong()} selected="selected" #{/if} >${pool.name}</option>
+					#{/list}
+				</select>
+     		</form>
+     		
+		    <div class="tabbed_area">
+		        <ul class="tabs">
+		            <li><a href="#tab-uebersicht" id="tab-tab-uebersicht" title="Raid Übersicht" class="tab active">Übersicht</a></li>
+		            <li><a href="#tab-addraid" id="tab-tab-addraid" title="Raid Hinzufügen" class="tab">Raid hinzufügen</a></li>
+		        </ul>
+		        
+		        <div id="tab-uebersicht" style="width:100%;" class="content">
+		        	<div class="clear raidinfo" style="text-align: center;">
+		        		<br><span><b>Pool:</b> #{if selectedPool == null}Alle#{/if}#{else}${selectedPool.name}#{/else} <b>Raiders:</b> ${members.size()} <b>Raids:</b> ${raids.size()}</span>
+		        	</div>
+		        	<br><br>
+		        	<div style="width:50%; float:left;">
+						<table style="width:200px; margin-left: auto; margin-right: auto;" cellpadding="0" cellspacing="0" border="0" class="display">
+						<thead>
+							<tr>
+								<th>Top Raider</th>
+								<th style="width:30px"></th>
+							</tr>
+						</thead>
+						<tbody>
+							#{list items:poolByRaidTeilnahme.subList(5), as:'atendence'}
+							<tr>
+								<td><a href="@{RaidTracker.character(atendence.name.toLowerCase().urlEncode())}" 
+								class="user-name character character-member character-unverified character-${atendence.name.toLowerCase()} 
+								#{if atendence.name != "Bank" && atendence.name != "Entzaubert"} character-class-wow character-class-wow-${atendence.character.cclass.name.toLowerCase()} character-name-${atendence.character.name.toLowerCase()}#{/if}">${atendence.name}</a></td>
+								<td>${atendence.raidprozent.prozentFormat()}%</td>
+							</tr>									
+							#{/list}
+						</tbody>
+						</table>
+					</div>
+					<div style="width:50%; float:left;">
+						<table style="width:200px; margin-left: auto; margin-right: auto;" cellpadding="0" cellspacing="0" border="0" class="display">
+						<thead>
+							<tr>
+								<th>Items Bekommen</th>
+								<th style="width:30px"></th>
+							</tr>
+						</thead>
+						<tbody>
+							#{list items:poolByItems.subList(5), as:'mostItemsWon'}
+							<tr>
+								<td><a href="@{RaidTracker.character(mostItemsWon.name.toLowerCase().urlEncode())}" 
+								class="user-name character character-member character-unverified character-${mostItemsWon.name.toLowerCase()} 
+								#{if atendence.name != "Bank" && atendence.name != "Entzaubert"} character-class-wow character-class-wow-${mostItemsWon.character.cclass.name.toLowerCase()} character-name-${mostItemsWon.character.name.toLowerCase()}#{/if}">${mostItemsWon.name}</a></td>
+								<td>${mostItemsWon.items.size()}</td>
+							</tr>									
+							#{/list}
+						</tbody>
+						</table>
+					</div>
+					<div class="clear"></div>
+					<br><br><br>
+					<ul class="tabs">
+		            	<li class="tab headline">Gegenstände</li>
+		            </ul>
+		            <div style="width:100%;" class="datatable">
+		            <br>
+					<table cellpadding="0" cellspacing="0" border="0" class="display" id="datatable-items">
+					<thead>
+						<tr>
+							<th width="90">Datum</th>
+							<th>Gegenstand</th>
+							<th width="100">Bekommen</th>
+						</tr>
+					</thead>
+					<tbody>
+						#{list items:items, as:'item'}
+						<tr>
+							<td><span title="${item.time.format('HH:mm')}">${item.time.format('dd. MMMM yyyy', 'de')}</span></td>
+							<td><a href="@{RaidTracker.showRaidItem(item.id)}" class="item q${item.item.itemQuality.qualityId}" rel="@{RaidTracker.showItem(item.item.id)}" target="_self">${item.name}</a></td>
+							<td><a href="@{RaidTracker.character(item.member.name.toLowerCase().urlEncode())}" 
+							class="user-name character character-member character-unverified character-${item.member.name.toLowerCase()} 
+							#{if item.member.name != "Bank" && item.member.name != "Entzaubert"} character-class-wow character-class-wow-${item.member.charakter.cclass.name.toLowerCase()} character-name-${item.member.charakter.name.toLowerCase()}#{/if}">${item.member.name}</a></td>
+						</tr>									
+						#{/list}
+					</tbody>
+					<tfoot>
+						<tr>
+							<th>Datum</th>
+							<th>Gegenstand</th>
+							<th>Bekommen</th>
+						</tr>
+					</tfoot>
+					</table>
+					</div>
+					<div class="clear"></div>
+					<br><br><br>
+					<ul class="tabs">
+		            	<li class="tab headline">Raids</li>
+		            </ul>
+		            <div style="width:100%;" class="datatable">
+		            <br>
+					<table cellpadding="0" cellspacing="0" border="0" class="display" id="datatable-raids">
+					<thead>
+						<tr>
+							<th width="90">Datum</th>
+							<th>Instanzen</th>
+							<th width="70">Teilnehmer</th>
+							<th width="70">Bosse</th>
+							<th width="70">Leiter</th>
+						</tr>
+					</thead>
+					<tbody>
+						#{list items:raids, as:'raid'}
+						<tr>
+							<td><span title="${raid.startDate.format('HH:mm')}">${raid.startDate.format('dd. MMMM yyyy', 'de')}</span></td>
+							<td>#{list items:raid.zonen, as:'zonen'}<a href="@{RaidTracker.showRaid(raid.id)}" class="" target="_self">${zonen.name}</a> #{/list}</td>
+							<td>${raid.member.size()}</td>
+							<td>${raid.bosse.size()}</td>
+							<td><a href="@{RaidTracker.character(raid.offizier.name.toLowerCase().urlEncode())}" 
+							class="user-name character character-member character-unverified character-${raid.offizier.name.toLowerCase()} 
+							character-class-wow character-class-wow-${raid.offizier.cclass.name.toLowerCase()} character-name-${raid.offizier.name.toLowerCase()}">${raid.offizier.name}</a></td>
+						</tr>
+						#{/list}
+					</tbody>
+					<tfoot>
+						<tr>
+							<th>Datum</th>
+							<th>Instanzen</th>
+							<th>Teilnehmer</th>
+							<th>Bosse</th>
+							<th>Leiter</th>
+						</tr>
+					</tfoot>
+					</table>
+					</div>
+		        </div>
+		        <div id="tab-addraid" class="content">
+		        	<div class="colBlurb" style="margin-top:5px; margin-bottom:5px;">
+		        	<div class="avatar">
+					<a href="http://www.curse.com/addons/wow/mizusraidtracker" target="_new">
+						<img src="/public/images/mizus-rt.png" alt="Mizus RaidTracker" />
+					</a></div>Mizus RaidTracker ist ein einfach zu benutzendes Addon, um Schlachtzüge, Loot und Teilnehmer zu tracken. MRT verfügt über automatische Trackingfunktionen, eine übersichtliche GUI zur Übersicht and Modifikation der getrackten Daten und einen CTRaidTracker kompatiblen Datenexport.
+					<br>
+					<br>
+					Trage hier die XML Eport Daten ein (/mrt -> raid auswählen -> export)</div>
+					<div class="clear"></div>
+		        	<form method="post" action="@{RaidTracker.addRaid()}" id="addRaid" class="pool">       
+						<select name="raidpool">
+							#{list items:pools, as:'pool'}
+							<option value="${pool.id}" #{if (params.id != null && pool.isMainRaid)} selected="selected" #{/if} #{if (params.id != null && params.id != "") && pool.id.toLong() == params.id.toLong()} selected="selected" #{/if} >${pool.name}</option>
+							#{/list}
+						</select>
+						<input type="submit" value="Raid Hinzufügen" />
+						<textarea name="raidxml"></textarea>
+		     		</form>
+		        </div>
+		    
+		    </div>
+
+
+
+
+
+
+
+     		<div class="colBreak clear"></div>
+     		<br>
+        	<div class="raids">
+
+			</div>
+			<div class="clear"></div>
+        </div>
+	</div>
+</div>
+<script>
+$(document).ready(function() {
+    $('#datatable-items').dataTable( {
+        "bProcessing": true,
+        "bStateSave": true,
+        "oLanguage": {
+            "sUrl": "/public/datatables_de_DE.txt"
+        }
+    } );
+        $('#datatable-raids').dataTable( {
+        "bProcessing": true,
+        "bStateSave": true,
+        "oLanguage": {
+            "sUrl": "/public/datatables_de_DE.txt"
+        }
+    } );
+} );
+</script>

@@ -1,0 +1,1004 @@
+@charset "utf-8";
+
+
+
+html, body {
+	margin:0; padding:0;
+    background: black url(/public/images/backgrounds/cataclysm.jpg) no-repeat top center fixed !important;
+    font-family: Helvetica, Arial, Sans !important;
+    font-size:90.5%;/* schriftgroesse relative machen, um spaeter mit em zu arbeiten    */
+	text-align:center;   /* vertikal zentrieren im IE6 */
+}
+
+ul {
+	margin:0px;
+	padding:0px;
+}
+a {
+	text-decoration:none;
+	color: #DFDBC9;
+	font-family: arial;
+	font-style: normal;
+}
+a img {
+	border:0px;
+}
+a.sel {
+	color:#F7D987;
+}
+a:hover{
+	text-decoration:none;
+	color: #DFDBC9;
+}
+
+
+.guildbar {
+	position:fixed;
+}
+
+.boss {
+	color:#DFDBC9;
+}
+.kill {
+	color:green;
+}
+.wipe {
+	color:red;
+}
+
+
+#pagination {
+	width:710px;
+	height:18px;
+}
+
+#pagination #previous {
+	float:left;
+}
+#pagination #next {
+	float:right;
+}
+/**********************************************************************/
+/*           	             Login									  */
+/**********************************************************************/
+
+#box-login .error, #box-login .success  {
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+#box-login .error {
+    background: #c00 !important;
+}
+
+#box-login .success {
+    background: #008800 !important;
+}
+
+
+/**********************************************************************/
+/*           	             Forms									  */
+/**********************************************************************/
+
+button, input, select, textarea {
+	color: #DFDBC9;
+	background: #262626;
+	border: solid #2F2F2F 1px;
+	border-top-color: black;
+	border-left-color: black;
+}
+
+/**********************************************************************/
+/*           	             Ebenen - Layout						  */
+/**********************************************************************/
+
+.wrap {
+	padding-top: 40px;
+	background: transparent url(/public/images/bg.png);
+}
+
+.wrapper {
+	width:1000px;
+	margin:0 auto; /* vertikal zentrieren */
+	text-align:left;  /* text wieder links positionieren */
+	background: transparent url(/public/images/bg.png);
+}
+
+#header {
+	height: 120px;
+	width:1000px;
+	height:160px;
+	float:left;
+}
+
+
+
+#navigation {
+	font-family: Georgia,serif;
+	font-style: italic;
+	width:970px;
+	float:left;
+}
+
+#content_wrapper {
+   width:1000px;
+   float:left;
+}
+
+#content_left {
+	margin-left: 15px;
+	margin-top: 5px;
+	margin-right: 2px;
+	margin-bottom: 5px;
+	width:232px;
+	float:left;
+}
+
+#content_right {
+	margin-left: 2px;
+	margin-top: 5px;
+	margin-right: 15px;
+	margin-bottom: 5px;
+	width:732px;
+	float:right;
+}
+
+#footer_top {
+   width:1000px;
+   height:50px;
+}
+
+#footer_bottom {
+   width:1000px;
+   height:100px;
+}
+
+.box {
+	background-color: #0E0F11;
+	border-color: #12202E;
+	border-style: solid;
+	border-width: 1px;
+	color: #F2FAFF;
+	display: block;
+	font-family: arial;
+	font-size: 12px;
+	margin: 0px;
+	padding: 10px;
+	text-align: left;
+}
+
+.spacer {
+	margin-top: 5px;
+}
+
+.bottom {
+	margin-bottom: 5px;
+}
+
+
+div.clear {
+   clear:both;
+}
+
+div.menu {z-index:5;position:relative;top:0px;left:15px;width:968px;height:44px;font-size:14px;padding:0px;text-align: center;}
+div.menu ul {list-style:none;margin-top:0px;text-align: center;}
+div.menu ul li {float:left;padding:10px 23px;background:transparent url(/public/images/menubg.png) no-repeat right center;}
+div.menu ul li.last {background:transparent url('');}
+div.menu ul li small {color:#fc0;position:relative;top:-7px;font-size:8px;}
+
+/**********************************************************************/
+/*           	             Ebenen - Text			                      
+
+Damit der text nicht am Rand klebt, gibt es in jedem div noch ein 
+div mit einem margin, und event. Textformatierungen.
+K�nnte auch in dem div darueber mit padding geloest werden, wird 
+aber von verschiedenen Browser unterschiedlich oder nicht 
+interpretiert.
+                                                                      */
+/**********************************************************************/
+
+
+#header_t {
+   margin:0px 10px 10px 20px;
+   font-size:1.2em;
+   color:#fff;
+}
+
+#content_left_t {
+   margin:20px;
+   font-size:1.2em;
+   color:#fff;
+}
+
+#content_right_t {
+   margin:20px;
+   font-size:1.2em;
+   color:#fff;
+}
+
+#footer_top_t {
+   padding:20px;
+   font-size:0.8em;
+   color:#fff;
+}
+
+#footer_bottom_t {
+   padding:20px;
+   font-size:1.2em;
+   color:#DFDBC9;
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+	display: block;
+	text-rendering: optimizeLegibility;
+	font-weight: normal;
+}
+
+/**********************************************************************/
+/*           	             Left Content - Layout					  */
+/**********************************************************************/
+
+div.colBreak {
+	height: 1px;
+
+	background-color: #950505;
+	background-color: #CC3300;
+	background-color: #9e0036;
+	
+	overflow: hidden;
+	margin-bottom: 10px;
+	margin-top: 0px;
+}
+
+h2.nav_t {
+	padding-bottom: 5px;
+	color: #DFDBC9;
+	font-size: 15px;
+	text-align: center;
+	font-family: Georgia,serif !important;
+	text-transform:uppercase !important;
+	letter-spacing: 0.3ex;
+}
+
+h4.nav_t {
+	padding-bottom: 5px;
+	font-size: 12px;
+	text-align: center;
+	font-family: Georgia,serif !important;
+}
+/**********************************************************************/
+/*           	             Gildenstatus - Layout					  */
+/**********************************************************************/
+
+.guildlogo img {
+	display: block;
+	margin: 0 auto;
+	width: 210px;
+	height: 210px;
+}
+.guildlogo canvas {
+	display: block;
+	margin: 0 auto;
+	width: 150px;
+	height: 150px;
+	padding-left: 15px;
+}
+.guildperks img {
+	width: 24px;
+	height: 24px;
+	margin: 0 10px 0 0;
+	float: left;
+}
+.guildrank .rank {
+	display: block;
+	width: 33%;
+	float: left;
+	height: 55px;
+	text-align: center;
+}
+
+.guildrank .rank .number {
+	color: #white;
+	font-weight: bold;
+	width: 60px;
+	text-shadow: 1px 0 0 grey;
+	font-size: 16px;
+	display: block;
+}
+
+.guildrank .rank .location {
+	font-size: 11px;
+	display: block;
+	margin: 0 0 5px;
+	color: #999;
+}
+
+.guildinformation {
+	margin: -40px 0 10px 0;
+}
+
+.guildinformation .guildname {
+font-size: 18px;
+text-shadow: 2px 2px 0 rgba(0, 0, 0, .6);
+text-align: center;
+font-weight: bold;
+margin: 0 0 5px;
+color: white;
+}
+.guildinformation .realmstatus {
+font-style: italic;
+font-size: 11px;
+text-align: center;
+}
+
+.guildinformation .guildlevel {
+float: left;
+}
+.guildinformation .guildmembers {
+float: right;
+}
+
+.guildperks li img {
+width: 24px;
+height: 24px;
+margin: 0 10px 0 0;
+float: left;
+background: black;
+overflow: hidden;
+padding: 1px;
+-webkit-border-radius: 3px;
+border: 1px solid rgba(255, 255, 255, .4);
+border-top-color: #B1B2B4;
+}
+.guildperks li .title {
+font-weight: bold;
+}
+.guildperks li .level {
+font-size: 10px;
+font-style: italic;
+display: block;
+}
+
+/**********************************************************************/
+/*           	             Gilden Posts							  */
+/**********************************************************************/
+
+
+
+.artheadline {
+	/* background: black url(/public/images/artworks/942519_20081013_screen001.jpg) no-repeat top center fixed !important;*/
+	display: block;
+	width: 100%;
+	float: left;
+	height: 130px;
+	text-align: center;
+	border-color: #12202E;
+	border-style: solid;
+	border-width: 1px;
+	margin-bottom: 10px;
+}
+
+.artheadlinshadow {
+	background: transparent url(/public/images/bg.png);
+	display: block;
+	width: 100%;
+	float: left;
+	height: 130px;
+	text-align: center;
+}
+.post .colBreak {
+ margin-top: 10px;
+ margin-bottom: 2px;
+}
+.post-content img {
+	display: block;
+	max-width:709px;
+	border-color: #12202E;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.post-metadata {
+	vertical-align: sub;
+}
+.post-metadata a{
+	vertical-align: sub;
+}
+
+.post-title {
+	display: block;
+	width: 710px;
+	margin-top:auto; margin-bottom:auto;
+	margin-top: 40px;
+	text-align: center;
+	text-shadow: 2px 2px 0 rgba(0, 0, 0, .6);
+	pointer-events: none;
+	vertical-align: sub;
+}
+
+h2.post-title  a {
+	color: #DFDBC9;
+	font-size: 30px;
+	font-family: Georgia,serif;
+	text-decoration:none;
+	text-transform:uppercase;
+	letter-spacing: 0.2ex;
+	pointer-events: auto;	
+}
+span.post-subtitle {
+	color: #DFDBC9;
+	display: block;
+	width: 710px;
+	margin-top:auto; margin-bottom:auto;
+	font-size: 12px;
+	font-family: Georgia,serif;
+	pointer-events: auto;	
+}
+
+div.postdate {
+ float: right;
+ color: #DFDBC9;
+ margin-right: 4px;
+ font-family: Georgia,serif;
+ font-style: bold;
+ text-align: right;
+}
+
+.ico_link {
+	display: block;
+	float: left;
+	font-size: 10px;
+	color: #636363;
+
+	background-position: 0 5px;
+	background-repeat: no-repeat;
+	padding-left: 15px;
+	margin-right: 15px;
+	vertical-align: sub;
+
+}
+
+.ico_link a {
+	color: #636363;
+
+}
+.ico_link:hover {
+	color: #EDEDED;
+	background-position: 0 -16px;
+}
+.ico_link a:hover {
+	color: #EDEDED;
+	background-position: 0 -16px;
+}
+
+
+
+.ico_link.comments {
+	background-image: url(/public/images/posts/ico_comments.png);
+}
+.ico_link.date {
+	background-image: url(/public/images/posts/ico_date.png);
+}
+.ico_link.tags {
+	background-image: url(/public/images/posts/ico_tags.png);
+}
+.ico_link.author {
+	background-image: url(/public/images/posts/ico_author.png);
+}
+.author {
+	float: right;
+}
+
+.avatar {
+	float: left;
+	margin-right:15px;
+}
+
+.avatar img {
+	display: block;
+	border-color: #12202E;
+	border-style: solid;
+	border-width: 1px;
+}
+.character-rank {
+	position: relative;
+	top: -86px;
+	/*left: 69px;*/
+	float:right;
+	width: 16px;
+	color: #DFDBC9;
+	margin-right: 2px;
+	font-family: Georgia,serif important!;
+	font-style: bold important!;
+	text-align: right;
+}
+.character-name {
+	position: relative;
+	width:86px;
+	height:16px;
+	bottom:16px;
+	color: #DFDBC9;
+	font-family: Georgia,serif;
+	font-style: bold;
+	text-align: right;
+	background: transparent url(/public/images/bg_dark.png);
+}
+.character-name a {
+	position: relative;
+	
+	padding:0;
+	margin:0;
+	right:-16px;
+	display: inline; white-space: nowrap; 
+}
+.character-level img {
+	border: 0;
+}
+
+.avatar a {
+	font-style: bold;
+}
+
+
+
+
+form.c_search {
+	padding:0;
+	margin:0;
+	vertical-align: bottom;
+	margin-top: 5px;
+	padding-bottom:-15px;
+	margin-left:auto; margin-right:auto;
+}
+
+form.c_search input {
+	/*border: none;*/
+	color: #DFDBC9;
+	background: #262626;
+	height: 16px;
+	line-height: 16px;
+	width: 263px;
+	padding-left: 4px;
+	margin-left: 2px;
+	margin-bottom: 2px;
+	vertical-align: bottom;
+}
+
+form.c_search a {
+	display: block;
+	float: right;
+	position: relative;
+	width: 19px;
+	height: 19px;
+	top: -21px;
+	right: 3px;
+	background: url(/public/images/go_search.png) no-repeat center 4px;
+	vertical-align: bottom;
+}
+
+form.c_search a:hover{
+	background-position: center -16px;
+}
+
+
+
+/**********************************************************************/
+/*           	             /register								  */
+/**********************************************************************/
+
+form.register_form {
+	padding:0;
+	margin:0;
+	vertical-align: bottom;
+	margin-top: 5px;
+	padding-bottom:-15px;
+	margin-left:auto; margin-right:auto;
+}
+
+form.register_form input {
+	/*border: none;*/
+	color: #DFDBC9;
+	background: #262626;
+	height: 16px;
+	line-height: 16px;
+	width: 243px;
+	padding-left: 4px;
+	margin-left: 2px;
+	margin-bottom: 2px;
+	vertical-align: bottom;
+}
+
+form.register_form button, form.register_form input, form.register_form select, form.register_form textarea {
+	color: #DFDBC9;
+	background: #262626;
+	border: solid #2F2F2F 1px;
+	border-top-color: black;
+	border-left-color: black;
+}
+
+form.register_form input.register_form_charname {
+	background-image:url(/public/images/go_search.png);
+	background-repeat:no-repeat;
+	background-position:4px 3px;
+	padding-left: 20px;
+	vertical-align: bottom;
+}
+
+form.register_form input.register_form_charname:hover{
+	background-repeat:no-repeat;
+	background-position:4px -17px;
+}
+
+#register_form_submit_button {
+	color: #DFDBC9;
+	background: #262626;
+	height: 20px;
+	line-height: 16px;
+	width: 243px;
+	margin-left: 0px;
+	margin-bottom: 2px;
+	vertical-align: bottom;
+}
+#register_mitglied_werden_form_submit_button {
+	color: #DFDBC9;
+	background: #262626;
+	height: 20px;
+	line-height: 16px;
+	width: 243px;
+	margin-left: 0px;
+	margin-bottom: 2px;
+	vertical-align: bottom;
+}
+
+
+.register_avatar {
+	float: left;
+	margin-right:15px;
+}
+
+.register_avatar img {
+	display: block;
+	border-color: #12202E;
+	border-style: solid;
+	border-width: 1px;
+}
+.register_character_rank {
+	position: relative;
+	top: -86px;
+	/*left: 69px;*/
+	float:right;
+	width: 16px;
+	color: #DFDBC9;
+	margin-right: 2px;
+	font-family: Georgia,serif important!;
+	font-style: bold important!;
+	text-align: right;
+}
+.register_character_name {
+	position: relative;
+	width:86px;
+	height:16px;
+	bottom:16px;
+	color: #DFDBC9;
+	font-family: Georgia,serif;
+	font-style: bold;
+	text-align: right;
+	background: transparent url(/public/images/bg_dark.png);
+}
+.register_character_name a {
+	position: relative;
+	
+	padding:0;
+	margin:0;
+	right:-16px;
+	display: inline; white-space: nowrap; 
+}
+.register_character_level img {
+	border: 0;
+}
+
+.register_avatar a {
+	font-style: bold;
+}
+
+.register_avatar a {
+	font-style: bold;
+}
+.register_avatar_info {
+	margin-left: 20px;
+
+}
+
+.register_mitglied_werden {
+	float:right;
+	margin-top: 20px;
+	margin-right: 5px;
+}
+
+
+/* form styles */
+
+form.register_user_form {
+	width: 360px;
+	text-align: left;
+}
+
+fieldset.register_user_form {
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+legend.register_user_form {
+	display: none;
+}
+
+form.register_user_form h3 {
+	clear: both;
+	padding: 5px 0px 10px 0px;
+	font-size: 14px;
+}
+
+form.register_user_form label {
+	display: block;
+	width: 310px;
+	font-size: 12px;
+	line-height: 14px;
+	padding: 0px 0px 12px 0px;
+}
+
+form.register_user_form input {
+	display: block;
+	margin-top: 3px;
+}
+
+form.register_user_form select {
+	float: left;
+	display: block;
+}
+
+form.register_user_form label.field-first,
+form.register_user_form label.field-address,
+form.register_user_form label.field-city,
+form.register_user_form label.field-email {
+	clear: left;
+}
+
+
+form.register_user_form label.field-first,
+form.register_user_form label.field-last,
+form.register_user_form label.field-city,
+form.register_user_form label.field-email,
+form.register_user_form label.field-password {
+	float: left;
+	margin: 0px 10px 0px 0px;
+	width: 150px;
+}
+
+form.register_user_form label.field-first input,
+form.register_user_form label.field-last input,
+form.register_user_form label.field-email input,
+form.register_user_form label.field-city input,
+form.register_user_form label.field-password input {
+	float: left;
+	width: 150px;
+	padding: 0px;
+}
+
+form.register_user_form label.field-state {
+	float: left;
+	margin-right: 10px;
+	width: 60px;
+}
+
+form.register_user_form label.field-state select {
+	width: 60px;
+	float: left;
+	margin-top: 3px;
+}
+
+form.register_user_form label.field-zip {
+	float: left;
+	width: 80px;
+}
+
+form.register_user_form label.field-zip input {
+	float: left;
+	width: 80px;
+}
+
+form.register_user_form label.field-email {
+	float: left;
+	width: 310px;
+	margin: 0px 0px 0px 0px;
+}
+
+form.register_user_form label.field-email input {
+	float: left;
+	width: 310px;
+	padding: 0px;
+}
+
+form.register_user_form input#radiobutton_1,
+form.register_user_form input#radiobutton_2,
+form.register_user_form input#radiobutton_3,
+form.register_user_form input#radiobutton_4 {
+	clear: left;
+	float: left;
+	padding: 0px;
+	margin: 0px 0px 0px 0px;
+}
+
+form.register_user_form label.radioitem {
+	clear: none;
+	margin: 0px 0px 0px 25px;
+	padding: 0px 0px 15px 0px;
+}
+
+textarea.register_user_form {
+	display: block;
+}
+
+form.register_user_form input#checkbox_1,
+form.register_user_form input#checkbox_2,
+form.register_user_form input#checkbox_3 {
+	clear: both;
+	float: left;
+	padding: 0px;
+	margin: 0px;
+}
+
+form.register_user_form label.field-checkbox {
+	clear: none;
+	margin: 0px 0px 0px 25px;
+	padding: 0px 0px 15px 0px;
+}
+
+form.register_user_form textarea {
+	margin-top: 3px;
+}
+
+.register_personal_infos {
+	float:left;
+	margin-top: -8px;
+}
+
+.text-needed {
+	color: #9e0036;
+	font-style: bold;
+}
+
+.text-highlight {
+	color: #f9cc30;
+	font-style: bold;
+}
+
+/* form styles */
+
+form.login_user_form {
+	width: 210px;
+	text-align: left;
+}
+
+fieldset.login_user_form {
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+legend.login_user_form {
+	display: none;
+}
+
+form.login_user_form h3 {
+	clear: both;
+	padding: 5px 0px 10px 0px;
+	font-size: 14px;
+}
+
+form.login_user_form label {
+	display: block;
+	width: 60px;
+	font-size: 12px;
+	line-height: 14px;
+	padding: 0px 0px 12px 0px;
+}
+
+form.login_user_form input {
+	display: block;
+	margin-top: 3px;
+}
+
+form.login_user_form select {
+	float: left;
+	display: block;
+}
+
+form.login_user_form label.username,
+form.login_user_form label.remember,
+form.login_user_form label.password {
+	clear: left;
+}
+
+
+form.login_user_form label.username,
+form.login_user_form label.remember,
+form.login_user_form label.password {
+	float: left;
+	margin: 0px 10px 0px 0px;
+	width: 60px;
+}
+
+form.login_user_form label.username,
+form.login_user_form label.remember,
+form.login_user_form label.password {
+	float: left;
+	width: 60px;
+	padding: 0px;
+}
+
+form.login_user_form input.username {
+	width: 138px;
+	padding: 0px;
+	margin-bottom: 5px;
+}
+
+form.login_user_form input.password {
+	width: 138px;
+	padding: 0px;
+	margin-bottom: 5px;
+}
+
+form.login_user_form input.remember {
+	width: 138px;
+	padding: 0px;
+	margin: 0px;
+	margin-left: 8px;
+	margin-bottom: 8px;
+}
+
+#box-login-signin {
+	clear:both;
+	color: #DFDBC9;
+	background: #262626;
+	height: 20px;
+	line-height: 16px;
+	width: 212px;
+	padding:0;
+	margin:0;
+	margin-left: -2px;
+	margin-bottom: 2px;
+	vertical-align: bottom;
+}
+
+.bossavatar {
+	float: left;
+}
+
+.bossavatar img {
+	display: block;
+	border-color: #12202E;
+	border-style: solid;
+	border-width: 1px;
+}
+.boss-rank {
+	position: absolute;
+	top: 23px;
+	left: 69px;
+	width: 16px;
+}
+
+.emoteicon {
+	padding-left: 2px;
+	padding-right: 2px;
+	vertical-align: middle;
+}
+
+.noborder {
+	border-width:0px !important;
+}

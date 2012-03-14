@@ -1,0 +1,16 @@
+<div id="char-banner-request">
+<div class="register_avatar">
+	<a href="/character/${character.name.toLowerCase().urlEncode()}">
+		<img src="@{Avatar.getAvatar(character.name)}" height="84" width="84" alt="${character.name}s avatar" />
+	</a>
+	<div class="register_character_rank"><a href="" title="${character.cclass.name}"><img class="noborder" src="/public/images/class/${character.cclass.ccId}.png" height="16" width="16" alt="${character.name}s Klasse"/></a></div>
+	<div class="register_character_name"><a href="/character/${character.name.toLowerCase().urlEncode()}" class="character character-member character-unverified character-${character.cclass.name.toLowerCase()} character-class-wow character-class-wow-${character.cclass.name.toLowerCase()} character-name-${character.name.toLowerCase()}">${character.name}</a></div>
+</div>
+<div class="register_avatar_info">
+	Du hast <span class="text-highlight">${character.name}</span> #{if character.guild != null}
+	aus der Gilde <span class="text-highlight">${character.guild.name}</span> #{/if} 
+	vom Server <span class="text-highlight">${character.realm.name}</span> ausgewählt, 
+	wenn du dir sicher bist das dies dein World of Warcraft Charakter ist bestätige 
+	es durch einen klick auf den Button "Mitglied werden!"
+</div>
+</div>

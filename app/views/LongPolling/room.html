@@ -1,0 +1,113 @@
+#{extends 'main.html' /}
+#{set title: guildTitle + ' - Chat' /}
+#{set moreStyles:'<link rel="stylesheet" type="text/css" media="screen" href="/public/stylesheets/chat.css" />'.raw() /}
+
+<div class="box">
+
+<div class="artheadline" style="background: black url(/public/images/artworks/illidan.jpg) no-repeat top center  !important;">
+	<div class="artheadlinshadow">
+		<div class="postdate"><!--<div>06</div><span>Mar</span>--></div>
+    	<h2 class="post-title">
+    		<a href="/post/4">Chat</a>
+		</h2>
+		
+	</div>
+</div>
+
+<div class="post ">
+        
+        
+<div id="thread">
+    <script type="text/html" id="message_tmpl">
+        <% if(event.type == 'message') { %>
+            <div class="message <%= event.chatname == '${chatname}' ? 'you' : '' %>">
+                <%= event.link %>
+                
+                
+                <p>
+                    <%= event.text %>
+                </p>
+            </div>
+        <% } %>
+        <% if(event.type == 'join') { %>
+            <div class="message notice">
+                <h2></h2>
+                <p>
+                    <%= event.chatname %> joined the room
+                </p>
+            </div>
+        <% } %>
+        <% if(event.type == 'leave') { %>
+            <div class="message notice">
+                <h2></h2>
+                <p>
+                    <%= event.chatname %> left the room
+                </p>
+            </div>
+        <% } %>
+    </script>
+</div>
+
+
+         </div>
+    
+    
+    <div class="colBreak clear"></div>
+        <div class="post-metadata">
+
+<div id="newMessage" style="float:left">
+    <input type="text" id="message" autocomplete="off">
+    <input type="submit" value="Absenden" id="send">
+</div>   
+
+<span class="ico_link author"><a href="#nyi" title="Du Chattest als ${chatname}">${chatname}</a></span>
+
+    </div>
+    <br>
+
+
+</div>
+
+
+<script type="text/javascript">
+
+    var lastReceived = 0
+    var waitMessages = #{jsAction @waitMessages(':lastReceived') /}
+    var say = #{jsAction @say(chatname) /}
+
+    $('#send').click(function(e) {
+        var message = $('#message').val()
+        $('#message').val('')
+        $.post(say(), {message: message})
+    });
+    
+    $('#message').keypress(function(e) {
+        if(e.charCode == 13 || e.keyCode == 13) {
+            $('#send').click()
+            e.preventDefault()
+        }
+    })
+
+    // Retrieve new messages
+    var getMessages = function() {
+        $.ajax({
+            url: waitMessages({lastReceived: lastReceived}),
+            success: function(events) {
+                $(events).each(function() {
+                    display(this.data)
+                    lastReceived = this.id
+                })
+                getMessages()
+            },
+            dataType: 'json'
+        });
+    }
+    getMessages();
+    
+    // Display a message
+    var display = function(event) {
+        $('#thread').append(tmpl('message_tmpl', {event: event}));
+        $('#thread').scrollTo('max')
+    }
+    
+</script>

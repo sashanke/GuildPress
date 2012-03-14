@@ -1,0 +1,28 @@
+#{extends 'main.html' /}
+#{set title: character.name + ' von ' + character.guild.name /}
+<div class="box">
+	<div class="artheadline" style="background: black url(/public/images/race-banner/${character.race.crId}.png) no-repeat top center  !important;">
+		<div class="artheadlinshadow">
+			<div class="postdate" style="width:40px;">
+				<!-- <img class="noborder" style="margin-top:3px;" src="/public/images/level/${character.level}.png" height="38" width="38" alt="${character.name}s Level" />
+				<img class="noborder" src="/public/images/race/${character.race.crId}_${character.gender.gId}.png" height="38" width="38" alt="${character.name}s Rasse" />
+				<img class="noborder" src="/public/images/class/${character.cclass.ccId}.png" height="38" width="38" alt="${character.name}s Klasse" /> -->
+			</div>
+    		<h2 class="post-title">
+    			<a href="@{Application.roster()}">${character.name}</a>
+			</h2>
+			<span class="post-subtitle">${character.guild.name}</span>
+		</div>
+	</div>
+	<div class="post">
+        <div class="post-content">
+        
+        
+        
+        
+        
+        
+		<div class="clear"></div>
+        </div>
+	</div>
+</div>

@@ -1,0 +1,65 @@
+package models.raidtracker;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+
+import models.wowapi.WoWHeadAPI;
+import models.wowapi.resources.Item;
+
+import play.db.jpa.Model;
+import flexjson.JSON;
+
+@Entity
+public class RaidItem extends Model {
+
+
+	public String name;
+
+	public Date time;
+	
+	@ManyToOne
+	public RaidMitglied member;
+
+	public Long itemId;
+	public Long cost;
+
+	@ManyToOne
+	public RaidBossKills boss;
+
+	@ManyToOne
+	public Raid raid;
+	
+	private String memberName;
+	private String formatedDate;
+	
+	@ManyToOne
+	public Item item;
+	
+	public RaidItem(String name, Date time, RaidMitglied member, Long itemId, Long cost, RaidBossKills boss, Raid raid, Item item) {
+		this.name = name;
+		this.time = time;
+		this.member = member;
+		this.itemId = itemId;
+		this.cost = cost;
+		this.boss = boss;
+		this.raid = raid;
+		this.item = item;
+	}
+
+	public Item checkItem() {
+		return WoWHeadAPI.checkItem(this.itemId);
+	}
+	
+	@JSON
+	public String getMemberName() {
+		return this.member.name;
+	}
+	@JSON
+	public String getFormatedDate() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");		
+		return  sdf.format(this.time);
+	}
+}

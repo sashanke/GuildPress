@@ -1,0 +1,10 @@
+ 			<div class="bosses">
+			 #{list items:log.bosses, as:'boss'}
+				<div class="bossavatar">
+					<a href="http://www.worldoflogs.com/reports/${log.logId}/?enc=bosses&boss=${boss.bossId}" target="_blank">
+						<img src="@{Utilities.fetchBossImage(boss.bossId)}" height="84" width="84" alt="Boss avatar" />
+					</a>
+					<div class="boss-rank">#{if boss.difficulty == 'H'}<img class="noborder" src="/public/images/wipes.png" height="16" width="16" alt="Heroic" />#{/if}</div>
+				</div>
+			 #{/list}			 
+			</div>

@@ -1,0 +1,547 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <title>#{get 'title' /}</title>		
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="icon" href="@{'/public/images/favicon.png'}" sizes="32x32">
+        <link rel="shortcut icon" href="@{'/public/images/favicon.ico'}">
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/guildbar.css'}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/wow.css'}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/style.css'}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/jquery-ui-1.8.18.custom.css'}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/flexigrid.css'}" />
+        #{get 'moreStyles' /}
+		<link rel="stylesheet" type="text/css" href="/public/stylesheets/highslide/highslide.css" />
+		<!--[if lt IE 7]>
+		<link rel="stylesheet" type="text/css" href="/public/stylesheets/highslide/highslide-ie6.css" />
+		<![endif]-->
+
+		<script type="text/javascript" src="/public/javascripts/highslide/highslide.js"></script>
+		<script type="text/javascript" src="/public/javascripts/highslide/highslide.config.js" charset="utf-8"></script>
+
+        
+        <script src="@{'/public/javascripts/jquery-1.7.1.min.js'}"></script>
+    	<script src="@{'/public/javascripts/jquery-ui-1.8.18.custom.min.js'}"></script>
+    	
+    	<script src="@{'/public/javascripts/flexigrid.js'}"></script>
+
+    	<script src="@{'/public/javascripts/guild-tabard.js'}"></script>
+		<script src="@{'/public/javascripts/jquery.cluetip.js'}"></script>
+
+		<script src="@{'/public/javascripts/templating.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/jquery.scrollTo-min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+<script src="@{'/public/javascripts/jquery.form.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+<script src="@{'/public/javascripts/jquery.cookie.js'}" type="text/javascript" charset="${_response_encoding}"></script>        
+        
+		#{get 'moreScripts' /}
+		
+ <style type="text/css">
+    #daddy-shoutbox {
+    	position:relative;
+    	float:right;
+		padding: 5px;
+      background: transparent;
+      color: white;
+      width: 500px;
+      height:145px;
+      font-family: Arial,Helvetica,sans-serif;
+      font-size: 11px;
+    }
+    
+    #daddy-shoutbox-list {
+    	width: 500px;
+    	height:125px;
+    	overflow:hidden;
+    }
+    
+    #daddy-shoutbox-div {
+      text-align: right;
+    }
+    
+    .shoutbox-list {
+      border-bottom: 0px solid #627C98;
+      padding: 5px;
+      display: none;
+    }
+    #daddy-shoutbox-list {
+      text-align: right;
+      margin: 0px auto;
+    }
+    #daddy-shoutbox-form {
+      text-align: right;
+      
+    }
+    .shoutbox-list-time {
+      color: #8DA2B4;
+    }
+    .shoutbox-list-nick {
+      margin-right: 5px;
+      font-weight: bold;
+    }
+    .shoutbox-list-message {
+      margin-right: 5px;
+    }
+    
+    #daddy-shoutbox-response img{
+    	vertical-align: baseline;
+    	margin-bottom:-3px;
+    }
+    
+    input[type=image] {
+    	padding-left: 4px;
+ 		border:0;
+ 		background:0;
+ 		margin:0;
+ 		vertical-align: middle;
+	}
+  </style>
+ <script type="text/javascript">
+        var count = 0;
+        var files = '/public/';
+        var lastTime = 0;
+        
+        function prepare(response) {
+          var d = new Date();
+          count++;
+          d.setTime(response.msg_date);
+          var mytime = d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
+          var string = '<div class="shoutbox-list" id="list-'+count+'">'
+              + '<span class="shoutbox-list-message" style="white-space:nowrap; overflow:hidden;">'+response.message+'</span>'
+              + '<span class="shoutbox-list-nick">'+response.name+'</span>'
+              
+              +'</div>';
+          
+          return string;
+        }
+        
+        function success(response, status)  { 
+          if(status == 'success') {
+            lastTime = response.date;
+            $('#daddy-shoutbox-response').html('<img src="'+files+'images/accept.png" />');
+            $('#daddy-shoutbox-list').append(prepare(response));
+            $('input[name=message]').attr('value', '').focus();
+            $('.shoutbox-more').cluetip({showTitle:false, sticky:true, closeText: 'Schließen'});
+           $($('.shoutbox-list').get().reverse()).each(function(i, shoutboxlist) {
+      			if(i >= 5) {
+      				$(shoutboxlist).hide('slow');
+      			}
+			});
+            $('#list-'+count).fadeIn('slow');
+            timeoutID = setTimeout(refresh, 3000);
+          }
+        }
+        
+        function validate(formData, jqForm, options) {
+          for (var i=0; i < formData.length; i++) { 
+              if (!formData[i].value) {
+                  alert('Please fill in all the fields'); 
+                  $('input[@name='+formData[i].name+']').css('background', 'red');
+                  return false; 
+              } 
+          } 
+          $('#daddy-shoutbox-response').html('<img src="'+files+'images/loader.gif" />');
+          clearTimeout(timeoutID);
+        }
+
+        function refresh() {
+          $.getJSON("/shoutbox/"+lastTime, function(json) {
+            if(json.length) {
+              for(i=0; i < json.length; i++) {
+              	var newHtml = prepare(json[i]);
+                $('#daddy-shoutbox-list').append(newHtml);
+                $('#list-' + count).fadeIn('slow');
+                $('.shoutbox-more').cluetip({showTitle:false, sticky:true, closeText: 'Schließen'});
+              }
+              var j = i-1;
+              lastTime = json[j].msg_date;              
+            }
+          });
+          
+          $($('.shoutbox-list').get().reverse()).each(function(i, shoutboxlist) {
+      			if(i >= 5) {
+      				$(shoutboxlist).hide('slow');
+      			}
+			});
+
+          timeoutID = setTimeout(refresh, 3000);
+        }
+        
+        // wait for the DOM to be loaded 
+        $(document).ready(function() { 
+        	$("#daddy-shoutbox-div").hide();
+            var options = { 
+              dataType:       'json',
+              beforeSubmit:   validate,
+              success:        success
+            }; 
+            $('#daddy-shoutbox-form').ajaxForm(options);
+            timeoutID = setTimeout(refresh, 100);
+            
+            
+            $("#daddy-shoutbox").hover(
+            function() {
+                $("#daddy-shoutbox-div", this).show('slow');
+            },
+            function() {
+                $("#daddy-shoutbox-div", this).hide('slow');
+            });
+            
+        });
+        
+        
+        
+        
+  </script>
+
+<script type="text/javascript" src="/public/swfobject.js"></script>
+<script type="text/javascript">
+var flashvars = {};
+flashvars.folderPath = "/public/";
+var params = {};
+params.scale = "noscale";
+params.salign = "tl";
+params.wmode = "transparent";
+params.allowScriptAccess = "always";
+params.allowFullScreen = "true";
+var attributes = {};
+swfobject.embedSWF("/public/BannerRotatorFX.swf", "BannerRotatorFXDiv", "710", "260", "9.0.0", false, flashvars, params, attributes);
+</script>
+
+		<script>
+
+	$(function() {	
+		$('#box-login-success').delay(5000).fadeOut('slow');
+		$('#box-login-error').delay(5000).fadeOut('slow');
+		
+		$("#dialog-nyi").dialog({
+			modal: true,
+			autoOpen: false,
+			buttons: {
+				Ok: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+		$(".nyi").click(function() {
+				$("#dialog-nyi").dialog("open");
+			});
+			
+		$("#dialog-login").dialog({
+			modal: true,
+			autoOpen: false
+		});
+		$(".dologgin").click(function() {
+				$("#dialog-login").dialog("open");
+			});	
+			
+			
+
+	});
+	
+	
+	
+$(document).ready(function() {
+
+	$('.log-boss').cluetip({
+		width: '260px', 
+		showTitle: false,
+		hoverClass: 'highlight',
+		sticky: true,
+		closePosition: 'top',
+		closeText: 'Schließen'
+	});
+
+  $.ajax({
+	url: "/login",
+	type: "GET",
+	success: function (html) {
+		//wenn Response true bzw. den Status 1 zurückliefert
+		//$("#char-banner-request").remove();
+		$("#dialog-login").append(html);
+	}
+	});
+});
+
+	
+	
+		</script>
+    </head>
+    <body>
+		<div id="dialog-nyi" title="Funktion noch nicht verfügbar">
+			<p>Diese Funktion ist noch nicht verfügbar</p>
+		</div>
+
+		<div class="guildbar">
+			<ul class="link-bar">
+				<li class="link-cell link-annoucement suckerfish">
+					<a href="#" class="nyi" title="Ankündigungen">Ankündigungen</a>
+					<ul class="section-drop">
+						<li class="annoucement-message" "=""><span class="icon icon-annoucement"></span>World of Logs ( <a href="http://www.worldoflogs.com/guilds/189912/">more</a> )</li>
+					</ul>
+				</li>
+
+		        <li class="link-cell link-messages ">
+		            <a href="#" class="nyi" title="Private Nachrichten"><span>0</span></a>
+				</li>
+
+		        <li class="link-cell link-support">
+		            <a href="#" class="nyi" title="Hilfe nötig?">Hilfe und Support</a>
+				</li>
+			</ul>
+
+			#{if session.username && user != null && user.isAdmin}
+			<!-- If Admin, Admin link group -->
+			<ul class="admin-link-bar">
+				<li class="admin-link-cell admin-link-cp">
+					<a href="/admin" title="Einstellungen"><span class="icon ir">Control Panel Icon</span></a>
+				</li>
+			</ul>
+			#{/if}
+			<!-- Character bar -->
+			<div class="user-box ">
+				<ul class="user-meta group">
+		            <li class="user-meta-cell user-meta-race">
+		            	#{if session.username && user != null}
+		                <span class="icon-16 character-${user.wowCharacter.cclass.name.toLowerCase()} character-class-wow character-class-wow-${user.wowCharacter.cclass.name.toLowerCase()} ir"></span>
+		                <span class="icon-16 character-worgen character-race-wow character-race-wow-worgen character-female character-gender-wow character-gender-wow-female ir"></span>
+		            	#{/if}
+		            </li>
+		            <li class="user-meta-cell user-meta-name">
+		                #{if session.username && user != null}
+		                <a href="@{Application.character(user.wowCharacter.name.toLowerCase().urlEncode())}" id="register" class="no-tooltip user-name character character-member character-unverified character-${user.wowCharacter.cclass.name.toLowerCase()} character-class-wow character-class-wow-${user.wowCharacter.cclass.name.toLowerCase()} character-name-${user.wowCharacter.name.toLowerCase()}">${user.wowCharacter.name}</a>
+		                <a href="@{Application.guild(user.wowCharacter.guild.id,user.wowCharacter.guild.name)}">${user.wowCharacter.guild.name}</a>
+		                #{/if}
+		                #{else}
+		                <a href="@{Application.register()}" id="register" class="no-tooltip user-name character character-member character-unverified">Mitglied Werden?</a>
+		                <a href="@{Application.register()}">Klicke Hier!</a>
+		                #{/else}
+		            </li>
+		            <li class="user-meta-cell user-meta-avatar">
+		            	#{if session.username && user != null}
+		                <a class="no-tooltip" href="@{Application.character(user.wowCharacter.name.toLowerCase().urlEncode())}">
+		                    <img id="login-welcome-avatar" class="welcome-avatar" alt="Avatar" src="@{Avatar.getAvatar(user.wowCharacter.name)}">
+		                </a>
+		                #{/if}
+		            </li>
+		            <li class="user-meta-cell user-meta-links suckerfish">
+		            	#{if session.username && user != null}
+		                <a href="#">User Links</a>
+		                <ul class="section-drop">
+		                    <li class="add-character"><a href="/my-characters/create">Add a character</a></li>
+		                    <li><a href="/my-characters">Manage Characters</a></li>
+		                    <li class="separator ir">------------</li>
+		                    <li><a href="/my-account">Settings</a></li>
+							<li><a href="/logout">Ausloggen</a></li>
+                		</ul>
+                		#{/if}
+            		</li>
+        		</ul>
+			</div>
+		</div>
+
+		<div class="wrap">
+			<div class="wrapper">
+				<div id="header">
+					<div id="header_t">
+						<a href="@{Application.index()}"><img src="/public/images/bannerlogo.png"></a>
+						<div id="daddy-shoutbox">
+							<div id="daddy-shoutbox-list"></div>
+							#{if session.username && user != null}
+							<div id="daddy-shoutbox-div">
+								<form id="daddy-shoutbox-form" action="/shoutbox/add" method="post">
+									<span id="daddy-shoutbox-response"></span>
+									<input type="hidden" name="nickname" value="${user.wowCharacter.name}" /><input type="text" name="message" />
+									<input type="hidden" name="submit" value="Submit" />
+									<input type="image" src="/public/images/type_article.png" width="14" height="14">
+								</form>
+							</div>
+							#{/if}
+						</div>
+						
+						
+					</div>
+					
+					
+					
+					
+				</div>
+				<div class="clear"></div>
+				<div id="navigation">
+					<div class="menu box">
+						<ul>
+							<li><a href="@{Application.index()}" class="${request?.controller == 'Application' ? 'sel' : ''}" title="${guildTag} News">News</a></li>
+							<li><a href="@{RaidTracker.index()}" class="${request?.controller == 'RaidTracker' ? 'sel' : ''}" title="${guildTag} Raids">Raids</a></li>
+							
+							<li><a href="@{LongPolling.room(user?.wowCharacter?.name)}" class="${request?.controller == 'LongPolling' ? 'sel' : ''}" title="${guildTag} Chat">Chat</a></li>
+							<li><a href="@{MitgliederVerzeichnis.index()}" class="${request?.controller == 'MitgliederVerzeichnis' ? 'sel' : ''}" title="${guildTag} Mitglieder">Mitglieder</a></li>
+							<li><a href="@{RaidFortschritt.index()}" class="${request?.controller == 'RaidFortschritt' ? 'sel' : ''}" title="${guildTag} Progress">Progress</a></li>
+							<li><a href="#nyi" class="nyi" title="${guildTag} Recruitment">Recruitment</a></li>
+							<li><a href="#nyi" class="nyi" title="${guildTag} Gallerie">Gallerie</a></li>
+							<li><a href="#nyi" class="nyi" title="${guildTag} Gilden Informationen">Gilden Informationen</a></li>
+							<li class="last"><a href="#nyi" class="nyi" title="${guildTag} Kalender">Kalender</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div id="content_wrapper">
+					<div id="content_left">
+						<div class="box">
+							<div id="welcome-message">
+								<h2 class="nav_t">Willkommen</h2>
+								<div class="colBreak clear"></div>
+								<div class="colBlurb">${guildWellcomemsg}<br></div>
+							</div>
+						</div>
+#{if !session.username}				
+<div class="box spacer">
+<div id="box-login">
+	<h2 class="nav_t">Login</h2>
+	<div class="colBreak clear"></div>
+	
+	#{form @Secure.authenticate(), class: 'login_user_form'}
+		
+		#{if flash.error}
+			<p id="box-login-error" class="msg error colBlurb">
+				&{flash.error}
+			</p>
+		#{/if}
+		#{if flash.success}
+			<p id="box-login-success" class="msg success colBlurb">
+				&{flash.success}
+			</p>
+		#{/if}
+	
+		<p id="username-field">
+			<label class="username" for="username">Email</label>
+			<input class="username" type="text" name="username" id="username" value="${flash.username}" />
+		</p>
+		<p id="password-field">
+			<label class="password" for="password">Passwort</label>
+			<input class="password" type="password" name="password" id="password" value="" />
+		</p>
+		<p id="remember-field">
+			<label class="remember" for="remember">Merken</label>
+			<input class="remember" type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
+			
+		</p>
+
+			<input type="submit" id="box-login-signin" value="Einloggen" />
+		
+	#{/form}
+</div>
+</div>						
+#{/if}
+        				
+						<div class="box spacer">
+							<div class="guildinfo">
+								<h2 class="nav_t">Gildenstatus</h2>
+								<div class="colBreak clear"></div>
+								<div class="guildlogo"><canvas xmlns="http://www.w3.org/1999/xhtml" id="guild-tabard" width="150" height="150">
+			<div class="guild-tabard-default "></div>
+		</canvas>
+		<script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+        //<![CDATA[
+
+			$(document).ready(function() {
+
+				var tabard = new GuildTabard('guild-tabard', {
+
+					'ring': 'alliance',
+
+					'bg': [ 0, 49 ],
+
+					'border': [ 0, 15 ],
+
+					'emblem': [ 164, 15 ]
+
+				});
+
+			});
+
+        //]]>
+        </script></div>
+						        <ul class="guildinformation">
+						            <li class="guildname">${guild.name}</li>
+						            <li class="realmstatus">${realm.name} ${realm.status ? '(Up)' : '(Down)'} </li>
+						            <li class="guildlevel">Level ${guild.level}</li>
+						            <li class="guildmembers">${guild.members} Mitglieder</li>
+						        </ul>
+						        <br><br>
+						        <h4 class="nav_t">Gilden Boni</h4>
+						   		<ul class="guildperks">
+						        	<li>
+						            	<img src="http://eu.media.blizzard.com/wow/icons/56/${guildPerk.spell.get(0).icon}.jpg" title="${guildPerk.spell.get(0).description}" alt="${guildPerk.spell.get(0).description}">
+						            	<span class="title">${guildPerk.spell.get(0).name}${guildPerk.spell.get(0).subtext ? ' ('+ guildPerk.spell.get(0).subtext +')' : ''}</span>
+						            	<span class="level">Level ${guildPerk.guildLevel}</span>
+        							</li>
+   								</ul>
+   								<br>
+							</div>
+						</div>
+						
+						<div class="box spacer">
+							<div class="guildrank">
+								<h2 class="nav_t">Gildenrang</h2>
+								<div class="colBreak clear"></div>
+					            <div class="ranked">
+					                <div class="rank">   
+					                    <span class="location">Realm</span>      
+								        <span class="number">${guild.realm_rank}</span>
+					                </div>
+							        <div class="rank">   
+					                    <span class="location">Region</span>      
+								        <span class="number">${guild.area_rank}</span>
+					                </div>
+							        <div class="rank">   
+					                    <span class="location">World</span>      
+								        <span class="number">${guild.world_rank}</span>
+                					</div>
+            					</div>
+           					</div>
+           					<div class="inviscolBreak clear"></div>
+						</div>
+						<div class="box spacer">
+							<div class="logs">
+								<h2 class="nav_t">Logs</h2>
+								<div class="colBreak clear"></div>
+								<table style="margin: auto; width:210px;" id="inner">
+								<thead>
+								<tr>
+									<td></td>
+									<td><img src="/public/images/boss.png" height="16" title="Bosse"></td>
+									<td><img src="/public/images/kills.png" height="16" title="Kills"></td>
+									<td><img src="/public/images/wipes.png" height="16" title="Wipes"></td>
+								</tr>
+								</thead>
+								<tbody>
+					            #{list items:logs, as:'log'}
+					            	<tr>
+					            		<td><a href="http://www.worldoflogs.com/reports/${log.logId}" title="${log.getDuration()} am ${log.date.format('dd.MM.yyyy HH:m')}" target="_blank">${log.zones[0].name}</a></td>
+					            		<td><span class="number boss log-boss" rel="@{Application.log(log.id)}">${log.bossCount}</span></td>
+					            		<td><a href="http://www.worldoflogs.com/reports/${log.logId}/?enc=kills" title="Kills: ${log.killCount}" target="_blank"><span class="number kill">${log.killCount}</span></a></td>
+					            		<td><a href="http://www.worldoflogs.com/reports/${log.logId}/?enc=wipes" title="Wipes: ${log.wipeCount}" target="_blank"><span class="number wipe">${log.wipeCount}</span></a></td>
+					            	</tr>									
+					            #{/list}
+					            </tbody>
+					            </table>
+           					</div>
+           					<div class="inviscolBreak clear"></div>
+						</div>
+					</div>
+					<div id="content_right">
+						#{doLayout /}
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="wrapper">
+				<div id="footer_top">
+					<div id="footer_top_t">Wer ist Online: <span id="whosOnline"><i><a href="" class="nyi no-tooltip user-name character character-member character-unverified character-druid character-class-wow character-class-wow-druid">Calenria</a></i></span></div>
+				</div>
+				<!--<div id="footer_bottom">
+					<div id="footer_bottom_t">Ich bin ein footer_bottom Text.</div>-->    
+				</div>
+			</div>
+		</div>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+head {
+    font-family: Georgia,serif;
+    font-size: 20px;
+	color: #ffffff;
+}
+
+body{
+    font-family: Georgia,serif;
+    font-size: 16px;
+	color: #ffffdd;
+}
+a {
+	color: #aaaaff;
+	text-decoration:underline;
+}

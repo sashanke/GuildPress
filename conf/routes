@@ -1,0 +1,73 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Import Secure routes
+*       /                                       			module:secure
+
+# Home page
+GET     /                                       			Application.startScreen
+GET     /page                                       		Application.index
+GET		/register											Application.register
+POST	/register											Application.registerd
+
+# Mitglieder Verzeichnis
+GET		/mitgliederverzeichnis								MitgliederVerzeichnis.index
+GET		/mitgliederverzeichnis/{name}/avatar				Application.guildAvatar
+
+# Raid Übersicht
+GET		/raids												RaidTracker.index
+GET		/raids/{<[0-9]+>selpool}							RaidTracker.index
+GET		/raids/{name}										RaidTracker.character
+GET		/raid/{<[0-9]+>id}									RaidTracker.showRaid
+GET		/item/tooltip/{<[0-9]+>id}							RaidTracker.showItem
+GET		/raids/item/{<[0-9]+>id}							RaidTracker.showRaidItem
+GET		/raids/items/json/{<[0-9]+>selpool}					RaidTracker.itemsAsJSON
+
+# Raid Übersicht
+GET		/raidfortschritt									RaidFortschritt.index
+
+GET		/tabard/images/{name}								Utilities.fetchTabardImages
+
+GET		/gilden/{<[0-9]+>id}/{name}							Application.guild
+GET		/gilden/{<[0-9]+>id}/								Application.guild
+GET		/gilden/											Application.guild
+
+
+GET		/character/{name}									Application.character
+GET		/character/{name}/avatar								Application.avatar
+GET		/charfetch/{<[0-9]+>id}/{name}						Application.charfetch
+GET     /post/{<[0-9]+>id}             Application.show
+GET     /post/{tag}                    Application.listTagged
+POST    /post/{postId}/comments                Application.postComment
+GET     /captcha                                Application.captcha
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+GET		/public/images.xml									Application.postListXml(format:'xml') 
+
+GET     /shoutbox/{<[0-9]+>time}                                       Application.shoutbox
+GET     /shoutbox/message/{<[0-9]+>id}                                       Application.shoutboxGetMessage
+POST	/shoutbox/add												Application.shoutboxAddMessage
+WS		/shoutboxSocket				            ShoutBox.socket
+      
+
+# Long polling demo
+GET     /chat/                      LongPolling.room
+GET     /chat/messages              LongPolling.waitMessages
+POST    /chat/messages              LongPolling.say  
+GET     /chat/leave                 LongPolling.leave    
+
+# WebSocket demo
+GET     /websocket/room                         WebSocket.room
+WS      /websocket/room/socket                  WebSocket.ChatRoomSocket.join 
+
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}
+
+# Import CRUD routes
+*      /admin              module:crud

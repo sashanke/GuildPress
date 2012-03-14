@@ -1,0 +1,208 @@
+#{extends 'main.html' /}
+#{set title: 'Registrierung - ' + guildTitle /}
+<div id="dialog-form-error" title="Formular Fehler">
+	<p>Bitte fülle alle Formularfelder aus!</p>
+</div>
+<div class="box">
+	<div class="artheadline" style="background: black url(/public/images/artworks/spirit.jpg) no-repeat top center  !important;">
+		<div class="artheadlinshadow">
+			<div class="postdate" style="width:40px;">
+			</div>
+    		<h2 class="post-title">
+    			<a href="@{Application.register()}">Werde Mitglied!</a>
+			</h2>
+			<span class="post-subtitle"></span>
+		</div>
+	</div>
+	<div class="post">
+        <div class="post-content">
+			<p>Benutze bitte deinen Maincharnamen mit welchem du dich bei uns Bewerben möchtest (Auf Sonderzeichen und ähnliches achten!) 
+				und wähle deinen Server aus. Das System wird versuchen deine Daten abzurufen.</p><br>
+			<p>Die Registrierung hat nichts mit einer Bewerbung zu tun, auch wenn eine Bewerbung die Registrierung vorraussetzt. 
+				Als Registriertes Mitglied darfst du Kommentare abgeben, im Forum schreiben, die Shoutbox benutzen und vieles mehr.</p>
+			<div class="colBreak clear"></div>
+		
+			<form action="@{Application.register()}" method="get" class="register_form">
+				<input type="text" name="name" class="register_form_charname" size="25" maxlength="100" value="${params.name}">
+				<select name="id">
+					<option value="">Wähle einen Realm</option>
+		 			#{list items:realms, as:'realm'}
+		 			<option value="${realm.id}" #{if params.id != null && realm.id.toLong() == params.id.toLong()} selected="selected" #{/if} >${realm.name} (${realm.region})</option>
+		 			#{/list}
+				</select>
+				<input id="register_form_submit_button" type="submit" value=" Absenden ">
+			</form>
+		<br>
+		<div id="char-banner"></div>
+		<div class="register_mitglied_werden">
+			<form action="" method="get" class="register_form">
+				<input id="register_mitglied_werden_form_submit_button" type="submit" value="Mitglied werden!">
+			</form>
+		</div>
+		<div class="register_personal_infos">
+			<form action="@{Application.registerd()}" method="post" class="register_user_form">
+				<h3>Persöhnliche Informationen für <span id="char-name" class="text-highlight"></span></h3>
+				<fieldset>	
+					<label class="field-first">Vorname <span class="text-needed">&#42;</span><input type="text" name="first_name" value="" /></label>
+					<label class="field-last">Nachname <span class="text-needed">&#42;</span><input type="text" name="last_name" value="" /></label>
+					<label class="field-email">Email <span class="text-needed">&#42;</span><input type="text" name="email" value="" /></label>
+					<label class="field-password">Passwort <span class="text-needed">&#42;</span><input type="password" name="password" value="" /></label>
+					<label class="field-password">Wiederholung <span class="text-needed">&#42;</span><input type="password" name="password_check" value="" /></label>
+				</fieldset>
+				<input type="hidden" id="wowchar" name="wowchar" value="">
+				<input type="hidden" id="wowrealm" name="wowrealm" value="">
+				<input id="register_user_form_submit_button" type="submit" value="Absenden">
+			</form>
+		</div>
+
+		<div class="clear"></div>
+		<br>
+		
+        </div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	$(function() {		
+		$("#dialog-form-error").dialog({
+			modal: true,
+			autoOpen: false,
+			buttons: {
+				Ok: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+	});
+
+$(document).ready(function() {
+  //click event für submit button
+  $('#register_form_submit_button').click(function () {
+ 
+  //Daten von den HTML Feldern in JS-Vars übersetzen
+  var name = $('input[name=name]');
+  var realm = $('select[name=id]');
+ 
+ if(name.val() == "") {
+ 	$("#dialog-form-error").dialog("open")
+ 	return false;
+ }
+ if(realm.val() == "") {
+ 	$("#dialog-form-error").dialog("open")
+ 	return false;
+ }
+  //die Daten sollen per GET an das PHP Skript weitergeleitet werden. Dafür bauen wir einen
+  //String
+  var data = 'name=' + name.val() + '&id=' + realm.val();
+
+  //alle Textfelder deaktivieren
+  $('.text').attr('disabled','true');
+ 
+  //Icon während des Requests einblenden
+  $('.loading_icon').show();
+ 
+  //Request abschicken
+  $.ajax({
+	//Ort des Skriptes in dem die per GET übertragenen Daten verarbeitet werden sollen
+	url: "@{Application.charfetch()}",
+	//Angabe der GET Methode, auch POST wäre möglich. Allerdings nur sinnvoll
+  //bei größeren Datenmengen
+	type: "GET",
+	//Daten die gesendet werden sollen
+	data: data,
+ 
+	//bei Antwort des Requests (Response)
+	success: function (html) {
+	//wenn Response true bzw. den Status 1 zurückliefert
+
+
+	$("#char-banner-request").remove();
+	$("#char-banner").append(html);
+	
+		//if (reqCode==1) {
+			//verstecken des Formulars
+			//$('.register_mitglied_werden').fadeOut('slow');
+			//anzeigen der Erfolgsmeldung
+		$('.register_mitglied_werden').fadeIn('slow');
+ 
+		//wenn der Request eine Form von false zurückschickt, Fehler ausgeben.
+		//} else{
+      	//	alert(reqCode);
+    //}
+	}
+});
+ 
+	return false;
+  //der return wird benötigt, damit das Formular nicht tatsächlich abgeschickt wird und
+  //sich nicht wie ein normales Form mit Seiten Refresh verhält.
+	});
+//});
+
+//$(document).ready(function() {
+
+$('.register_personal_infos').hide();
+$('.register_mitglied_werden').hide();
+
+  //click event für submit button
+  $('#register_mitglied_werden_form_submit_button').click(function () {
+ 
+  //Daten von den HTML Feldern in JS-Vars übersetzen
+  var name = $('input[name=name]');
+  var realm = $('select[name=id]');
+ 
+ if(name.val() == "") {
+ 	$("#dialog-form-error").dialog("open")
+ 	return false;
+ }
+ if(realm.val() == "") {
+ 	$("#dialog-form-error").dialog("open")
+ 	return false;
+ }
+  //die Daten sollen per GET an das PHP Skript weitergeleitet werden. Dafür bauen wir einen
+  //String
+  var data = 'name=' + name.val() + '&id=' + realm.val();
+
+  //alle Textfelder deaktivieren
+  $('.text').attr('disabled','true');
+ 
+  //Icon während des Requests einblenden
+  $('.loading_icon').show();
+ 
+  //Request abschicken
+  $.ajax({
+	//Ort des Skriptes in dem die per GET übertragenen Daten verarbeitet werden sollen
+	url: "@{Application.charfetch()}",
+	//Angabe der GET Methode, auch POST wäre möglich. Allerdings nur sinnvoll
+  //bei größeren Datenmengen
+	type: "GET",
+	//Daten die gesendet werden sollen
+	data: data,
+ 
+	//bei Antwort des Requests (Response)
+	success: function (html) {
+		//if (reqCode==1) {char-name
+			$('#wowchar').val(name.val());
+			$('#wowrealm').val(realm.val());
+			$("#char-name").append(name.val());
+			//verstecken des Formulars
+			$('.register_form').fadeOut('slow');
+			$('.register_avatar_info').fadeOut('slow');
+			$('.register_mitglied_werden').fadeOut('slow');
+			//anzeigen der Erfolgsmeldung
+			$('.register_personal_infos').fadeIn('slow');
+ 
+		//wenn der Request eine Form von false zurückschickt, Fehler ausgeben.
+		//} else{
+      	//	alert(reqCode);
+    //}
+	}
+});
+ 
+	return false;
+  //der return wird benötigt, damit das Formular nicht tatsächlich abgeschickt wird und
+  //sich nicht wie ein normales Form mit Seiten Refresh verhält.
+	});
+});
+
+</script>

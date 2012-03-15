@@ -108,7 +108,6 @@ public class Chat {
             User user = null;
             
             if (Session.current().contains("username")) {
-            	System.out.println(Session.current().get("username"));
             	String username = Session.current().get("username");
             	user = User.getConnectedUser(username);
             	if (user != null && user.wowCharacter != null) {
@@ -121,9 +120,7 @@ public class Chat {
             this.chatname = chatname;
             this.text = StringUtils.replaceSmilies(text, "/public/images/emoticons/blacy/", "emoteicon noborder", "");
             this.link = link;
-            
-//            ChatMessage cm = new ChatMessage(chatname, text, user);
-//            cm.save();
+
         }
         
     }

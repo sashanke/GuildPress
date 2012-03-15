@@ -5,19 +5,19 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.collections.list.TreeList;
+import models.Message;
+import models.Post;
+import models.User;
+import models.wowapi.Armory;
+import models.wowapi.character.Character;
+import models.wowapi.guild.Guild;
+import models.wowapi.logs.Logs;
+import models.wowapi.resources.GuildPerk;
+import models.wowapi.resources.Realm;
+
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
-import models.ChatMessage;
-import models.Post;
-import models.User;
-import models.wowapi.Logs;
-import models.wowapi.WoWAPI;
-import models.wowapi.character.WoWCharacter;
-import models.wowapi.guild.Guild;
-import models.wowapi.resources.GuildPerk;
-import models.wowapi.resources.Realm;
 import play.Play;
 import play.cache.Cache;
 import play.data.validation.Required;
@@ -34,143 +34,102 @@ public class Application extends Controller {
 
 	@Before
 	static void addDefaults() {
-		
-		WoWAPI wowapi = new WoWAPI();
-		
-		renderArgs.put("guildTitle",
-				Play.configuration.getProperty("guild.title"));
+		renderArgs.put("guildTitle", Play.configuration.getProperty("guild.title"));
 		renderArgs.put("guildTag", Play.configuration.getProperty("guild.tag"));
-		renderArgs.put("guildServer",
-				Play.configuration.getProperty("guild.server"));
-		renderArgs.put("confArtworksdir",
-				Play.configuration.getProperty("conf.artworksdir"));
-		renderArgs.put("guildWellcomemsg",
-				Play.configuration.getProperty("guild.wellcomemsg"));
-		
-//		if (session.contains("username")) {
-//			renderArgs.put("user",User.getConnectedUser(session.get("username")));
-//		}
-		
-		renderArgs.put("realm",Realm.find("byName", Play.configuration.getProperty("guild.server")).first());
-		renderArgs.put("guild",Guild.getMainGuild());
-		renderArgs.put("guildPerk",GuildPerk.getGuildPerk(Guild.getMainGuild().level));
-		renderArgs.put("logs",Logs.find("order by date desc").fetch(10));
-		renderArgs.put("wowpet",FileUtils.getRandomFile("./public/images/WoWPets/"));
-		renderArgs.put("randomArtwork",Play.configuration.getProperty("conf.artworksdir") + FileUtils.getRandomFile("./public/images/artworks/"));
-		
-		
-//		if (!session.contains("username") && session.get("username") == "Anonym") {
-//			session.put("username", "Anonym");
-//			session.put("isUser", false);
-//		}
-		
+		renderArgs.put("guildServer", Play.configuration.getProperty("guild.server"));
+		renderArgs.put("confArtworksdir", Play.configuration.getProperty("conf.artworksdir"));
+		renderArgs.put("guildWellcomemsg", Play.configuration.getProperty("guild.wellcomemsg"));
+		renderArgs.put("realm", Realm.find("byName", Play.configuration.getProperty("guild.server")).first());
+		renderArgs.put("guild", Guild.getMainGuild());
+		renderArgs.put("guildPerk", GuildPerk.getGuildPerk(Guild.getMainGuild().level));
+		renderArgs.put("logs", Logs.find("order by date desc").fetch(10));
+		renderArgs.put("wowpet", FileUtils.getRandomFile("./public/images/WoWPets/"));
+		renderArgs.put("randomArtwork", Play.configuration.getProperty("conf.artworksdir") + FileUtils.getRandomFile("./public/images/artworks/"));
 	}
 
-	public static void startScreen() {
-        render();
-    }
-	
 	public static void index() {
 		Post frontPost = Post.find("order by postedAt desc").first();
-		List<Post> olderPosts = Post.find("order by postedAt desc").from(1)
-				.fetch(10);
-		
+		List<Post> olderPosts = Post.find("order by postedAt desc").from(1).fetch(10);
+
 		render(frontPost, olderPosts);
 	}
-	
+
 	public static void postListXml() {
 		List<Post> posts = Post.find("order by postedAt desc").fetch(15);
 		render(posts);
 	}
 
-	public static void register() {		
+	public static void register() {
 		List<Realm> realms = Realm.all().fetch();
 		render(realms);
 	}
-	
+
 	public static void log(Long id) {
 		Logs log = Logs.findById(id);
 		render(log);
 	}
-	
+
 	public static void shoutbox(Long time) {
 
-		List<ChatMessage> cm;
-		ArrayList<ChatMessage> acm = new ArrayList<ChatMessage>();
+		List<Message> cm;
+		ArrayList<Message> acm = new ArrayList<Message>();
 		if (time == 0) {
-			cm = ChatMessage.find("order by date desc").fetch(4);
+			cm = Message.find("order by date desc").fetch(4);
 			acm.addAll(cm);
 			Collections.reverse(acm);
 			cm.removeAll(cm);
 			cm.addAll(acm);
 		} else {
-			cm = ChatMessage.find("date > ? order by date desc", new Date(time)).fetch(1);
+			cm = Message.find("date > ? order by date desc", new Date(time)).fetch(1);
 		}
-		
-		JSONSerializer characterSerializer = new JSONSerializer().include(
-                "date",
-                "id",
-                "msg_date",
-                "message",
-                "name",
-                "raw_message",
-                "user.wowCharacter.name").exclude("*").prettyPrint(true);
-		
 
-		
+		JSONSerializer characterSerializer = new JSONSerializer().include("date", "id", "msg_date", "message", "name", "raw_message", "user.wowCharacter.name").exclude("*").prettyPrint(true);
+
 		renderJSON(characterSerializer.serialize(cm));
 	}
-	
+
 	public static void shoutboxGetMessage(Long id) {
-		ChatMessage cm = ChatMessage.findById(id);
-		
-		
-		cm.raw_message = StringUtils.replaceUrls(cm.raw_message,"shoutbox-url", "target=\"_new\"");
-        
+		Message cm = Message.findById(id);
+
+		cm.raw_message = StringUtils.replaceUrls(cm.raw_message, "shoutbox-url", "target=\"_new\"");
+
 		cm.raw_message = StringUtils.replaceSmilies(cm.raw_message, "/public/images/emoticons/blacy/", "emoteicon noborder", "");
-		
+
 		render(cm);
 	}
-	
-	public static void shoutboxAddMessage(String nickname, String message) {		
+
+	public static void shoutboxAddMessage(String nickname, String message) {
 		User user = null;
-        if (Session.current().contains("username")) {
-        	String username = Session.current().get("username");
-        	user = User.getConnectedUser(username);
+		if (Session.current().contains("username")) {
+			String username = Session.current().get("username");
+			user = User.getConnectedUser(username);
 		}
 
-        ChatMessage cm = new ChatMessage(nickname, message, user);
-        cm.save();
-        message = Jsoup.clean(message, Whitelist.none()).trim();
-        cm.raw_message = message;
-        
-        if (message.length() > 60) {
-        	message = message.substring(0, 60) + " <span class=\"shoutbox-more\" rel=\"/shoutbox/message/"+cm.id+"\">... </span>";
+		Message cm = new Message(nickname, message, user);
+		cm.save();
+		message = Jsoup.clean(message, Whitelist.none()).trim();
+		cm.raw_message = message;
+
+		if (message.length() > 60) {
+			message = message.substring(0, 60) + " <span class=\"shoutbox-more\" rel=\"/shoutbox/message/" + cm.id + "\">... </span>";
 		}
-        
-        message = StringUtils.replaceUrls(message,"shoutbox-url", "target=\"_new\"");
-        
-        message = StringUtils.replaceSmilies(message, "/public/images/emoticons/blacy/", "emoteicon noborder", "");
-        
-        cm.message = message;
-        cm.save();
-        
-        JSONSerializer characterSerializer = new JSONSerializer().include(
-                "date",
-                "id",
-                "msg_date",
-                "message",
-                "name",
-                "raw_message",
-                "user.wowCharacter").exclude("*");
+
+		message = StringUtils.replaceUrls(message, "shoutbox-url", "target=\"_new\"");
+
+		message = StringUtils.replaceSmilies(message, "/public/images/emoticons/blacy/", "emoteicon noborder", "");
+
+		cm.message = message;
+		cm.save();
+
+		JSONSerializer characterSerializer = new JSONSerializer().include("date", "id", "msg_date", "message", "name", "raw_message", "user.wowCharacter").exclude("*");
 		renderJSON(characterSerializer.serialize(cm));
 	}
-	
-	public static void registerd(String first_name, String last_name, String email, String password, String password_check, String wowchar, Long wowrealm) {		
-		
+
+	public static void registerd(String first_name, String last_name, String email, String password, String password_check, String wowchar, Long wowrealm) {
+
 		User user = User.find("wowCharacter.name = ? and wowCharacter.realm.id = ?", wowchar, wowrealm).first();
-		WoWCharacter wowChar = WoWCharacter.find("name = ? and realm.id = ?", wowchar, wowrealm).first();
-		
+		Character wowChar = Character.find("name = ? and realm.id = ?", wowchar, wowrealm).first();
+
 		if (user == null && password.equals(password_check)) {
 			user = new User();
 			user.first_name = first_name;
@@ -179,51 +138,48 @@ public class Application extends Controller {
 			user.email = email;
 			user.password = password;
 			user.wowCharacter = wowChar;
-			
+
 			if (wowChar.isGuildMember) {
 				user.isGuildMember = wowChar.isGuildMember;
 				user.guildRank = wowChar.guildMember.rank;
 			}
 			user.save();
 		}
-		
+
 		try {
 			Secure.authenticate(email, password, true);
 		} catch (Throwable e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		Application.index();
 	}
-	
-	
+
 	public static void charfetch(Long id, String name) {
 
-		
 		Realm realm = Realm.findById(id);
-		WoWAPI.fetchCharacter(realm.name, name);
-		
+		Armory.fetchCharacter(realm.name, name);
+
 		System.out.println(name);
-		
-//		JSONSerializer characterSerializer = new JSONSerializer();
-//        renderJSON(characterSerializer.serialize(character));
-		
-		WoWCharacter character = WoWCharacter.find("name = ? and realm.name = ?", name, realm.name).first();
+
+		// JSONSerializer characterSerializer = new JSONSerializer();
+		// renderJSON(characterSerializer.serialize(character));
+
+		Character character = Character.find("name = ? and realm.name = ?", name, realm.name).first();
 		render(character);
 	}
-	
-	
+
 	public static void character(String name) {
-		WoWCharacter character = WoWCharacter.find("name = ?", name).first();
+		Character character = Character.find("name = ?", name).first();
 		render(character);
 	}
-	
+
 	public static void guild(Long id, String name) {
 		Guild guild = Guild.find("name = ?", name).first();
 		render(guild);
 	}
-	
+
 	public static void show(Long id) {
 		Post post = Post.findById(id);
 		String randomID = Codec.UUID();
@@ -242,14 +198,9 @@ public class Application extends Controller {
 		render(tag, posts);
 	}
 
-	public static void postComment(Long postId,
-			@Required(message = "Author is required") String author,
-			@Required(message = "A message is required") String content,
-			@Required(message = "Please type the code") String code,
-			String randomID) {
+	public static void postComment(Long postId, @Required(message = "Author is required") String author, @Required(message = "A message is required") String content, @Required(message = "Please type the code") String code, String randomID) {
 		Post post = Post.findById(postId);
-		validation.equals(code, Cache.get(randomID)).message(
-				"Invalid code. Please type it again");
+		validation.equals(code, Cache.get(randomID)).message("Invalid code. Please type it again");
 		if (validation.hasErrors()) {
 			render("Application/show.html", post, randomID);
 		}

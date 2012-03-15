@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
-import models.wowapi.WoWHeadAPI;
+import models.wowapi.WoWHead;
 
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
@@ -141,7 +141,7 @@ public class Item extends Model {
 		if (iq == null) {
 			iq = new Item(id);
 			iq.save();
-			WoWHeadAPI.checkItem(id);
+			WoWHead.checkItem(id);
 		}
 		return iq;
 	}

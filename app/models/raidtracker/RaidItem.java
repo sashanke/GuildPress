@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
-import models.wowapi.WoWHeadAPI;
+import models.wowapi.WoWHead;
 import models.wowapi.resources.Item;
 
 import play.db.jpa.Model;
@@ -21,7 +21,7 @@ public class RaidItem extends Model {
 	public Date time;
 	
 	@ManyToOne
-	public RaidMitglied member;
+	public RaidMember member;
 
 	public Long itemId;
 	public Long cost;
@@ -38,7 +38,7 @@ public class RaidItem extends Model {
 	@ManyToOne
 	public Item item;
 	
-	public RaidItem(String name, Date time, RaidMitglied member, Long itemId, Long cost, RaidBossKills boss, Raid raid, Item item) {
+	public RaidItem(String name, Date time, RaidMember member, Long itemId, Long cost, RaidBossKills boss, Raid raid, Item item) {
 		this.name = name;
 		this.time = time;
 		this.member = member;
@@ -50,7 +50,7 @@ public class RaidItem extends Model {
 	}
 
 	public Item checkItem() {
-		return WoWHeadAPI.checkItem(this.itemId);
+		return WoWHead.checkItem(this.itemId);
 	}
 	
 	@JSON

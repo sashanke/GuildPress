@@ -18,15 +18,15 @@ import javax.xml.parsers.ParserConfigurationException;
 import models.raidtracker.Raid;
 import models.raidtracker.RaidBossKills;
 import models.raidtracker.RaidItem;
-import models.raidtracker.RaidMitglied;
-import models.raidtracker.RaidModus;
+import models.raidtracker.RaidMember;
+import models.raidtracker.RaidType;
 import models.raidtracker.RaidPool;
-import models.raidtracker.RaidZonen;
+import models.raidtracker.RaidZones;
 import models.raidtracker.helpers.RaidPoolHelper;
 import models.raidtracker.helpers.SortPoolByItems;
 import models.raidtracker.helpers.SortPoolByRaidTeilnahme;
-import models.wowapi.WoWAPI;
-import models.wowapi.character.WoWCharacter;
+import models.wowapi.Armory;
+import models.wowapi.character.Character;
 import models.wowapi.resources.Item;
 
 import org.w3c.dom.Document;
@@ -104,11 +104,11 @@ public class RaidTracker extends Controller {
 
 	public static void character(String name) throws SQLException {
 		List<RaidItem> items = new ArrayList<RaidItem>();
-		RaidMitglied member = RaidMitglied.find("name = ?", name).first();
+		RaidMember member = RaidMember.find("name = ?", name).first();
 		List<RaidItem> mitems = RaidItem.find("order by raid desc").fetch();
 
 		List<Raid> raids = new ArrayList<Raid>();
-		PreparedStatement ps = DB.getConnection().prepareStatement("select r.id raidId from Raid r join RaidMitglied rm on (r.id = rm.raid_id) where rm.name = ? order by r.id desc");
+		PreparedStatement ps = DB.getConnection().prepareStatement("select r.id raidId from Raid r join RaidMember rm on (r.id = rm.raid_id) where rm.name = ? order by r.id desc");
 		ps.setString(1, name);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
@@ -127,9 +127,9 @@ public class RaidTracker extends Controller {
 		Document xmlDoc = getXMLDocument(raidxml);
 		Node gameinfo = XPath.selectNode("//gameinfo", xmlDoc);
 		String offizier = XPath.selectText("charactername", gameinfo);
-		WoWCharacter charakter = WoWCharacter.find("name =? and realm.name = ?", offizier, Play.configuration.getProperty("wowapi.realmName")).first();
-		if (charakter == null) {
-			charakter = WoWAPI.fetchCharacter(Play.configuration.getProperty("wowapi.realmName"), offizier);
+		Character character = Character.find("name =? and realm.name = ?", offizier, Play.configuration.getProperty("wowapi.realmName")).first();
+		if (character == null) {
+			character = Armory.fetchCharacter(Play.configuration.getProperty("wowapi.realmName"), offizier);
 		}
 		Date startDate = null;
 		Date endDate = null;
@@ -140,11 +140,11 @@ public class RaidTracker extends Controller {
 		Raid raid = Raid.find("startDate = ? and endDate = ? and pool = ?", startDate, endDate, RaidPool.findById(poolId)).first();
 		if (raid == null) {
 
-			raid = new Raid(poolId, startDate, endDate, charakter);
+			raid = new Raid(poolId, startDate, endDate, character);
 			raid.save();
 
-			new RaidMitglied("Bank", startDate, endDate, charakter, raid).save();
-			new RaidMitglied("Entzaubert", startDate, endDate, charakter, raid).save();
+			new RaidMember("Bank", startDate, endDate, character, raid).save();
+			new RaidMember("Entzaubert", startDate, endDate, character, raid).save();
 
 			for (Node zones : XPath.selectNodes("//zones", xmlDoc)) {
 				for (Node zone : XPath.selectNodes("//zone", zones)) {
@@ -152,8 +152,8 @@ public class RaidTracker extends Controller {
 					String leave = XPath.selectText("leave", zone);
 					String name = XPath.selectText("name", zone);
 					String difficulty = XPath.selectText("difficulty", zone);
-					RaidModus modus = RaidModus.find("modus = ?", Long.parseLong(difficulty)).first();
-					RaidZonen rz = new RaidZonen(new Date(Long.parseLong(enter) * 1000), new Date(Long.parseLong(leave) * 1000), name, modus, raid);
+					RaidType modus = RaidType.find("modus = ?", Long.parseLong(difficulty)).first();
+					RaidZones rz = new RaidZones(new Date(Long.parseLong(enter) * 1000), new Date(Long.parseLong(leave) * 1000), name, modus, raid);
 					rz.save();
 				}
 			}
@@ -163,7 +163,7 @@ public class RaidTracker extends Controller {
 					String name = XPath.selectText("name", boss);
 					String date = XPath.selectText("time", boss);
 					String difficulty = XPath.selectText("difficulty", boss);
-					RaidModus modus = RaidModus.find("modus = ?", Long.parseLong(difficulty)).first();
+					RaidType modus = RaidType.find("modus = ?", Long.parseLong(difficulty)).first();
 					RaidBossKills rbk = new RaidBossKills(name, new Date(Long.parseLong(date) * 1000), modus, raid);
 					rbk.save();
 				}
@@ -174,12 +174,12 @@ public class RaidTracker extends Controller {
 
 				Date join = new Date(Long.parseLong(XPath.selectText("times/time[@type='join']", member)) * 1000);
 				Date leave = new Date(Long.parseLong(XPath.selectText("times/time[@type='leave']", member)) * 1000);
-				WoWCharacter c = WoWCharacter.find("name =? and realm.name = ?", name, Play.configuration.getProperty("wowapi.realmName")).first();
+				Character c = Character.find("name =? and realm.name = ?", name, Play.configuration.getProperty("wowapi.realmName")).first();
 				if (c == null) {
-					c = WoWAPI.fetchCharacter(Play.configuration.getProperty("wowapi.realmName"), offizier);
+					c = Armory.fetchCharacter(Play.configuration.getProperty("wowapi.realmName"), offizier);
 				}
 
-				RaidMitglied rm = new RaidMitglied(name, join, leave, c, raid);
+				RaidMember rm = new RaidMember(name, join, leave, c, raid);
 				rm.save();
 			}
 
@@ -194,7 +194,7 @@ public class RaidTracker extends Controller {
 				if (member.equals("disenchanted")) {
 					member = "Entzaubert";
 				}
-				RaidMitglied rm = RaidMitglied.find("name = ? and raid =?", member, raid).first();
+				RaidMember rm = RaidMember.find("name = ? and raid =?", member, raid).first();
 
 				String sitemId = XPath.selectText("itemid", items);
 				Long itemId = Long.parseLong(sitemId.substring(0, sitemId.indexOf(":")));
@@ -273,9 +273,9 @@ public class RaidTracker extends Controller {
 
 	private static void setupDefaultData() {
 
-		if (RaidModus.all().fetch().size() != 2) {
-			new RaidModus(new Long(3), "Heroisch").save();
-			new RaidModus(new Long(1), "Normal").save();
+		if (RaidType.all().fetch().size() != 2) {
+			new RaidType(new Long(3), "Heroisch").save();
+			new RaidType(new Long(1), "Normal").save();
 		}
 		if (RaidPool.all().fetch().size() < 2) {
 			new RaidPool("Haupt Raid", true).save();

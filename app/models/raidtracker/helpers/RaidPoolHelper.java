@@ -8,9 +8,9 @@ import java.util.List;
 
 import models.raidtracker.Raid;
 import models.raidtracker.RaidItem;
-import models.raidtracker.RaidMitglied;
+import models.raidtracker.RaidMember;
 import models.raidtracker.RaidPool;
-import models.wowapi.character.WoWCharacter;
+import models.wowapi.character.Character;
 
 import play.Logger;
 import play.db.DB;
@@ -19,7 +19,7 @@ public class RaidPoolHelper implements Comparable {
 	
 	public String name;
 	public Long raidteilname;
-	public WoWCharacter character;
+	public Character character;
 	public List<Raid> raids;
 	public Float raidprozent;
 	public List<RaidItem> items;
@@ -28,7 +28,7 @@ public class RaidPoolHelper implements Comparable {
 
 		try {
 			this.raids = new ArrayList<Raid>();
-			PreparedStatement ps = DB.getConnection().prepareStatement("select r.id raidId from Raid r join RaidMitglied rm on (r.id = rm.raid_id) where rm.name = ? and r.pool_id = ?");
+			PreparedStatement ps = DB.getConnection().prepareStatement("select r.id raidId from Raid r join RaidMember rm on (r.id = rm.raid_id) where rm.name = ? and r.pool_id = ?");
 			ps.setString(1, name);
 			ps.setLong(2, pool);
 			ResultSet rs = ps.executeQuery();
@@ -38,7 +38,7 @@ public class RaidPoolHelper implements Comparable {
 
 			
 			this.items = new ArrayList<RaidItem>();
-			ps = DB.getConnection().prepareStatement("select ri.item_id itemId from RaidMitglied rm join Raid r on (rm.raid_id = r.id) join RaidItem ri on (rm.id = ri.member_id) where rm.name = ? and r.pool_id = ?");
+			ps = DB.getConnection().prepareStatement("select ri.item_id itemId from RaidMember rm join Raid r on (rm.raid_id = r.id) join RaidItem ri on (rm.id = ri.member_id) where rm.name = ? and r.pool_id = ?");
 			ps.setString(1, name);
 			ps.setLong(2, pool);
 			rs = ps.executeQuery();
@@ -47,7 +47,7 @@ public class RaidPoolHelper implements Comparable {
 			}
 
 			
-			ps = DB.getConnection().prepareStatement("select distinct rm.name, count(*) raidteilname from RaidMitglied rm join Raid r on (rm.raid_id = r.id) where rm.name = ? and r.pool_id = ? group by name");
+			ps = DB.getConnection().prepareStatement("select distinct rm.name, count(*) raidteilname from RaidMember rm join Raid r on (rm.raid_id = r.id) where rm.name = ? and r.pool_id = ? group by name");
 			ps.setString(1, name);
 			ps.setLong(2, pool);
 			rs = ps.executeQuery();
@@ -76,11 +76,11 @@ public class RaidPoolHelper implements Comparable {
 	}
 
 	private void setCharacter(String name) {
-		this.character = ((RaidMitglied) RaidMitglied.find("name = ?", name).first()).charakter;
+		this.character = ((RaidMember) RaidMember.find("name = ?", name).first()).character;
 	}
 
 	public static List<RaidPoolHelper> getRaidPool(Long pool, List<Raid> raids) {
-		List<String> mitglieder = RaidMitglied.find("select distinct rm.name from RaidMitglied rm where rm.raid.pool = ? and rm.name != 'Bank' and rm.name != 'Entzaubert' order by betreten desc", RaidPool.findById(pool)).fetch();
+		List<String> mitglieder = RaidMember.find("select distinct rm.name from RaidMember rm where rm.raid.pool = ? and rm.name != 'Bank' and rm.name != 'Entzaubert' order by betreten desc", RaidPool.findById(pool)).fetch();
 		
 		List<RaidPoolHelper> raidPool = new ArrayList<RaidPoolHelper>();
 		for (String raidMitglied : mitglieder) {

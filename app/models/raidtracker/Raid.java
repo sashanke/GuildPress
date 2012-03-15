@@ -10,7 +10,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import models.wowapi.character.WoWCharacter;
+import models.wowapi.character.Character;
 import play.db.jpa.Model;
 @Entity
 public class Raid extends Model {
@@ -18,31 +18,31 @@ public class Raid extends Model {
 	public RaidPool pool;
 	
 	@ManyToOne
-	public WoWCharacter offizier;
+	public Character offizier;
 	
 	public Date startDate;
 	public Date endDate;
 	
 	@OneToMany(mappedBy="raid", cascade=CascadeType.ALL)
-	public List<RaidZonen> zonen;
+	public List<RaidZones> zonen;
 	
 	@OneToMany(mappedBy="raid", cascade=CascadeType.ALL)
 	public List<RaidBossKills> bosse;
 	
 	@OneToMany(mappedBy="raid", cascade=CascadeType.ALL)
-	public List<RaidMitglied> member;
+	public List<RaidMember> member;
 	
 	@OneToMany(mappedBy="raid", cascade=CascadeType.ALL)
 	public List<RaidItem> items;
 	
-	public Raid(Long poolid, Date startDate, Date endDate, WoWCharacter offizier) {
+	public Raid(Long poolid, Date startDate, Date endDate, Character offizier) {
 		this.pool = RaidPool.findById(poolid);
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.offizier = offizier;
-		this.zonen = new ArrayList<RaidZonen>();
+		this.zonen = new ArrayList<RaidZones>();
 		this.bosse = new ArrayList<RaidBossKills>();
-		this.member = new ArrayList<RaidMitglied>();
+		this.member = new ArrayList<RaidMember>();
 		this.items = new ArrayList<RaidItem>();
 	}
 	

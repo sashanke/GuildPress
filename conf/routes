@@ -3,17 +3,21 @@
 # ~~~~
 
 # Import Secure routes
-*       /                                       			module:secure
+GET			/login			Secure.login
+POST        /login          Secure.authenticate
+GET         /logout         Secure.logout
+
+# Front page
+GET     /                                       			FrontPage.index
 
 # Home page
-GET     /                                       			Application.startScreen
-GET     /page                                       		Application.index
+GET     /news                                       		Application.index
 GET		/register											Application.register
 POST	/register											Application.registerd
 
 # Mitglieder Verzeichnis
 GET		/mitgliederverzeichnis								MitgliederVerzeichnis.index
-GET		/mitgliederverzeichnis/{name}/avatar				Application.guildAvatar
+
 
 # Raid Übersicht
 GET		/raids												RaidTracker.index
@@ -35,7 +39,6 @@ GET		/gilden/											Application.guild
 
 
 GET		/character/{name}									Application.character
-GET		/character/{name}/avatar								Application.avatar
 GET		/charfetch/{<[0-9]+>id}/{name}						Application.charfetch
 GET     /post/{<[0-9]+>id}             Application.show
 GET     /post/{tag}                    Application.listTagged

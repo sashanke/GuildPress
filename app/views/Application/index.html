@@ -18,7 +18,23 @@
 #{/if}
  
 #{else}
-    <div class="empty">
-        There is currently nothing to read here.
+<div class="box">
+	<div class="artheadline" style="background: black url(${randomArtwork})} no-repeat top center  !important;">
+		<div class="artheadlinshadow">
+			<div class="postdate"></div>
+    		<h2 class="post-title">
+    			<a href="@{Application.index()}">Sack Reis umgefallen!</a>
+			</h2>
+		</div>
+	</div>
+	<div class="post">
+        <div class="post-content">
+        	<p>Wie die Frankfurter Rundschau am 1. August mitteilte, ist in der chinesischen Stadt Luzhou am Donnerstag, den 31. Juli ein 20 Kilo schwerer Sack Reis umgefallen.</p>
+        	<br>
+        	<p>Kaum zu glauben, aber der Fall der Fälle scheint endgültig eingetreten zu sein. Beruhigender Weise scheint ja die Presse rechtzeitig vor Ort gewesen zu sein, um unter anderem die deutsche Leserschaft informieren zu können.</p>
+        	<br>
+        	<p>Ok, es gibt wirklich keine Neuigkeiten!</p>
+        </div>
     </div>
+</div>
 #{/else}

@@ -9,6 +9,8 @@ GET         /logout         Secure.logout
 
 # Front page
 GET     /                                       			FrontPage.index
+GET		/public/flash/rotator/images.xml					Application.postListXml(format:'xml')
+GET		/stylesheets/less									LessStyle.style(format:'css')
 
 # Home page
 GET     /news                                       		Application.index
@@ -47,7 +49,7 @@ GET     /captcha                                Application.captcha
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
-GET		/public/images.xml									Application.postListXml(format:'xml') 
+
 
 GET     /shoutbox/{<[0-9]+>time}                                       Application.shoutbox
 GET     /shoutbox/message/{<[0-9]+>id}                                       Application.shoutboxGetMessage

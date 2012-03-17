@@ -10,7 +10,7 @@ import models.raidtracker.Raid;
 import models.raidtracker.RaidItem;
 import models.raidtracker.RaidMember;
 import models.raidtracker.RaidPool;
-import models.wowapi.character.Character;
+import models.wowapi.character.Avatar;
 
 import play.Logger;
 import play.db.DB;
@@ -19,7 +19,7 @@ public class RaidPoolHelper implements Comparable {
 	
 	public String name;
 	public Long raidteilname;
-	public Character character;
+	public Avatar avatar;
 	public List<Raid> raids;
 	public Float raidprozent;
 	public List<RaidItem> items;
@@ -67,7 +67,7 @@ public class RaidPoolHelper implements Comparable {
 	}
 
 	public RaidPoolHelper(RaidPoolHelper rph) {
-		this.character = rph.character;
+		this.avatar = rph.avatar;
 		this.items = rph.items;
 		this.name = rph.name;
 		this.raidprozent = rph.raidprozent;
@@ -76,7 +76,7 @@ public class RaidPoolHelper implements Comparable {
 	}
 
 	private void setCharacter(String name) {
-		this.character = ((RaidMember) RaidMember.find("name = ?", name).first()).character;
+		this.avatar = ((RaidMember) RaidMember.find("name = ?", name).first()).avatar;
 	}
 
 	public static List<RaidPoolHelper> getRaidPool(Long pool, List<Raid> raids) {

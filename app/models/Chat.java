@@ -111,7 +111,7 @@ public class Chat {
             	String username = Session.current().get("username");
             	user = User.getConnectedUser(username);
             	if (user != null && user.wowCharacter != null) {
-            		link = "<a href=\"/character/"+user.wowCharacter.name.toLowerCase()+"\" class=\"no-tooltip user-name character character-member character-unverified character-${user.wowCharacter.cclass.name.toLowerCase()} character-class-wow character-class-wow-" + user.wowCharacter.cclass.name.toLowerCase() + " character-name-" + user.wowCharacter.name.toLowerCase() + "\"><span>" + user.wowCharacter.name + "</span></a>";
+            		link = "<a href=\"/avatar/"+user.wowCharacter.name.toLowerCase()+"\" class=\"no-tooltip user-name avatar avatar-member avatar-unverified avatar-${user.wowCharacter.cclass.name.toLowerCase()} avatar-class-wow avatar-class-wow-" + user.wowCharacter.cclass.name.toLowerCase() + " avatar-name-" + user.wowCharacter.name.toLowerCase() + "\"><span>" + user.wowCharacter.name + "</span></a>";
 				} else {
 					link = "<a href=\"/register\"><span>" + chatname + "</span></a>";
 				}

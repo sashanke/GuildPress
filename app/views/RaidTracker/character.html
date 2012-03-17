@@ -16,11 +16,11 @@
         	<div class="clear"></div>
         	
         	<div class="avatar">
-					<a href="@{Application.character(member.charakter.name.toLowerCase().urlEncode())}">
-						<img src="@{Avatar.getGuildAvatar(member.charakter.name)}" height="84" width="84" alt="${member.name}s avatar" />
+					<a href="@{Application.character(member.avatar.name.toLowerCase().urlEncode())}">
+						<img src="${member.avatar.avatar}" height="84" width="84" alt="${member.name}s avatar" />
 					</a>
-					<div class="character-rank"><a href="@{MitgliederVerzeichnis.index()}"><img class="noborder" src="/public/images/transparent.png" height="16" width="16" alt="${member.charakter.name}s rank" /></a></div>
-					<div class="character-name"><a href="/character/${member.charakter.name.toLowerCase().urlEncode()}" class="character character-member character-unverified character-${member.charakter.cclass.name.toLowerCase()} character-class-wow character-class-wow-${member.charakter.cclass.name.toLowerCase()} character-name-${member.charakter.name.toLowerCase()}">${member.charakter.name}</a></div>
+					<div class="character-rank"><a href="@{Roster.index()}"><img class="noborder" src="/public/images/transparent.png" height="16" width="16" alt="${member.avatar.name}s rank" /></a></div>
+					<div class="character-name"><a href="/character/${member.avatar.name.toLowerCase().urlEncode()}" class="character character-member character-unverified character-${member.avatar.cclass.name.toLowerCase()} character-class-wow character-class-wow-${member.avatar.cclass.name.toLowerCase()} character-name-${member.avatar.name.toLowerCase()}">${member.avatar.name}</a></div>
 			
 			
 			

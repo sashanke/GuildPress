@@ -13,7 +13,7 @@ import models.Comment;
 import play.db.jpa.Model;
 
 /**
- * http://eu.battle.net/api/wow/data/character/races?locale=de_DE
+ * http://eu.battle.net/api/wow/data/avatar/races?locale=de_DE
  * 
  * @author prime
  * 

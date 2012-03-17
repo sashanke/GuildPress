@@ -10,7 +10,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import models.wowapi.character.Character;
+import models.wowapi.character.Avatar;
 import play.db.jpa.Model;
 @Entity
 public class Raid extends Model {
@@ -18,7 +18,7 @@ public class Raid extends Model {
 	public RaidPool pool;
 	
 	@ManyToOne
-	public Character offizier;
+	public Avatar offizier;
 	
 	public Date startDate;
 	public Date endDate;
@@ -35,7 +35,7 @@ public class Raid extends Model {
 	@OneToMany(mappedBy="raid", cascade=CascadeType.ALL)
 	public List<RaidItem> items;
 	
-	public Raid(Long poolid, Date startDate, Date endDate, Character offizier) {
+	public Raid(Long poolid, Date startDate, Date endDate, Avatar offizier) {
 		this.pool = RaidPool.findById(poolid);
 		this.startDate = startDate;
 		this.endDate = endDate;

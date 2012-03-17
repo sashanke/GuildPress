@@ -25,7 +25,7 @@
 						<td style="text-align: right;"><span title="${item.time.format('HH:mm')}">${item.time.format('dd. MMMM yyyy', 'de')}</span></td>
 						<td style="text-align: right;"><a href="@{RaidTracker.character(item.member.name.toLowerCase().urlEncode())}" 
 						class="user-name character character-member character-unverified character-${item.member.name.toLowerCase()} 
-						#{if item.member.name != "Bank" && item.member.name != "Entzaubert"} character-class-wow character-class-wow-${item.member.charakter.cclass.name.toLowerCase()} character-name-${item.member.charakter.name.toLowerCase()}#{/if}">${item.member.name}</a></td>
+						#{if item.member.name != "Bank" && item.member.name != "Entzaubert"} character-class-wow character-class-wow-${item.member.avatar.cclass.name.toLowerCase()} character-name-${item.member.avatar.name.toLowerCase()}#{/if}">${item.member.name}</a></td>
 					</tr>									
 					#{/list}
 				</tbody>

@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import models.wowapi.character.Character;
+import models.wowapi.character.Avatar;
 import models.wowapi.guild.Guild;
 import models.wowapi.guild.GuildAchievement;
 import models.wowapi.guild.GuildEmblem;
@@ -181,11 +181,11 @@ public class Armory {
 				getZones(log, jsonElement);
 				getBosses(log, jsonElement);
 
-				ArrayList<Character> participants = new ArrayList<Character>();
+				ArrayList<Avatar> participants = new ArrayList<Avatar>();
 				JsonArray jaParticipants = jsonElement.getAsJsonObject().get("participants").getAsJsonArray();
 				for (JsonElement jaParticipant : jaParticipants) {
 					String name = jaParticipant.getAsString();
-					Character participant = Character.find("name = ? and realm.name = ?", name, Play.configuration.getProperty("wowapi.realmName")).first();
+					Avatar participant = Avatar.find("name = ? and realm.name = ?", name, Play.configuration.getProperty("wowapi.realmName")).first();
 					if (participant == null) {
 						participant = fetchCharacter(Play.configuration.getProperty("wowapi.realmName"), name);
 					}
@@ -233,8 +233,8 @@ public class Armory {
 		}
 	}
 
-	public static Character fetchCharacter(String vRealm, String vName) {
-		Character m = Character.find("name = ? and realm.name = ?", vName, vRealm).first();
+	public static Avatar fetchCharacter(String vRealm, String vName) {
+		Avatar m = Avatar.find("name = ? and realm.name = ?", vName, vRealm).first();
 
 		if (m != null && m.guild != null) {
 			checkGuild(m.guild.name, m.guild.realm);
@@ -255,10 +255,10 @@ public class Armory {
 		return m;
 	}
 
-	public static Character fetchCharacter(Boolean update, String vRealm, String vName) {
+	public static Avatar fetchCharacter(Boolean update, String vRealm, String vName) {
 		JsonElement armory = fetchFromArmory(Armory.CHARURL, "guild,stats,talents,items,professions,appearance,progression,pvp", vRealm, vName);		
 		if (armory == null) {
-			Character m = Character.find("name = ? and realm.name = ?", vName, vRealm).first();
+			Avatar m = Avatar.find("name = ? and realm.name = ?", vName, vRealm).first();
 			if (m != null) {
 				Logger.info("UpdateJob Error/Down but Char was found in Database: " + m.name + " - " + m.realm.name);
 				return m;
@@ -266,7 +266,7 @@ public class Armory {
 			GuildMember gm = GuildMember.find("name = ? and realm = ?", vName, vRealm).first();
 			if (gm != null && m == null) {
 				Logger.info("Creating new Char from Guildmember: " + gm.name + " - " + gm.realm);
-				m = new Character();
+				m = new Avatar();
 				m.achievementPoints = gm.achievementPoints;
 				m.guild = Guild.getMainGuild();
 				m.avatar = gm.avatar;
@@ -316,7 +316,7 @@ public class Armory {
 			String gmthumbnail = character.get("thumbnail").getAsString();
 			Long gmlastModified = character.get("lastModified").getAsLong();
 
-			Character gm = Character.find("name = ? and realm.name = ?", gmname, gmrealm.name).first();
+			Avatar gm = Avatar.find("name = ? and realm.name = ?", gmname, gmrealm.name).first();
 			GuildMember guildm = GuildMember.find("name = ? and realm = ?", gmname, gmrealm.name).first();
 			Boolean isGuildMember = false;
 
@@ -334,7 +334,7 @@ public class Armory {
 				gm.achievementPoints = gmachievementPoints;
 				gm.thumbnail = gmthumbnail;
 			} else {
-				gm = new Character();
+				gm = new Avatar();
 				gm.name = gmname;
 				gm.realm = gmrealm;
 				gm.cclass = gmclass;
@@ -601,7 +601,7 @@ public class Armory {
 			CharacterClass gmclass = CharacterClass.find("ccId", character.get("class").getAsLong()).first();
 			CharacterRace gmrace = CharacterRace.find("crId", character.get("race").getAsLong()).first();
 			Gender gmgender = Gender.find("gId", character.get("gender").getAsLong()).first();
-			// Long gmgender = character.get("gender").getAsLong();
+			// Long gmgender = avatar.get("gender").getAsLong();
 			Long gmlevel = character.get("level").getAsLong();
 			GuildRank gmrank = GuildRank.find("rank", gr.rank).first();
 			Long gmachievementPoints = character.get("achievementPoints").getAsLong();

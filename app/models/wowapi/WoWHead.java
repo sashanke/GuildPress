@@ -29,7 +29,7 @@ import models.raidtracker.RaidMember;
 import models.raidtracker.RaidType;
 import models.raidtracker.RaidPool;
 import models.raidtracker.RaidZones;
-import models.wowapi.character.Character;
+import models.wowapi.character.Avatar;
 import models.wowapi.resources.Icon;
 import models.wowapi.resources.Item;
 import models.wowapi.resources.ItemClass;

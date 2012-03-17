@@ -26,7 +26,7 @@ import models.raidtracker.helpers.RaidPoolHelper;
 import models.raidtracker.helpers.SortPoolByItems;
 import models.raidtracker.helpers.SortPoolByRaidTeilnahme;
 import models.wowapi.Armory;
-import models.wowapi.character.Character;
+import models.wowapi.character.Avatar;
 import models.wowapi.resources.Item;
 
 import org.w3c.dom.Document;
@@ -127,9 +127,9 @@ public class RaidTracker extends Controller {
 		Document xmlDoc = getXMLDocument(raidxml);
 		Node gameinfo = XPath.selectNode("//gameinfo", xmlDoc);
 		String offizier = XPath.selectText("charactername", gameinfo);
-		Character character = Character.find("name =? and realm.name = ?", offizier, Play.configuration.getProperty("wowapi.realmName")).first();
-		if (character == null) {
-			character = Armory.fetchCharacter(Play.configuration.getProperty("wowapi.realmName"), offizier);
+		Avatar avatar = Avatar.find("name =? and realm.name = ?", offizier, Play.configuration.getProperty("wowapi.realmName")).first();
+		if (avatar == null) {
+			avatar = Armory.fetchCharacter(Play.configuration.getProperty("wowapi.realmName"), offizier);
 		}
 		Date startDate = null;
 		Date endDate = null;
@@ -140,11 +140,11 @@ public class RaidTracker extends Controller {
 		Raid raid = Raid.find("startDate = ? and endDate = ? and pool = ?", startDate, endDate, RaidPool.findById(poolId)).first();
 		if (raid == null) {
 
-			raid = new Raid(poolId, startDate, endDate, character);
+			raid = new Raid(poolId, startDate, endDate, avatar);
 			raid.save();
 
-			new RaidMember("Bank", startDate, endDate, character, raid).save();
-			new RaidMember("Entzaubert", startDate, endDate, character, raid).save();
+			new RaidMember("Bank", startDate, endDate, avatar, raid).save();
+			new RaidMember("Entzaubert", startDate, endDate, avatar, raid).save();
 
 			for (Node zones : XPath.selectNodes("//zones", xmlDoc)) {
 				for (Node zone : XPath.selectNodes("//zone", zones)) {
@@ -174,9 +174,9 @@ public class RaidTracker extends Controller {
 
 				Date join = new Date(Long.parseLong(XPath.selectText("times/time[@type='join']", member)) * 1000);
 				Date leave = new Date(Long.parseLong(XPath.selectText("times/time[@type='leave']", member)) * 1000);
-				Character c = Character.find("name =? and realm.name = ?", name, Play.configuration.getProperty("wowapi.realmName")).first();
+				Avatar c = Avatar.find("name =? and realm.name = ?", name, Play.configuration.getProperty("wowapi.realmName")).first();
 				if (c == null) {
-					c = Armory.fetchCharacter(Play.configuration.getProperty("wowapi.realmName"), offizier);
+					c = Armory.fetchCharacter(Play.configuration.getProperty("wowapi.realmName"), name);
 				}
 
 				RaidMember rm = new RaidMember(name, join, leave, c, raid);

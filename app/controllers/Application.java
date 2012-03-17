@@ -9,7 +9,7 @@ import models.Message;
 import models.Post;
 import models.User;
 import models.wowapi.Armory;
-import models.wowapi.character.Character;
+import models.wowapi.character.Avatar;
 import models.wowapi.guild.Guild;
 import models.wowapi.logs.Logs;
 import models.wowapi.resources.GuildPerk;
@@ -43,10 +43,10 @@ public class Application extends Controller {
 		renderArgs.put("guild", Guild.getMainGuild());
 		renderArgs.put("guildPerk", GuildPerk.getGuildPerk(Guild.getMainGuild().level));
 		renderArgs.put("logs", Logs.find("order by date desc").fetch(10));
-		renderArgs.put("wowpet", FileUtils.getRandomFile("./public/images/WoWPets/"));
+		renderArgs.put("wowpet", FileUtils.getRandomFile("./public/images/pets/"));
 		renderArgs.put("randomArtwork", Play.configuration.getProperty("conf.artworksdir") + FileUtils.getRandomFile("./public/images/artworks/"));
 	}
-
+	
 	public static void index() {
 		Post frontPost = Post.find("order by postedAt desc").first();
 		List<Post> olderPosts = Post.find("order by postedAt desc").from(1).fetch(10);
@@ -128,7 +128,7 @@ public class Application extends Controller {
 	public static void registerd(String first_name, String last_name, String email, String password, String password_check, String wowchar, Long wowrealm) {
 
 		User user = User.find("wowCharacter.name = ? and wowCharacter.realm.id = ?", wowchar, wowrealm).first();
-		Character wowChar = Character.find("name = ? and realm.id = ?", wowchar, wowrealm).first();
+		Avatar wowChar = Avatar.find("name = ? and realm.id = ?", wowchar, wowrealm).first();
 
 		if (user == null && password.equals(password_check)) {
 			user = new User();
@@ -164,15 +164,15 @@ public class Application extends Controller {
 		System.out.println(name);
 
 		// JSONSerializer characterSerializer = new JSONSerializer();
-		// renderJSON(characterSerializer.serialize(character));
+		// renderJSON(characterSerializer.serialize(avatar));
 
-		Character character = Character.find("name = ? and realm.name = ?", name, realm.name).first();
-		render(character);
+		Avatar avatar = Avatar.find("name = ? and realm.name = ?", name, realm.name).first();
+		render(avatar);
 	}
 
 	public static void character(String name) {
-		Character character = Character.find("name = ?", name).first();
-		render(character);
+		Avatar avatar = Avatar.find("name = ?", name).first();
+		render(avatar);
 	}
 
 	public static void guild(Long id, String name) {

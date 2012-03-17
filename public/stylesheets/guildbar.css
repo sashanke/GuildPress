@@ -1,21 +1,4 @@
-.class,.race,.professions,.spec
-{
-	display: inline-block;
-	height: 20px;
-	text-indent: 20px;
-	white-space: nowrap;
-	width: 18px;
-}
-.spec,.professions
-{
-	display: inline-block!important;
-}
-.listing#wow-roster .wow.race,.listing#wow-roster .wow.professions,.listing#wow-roster .wow.spec,.listing#wow-roster .wow.class
-{
-	text-indent: -9999px;
-}
-.icon-16
-{
+.icon-16 {
 	display: block;
 	float: left;
 	font-size: smaller;
@@ -26,8 +9,8 @@
 	text-indent: -100px;
 	vertical-align: middle;
 }
-.icon-32
-{
+
+.icon-32 {
 	display: block;
 	float: left;
 	margin: 2px;
@@ -37,22 +20,23 @@
 	text-indent: -100px;
 	vertical-align: middle;
 }
-.listing .col-achievement-points
-{
-	background-imagier: url(../../../Skins/GuildSite/images/games/WoW/achievements.gif);
+
+.listing .col-achievement-points {
+	background-imagier:
+		url(../../../Skins/GuildSite/images/games/WoW/achievements.gif);
 	background-position: left;
 	background-repeat: no-repeat;
 }
-.icon-16.character-class-wow
-{
+
+.icon-16.character-class-wow {
 	background: url(/public/images/wow/classes-16.png) no-repeat top left;
 	border: none;
 	height: 16px;
 	padding: 0;
 	width: 16px;
 }
-.icon-32.character-class-wow
-{
+
+.icon-32.character-class-wow {
 	background: url(/public/images/wow/classes-32.png) no-repeat top left;
 	border: none;
 	height: 32px;
@@ -61,8 +45,8 @@
 	text-indent: -9999px;
 	width: 32px;
 }
-.icon-16.character-race-wow
-{
+
+.icon-16.character-race-wow {
 	background: url(/public/images/wow/races.png) no-repeat;
 	border: none;
 	height: 16px;
@@ -72,37 +56,43 @@
 	vertical-align: middle;
 	width: 16px;
 }
+
 .icon-16.character-race-wow-orc-female,.icon-16.character-race-wow-orc.character-female
-{
+	{
 	background-position: -228px 0;
 }
+
 .icon-16.character-race-wow-tauren-female,.icon-16.character-race-wow-tauren.character-female
-{
+	{
 	background-position: -266px 0;
 }
+
 .icon-16.character-race-wow-troll-female,.icon-16.character-race-wow-troll.character-female
-{
+	{
 	background-position: -304px 0;
 }
+
 .icon-16.character-race-wow-undead-female,.icon-16.character-race-wow-undead.character-female
-{
+	{
 	background-position: -342px 0;
 }
+
 .icon-16.character-race-wow-goblin-female,.icon-16.character-race-wow-goblin.character-female
-{
+	{
 	background-position: -380px 0;
 }
+
 .icon-16.character-race-wow-worgen-female,.icon-16.character-race-wow-worgen.character-female
-{
+	{
 	background-position: -418px 0;
 }
-span.character-spec-wow
-{
+
+span.character-spec-wow {
 	display: inline-block;
 	text-indent: -9999px;
 }
-.icon-16.character-spec-wow
-{
+
+.icon-16.character-spec-wow {
 	background: url(/public/images/wow/specs.png) no-repeat top left;
 	border: none;
 	height: 16px;
@@ -111,84 +101,84 @@ span.character-spec-wow
 	text-indent: -9999px;
 	width: 16px;
 }
-.icon-16.character-spec-wow-magier-fire
-{
+
+.icon-16.character-spec-wow-magier-fire {
 	background-position: -170px 0;
 }
-.icon-16.character-spec-wow-magier-frost
-{
+
+.icon-16.character-spec-wow-magier-frost {
 	background-position: -187px 0;
 }
-.icon-16.character-spec-wow-paladin-holy
-{
+
+.icon-16.character-spec-wow-paladin-holy {
 	background-position: -204px 0;
 }
-.icon-16.character-spec-wow-paladin-protection
-{
+
+.icon-16.character-spec-wow-paladin-protection {
 	background-position: -221px 0;
 }
-.icon-16.character-spec-wow-paladin-retribution
-{
+
+.icon-16.character-spec-wow-paladin-retribution {
 	background-position: -238px 0;
 }
-.icon-16.character-spec-wow-priester-discipline
-{
+
+.icon-16.character-spec-wow-priester-discipline {
 	background-position: -255px 0;
 }
-.icon-16.character-spec-wow-priester-holy
-{
+
+.icon-16.character-spec-wow-priester-holy {
 	background-position: -272px 0;
 }
-.icon-16.character-spec-wow-priester-shadow
-{
+
+.icon-16.character-spec-wow-priester-shadow {
 	background-position: -289px 0;
 }
-.icon-16.character-spec-wow-schurke-assassination
-{
+
+.icon-16.character-spec-wow-schurke-assassination {
 	background-position: -306px 0;
 }
-.icon-16.character-spec-wow-schurke-subtlety
-{
+
+.icon-16.character-spec-wow-schurke-subtlety {
 	background-position: -340px 0;
 }
-.icon-16.character-spec-wow-schamane-elemental
-{
+
+.icon-16.character-spec-wow-schamane-elemental {
 	background-position: -357px 0;
 }
-.icon-16.character-spec-wow-schamane-enhancement
-{
+
+.icon-16.character-spec-wow-schamane-enhancement {
 	background-position: -374px 0;
 }
-.icon-16.character-spec-wow-schamane-restoration
-{
+
+.icon-16.character-spec-wow-schamane-restoration {
 	background-position: -391px 0;
 }
-.icon-16.character-spec-wow-hexenmeister-affliction
-{
+
+.icon-16.character-spec-wow-hexenmeister-affliction {
 	background-position: -408px 0;
 }
-.icon-16.character-spec-wow-hexenmeister-demonology
-{
+
+.icon-16.character-spec-wow-hexenmeister-demonology {
 	background-position: -425px 0;
 }
-.icon-16.character-spec-wow-hexenmeister-destruction
-{
+
+.icon-16.character-spec-wow-hexenmeister-destruction {
 	background-position: -442px 0;
 }
-.icon-16.character-spec-wow-krieger-arms
-{
+
+.icon-16.character-spec-wow-krieger-arms {
 	background-position: -459px 0;
 }
-.icon-16.character-spec-wow-krieger-fury
-{
+
+.icon-16.character-spec-wow-krieger-fury {
 	background-position: -476px 0;
 }
-.icon-16.character-spec-wow-krieger-protection
-{
+
+.icon-16.character-spec-wow-krieger-protection {
 	background-position: -493px 0;
 }
-.icon-32.character-spec-wow
-{
+
+.icon-32.character-spec-wow {
 	background: url(/public/images/wow/specs-32.png) no-repeat top left;
 	border: none;
 	height: 32px;
@@ -197,314 +187,239 @@ span.character-spec-wow
 	text-indent: -9999px;
 	width: 32px;
 }
-.icon-32.character-spec-wow-magier-fire
-{
+
+.icon-32.character-spec-wow-magier-fire {
 	background-position: -330px 0;
 }
-.icon-32.character-spec-wow-magier-frost
-{
+
+.icon-32.character-spec-wow-magier-frost {
 	background-position: -363px 0;
 }
-.icon-32.character-spec-wow-paladin-holy
-{
+
+.icon-32.character-spec-wow-paladin-holy {
 	background-position: -396px 0;
 }
-.icon-32.character-spec-wow-paladin-protection
-{
+
+.icon-32.character-spec-wow-paladin-protection {
 	background-position: -429px 0;
 }
-.icon-32.character-spec-wow-paladin-retribution
-{
+
+.icon-32.character-spec-wow-paladin-retribution {
 	background-position: -462px 0;
 }
-.icon-32.character-spec-wow-priester-discipline
-{
+
+.icon-32.character-spec-wow-priester-discipline {
 	background-position: -495px 0;
 }
-.icon-32.character-spec-wow-priester-holy
-{
+
+.icon-32.character-spec-wow-priester-holy {
 	background-position: -528px 0;
 }
-.icon-32.character-spec-wow-priester-shadow
-{
+
+.icon-32.character-spec-wow-priester-shadow {
 	background-position: -561px 0;
 }
-.icon-32.character-spec-wow-schurke-assassination
-{
+
+.icon-32.character-spec-wow-schurke-assassination {
 	background-position: -594px 0;
 }
-.icon-32.character-spec-wow-schurke-combat
-{
+
+.icon-32.character-spec-wow-schurke-combat {
 	background-position: -627px 0;
 }
-.icon-32.character-spec-wow-schurke-subtlety
-{
+
+.icon-32.character-spec-wow-schurke-subtlety {
 	background-position: -660px 0;
 }
-.icon-32.character-spec-wow-schamane-elemental
-{
+
+.icon-32.character-spec-wow-schamane-elemental {
 	background-position: -693px 0;
 }
-.icon-32.character-spec-wow-schamane-enhancement
-{
+
+.icon-32.character-spec-wow-schamane-enhancement {
 	background-position: -726px 0;
 }
-.icon-32.character-spec-wow-schamane-restoration
-{
+
+.icon-32.character-spec-wow-schamane-restoration {
 	background-position: -759px 0;
 }
-.icon-32.character-spec-wow-hexenmeister-affliction
-{
+
+.icon-32.character-spec-wow-hexenmeister-affliction {
 	background-position: -792px 0;
 }
-.icon-32.character-spec-wow-hexenmeister-demonology
-{
+
+.icon-32.character-spec-wow-hexenmeister-demonology {
 	background-position: -825px 0;
 }
-.icon-32.character-spec-wow-hexenmeister-destruction
-{
+
+.icon-32.character-spec-wow-hexenmeister-destruction {
 	background-position: -858px 0;
 }
-.icon-32.character-spec-wow-krieger-arms
-{
+
+.icon-32.character-spec-wow-krieger-arms {
 	background-position: -891px 0;
 }
-.icon-32.character-spec-wow-krieger-fury
-{
+
+.icon-32.character-spec-wow-krieger-fury {
 	background-position: -924px 0;
 }
-.icon-32.character-spec-wow-krieger-protection
-{
+
+.icon-32.character-spec-wow-krieger-protection {
 	background-position: -957px 0;
 }
-.wow.professions
-{
+
+.wow.professions {
 	background: url(/public/images/wow/professions.png) no-repeat;
 	vertical-align: middle;
 }
-.aion.class
-{
-	background: url(../../../Skins/GuildSite/images/games/Aion/classes.png) no-repeat left;
-}
-.aion.race
-{
-	background: url(../../../Skins/GuildSite/images/games/Aion/races.png) no-repeat left;
-}
-.champions.race
-{
-	background: url(../../../Skins/GuildSite/images/games/Champions/races.png) no-repeat left;
-	text-indent: 17px;
-	width: 15px;
-}
-.champions.race.darkness
-{
-	background-position: -16px 0;
-}
-.champions.race.dualblades
-{
-	background-position: -32px 0;
-}
-.champions.race.electricity
-{
-	background-position: -48px 0;
-}
-.champions.race.fightingclaws
-{
-	background-position: -64px 0;
-}
-.champions.race.fire
-{
-	background-position: -80px 0;
-}
-.champions.race.force
-{
-	background-position: -96px 0;
-}
-.champions.race.gadgeteering
-{
-	background-position: -112px 0;
-}
-.champions.race.ice
-{
-	background-position: -128px 0;
-}
-.champions.race.martialarts
-{
-	background-position: -144px 0;
-}
-.champions.race.might
-{
-	background-position: -160px 0;
-}
-.champions.race.munitions
-{
-	background-position: -176px 0;
-}
-.champions.race.singleblade
-{
-	background-position: -192px 0;
-}
-.champions.race.sorcery
-{
-	background-position: -208px 0;
-}
-.champions.race.supernatural
-{
-	background-position: -224px 0;
-}
-.champions.race.telekinesis
-{
-	background-position: -240px 0;
-}
-.champions.race.telepathy
-{
-	background-position: -256px 0;
-}
-img.game-default
-{
-	background-imagier: url(../../../Skins/GuildSite/images/curse_32x32.jpg);
-	display: inline-block;
-	height: 32px;
-	width: 32px;
-}
-.icon-16.with-label
-{
+
+.icon-16.with-label {
 	float: none;
 	font-size: 12px;
 	margin: 4px 0;
 	text-indent: 20px;
 	white-space: nowrap;
 }
-.icon-32.with-label
-{
+
+.icon-32.with-label {
 	float: none;
 	text-indent: 36px;
 }
-.guildbar
-{
-	background: url(/public/images/guildbar/guildbar-bg.png) repeat-x top left;
+
+.guildbar {
+	background: url(/public/images/guildbar/guildbar-bg.png) repeat-x top
+		left;
 	min-width: 800px;
 	position: absolute;
 	width: 100%;
 	z-index: 2000002;
 }
-.guildbar a,.guildbar a:active,.guildbar a:visited
-{
+
+.guildbar a,.guildbar a:active,.guildbar a:visited {
 	color: #999;
 	text-decoration: none;
-	text-shadow: 0 -1px 0 rgba(0,0,0,.7);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .7);
 }
-.guildbar a:hover
-{
+
+.guildbar a:hover {
 	text-decoration: none;
 }
-.link-cell>a
-{
-	background: url(/public/images/guildbar/guildbar-ui-elements.png) no-repeat 0 0;
+
+.link-cell>a {
+	background: url(/public/images/guildbar/guildbar-ui-elements.png)
+		no-repeat 0 0;
 	display: block;
 	height: 25px;
 	text-indent: -99999px;
 	width: 20px;
 }
-.link-annoucement:hover .section-drop
-{
+
+.link-annoucement:hover .section-drop {
 	left: 0;
 	top: 25px;
 }
-.link-annoucement a
-{
+
+.link-annoucement a {
 	background-position: -7px 1px;
 }
-.link-annoucement-unread>a
-{
+
+.link-annoucement-unread>a {
 	background-position: -42px 1px;
 	webkit-animation-duration: 2s;
 	webkit-animation-iteration-count: infinite;
 	webkit-animation-name: glow;
 	webkit-animation-timing-function: linear;
 }
+
 50%
 {
-	opacity: 1;
+opacity
+
+
+:
+
+ 
+
+1;
 }
-to
-{
+to {
 	opacity: .5;
 }
-.link-annoucement-unread:hover>a,.link-annoucement-unread>a:hover
-{
+
+.link-annoucement-unread:hover>a,.link-annoucement-unread>a:hover {
 	background-position: -42px 1px;
 	webkit-animation-name: clear;
 }
-.link-annoucement a:hover
-{
+
+.link-annoucement a:hover {
 	background-position: -42px 1px;
 }
-.link-annoucement .section-drop
-{
+
+.link-annoucement .section-drop {
 	background: #2b2b2b;
 	border: 2px solid #444;
-	box-shadow: 1px 1px 4px rgba(0,0,0,.5);
-	moz-box-shadow: 1px 1px 4px rgba(0,0,0,.5);
-	o-box-shadow: 1px 1px 4px rgba(0,0,0,.5);
-	webkit-box-shadow: 1px 1px 4px rgba(0,0,0,.5);
+	box-shadow: 1px 1px 4px rgba(0, 0, 0, .5);
+	moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, .5);
+	o-box-shadow: 1px 1px 4px rgba(0, 0, 0, .5);
+	webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, .5);
 	width: 265px;
 }
-.annoucement-message
-{
+
+.annoucement-message {
 	border-bottom: 1px solid #222;
 	color: #ddd;
 	line-height: 16px;
 	padding: 5px;
 }
-.annoucement-message a
-{
-	color: #5493b1!important;
+
+.annoucement-message a {
+	color: #5493b1 !important;
 	text-shadow: none;
 }
-.annoucement-message a:hover
-{
+
+.annoucement-message a:hover {
 	color: #3e7894;
 }
-.annoucement-message .icon
-{
-	background: url(/public/images/guildbar/guildbar-ui-elements.png) no-repeat 0 0;
+
+.annoucement-message .icon {
+	background: url(/public/images/guildbar/guildbar-ui-elements.png)
+		no-repeat 0 0;
 	display: inline-block;
 	float: left;
 	height: 22px;
 	margin: 0 10px 0 0;
 	width: 22px;
 }
-.annoucement-message .icon-patch
-{
+
+.annoucement-message .icon-patch {
 	background-position: -90px -88px;
 }
-.annoucement-message .icon-annoucement
-{
+
+.annoucement-message .icon-annoucement {
 	background-position: -92px -3px;
 }
-.annoucement-message .icon-unverified-guild-members
-{
+
+.annoucement-message .icon-unverified-guild-members {
 	background-position: -91px -29px;
 }
-.annoucement-message .icon-unverified-character
-{
+
+.annoucement-message .icon-unverified-character {
 	background-position: -92px -58px;
 }
-.link-messages a
-{
+
+.link-messages a {
 	background-position: -7px -28px;
 }
-.link-messages-unread a,.link-messages a:hover
-{
+
+.link-messages-unread a,.link-messages a:hover {
 	background-position: -42px -28px;
 }
-.link-messages-unread a
-{
+
+.link-messages-unread a {
 	text-indent: 0;
 }
-.link-messages-unread a>span
-{
+
+.link-messages-unread a>span {
 	background: #bd0404;
 	border: 1px solid #8b0707;
 	border-radius: 30px;
@@ -518,76 +433,79 @@ to
 	top: 2px;
 	webkit-border-radius: 30px;
 }
-.link-support a
-{
+
+.link-support a {
 	background-position: -7px -60px;
 }
-.link-support a:hover
-{
+
+.link-support a:hover {
 	background-position: -42px -60px;
 }
-.admin-link-bar
-{
+
+.admin-link-bar {
 	line-height: 25px;
 	position: absolute;
 	right: 300px;
 }
-.admin-link-cell
-{
+
+.admin-link-cell {
 	color: #999;
 	float: right;
 	margin: 0 0 0 10px;
-	text-shadow: 0 -1px 0 rgba(0,0,0,.7);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .7);
 }
-.admin-link-cell a
-{
+
+.admin-link-cell a {
 	border: 1px solid transparent;
 	border-width: 0 1px;
-	color: #888!important;
+	color: #888 !important;
 	display: block;
 	moz-transition: background .3s ease;
 	padding: 0 10px;
 	webkit-transition: background .3s ease;
 }
-.admin-link-cp .icon
-{
-	background: url(/public/images/guildbar/guildbar-ui-elements.png) no-repeat -7px -88px;
+
+.admin-link-cp .icon {
+	background: url(/public/images/guildbar/guildbar-ui-elements.png)
+		no-repeat -7px -88px;
 	float: left;
 	height: 20px;
 	margin: 0 2px 0 0;
 	width: 20px;
 }
-.admin-link-cp a:hover .icon
-{
+
+.admin-link-cp a:hover .icon {
 	background-position: -42px -88px;
 }
-.admin-link-cell label
-{
+
+.admin-link-cell label {
 	color: #999;
 	cursor: pointer;
-	font-weight: 400!important;
+	font-weight: 400 !important;
 	webkit-transition: all .3s ease;
 }
+
 .admin-link-cell form,.admin-link-cell .form-body,.admin-link-cell .form-field
-{
+	{
 	margin: 0;
 }
-.user-box
-{
-	background: url(/public/images/guildbar/guildbar-ui-elements.png) no-repeat -321px 0;
+
+.user-box {
+	background: url(/public/images/guildbar/guildbar-ui-elements.png)
+		no-repeat -321px 0;
 	float: right;
 	height: 51px;
 	padding: 0 0 0 50px;
 	position: relative;
 	width: 229px;
 }
-.user-meta-cell
-{
+
+.user-meta-cell {
 	float: left;
 	height: 51px;
 }
-.user-meta-race
-{
+
+.user-meta-race {
 	display: block;
 	height: 46px;
 	margin: 0 10px 0 0;
@@ -595,163 +513,173 @@ to
 	position: relative;
 	width: 16px;
 }
-.user-meta-name
-{
+
+.user-meta-name {
 	height: 43px;
 	line-height: normal;
 	padding: 4px 0;
 }
-.user-meta-name a
-{
+
+.user-meta-name a {
 	display: block;
 	moz-transition: all .3s ease;
 	text-shadow: 0 1px 0 #000;
 	webkit-transition: all .3s ease;
 }
-.user-meta-name .user-name
-{
+
+.user-meta-name .user-name {
 	color: #72b7eb;
 	font-size: 18px;
 	font-weight: 700;
 	webkit-transition: all .1s ease;
 }
-.user-meta-avatar
-{
+
+.user-meta-avatar {
 	position: absolute;
 	right: 35px;
 	top: 3px;
 	width: 50px;
 }
-.user-meta-avatar img
-{
-	border: 2px solid rgba(0,0,0,.7);
+
+.user-meta-avatar img {
+	border: 2px solid rgba(0, 0, 0, .7);
 	display: block;
 	height: 40px;
 	width: 40px;
 }
-.user-meta-avatar .default-avatar-40
-{
-	background: url(/public/images/games/wow/default-avatar-40.jpg) no-repeat;
-	border: 2px solid rgba(0,0,0,.7);
+
+.user-meta-avatar .default-avatar-40 {
+	background: url(/public/images/games/wow/default-avatar-40.jpg)
+		no-repeat;
+	border: 2px solid rgba(0, 0, 0, .7);
 	display: block;
 	height: 40px;
 	width: 40px;
 }
-.user-meta-links
-{
+
+.user-meta-links {
 	float: right;
 	height: 51px;
 }
-.user-meta-links>a
-{
-	background: url(/public/images/guildbar/guildbar-ui-elements.png) no-repeat 6px -130px;
-	color: #999!important;
+
+.user-meta-links>a {
+	background: url(/public/images/guildbar/guildbar-ui-elements.png)
+		no-repeat 6px -130px;
+	color: #999 !important;
 	display: block;
 	height: 50px;
 	text-indent: -9999px;
 	width: 45px;
 }
-.user-meta-links>a:hover
-{
-	background: url(/public/images/guildbar/guildbar-ui-elements.png) no-repeat 6px -194px;
+
+.user-meta-links>a:hover {
+	background: url(/public/images/guildbar/guildbar-ui-elements.png)
+		no-repeat 6px -194px;
 	width: 45px;
 }
-.user-meta-links:hover>a
-{
+
+.user-meta-links:hover>a {
 	background-position: 6px -194px;
 }
-.user-meta-links .section-drop
-{
+
+.user-meta-links .section-drop {
 	background-color: #2e3338;
 	border: 1px solid #40464c;
 	border-bottom-left-radius: 8px;
 	border-bottom-right-radius: 8px;
-	box-shadow: 1px 1px 0 #111214,-1px -1px 0 #111214,1px 0 0 #111214,-1px 0 0 #111214;
+	box-shadow: 1px 1px 0 #111214, -1px -1px 0 #111214, 1px 0 0 #111214,
+		-1px 0 0 #111214;
 	color: #555;
 	moz-border-radius-bottomleft: 8px;
 	moz-border-radius-bottomright: 8px;
-	moz-box-shadow: 1px 1px 0 #111214,-1px -1px 0 #111214,1px 0 0 #111214,-1px 0 0 #111214;
+	moz-box-shadow: 1px 1px 0 #111214, -1px -1px 0 #111214, 1px 0 0 #111214,
+		-1px 0 0 #111214;
 	o-border-radius-bottomleft: 8px;
 	o-border-radius-bottomright: 8px;
-	o-box-shadow: 1px 1px 0 #111214,-1px -1px 0 #111214,1px 0 0 #111214,-1px 0 0 #111214;
+	o-box-shadow: 1px 1px 0 #111214, -1px -1px 0 #111214, 1px 0 0 #111214,
+		-1px 0 0 #111214;
 	padding: 8px 0;
 	right: 1px;
 	top: 51px;
 	webkit-border-bottom-left-radius: 8px;
 	webkit-border-bottom-right-radius: 8px;
-	webkit-box-shadow: 1px 1px 0 #111214,-1px -1px 0 #111214,1px 0 0 #111214,-1px 0 0 #111214;
+	webkit-box-shadow: 1px 1px 0 #111214, -1px -1px 0 #111214, 1px 0 0
+		#111214, -1px 0 0 #111214;
 	width: 163px;
 }
-.user-meta-links .section-drop li>span
-{
+
+.user-meta-links .section-drop li>span {
 	display: block;
 	padding: 3px 15px;
 }
-.user-meta-links .section-drop a
-{
+
+.user-meta-links .section-drop a {
 	display: block;
-	moz-transition: background .2s linear,color .1s linear;
+	moz-transition: background .2s linear, color .1s linear;
 	padding: 3px 15px;
-	webkit-transition: background .2s linear,color .1s linear;
+	webkit-transition: background .2s linear, color .1s linear;
 }
-.user-meta-links .section-drop a:hover
-{
+
+.user-meta-links .section-drop a:hover {
 	background: #72b7eb;
 	color: #fff;
 	text-shadow: none;
 }
-.user-meta-links .section-drop a:active
-{
-	text-shadow: 0 -1px 0 rgba(0,0,0,.7);
+
+.user-meta-links .section-drop a:active {
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .7);
 }
-.user-meta-links .section-drop .separator
-{
-	background: url(/public/images/guildbar/guildbar-ui-elements.png) no-repeat 5px -271px;
+
+.user-meta-links .section-drop .separator {
+	background: url(/public/images/guildbar/guildbar-ui-elements.png)
+		no-repeat 5px -271px;
 	height: 2px;
 	line-height: normal;
 	margin: 5px 0;
 }
-.user-meta-links .section-drop .add-character
-{
-	background: url(/public/images/guildbar/guildbar-ui-elements.png) no-repeat 2px -297px;
+
+.user-meta-links .section-drop .add-character {
+	background: url(/public/images/guildbar/guildbar-ui-elements.png)
+		no-repeat 2px -297px;
 	height: 29px;
 	line-height: 29px;
 	margin: 0 0 2px;
 }
-.user-meta-links .section-drop .add-character a
-{
-	background: url(/public/images/guildbar/guildbar-ui-elements.png) no-repeat 2px -297px;
+
+.user-meta-links .section-drop .add-character a {
+	background: url(/public/images/guildbar/guildbar-ui-elements.png)
+		no-repeat 2px -297px;
 	color: #72b7eb;
 	moz-transition: color .3s linear;
 	padding: 0 15px 0 35px;
 	webkit-transition: color .3s linear;
 }
-.user-meta-links .section-drop .add-character a:hover
-{
+
+.user-meta-links .section-drop .add-character a:hover {
 	background-color: transparent;
 	background-position: 2px -326px;
 	color: #fff;
 }
-.user-meta-links .section-drop .add-character a:active
-{
+
+.user-meta-links .section-drop .add-character a:active {
 	background-position: 2px -355px;
 }
-.user-meta-no-character
-{
+
+.user-meta-no-character {
 	height: 39px;
 	line-height: normal;
 	padding: 6px 0;
 }
-.user-box.logged-no-characters .user-meta-no-character>span
-{
+
+.user-box.logged-no-characters .user-meta-no-character>span {
 	color: #ccc;
 	display: block;
 	font-style: italic;
 	margin: 0 0 5px;
 	text-shadow: 0 -1px 0 #000;
 }
-.user-box.logged-no-characters .user-meta-no-character>.add
-{
+
+.user-box.logged-no-characters .user-meta-no-character>.add {
 	color: #72b7eb;
 	display: block;
 	font-size: 14px;
@@ -759,360 +687,399 @@ to
 	moz-transition: all .1s ease;
 	webkit-transition: all .1s ease;
 }
-.user-meta-logged-out
-{
+
+.user-meta-logged-out {
 	height: 39px;
 	line-height: normal;
 	padding: 6px 10px;
 }
-.user-box.logged-out .user-meta-avatar
-{
+
+.user-box.logged-out .user-meta-avatar {
 	right: 0;
 }
-.user-box.logged-out .user-meta-logged-out
-{
+
+.user-box.logged-out .user-meta-logged-out {
 	color: #ccc;
 }
-.user-box.logged-out .user-meta-logged-out>span
-{
+
+.user-box.logged-out .user-meta-logged-out>span {
 	display: block;
 	font-style: italic;
 	margin: 0 0 5px;
 	text-shadow: 0 -1px 0 #000;
 }
-.user-box.logged-out .user-meta-logged-out a
-{
+
+.user-box.logged-out .user-meta-logged-out a {
 	color: #72b7eb;
 	webkit-transition: all .1s ease;
 }
+
 .skin-dark-on-light .user-meta-name .user-name.character-class-wow-todesritter
-{
-	color: #C41F3B!important;
+	{
+	color: #C41F3B !important;
 }
+
 .skin-dark-on-light .user-meta-name .user-name.character-class-wow-druide
-{
-	color: #FF7D0A!important;
+	{
+	color: #FF7D0A !important;
 }
+
 .skin-dark-on-light .user-meta-name .user-name.character-class-wow-jäger
-{
-	color: #ABD473!important;
+	{
+	color: #ABD473 !important;
 }
+
 .skin-dark-on-light .user-meta-name .user-name.character-class-wow-magier
-{
-	color: #69CCF0!important;
+	{
+	color: #69CCF0 !important;
 }
+
 .skin-dark-on-light .user-meta-name .user-name.character-class-wow-paladin
-{
-	color: #F58CBA!important;
+	{
+	color: #F58CBA !important;
 }
+
 .skin-dark-on-light .user-meta-name .user-name.character-class-wow-priester
-{
-	color: #FFF!important;
+	{
+	color: #FFF !important;
 }
+
 .skin-dark-on-light .user-meta-name .user-name.character-class-wow-schurke
-{
-	color: #FFF569!important;
+	{
+	color: #FFF569 !important;
 }
+
 .skin-dark-on-light .user-meta-name .user-name.character-class-wow-schamane
-{
-	color: #2459FF!important;
+	{
+	color: #2459FF !important;
 }
+
 .skin-dark-on-light .user-meta-name .user-name.character-class-wow-hexenmeister
-{
-	color: #9482C9!important;
+	{
+	color: #9482C9 !important;
 }
+
 .skin-dark-on-light .user-meta-name .user-name.character-class-wow-krieger
-{
-	color: #C79C6E!important;
+	{
+	color: #C79C6E !important;
 }
+
 span.character-class-wow-todesritter,a.character-class-wow-todesritter,div.avatar.character-class-wow-todesritter img,.character-class-wow-6
-{
-	border-color: #C41F3B!important;
-	color: #C41F3B!important;
+	{
+	border-color: #C41F3B !important;
+	color: #C41F3B !important;
 }
+
 .skin-dark-on-light span.character-class-wow-todesritter,.skin-dark-on-light a.character-class-wow-todesritter,.skin-dark-on-light div.avatar.character-class-wow-todesritter img,.skin-dark-on-light .character-class-wow-6
-{
-	border-color: #620F1E!important;
-	color: #620F1E!important;
+	{
+	border-color: #620F1E !important;
+	color: #620F1E !important;
 }
+
 span.character-class-wow-druide,a.character-class-wow-druide,div.avatar.character-class-wow-druide img,.character-class-wow-11
-{
-	border-color: #FF7D0A!important;
-	color: #FF7D0A!important;
+	{
+	border-color: #FF7D0A !important;
+	color: #FF7D0A !important;
 }
+
 .skin-dark-on-light span.character-class-wow-druide,.skin-dark-on-light a.character-class-wow-druide,.skin-dark-on-light div.avatar.character-class-wow-druide img,.skin-dark-on-light .character-class-wow-11
-{
-	border-color: #803F05!important;
-	color: #803F05!important;
+	{
+	border-color: #803F05 !important;
+	color: #803F05 !important;
 }
+
 a.character-class-wow-jäger,span.character-class-wow-jäger,div.avatar.character-class-wow-jäger img,.character-class-wow-3
-{
-	border-color: #ABD473!important;
-	color: #ABD473!important;
+	{
+	border-color: #ABD473 !important;
+	color: #ABD473 !important;
 }
+
 .skin-dark-on-light span.character-class-wow-jäger,.skin-dark-on-light a.character-class-wow-jäger,.skin-dark-on-light div.avatar.character-class-wow-jäger img,.skin-dark-on-light .character-class-wow-3
-{
+	{
 	border-color: #566A39;
 	color: #566A39;
 }
+
 span.character-class-wow-magier,a.character-class-wow-magier,div.avatar.character-class-wow-magier img,.character-class-wow-8
-{
-	border-color: #69CCF0!important;
-	color: #69CCF0!important;
+	{
+	border-color: #69CCF0 !important;
+	color: #69CCF0 !important;
 }
+
 .skin-dark-on-light span.character-class-wow-magier,.skin-dark-on-light a.character-class-wow-magier,.skin-dark-on-light div.avatar.character-class-wow-magier img,.skin-dark-on-light .character-class-wow-8
-{
-	border-color: #346678!important;
-	color: #346678!important;
+	{
+	border-color: #346678 !important;
+	color: #346678 !important;
 }
+
 span.character-class-wow-paladin,a.character-class-wow-paladin,div.avatar.character-class-wow-paladin img,.character-class-wow-2
-{
-	border-color: #F58CBA!important;
-	color: #F58CBA!important;
+	{
+	border-color: #F58CBA !important;
+	color: #F58CBA !important;
 }
+
 .skin-dark-on-light span.character-class-wow-paladin,.skin-dark-on-light a.character-class-wow-paladin,.skin-dark-on-light div.avatar.character-class-wow-paladin img .skin-dark-on-light .character-class-wow-2
-{
-	border-color: #7B465D!important;
-	color: #7B465D!important;
+	{
+	border-color: #7B465D !important;
+	color: #7B465D !important;
 }
+
 a.character-class-wow-priester,span.character-class-wow-priester,div.avatar.character-class-wow-priester img,.character-class-wow-5
-{
-	border-color: #FFF!important;
-	color: #FFF!important;
+	{
+	border-color: #FFF !important;
+	color: #FFF !important;
 }
+
 .skin-dark-on-light a.character-class-wow-priester,.skin-dark-on-light span.character-class-wow-priester,.skin-dark-on-light div.avatar.character-class-wow-priester img,.skin-dark-on-light .character-class-wow-5
-{
-	border-color: gray!important;
-	color: gray!important;
+	{
+	border-color: gray !important;
+	color: gray !important;
 }
+
 span.character-class-wow-schurke,a.character-class-wow-schurke,div.avatar.character-class-wow-schurke img,.character-class-wow-4
-{
-	border-color: #FFF569!important;
-	color: #FFF569!important;
+	{
+	border-color: #FFF569 !important;
+	color: #FFF569 !important;
 }
+
 .skin-dark-on-light span.character-class-wow-schurke,.skin-dark-on-light a.character-class-wow-schurke,.skin-dark-on-light div.avatar.character-class-wow-schurke img
-{
-	border-color: #807B35!important;
-	color: #807B35!important;
+	{
+	border-color: #807B35 !important;
+	color: #807B35 !important;
 }
+
 span.character-class-wow-schamane,a.character-class-wow-schamane,div.avatar.character-class-wow-schamane img,.character-class-wow-7
-{
-	border-color: #2459FF!important;
-	color: #2459FF!important;
+	{
+	border-color: #2459FF !important;
+	color: #2459FF !important;
 }
+
 .skin-dark-on-light span.character-class-wow-schamane,.skin-dark-on-light a.character-class-wow-schamane,.skin-dark-on-light div.avatar.character-class-wow-schamane img .skin-dark-on-light .character-class-wow-7
-{
-	border-color: #122C80!important;
-	color: #122C80!important;
+	{
+	border-color: #122C80 !important;
+	color: #122C80 !important;
 }
+
 span.character-class-wow-hexenmeister,a.character-class-wow-hexenmeister,div.avatar.character-class-wow-hexenmeister img,.character-class-wow-9
-{
-	border-color: #9482C9!important;
-	color: #9482C9!important;
+	{
+	border-color: #9482C9 !important;
+	color: #9482C9 !important;
 }
+
 .skin-dark-on-light span.character-class-wow-hexenmeister,.skin-dark-on-light a.character-class-wow-hexenmeister,.skin-dark-on-light div.avatar.character-class-wow-hexenmeister img .skin-dark-on-light .character-class-wow-9
-{
-	border-color: #4A4164!important;
-	color: #4A4164!important;
+	{
+	border-color: #4A4164 !important;
+	color: #4A4164 !important;
 }
+
 span.character-class-wow-krieger,a.character-class-wow-krieger,div.avatar.character-class-wow-krieger img,.character-class-wow-1
-{
-	border-color: #C79C6E!important;
-	color: #C79C6E!important;
+	{
+	border-color: #C79C6E !important;
+	color: #C79C6E !important;
 }
+
 .skin-dark-on-light span.character-class-wow-krieger,.skin-dark-on-light a.character-class-wow-krieger,.skin-dark-on-light div.avatar.character-class-wow-krieger img
-{
-	border-color: #634E37!important;
-	color: #634E37!important;
+	{
+	border-color: #634E37 !important;
+	color: #634E37 !important;
 }
+
 .character-details-wow .item-slots-left .item-slot,.character-details-wow .item-slots-right .item-slot
-{
+	{
 	margin: 4px 0;
 }
-.character-details-wow .item-slots-bottom .item-slot
-{
+
+.character-details-wow .item-slots-bottom .item-slot {
 	margin: 0 2px;
 }
-.character-details-wow .item-slot
-{
-	background: url(../../../Skins/GuildSite/images/games/WoW/item-slots.png) no-repeat;
+
+.character-details-wow .item-slot {
+	background:
+		url(../../../Skins/GuildSite/images/games/WoW/item-slots.png)
+		no-repeat;
 }
-.character-details-wow .item-slot-0
-{
+
+.character-details-wow .item-slot-0 {
 	background-position: 0 0;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-1
-{
+
+.character-details-wow .item-slot-1 {
 	background-position: 0 -48px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-10
-{
+
+.character-details-wow .item-slot-10 {
 	background-position: 0 -96px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-11
-{
+
+.character-details-wow .item-slot-11 {
 	background-position: 0 -144px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-12
-{
+
+.character-details-wow .item-slot-12 {
 	background-position: 0 -192px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-13
-{
+
+.character-details-wow .item-slot-13 {
 	background-position: 0 -240px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-14
-{
+
+.character-details-wow .item-slot-14 {
 	background-position: 0 -288px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-15
-{
+
+.character-details-wow .item-slot-15 {
 	background-position: 0 -336px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-16
-{
+
+.character-details-wow .item-slot-16 {
 	background-position: 0 -384px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-17
-{
+
+.character-details-wow .item-slot-17 {
 	background-position: 0 -432px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-18
-{
+
+.character-details-wow .item-slot-18 {
 	background-position: 0 -480px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-2
-{
+
+.character-details-wow .item-slot-2 {
 	background-position: 0 -528px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-3
-{
+
+.character-details-wow .item-slot-3 {
 	background-position: 0 -576px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-4
-{
+
+.character-details-wow .item-slot-4 {
 	background-position: 0 -624px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-5
-{
+
+.character-details-wow .item-slot-5 {
 	background-position: 0 -672px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-6
-{
+
+.character-details-wow .item-slot-6 {
 	background-position: 0 -720px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-7
-{
+
+.character-details-wow .item-slot-7 {
 	background-position: 0 -768px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-8
-{
+
+.character-details-wow .item-slot-8 {
 	background-position: 0 -816px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-9
-{
+
+.character-details-wow .item-slot-9 {
 	background-position: 0 -864px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-ammo
-{
+
+.character-details-wow .item-slot-ammo {
 	background-position: 0 -912px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot-relic
-{
+
+.character-details-wow .item-slot-relic {
 	background-position: 0 -960px;
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slots-bottom .item-slot .quality-border
-{
+
+.character-details-wow .item-slots-bottom .item-slot .quality-border {
 	height: 44px;
 	width: 44px;
 }
-.character-details-wow .item-slot .curse-wowutils-link-container
-{
+
+.character-details-wow .item-slot .curse-wowutils-link-container {
 	left: 0;
 	position: absolute;
 	top: 0;
 }
+
 .wow-currency .gold-coin,.wow-currency .silver-coin,.wow-currency .copper-coin
-{
+	{
 	padding-right: 21px;
 }
-.wow-currency .silver-coin,.wow-currency .copper-coin
-{
+
+.wow-currency .silver-coin,.wow-currency .copper-coin {
 	display: inline-block;
 	width: 14px;
 }
-.wow-currency .gold-coin
-{
-	background: url(../../../Skins/GuildSite/images/games/WoW/gold-coin.gif) no-repeat scroll right center transparent;
+
+.wow-currency .gold-coin {
+	background: url(../../../Skins/GuildSite/images/games/WoW/gold-coin.gif)
+		no-repeat scroll right center transparent;
 }
-.wow-currency .silver-coin
-{
-	background: url(../../../Skins/GuildSite/images/games/WoW/silver-coin.gif) no-repeat scroll right center transparent;
+
+.wow-currency .silver-coin {
+	background:
+		url(../../../Skins/GuildSite/images/games/WoW/silver-coin.gif)
+		no-repeat scroll right center transparent;
 }
-.wow-currency .copper-coin
-{
-	background: url(../../../Skins/GuildSite/images/games/WoW/copper-coin.gif) no-repeat scroll right center transparent;
+
+.wow-currency .copper-coin {
+	background:
+		url(../../../Skins/GuildSite/images/games/WoW/copper-coin.gif)
+		no-repeat scroll right center transparent;
 }
-.wow-bank-item .curse-wowutils-icon-51 img
-{
+
+.wow-bank-item .curse-wowutils-icon-51 img {
 	height: 44px;
 	margin: 0;
 	width: 44px;
 }
-.guild-bank .guild-bank-items
-{
+
+.guild-bank .guild-bank-items {
 	margin: 0 0 20px;
 }
-.guild-bank .tabbed-tabs li img
-{
+
+.guild-bank .tabbed-tabs li img {
 	height: 14px;
 	vertical-align: middle;
 	width: 14px;
 }
-ul.guild-bank-tab-row li
-{
+
+ul.guild-bank-tab-row li {
 	display: block;
 	float: left;
 	height: 44px;
@@ -1120,87 +1087,93 @@ ul.guild-bank-tab-row li
 	position: relative;
 	width: 44px;
 }
-.wow-bank-item-quantity
-{
+
+.wow-bank-item-quantity {
 	bottom: 1px;
 	color: #FFF;
 	font-weight: 700;
 	position: absolute;
 	right: 5px;
-	text-shadow: 1px 1px black,1px -1px black,-1px 1px black,-1px -1px black,-1px 0 black,1px 0 #000;
+	text-shadow: 1px 1px black, 1px -1px black, -1px 1px black, -1px -1px
+		black, -1px 0 black, 1px 0 #000;
 }
-.guild-bank-log ul.listing
-{
+
+.guild-bank-log ul.listing {
 	border: 1px solid #232e37;
 }
-.guild-bank-log ul.listing li
-{
+
+.guild-bank-log ul.listing li {
 	background: #000;
 	border-left: 1px solid #222;
 	border-top: 1px solid #222;
 	margin: 0;
 	padding: 3px;
 }
-.guild-bank-log ul.listing li:nth-child(even)
-{
+
+.guild-bank-log ul.listing li:nth-child(even) {
 	background: #0d0d0d;
 }
-span.character-class-wow
-{
-	background: url(../../GuildSite/images/games/WoW/classes-16-alt.png) no-repeat 0 0;
+
+span.character-class-wow {
+	background: url(../../GuildSite/images/games/WoW/classes-16-alt.png)
+		no-repeat 0 0;
 	display: inline-block;
 	height: 16px;
 	line-height: 16px;
 	padding: 0 0 0 20px;
 }
-span.character-class-wow-druide
-{
+
+span.character-class-wow-druide {
 	background-position: 0 -16px;
 }
-span.character-class-wow-jäger
-{
+
+span.character-class-wow-jäger {
 	background-position: 0 -33px;
 }
-span.character-class-wow-magier
-{
+
+span.character-class-wow-magier {
 	background-position: 0 -50px;
 }
-span.character-class-wow-paladin
-{
+
+span.character-class-wow-paladin {
 	background-position: 0 -66px;
 }
-span.character-class-wow-priester
-{
+
+span.character-class-wow-priester {
 	background-position: 0 -82px;
 }
-span.character-class-wow-schurke
-{
+
+span.character-class-wow-schurke {
 	background-position: 0 -99px;
 }
-span.character-class-wow-schamane
-{
+
+span.character-class-wow-schamane {
 	background-position: 0 -116px;
 }
-span.character-class-wow-hexenmeister
-{
+
+span.character-class-wow-hexenmeister {
 	background-position: 0 -132px;
 }
-span.character-class-wow-krieger
-{
+
+span.character-class-wow-krieger {
 	background-position: 0 -148px;
 }
-a.wow-heroes-link
-{
-	background: url(../../../Skins/GuildSite/images/games/wow/wow-heroes-icon.png) no-repeat left;
+
+a.wow-heroes-link {
+	background:
+		url(../../../Skins/GuildSite/images/games/wow/wow-heroes-icon.png)
+		no-repeat left;
 	padding-left: 20px;
 }
-a.wow-armory-link
-{
-	background: url(../../../Skins/GuildSite/images/games/WoW/favicon.ico) no-repeat left;
+
+a.wow-armory-link {
+	background: url(../../../Skins/GuildSite/images/games/WoW/favicon.ico)
+		no-repeat left;
 	padding-left: 20px;
 }
+
 html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,code,del,dfn,em,img,q,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td
-{
+	{
 	border: 0;
 	font-family: inherit;
 	font-size: 100.01%;
@@ -1211,90 +1184,90 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acron
 	padding: 0;
 	vertical-align: baseline;
 }
-body
-{
+
+body {
 	background: #FFF;
 	color: #333;
 	line-height: 1.5;
 }
-table
-{
+
+table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-caption,th,td
-{
+
+caption,th,td {
 	font-weight: 400;
 	text-align: left;
 }
-blockquote:before,blockquote:after,q:before,q:after
-{
+
+blockquote:before,blockquote:after,q:before,q:after {
 	content: "";
 }
-a img
-{
+
+a img {
 	border: 0;
 }
-pre
-{
+
+pre {
 	white-space: 0;
 	word-wrap: break-word;
 }
-li
-{
+
+li {
 	list-style: none outside none;
 }
-.hidden
-{
-	display: none!important;
+
+.hidden {
+	display: none !important;
 }
-.hide
-{
+
+.hide {
 	display: none;
 	visibility: hidden;
 }
-.help
-{
+
+.help {
 	border-bottom: 1px dashed;
 	cursor: help;
 }
-.group:after,.group:before
-{
+
+.group:after,.group:before {
 	content: "\0200";
 	display: block;
 	height: 0;
 	visibility: hidden;
 }
-.group
-{
+
+.group {
 	zoom: 1;
 }
-.flat
-{
+
+.flat {
 	display: inline;
 }
-.centered
-{
+
+.centered {
 	text-align: center;
 }
-.column-left
-{
+
+.column-left {
 	float: left;
 }
-.no-float
-{
-	float: none!important;
+
+.no-float {
+	float: none !important;
 }
-.padded.top
-{
+
+.padded.top {
 	padding-top: 10px;
 }
-.padded.bottom
-{
+
+.padded.bottom {
 	padding-bottom: 10px;
 }
-.ir
-{
+
+.ir {
 	background-repeat: no-repeat;
 	direction: ltr;
 	display: block;
@@ -1302,216 +1275,264 @@ li
 	text-align: left;
 	text-indent: -9999em;
 }
-.suckerfish
-{
+
+.suckerfish {
 	position: relative;
 	z-index: 99999;
 }
-.suckerfish .section-drop
-{
+
+.suckerfish .section-drop {
 	left: -9999px;
 	position: absolute;
 }
-.suckerfish:hover .section-drop
-{
+
+.suckerfish:hover .section-drop {
 	left: auto;
 }
-.link-removed
-{
+
+.link-removed {
 	text-decoration: line-through;
 }
+
 .icon-16.character-class-wow-deathknight,.icon-32.character-class-wow-todesritter,.icon-16.character-race-wow-blood-elf-female,.icon-16.character-race-wow-blood-elf.character-female,.icon-16.character-spec-wow-todesritter-blood,.icon-32.character-spec-wow-todesritter-blood,.wow.professions.alchemy,.aion.class.assassin,.aion.race.asmodian,.champions.race.archery,span.character-class-wow-todesritter
-{
+	{
 	background-position: 0 0;
 }
+
 .icon-16.character-class-wow-druide,.icon-16.character-spec-wow-todesritter-frost
-{
+	{
 	background-position: -17px 0;
 }
+
 .icon-16.character-class-wow-jäger,.icon-16.character-spec-wow-todesritter-unholy
-{
+	{
 	background-position: -34px 0;
 }
+
 .icon-16.character-class-wow-magier,.icon-16.character-spec-wow-druide-balance
-{
+	{
 	background-position: -51px 0;
 }
+
 .icon-16.character-class-wow-paladin,.icon-16.character-spec-wow-druide-feral-combat
-{
+	{
 	background-position: -68px 0;
 }
+
 .icon-16.character-class-wow-priester,.icon-16.character-spec-wow-druide-restoration
-{
+	{
 	background-position: -85px 0;
 }
+
 .icon-16.character-class-wow-schurke,.icon-16.character-spec-wow-jäger-beast-mastery
-{
+	{
 	background-position: -102px 0;
 }
+
 .icon-16.character-class-wow-schamane,.icon-16.character-spec-wow-jäger-marksmanship
-{
+	{
 	background-position: -119px 0;
 }
+
 .icon-16.character-class-wow-hexenmeister,.icon-16.character-spec-wow-jäger-survival
-{
+	{
 	background-position: -136px 0;
 }
+
 .icon-16.character-class-wow-krieger,.icon-16.character-spec-wow-magier-arcane
-{
+	{
 	background-position: -153px 0;
 }
+
 .icon-32.character-class-wow-druide,.icon-32.character-spec-wow-todesritter-frost
-{
+	{
 	background-position: -33px 0;
 }
+
 .icon-32.character-class-wow-jäger,.icon-32.character-spec-wow-todesritter-unholy
-{
+	{
 	background-position: -66px 0;
 }
+
 .icon-32.character-class-wow-magier,.icon-32.character-spec-wow-druide-balance
-{
+	{
 	background-position: -99px 0;
 }
+
 .icon-32.character-class-wow-paladin,.icon-32.character-spec-wow-druide-feral-combat
-{
+	{
 	background-position: -132px 0;
 }
+
 .icon-32.character-class-wow-priester,.icon-32.character-spec-wow-druide-restoration
-{
+	{
 	background-position: -165px 0;
 }
+
 .icon-32.character-class-wow-schurke,.icon-32.character-spec-wow-jäger-beast-mastery
-{
+	{
 	background-position: -198px 0;
 }
+
 .icon-32.character-class-wow-schamane,.icon-32.character-spec-wow-jäger-marksmanship
-{
+	{
 	background-position: -231px 0;
 }
+
 .icon-32.character-class-wow-hexenmeister,.icon-32.character-spec-wow-jäger-survival
-{
+	{
 	background-position: -264px 0;
 }
+
 .icon-32.character-class-wow-krieger,.icon-32.character-spec-wow-magier-arcane
-{
+	{
 	background-position: -297px 0;
 }
+
 .icon-16.character-race-wow-blood-elf,.icon-16.character-race-wow-blood-elf-male,.icon-16.character-race-wow-blood-elf.character-male,.wow.professions.blacksmithing,.aion.class.chanter,.aion.race.elyos
-{
+	{
 	background-position: -19px 0;
 }
+
 .icon-16.character-race-wow-draenei,.icon-16.character-race-wow-draenei-male,.icon-16.character-race-wow-draenei.character-male,.wow.professions.engineering,.aion.class.gladiator
-{
+	{
 	background-position: -57px 0;
 }
+
 .icon-16.character-race-wow-draenei-female,.icon-16.character-race-wow-draenei.character-female,.wow.professions.enchanting,.aion.class.cleric
-{
+	{
 	background-position: -38px 0;
 }
+
 .icon-16.character-race-wow-dwarf,.icon-16.character-race-wow-dwarf-male,.icon-16.character-race-wow-dwarf.character-male,.wow.professions.inscription,.aion.class.priester
-{
+	{
 	background-position: -95px 0;
 }
+
 .icon-16.character-race-wow-dwarf-female,.icon-16.character-race-wow-dwarf.character-female,.wow.professions.herbalism,.aion.class.magier
-{
+	{
 	background-position: -76px 0;
 }
+
 .icon-16.character-race-wow-gnome,.icon-16.character-race-wow-gnome-male,.icon-16.character-race-wow-gnome.character-male,.wow.professions.leatherworking,.aion.class.scout
-{
+	{
 	background-position: -133px 0;
 }
+
 .icon-16.character-race-wow-gnome-female,.icon-16.character-race-wow-gnome.character-female,.wow.professions.jewelcrafting,.aion.class.ranger
-{
+	{
 	background-position: -114px 0;
 }
+
 .icon-16.character-race-wow-human,.icon-16.character-race-wow-human-male,.icon-16.character-race-wow-human.character-male,.wow.professions.skinning,.aion.class.spiritmaster
-{
+	{
 	background-position: -171px 0;
 }
+
 .icon-16.character-race-wow-human-female,.icon-16.character-race-wow-human.character-female,.wow.professions.mining,.aion.class.sorceror
-{
+	{
 	background-position: -152px 0;
 }
+
 .icon-16.character-race-wow-night-elf,.icon-16.character-race-wow-night-elf-male,.icon-16.character-race-wow-night-elf.character-male,.aion.class.krieger
-{
+	{
 	background-position: -209px 0;
 }
+
 .icon-16.character-race-wow-night-elf-female,.icon-16.character-race-wow-night-elf.character-female,.wow.professions.tailoring,.aion.class.templar
-{
+	{
 	background-position: -190px 0;
 }
+
 .icon-16.character-race-wow-orc,.icon-16.character-race-wow-orc-male,.icon-16.character-race-wow-orc.character-male
-{
+	{
 	background-position: -247px 0;
 }
+
 .icon-16.character-race-wow-tauren,.icon-16.character-race-wow-tauren-male,.icon-16.character-race-wow-tauren.character-male
-{
+	{
 	background-position: -285px 0;
 }
+
 .icon-16.character-race-wow-troll,.icon-16.character-race-wow-troll-male,.icon-16.character-race-wow-troll.character-male,.icon-16.character-spec-wow-schurke-combat
-{
+	{
 	background-position: -323px 0;
 }
+
 .icon-16.character-race-wow-undead,.icon-16.character-race-wow-undead-male,.icon-16.character-race-wow-undead.character-male
-{
+	{
 	background-position: -361px 0;
 }
+
 .icon-16.character-race-wow-goblin,.icon-16.character-race-wow-goblin-male,.icon-16.character-race-wow-goblin.character-male
-{
+	{
 	background-position: -398px 0;
 }
+
 .icon-16.character-race-wow-worgen,.icon-16.character-race-wow-worgen-male,.icon-16.character-race-wow-worgen.character-male
-{
+	{
 	background-position: -437px 0;
 }
-.guildbar .column-right,.column-right
-{
+
+.guildbar .column-right,.column-right {
 	float: right;
 }
-.link-bar,.navigation-control-bar
-{
+
+.link-bar,.navigation-control-bar {
 	float: left;
 	line-height: 25px;
 	margin: 0 10px;
 }
-.link-cell,.navigation-links,.navigation-links>div,.language-selector
-{
+
+.link-cell,.navigation-links,.navigation-links>div,.language-selector {
 	float: left;
 	margin: 0 10px 0 0;
 }
-.navigation-links>div>a:hover,#language-selected:hover
-{
+
+.navigation-links>div>a:hover,#language-selected:hover {
 	color: #006A94;
 	moz-transition: none;
 	o-transtion: none;
 	webkit-transition: none;
 }
-.navigation-links #help-translate a:hover,.user-meta-name a:hover
-{
+
+.navigation-links #help-translate a:hover,.user-meta-name a:hover {
 	color: #fff;
 }
+
 25%,75%
 {
-	opacity: .75;
+opacity
+
+
+:
+
+ 
+
+.75
+
+
+;
 }
-.admin-link-cell a:hover,.admin-link-cell label:hover
-{
+.admin-link-cell a:hover,.admin-link-cell label:hover {
 	color: #888;
 }
+
 .user-meta-name .user-name:hover,.user-box.logged-no-characters .user-meta-no-character>.add:hover,.user-box.logged-out .user-meta-logged-out a:hover
-{
+	{
 	color: #fff;
-	text-shadow: 0 1px 0 #000,0 0 20px #409aff,0 0 10px #52a4ff;
+	text-shadow: 0 1px 0 #000, 0 0 20px #409aff, 0 0 10px #52a4ff;
 }
-ul.guild-bank-tab-row,.expandable
-{
+
+ul.guild-bank-tab-row,.expandable {
 	overflow: hidden;
 }
+
 .toggle-user-visible,.toggle-user-hidden,[data-user-only],[data-user-except],.spoiler
-{
+	{
 	display: none;
 }
-.clear,.group:after
-{
+
+.clear,.group:after {
 	clear: both;
 }

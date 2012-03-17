@@ -5,13 +5,13 @@
 		<div class="artheadlinshadow">
 			<div class="postdate"></div>
     		<h2 class="post-title">
-    			<a href="@{MitgliederVerzeichnis.index()}">Mitgliederverzeichnis</a>
+    			<a href="@{Roster.index()}">Mitgliederverzeichnis</a>
 			</h2>
 		</div>
 	</div>
 	<div class="post">
         <div class="post-content">
-        	<form method="get" action="@{MitgliederVerzeichnis.index()}" class="c_search">       
+        	<form method="get" action="@{Roster.index()}" class="c_search">       
 			<select name="rank">
 				<option value="">Wähle einen Rang</option>
 				#{list items:granks, as:'rank'}
@@ -43,7 +43,7 @@
 					<a href="@{RaidTracker.character(member.name.toLowerCase().urlEncode())}">
 						<img src="${member.avatar}" height="84" width="84" alt="${member.name}s avatar" />
 					</a>
-					<div class="character-rank"><a href="@{MitgliederVerzeichnis.index()}?rank=${member.rank.rank}"><img class="noborder" src="/public/images/ranks/${member.rank.rank}.png" height="16" width="16" alt="${member.name}s rank" /></a></div>
+					<div class="character-rank"><a href="@{Roster.index()}?rank=${member.rank.rank}"><img class="noborder" src="/public/images/ranks/${member.rank.rank}.png" height="16" width="16" alt="${member.name}s rank" /></a></div>
 					<div class="character-name"><a href="@{RaidTracker.character(member.name.toLowerCase().urlEncode())}" class="character character-member character-unverified character-${member.cclass.name.toLowerCase()} character-class-wow character-class-wow-${member.cclass.name.toLowerCase()} character-name-${member.name.toLowerCase()}">${member.name}</a></div>
 				</div>
 			#{/list}

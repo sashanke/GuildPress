@@ -49,7 +49,7 @@
 							<tr>
 								<td><a href="@{RaidTracker.character(atendence.name.toLowerCase().urlEncode())}" 
 								class="user-name character character-member character-unverified character-${atendence.name.toLowerCase()} 
-								#{if atendence.name != "Bank" && atendence.name != "Entzaubert"} character-class-wow character-class-wow-${atendence.character.cclass.name.toLowerCase()} character-name-${atendence.character.name.toLowerCase()}#{/if}">${atendence.name}</a></td>
+								#{if atendence.name != "Bank" && atendence.name != "Entzaubert"} character-class-wow character-class-wow-${atendence.avatar.cclass.name.toLowerCase()} character-name-${atendence.avatar.name.toLowerCase()}#{/if}">${atendence.name}</a></td>
 								<td>${atendence.raidprozent.prozentFormat()}%</td>
 							</tr>									
 							#{/list}
@@ -69,7 +69,7 @@
 							<tr>
 								<td><a href="@{RaidTracker.character(mostItemsWon.name.toLowerCase().urlEncode())}" 
 								class="user-name character character-member character-unverified character-${mostItemsWon.name.toLowerCase()} 
-								#{if atendence.name != "Bank" && atendence.name != "Entzaubert"} character-class-wow character-class-wow-${mostItemsWon.character.cclass.name.toLowerCase()} character-name-${mostItemsWon.character.name.toLowerCase()}#{/if}">${mostItemsWon.name}</a></td>
+								#{if atendence.name != "Bank" && atendence.name != "Entzaubert"} character-class-wow character-class-wow-${mostItemsWon.avatar.cclass.name.toLowerCase()} character-name-${mostItemsWon.avatar.name.toLowerCase()}#{/if}">${mostItemsWon.name}</a></td>
 								<td>${mostItemsWon.items.size()}</td>
 							</tr>									
 							#{/list}
@@ -98,7 +98,7 @@
 							<td><a href="@{RaidTracker.showRaidItem(item.id)}" class="item q${item.item.itemQuality.qualityId}" rel="@{RaidTracker.showItem(item.item.id)}" target="_self">${item.name}</a></td>
 							<td><a href="@{RaidTracker.character(item.member.name.toLowerCase().urlEncode())}" 
 							class="user-name character character-member character-unverified character-${item.member.name.toLowerCase()} 
-							#{if item.member.name != "Bank" && item.member.name != "Entzaubert"} character-class-wow character-class-wow-${item.member.charakter.cclass.name.toLowerCase()} character-name-${item.member.charakter.name.toLowerCase()}#{/if}">${item.member.name}</a></td>
+							#{if item.member.name != "Bank" && item.member.name != "Entzaubert"} character-class-wow character-class-wow-${item.member.avatar.cclass.name.toLowerCase()} character-name-${item.member.avatar.name.toLowerCase()}#{/if}">${item.member.name}</a></td>
 						</tr>									
 						#{/list}
 					</tbody>

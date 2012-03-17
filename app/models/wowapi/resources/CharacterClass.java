@@ -8,7 +8,7 @@ import play.db.jpa.Model;
 import play.db.jpa.Model;
 
 /**
- * http://eu.battle.net/api/wow/data/character/classes?locale=de_DE
+ * http://eu.battle.net/api/wow/data/avatar/classes?locale=de_DE
  * @author prime
  *
  */

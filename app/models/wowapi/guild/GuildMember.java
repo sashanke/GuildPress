@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import models.wowapi.character.Character;
+import models.wowapi.character.Avatar;
 import models.wowapi.resources.CharacterClass;
 import models.wowapi.resources.CharacterRace;
 import models.wowapi.resources.Gender;
@@ -32,7 +32,7 @@ public class GuildMember extends Model {
 	public String thumbnail;
 	
 	@OneToOne
-	public Character wowcharacter;
+	public Avatar wowcharacter;
 	
 	public Boolean hasWoWCharacter;
 	

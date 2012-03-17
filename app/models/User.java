@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import models.wowapi.character.Character;
+import models.wowapi.character.Avatar;
 import models.wowapi.guild.GuildEmblem;
 import models.wowapi.guild.GuildMember;
 import models.wowapi.resources.GuildRank;
@@ -43,7 +43,7 @@ public class User extends Model {
 	
 	public boolean isGuildMember;
 	@OneToOne
-	public Character wowCharacter;
+	public Avatar wowCharacter;
 
 	public User(String email, String password, String fullname) {
 		this.email = email;

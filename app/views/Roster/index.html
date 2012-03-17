@@ -40,11 +40,11 @@
         	<div class="roster">
 			#{list items:members, as:'member'}
 				<div class="avatar">
-					<a href="@{RaidTracker.character(member.name.toLowerCase().urlEncode())}">
+					<a href="@{RaidTracker.showChar(member.name.toLowerCase().urlEncode())}">
 						<img src="${member.avatar}" height="84" width="84" alt="${member.name}s avatar" />
 					</a>
 					<div class="character-rank"><a href="@{Roster.index()}?rank=${member.rank.rank}"><img class="noborder" src="/public/images/ranks/${member.rank.rank}.png" height="16" width="16" alt="${member.name}s rank" /></a></div>
-					<div class="character-name"><a href="@{RaidTracker.character(member.name.toLowerCase().urlEncode())}" class="character character-member character-unverified character-${member.cclass.name.toLowerCase()} character-class-wow character-class-wow-${member.cclass.name.toLowerCase()} character-name-${member.name.toLowerCase()}">${member.name}</a></div>
+					<div class="character-name"><a href="@{RaidTracker.showChar(member.name.toLowerCase().urlEncode())}" class="character character-member character-unverified character-${member.cclass.name.toLowerCase()} character-class-wow character-class-wow-${member.cclass.name.toLowerCase()} character-name-${member.name.toLowerCase()}">${member.name}</a></div>
 				</div>
 			#{/list}
 			</div>

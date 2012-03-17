@@ -1,5 +1,6 @@
 package models.wowapi.character;
 
+import java.io.File;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import models.wowapi.Armory;
 import models.wowapi.guild.Guild;
 import models.wowapi.guild.GuildMember;
 import models.wowapi.resources.CharacterClass;
@@ -14,6 +16,8 @@ import models.wowapi.resources.CharacterRace;
 import models.wowapi.resources.Gender;
 import models.wowapi.resources.GuildRank;
 import models.wowapi.resources.Realm;
+import models.wowapi.resources.Side;
+import play.Play;
 import play.db.jpa.Model;
 
 @Entity
@@ -32,6 +36,9 @@ public class Avatar extends Model {
 	public Long achievementPoints;
 	public String thumbnail;
 	public String avatar;
+	//http://eu.battle.net/wow/static/images/character/summary/backgrounds/race/1.jpg
+	public String profile; //63010918-profilemain.jpg?alt=/wow/static/images/2d/profilemain/race/1-1.jpg
+	
 	@ManyToOne
 	public Guild guild;
 	
@@ -46,5 +53,21 @@ public class Avatar extends Model {
 	public Avatar() {
 		this.lastUpdate = new Date();
 	}
-
+	
+	public String getAvatarBanner() {
+		String banner = Play.configuration.getProperty("conf.bannerdir") + this.race.side.name.toLowerCase() + "/" + this.race.name.toLowerCase() + "/" + this.race.name.toLowerCase() + "_" + this.cclass.name.toLowerCase() + "_" + this.gender.name_loc.toLowerCase() + ".jpg";
+		return banner;
+	}
+	public String getProfileMain() {
+		String bg = "/public/images/static/profilemain/" + this.race.crId + "-" + this.gender.gId + ".jpg";
+		
+		bg = "/public/profiles/" + this.race.crId + "-" + this.gender.gId + ".jpg";
+		Armory.fetchAvatar(this.realm.name, this.name, this.thumbnail);
+		String test = Armory.fetchProfile(this.realm.slug, this.name, this.thumbnail.replace("avatar", "profilemain"));
+		Armory.fetchInset(this.realm.slug, this.name, this.thumbnail.replace("avatar", "inset"));
+		
+		System.out.println(test);
+		
+		return test;
+	}
 }

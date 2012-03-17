@@ -80,7 +80,157 @@ public class Armory {
 		setLastLogs();
 
 	}
+	
+	/**
+	 * Use it only on Armory Updates!
+	 */
+	public static void fetchStaticImages() {
+	
+		List<CharacterRace> cr = CharacterRace.findAll();
+		for (CharacterRace characterRace : cr) {
+			List<Gender> g = Gender.findAll();
+			for (Gender gender : g) {
+				String profilemain = "2d/profilemain/race/"+characterRace.crId+"-"+gender.gId+".jpg";
+				String where = "profilemain\\"+characterRace.crId+"-"+gender.gId+".jpg";
+				fetchStaticImage(profilemain, where);
+				
+				String inset = "2d/inset/"+characterRace.crId+"-"+gender.gId+".jpg";
+				where = "inset\\"+characterRace.crId+"-"+gender.gId+".jpg";
+				fetchStaticImage(inset, where);
+				
+				String avatar = "2d/avatar/"+characterRace.crId+"-"+gender.gId+".jpg";
+				where = "avatar\\"+characterRace.crId+"-"+gender.gId+".jpg";
+				fetchStaticImage(avatar, where);
+			}
+			
+			String profilemain = "character/summary/backgrounds/race/"+characterRace.crId+".jpg";
+			String where = "profilemain\\background\\"+characterRace.crId+".jpg";
+			fetchStaticImage(profilemain, where);			
+		}
+	}
+	
+	/**
+	 * Use it only on Armory Updates!
+	 * @see Armory.fetchStaticImages
+	 * @param what
+	 * @param where
+	 */
+	public static void fetchStaticImage(String what, String where) {
+		
+		String url = "http://eu.battle.net/wow/static/images/" + what;
+		
+		Logger.info("Fetch Static Image: " + url);
+		File dir = new File(Play.applicationPath + File.separator + "public"  + File.separator + "images" + File.separator + "static" + File.separator + where);
+		new File(dir.getParent()).mkdirs();
 
+		WSRequest wsr = WS.url(url);
+		HttpResponse hr = wsr.get();
+		if (hr.success()) {
+			String contentType = hr.getContentType();
+			if (contentType.contains("image")) {
+				try {
+					InputStream inputStream = hr.getStream();
+					OutputStream out = new FileOutputStream(dir);
+
+					byte buf[] = new byte[1024];
+					int len;
+					while ((len = inputStream.read(buf)) > 0)
+						out.write(buf, 0, len);
+					out.close();
+					inputStream.close();
+				} catch (FileNotFoundException e) {
+					Logger.error(e, "Konnte datei " + dir.getAbsolutePath() + " nicht finden!");
+				} catch (IOException e) {
+					Logger.error(e, "Es ist ein Fehler beim speichern von  " + dir.getAbsolutePath() + " aufgetreten!");
+				}
+			} else {
+				Logger.error("Konnte Kontenttyp  von " + what + " nicht bestimmen. (" + contentType + ")");
+			}
+		} else {
+			Logger.error("Konnte " + what + " nicht vom Armory holen. (" + hr.getStatus() + ")");
+		}
+	}
+
+	public static String fetchProfile(String realm, String name, String thumbnail) {
+		String dir = "." + File.separator + "public" + File.separator + "profiles" + File.separator + realm + File.separator;
+		File avatarDir = new File(dir);
+		String image = "." + File.separator + "public" + File.separator + "profiles" + File.separator + "noavatar.png";
+		if (thumbnail != null) {
+			Logger.info("Fetch Avatar: http://eu.battle.net/static-render/eu/" + thumbnail);
+			WSRequest wsr = WS.url("http://eu.battle.net/static-render/eu/" + thumbnail + "");
+			HttpResponse hr = wsr.get();
+			if (hr.success()) {
+				avatarDir.mkdirs();
+				String contentType = hr.getContentType();
+				if (contentType.contains("image")) {
+					String avImage = dir + name + "." + contentType.substring(6);
+					File avatar = new File(avImage);
+					try {
+						InputStream inputStream = hr.getStream();
+						OutputStream out = new FileOutputStream(avatar);
+
+						byte buf[] = new byte[1024];
+						int len;
+						while ((len = inputStream.read(buf)) > 0)
+							out.write(buf, 0, len);
+						out.close();
+						inputStream.close();
+						return castURL(avImage);
+					} catch (FileNotFoundException e) {
+						Logger.error(e, "Konnte datei " + avatar.getAbsolutePath() + " nicht finden!");
+					} catch (IOException e) {
+						Logger.error(e, "Es ist ein Fehler beim speichern von  " + avatar.getAbsolutePath() + " aufgetreten!");
+					}
+				} else {
+					Logger.error("Konnte Kontenttyp  von " + thumbnail + " nicht bestimmen. (" + contentType + ")");
+				}
+			} else {
+				Logger.error("Konnte Avatar von " + name + " nicht vom UpdateJob holen. (" + hr.getStatus() + ")");
+			}
+		}
+		return castURL(image);
+	}
+	
+	public static String fetchInset(String realm, String name, String thumbnail) {
+		String dir = "." + File.separator + "public" + File.separator + "insets" + File.separator + realm + File.separator;
+		File avatarDir = new File(dir);
+		String image = "." + File.separator + "public" + File.separator + "insets" + File.separator + "noavatar.png";
+		if (thumbnail != null) {
+			Logger.info("Fetch Avatar: http://eu.battle.net/static-render/eu/" + thumbnail);
+			WSRequest wsr = WS.url("http://eu.battle.net/static-render/eu/" + thumbnail + "");
+			HttpResponse hr = wsr.get();
+			if (hr.success()) {
+				avatarDir.mkdirs();
+				String contentType = hr.getContentType();
+				if (contentType.contains("image")) {
+					String avImage = dir + name + "." + contentType.substring(6);
+					File avatar = new File(avImage);
+					try {
+						InputStream inputStream = hr.getStream();
+						OutputStream out = new FileOutputStream(avatar);
+
+						byte buf[] = new byte[1024];
+						int len;
+						while ((len = inputStream.read(buf)) > 0)
+							out.write(buf, 0, len);
+						out.close();
+						inputStream.close();
+						return castURL(avImage);
+					} catch (FileNotFoundException e) {
+						Logger.error(e, "Konnte datei " + avatar.getAbsolutePath() + " nicht finden!");
+					} catch (IOException e) {
+						Logger.error(e, "Es ist ein Fehler beim speichern von  " + avatar.getAbsolutePath() + " aufgetreten!");
+					}
+				} else {
+					Logger.error("Konnte Kontenttyp  von " + thumbnail + " nicht bestimmen. (" + contentType + ")");
+				}
+			} else {
+				Logger.error("Konnte Avatar von " + name + " nicht vom UpdateJob holen. (" + hr.getStatus() + ")");
+			}
+		}
+		return castURL(image);
+	}
+	
 	public static String fetchAvatar(String realm, String name, String thumbnail) {
 		String dir = "." + File.separator + "public" + File.separator + "avatars" + File.separator + realm + File.separator;
 		File avatarDir = new File(dir);
@@ -121,6 +271,46 @@ public class Armory {
 		return castURL(image);
 	}
 
+	public static String fetchProfileImage(String realm, String name, String thumbnail) {
+		String dir = "." + File.separator + "public" + File.separator + "avatars" + File.separator + realm + File.separator;
+		File avatarDir = new File(dir);
+		String image = "." + File.separator + "public" + File.separator + "avatars" + File.separator + "noavatar.png";
+//		if (thumbnail != null) {
+//			Logger.info("Fetch Avatar: http://eu.battle.net/static-render/eu/" + thumbnail);
+//			WSRequest wsr = WS.url("http://eu.battle.net/static-render/eu/" + thumbnail + "");
+//			HttpResponse hr = wsr.get();
+//			if (hr.success()) {
+//				avatarDir.mkdirs();
+//				String contentType = hr.getContentType();
+//				if (contentType.contains("image")) {
+//					String avImage = dir + name + "." + contentType.substring(6);
+//					File avatar = new File(avImage);
+//					try {
+//						InputStream inputStream = hr.getStream();
+//						OutputStream out = new FileOutputStream(avatar);
+//
+//						byte buf[] = new byte[1024];
+//						int len;
+//						while ((len = inputStream.read(buf)) > 0)
+//							out.write(buf, 0, len);
+//						out.close();
+//						inputStream.close();
+//						return castURL(avImage);
+//					} catch (FileNotFoundException e) {
+//						Logger.error(e, "Konnte datei " + avatar.getAbsolutePath() + " nicht finden!");
+//					} catch (IOException e) {
+//						Logger.error(e, "Es ist ein Fehler beim speichern von  " + avatar.getAbsolutePath() + " aufgetreten!");
+//					}
+//				} else {
+//					Logger.error("Konnte Kontenttyp  von " + thumbnail + " nicht bestimmen. (" + contentType + ")");
+//				}
+//			} else {
+//				Logger.error("Konnte ProfileImage von " + name + " nicht vom Armory holen. (" + hr.getStatus() + ")");
+//			}
+//		}
+		return castURL(image);
+	}
+	
 	private static String castURL(String image) {
 		image = image.replaceAll("\\.\\\\", "/");
 		image = image.replaceAll("\\\\", "/");

@@ -18,17 +18,17 @@ GET		/register											Application.register
 POST	/register											Application.registerd
 
 # Mitglieder Verzeichnis
-GET		/mitgliederverzeichnis								MitgliederVerzeichnis.index
+GET		/roster												Roster.index
 
 
 # Raid Übersicht
-GET		/raids												RaidTracker.index
 GET		/raids/{<[0-9]+>selpool}							RaidTracker.index
-GET		/raids/{name}										RaidTracker.character
+GET		/raids												RaidTracker.index
+GET		/raid/member/{name}									RaidTracker.showChar
 GET		/raid/{<[0-9]+>id}									RaidTracker.showRaid
 GET		/item/tooltip/{<[0-9]+>id}							RaidTracker.showItem
-GET		/raids/item/{<[0-9]+>id}							RaidTracker.showRaidItem
-GET		/raids/items/json/{<[0-9]+>selpool}					RaidTracker.itemsAsJSON
+GET		/raid/item/{<[0-9]+>id}								RaidTracker.showRaidItem
+GET		/raid/item/json/{<[0-9]+>selpool}					RaidTracker.itemsAsJSON
 
 # Raid Übersicht
 GET		/raidfortschritt									RaidFortschritt.index
@@ -40,7 +40,7 @@ GET		/gilden/{<[0-9]+>id}/								Application.guild
 GET		/gilden/											Application.guild
 
 
-GET		/character/{name}									Application.character
+GET		/character/{name}									Char.show
 GET		/charfetch/{<[0-9]+>id}/{name}						Application.charfetch
 GET     /post/{<[0-9]+>id}             Application.show
 GET     /post/{tag}                    Application.listTagged

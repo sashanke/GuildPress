@@ -48,7 +48,8 @@ public class RaidTracker extends Controller {
 		RaidTracker.setupDefaultData();
 	}
 	public static void showRaid(Long id) {
-		render();
+		Raid raid = Raid.findById(id);
+		render(raid);
 	}
 	public static void index(Long selpool) {
 		List<RaidPool> pools = RaidPool.findAll();
@@ -102,7 +103,7 @@ public class RaidTracker extends Controller {
 		renderJSON(characterSerializer.serialize(items));
 	}
 
-	public static void character(String name) throws SQLException {
+	public static void showChar(String name) throws SQLException {
 		List<RaidItem> items = new ArrayList<RaidItem>();
 		RaidMember member = RaidMember.find("name = ?", name).first();
 		List<RaidItem> mitems = RaidItem.find("order by raid desc").fetch();

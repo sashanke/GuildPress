@@ -5,9 +5,9 @@
 <div class="box">
 	<div class="artheadline" style="background: black url(${randomArtwork})} no-repeat top center  !important;">
 		<div class="artheadlinshadow">
-			<div class="postdate"></div>
+			<div class="postdate"><div>${raid.startDate.format('dd')}</div><span>${raid.startDate.format('MMM')}</span></div>
     		<h2 class="post-title">
-    			<a href="@{RaidTracker.index()}" id="raiditem"></a>
+    			<a href="@{RaidTracker.index()}" id="raiditem">#{list items:raid.zonen, as:'zonen'}${zonen.name} #{/list}</a>
 			</h2>
 		</div>
 	</div>

@@ -170,10 +170,7 @@ public class Application extends Controller {
 		render(avatar);
 	}
 
-	public static void character(String name) {
-		Avatar avatar = Avatar.find("name = ?", name).first();
-		render(avatar);
-	}
+
 
 	public static void guild(Long id, String name) {
 		Guild guild = Guild.find("name = ?", name).first();

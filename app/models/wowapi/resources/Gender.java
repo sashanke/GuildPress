@@ -27,12 +27,19 @@ public class Gender extends Model {
 	@Required
 	public String name;
 
+	public String name_loc;
 	
 	public Date lastUpdate;
 	
 	public Gender(Long gId, String name) {
 		this.gId = gId;
 		this.name = name;
+		if (name.equals("male")) {
+			this.name_loc = "männlich";
+		}
+		if (name.equals("female")) {
+			this.name_loc = "weiblich";
+		}
 		this.lastUpdate = new Date();
 	}
 	public String toString() {

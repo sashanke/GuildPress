@@ -40,6 +40,8 @@ import play.Logger;
 import play.Play;
 import play.libs.WS;
 import play.libs.XPath;
+import play.libs.WS.HttpResponse;
+import utils.Tools;
 
 public class WoWHead {
 	public static long WEEKLYUPDATE = 604800000;
@@ -282,6 +284,14 @@ public class WoWHead {
 		memberName = "resirtng";
 		if (oJson.has(memberName)) {
 			item.resirtng = oJson.get(memberName).getAsFloat();
+		}
+		
+		String url = "http://eu.battle.net/wow/de/item/" + id + "/tooltip?";
+		item.armoryTooltipURL = url;
+		HttpResponse hr = WS.url(url).get();
+		
+		if (hr.success()) {
+			item.armoryTooltip = hr.getString();
 		}
 		
 		item.lastUpdate = new Date();

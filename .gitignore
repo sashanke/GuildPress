@@ -13,6 +13,8 @@ public/avatar
 public/avatars
 public/tabard
 public/boss
+public/insets
+public/profiles
 
 # Numerous always-ignore extensions
 *.diff

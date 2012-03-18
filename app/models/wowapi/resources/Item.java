@@ -131,6 +131,11 @@ public class Item extends Model {
 	public float critstrkrtng;
 
 	public float resirtng;
+
+	public String armoryTooltipURL;
+
+	@Lob
+	public String armoryTooltip;
 	
 	public Item(Long id) {
 		this.itemId = id;
@@ -151,15 +156,9 @@ public class Item extends Model {
 	}
 	
 	public String getTooltip() {
-		
 		String tooltip = this.tooltip;
-		
-		
 		tooltip = tooltip.replace("table", "table class=\"tooltip\"");
-		
 		tooltip = tooltip.replaceAll(this.name, "<a class=\"q" + this.itemQuality.qualityId + "\" href=\"" + this.link + "\" target=\"_new\">" + this.name + "</a>");
-		
-		
 		return tooltip;
 	}
 	

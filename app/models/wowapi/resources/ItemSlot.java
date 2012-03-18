@@ -15,7 +15,6 @@ import play.db.jpa.Model;
 public class ItemSlot extends Model {
 
 	public Long slotId;
-
 	public String name;
 
 	public Date lastUpdate;
@@ -32,6 +31,16 @@ public class ItemSlot extends Model {
 			iq.save();
 		}
 		return iq;
+	}
+	
+	public Long getMappedSlot() {
+		if (this.slotId == 1L) {
+			return 1L;
+		}
+		else {
+			return this.slotId;
+		}
+		
 	}
 	
 	public String toString() {

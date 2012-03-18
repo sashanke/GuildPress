@@ -17,6 +17,9 @@ GET     /news                                       		Application.index
 GET		/register											Application.register
 POST	/register											Application.registerd
 
+# ITEMS!
+GET /wow/de/item/{<[0-9]+>id}								Char.showItem
+
 # Mitglieder Verzeichnis
 GET		/roster												Roster.index
 

@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import models.wowapi.character.Avatar;
+import models.wowapi.character.AvatarItem;
 import models.wowapi.guild.Guild;
 import models.wowapi.guild.GuildAchievement;
 import models.wowapi.guild.GuildEmblem;
@@ -27,7 +28,9 @@ import models.wowapi.resources.Gender;
 import models.wowapi.resources.GuildPerk;
 import models.wowapi.resources.GuildPerkSpell;
 import models.wowapi.resources.GuildRank;
+import models.wowapi.resources.Item;
 import models.wowapi.resources.ItemClass;
+import models.wowapi.resources.ItemSlotType;
 import models.wowapi.resources.Realm;
 import models.wowapi.resources.Side;
 import play.Logger;
@@ -35,10 +38,13 @@ import play.Play;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
 import play.libs.WS.WSRequest;
+import utils.Tools;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
 
 import flexjson.JSONDeserializer;
 
@@ -69,7 +75,7 @@ public class Armory {
 			new Gender(new Long(0), "male").save();
 			new Gender(new Long(1), "female").save();
 		}
-
+					
 		setRealms();
 		setCharacterClasses();
 		setCharacterRaces();
@@ -80,47 +86,48 @@ public class Armory {
 		setLastLogs();
 
 	}
-	
+
 	/**
 	 * Use it only on Armory Updates!
 	 */
 	public static void fetchStaticImages() {
-	
+
 		List<CharacterRace> cr = CharacterRace.findAll();
 		for (CharacterRace characterRace : cr) {
 			List<Gender> g = Gender.findAll();
 			for (Gender gender : g) {
-				String profilemain = "2d/profilemain/race/"+characterRace.crId+"-"+gender.gId+".jpg";
-				String where = "profilemain\\"+characterRace.crId+"-"+gender.gId+".jpg";
+				String profilemain = "2d/profilemain/race/" + characterRace.crId + "-" + gender.gId + ".jpg";
+				String where = "profilemain\\" + characterRace.crId + "-" + gender.gId + ".jpg";
 				fetchStaticImage(profilemain, where);
-				
-				String inset = "2d/inset/"+characterRace.crId+"-"+gender.gId+".jpg";
-				where = "inset\\"+characterRace.crId+"-"+gender.gId+".jpg";
+
+				String inset = "2d/inset/" + characterRace.crId + "-" + gender.gId + ".jpg";
+				where = "inset\\" + characterRace.crId + "-" + gender.gId + ".jpg";
 				fetchStaticImage(inset, where);
-				
-				String avatar = "2d/avatar/"+characterRace.crId+"-"+gender.gId+".jpg";
-				where = "avatar\\"+characterRace.crId+"-"+gender.gId+".jpg";
+
+				String avatar = "2d/avatar/" + characterRace.crId + "-" + gender.gId + ".jpg";
+				where = "avatar\\" + characterRace.crId + "-" + gender.gId + ".jpg";
 				fetchStaticImage(avatar, where);
 			}
-			
-			String profilemain = "character/summary/backgrounds/race/"+characterRace.crId+".jpg";
-			String where = "profilemain\\background\\"+characterRace.crId+".jpg";
-			fetchStaticImage(profilemain, where);			
+
+			String profilemain = "character/summary/backgrounds/race/" + characterRace.crId + ".jpg";
+			String where = "profilemain\\background\\" + characterRace.crId + ".jpg";
+			fetchStaticImage(profilemain, where);
 		}
 	}
-	
+
 	/**
 	 * Use it only on Armory Updates!
+	 * 
 	 * @see Armory.fetchStaticImages
 	 * @param what
 	 * @param where
 	 */
 	public static void fetchStaticImage(String what, String where) {
-		
+
 		String url = "http://eu.battle.net/wow/static/images/" + what;
-		
+
 		Logger.info("Fetch Static Image: " + url);
-		File dir = new File(Play.applicationPath + File.separator + "public"  + File.separator + "images" + File.separator + "static" + File.separator + where);
+		File dir = new File(Play.applicationPath + File.separator + "public" + File.separator + "images" + File.separator + "static" + File.separator + where);
 		new File(dir.getParent()).mkdirs();
 
 		WSRequest wsr = WS.url(url);
@@ -156,7 +163,7 @@ public class Armory {
 		File avatarDir = new File(dir);
 		String image = "." + File.separator + "public" + File.separator + "profiles" + File.separator + "noavatar.png";
 		if (thumbnail != null) {
-			Logger.info("Fetch Avatar: http://eu.battle.net/static-render/eu/" + thumbnail);
+			Logger.info("Fetch Profile Image: http://eu.battle.net/static-render/eu/" + thumbnail);
 			WSRequest wsr = WS.url("http://eu.battle.net/static-render/eu/" + thumbnail + "");
 			HttpResponse hr = wsr.get();
 			if (hr.success()) {
@@ -190,13 +197,13 @@ public class Armory {
 		}
 		return castURL(image);
 	}
-	
+
 	public static String fetchInset(String realm, String name, String thumbnail) {
 		String dir = "." + File.separator + "public" + File.separator + "insets" + File.separator + realm + File.separator;
 		File avatarDir = new File(dir);
 		String image = "." + File.separator + "public" + File.separator + "insets" + File.separator + "noavatar.png";
 		if (thumbnail != null) {
-			Logger.info("Fetch Avatar: http://eu.battle.net/static-render/eu/" + thumbnail);
+			Logger.info("Fetch Inset: http://eu.battle.net/static-render/eu/" + thumbnail);
 			WSRequest wsr = WS.url("http://eu.battle.net/static-render/eu/" + thumbnail + "");
 			HttpResponse hr = wsr.get();
 			if (hr.success()) {
@@ -230,7 +237,7 @@ public class Armory {
 		}
 		return castURL(image);
 	}
-	
+
 	public static String fetchAvatar(String realm, String name, String thumbnail) {
 		String dir = "." + File.separator + "public" + File.separator + "avatars" + File.separator + realm + File.separator;
 		File avatarDir = new File(dir);
@@ -271,46 +278,7 @@ public class Armory {
 		return castURL(image);
 	}
 
-	public static String fetchProfileImage(String realm, String name, String thumbnail) {
-		String dir = "." + File.separator + "public" + File.separator + "avatars" + File.separator + realm + File.separator;
-		File avatarDir = new File(dir);
-		String image = "." + File.separator + "public" + File.separator + "avatars" + File.separator + "noavatar.png";
-//		if (thumbnail != null) {
-//			Logger.info("Fetch Avatar: http://eu.battle.net/static-render/eu/" + thumbnail);
-//			WSRequest wsr = WS.url("http://eu.battle.net/static-render/eu/" + thumbnail + "");
-//			HttpResponse hr = wsr.get();
-//			if (hr.success()) {
-//				avatarDir.mkdirs();
-//				String contentType = hr.getContentType();
-//				if (contentType.contains("image")) {
-//					String avImage = dir + name + "." + contentType.substring(6);
-//					File avatar = new File(avImage);
-//					try {
-//						InputStream inputStream = hr.getStream();
-//						OutputStream out = new FileOutputStream(avatar);
-//
-//						byte buf[] = new byte[1024];
-//						int len;
-//						while ((len = inputStream.read(buf)) > 0)
-//							out.write(buf, 0, len);
-//						out.close();
-//						inputStream.close();
-//						return castURL(avImage);
-//					} catch (FileNotFoundException e) {
-//						Logger.error(e, "Konnte datei " + avatar.getAbsolutePath() + " nicht finden!");
-//					} catch (IOException e) {
-//						Logger.error(e, "Es ist ein Fehler beim speichern von  " + avatar.getAbsolutePath() + " aufgetreten!");
-//					}
-//				} else {
-//					Logger.error("Konnte Kontenttyp  von " + thumbnail + " nicht bestimmen. (" + contentType + ")");
-//				}
-//			} else {
-//				Logger.error("Konnte ProfileImage von " + name + " nicht vom Armory holen. (" + hr.getStatus() + ")");
-//			}
-//		}
-		return castURL(image);
-	}
-	
+
 	private static String castURL(String image) {
 		image = image.replaceAll("\\.\\\\", "/");
 		image = image.replaceAll("\\\\", "/");
@@ -446,7 +414,7 @@ public class Armory {
 	}
 
 	public static Avatar fetchCharacter(Boolean update, String vRealm, String vName) {
-		JsonElement armory = fetchFromArmory(Armory.CHARURL, "guild,stats,talents,items,professions,appearance,progression,pvp", vRealm, vName);		
+		JsonElement armory = fetchFromArmory(Armory.CHARURL, "guild,stats,talents,items,professions,appearance,progression,pvp", vRealm, vName);
 		if (armory == null) {
 			Avatar m = Avatar.find("name = ? and realm.name = ?", vName, vRealm).first();
 			if (m != null) {
@@ -506,6 +474,10 @@ public class Armory {
 			String gmthumbnail = character.get("thumbnail").getAsString();
 			Long gmlastModified = character.get("lastModified").getAsLong();
 
+			JsonObject items = character.get("items").getAsJsonObject();
+			Long averageItemLevel = items.get("averageItemLevel").getAsLong();
+			Long averageItemLevelEquipped = items.get("averageItemLevelEquipped").getAsLong();
+
 			Avatar gm = Avatar.find("name = ? and realm.name = ?", gmname, gmrealm.name).first();
 			GuildMember guildm = GuildMember.find("name = ? and realm = ?", gmname, gmrealm.name).first();
 			Boolean isGuildMember = false;
@@ -514,46 +486,245 @@ public class Armory {
 				isGuildMember = true;
 			}
 
-			if (gm != null) {
-				gm.name = gmname;
-				gm.realm = gmrealm;
-				gm.cclass = gmclass;
-				gm.race = gmrace;
-				gm.gender = gmgender;
-				gm.level = gmlevel;
-				gm.achievementPoints = gmachievementPoints;
-				gm.thumbnail = gmthumbnail;
-			} else {
+			if (gm == null) {
 				gm = new Avatar();
-				gm.name = gmname;
-				gm.realm = gmrealm;
-				gm.cclass = gmclass;
-				gm.race = gmrace;
-				gm.gender = gmgender;
-				gm.level = gmlevel;
-				gm.achievementPoints = gmachievementPoints;
-				gm.thumbnail = gmthumbnail;
 
 			}
 
-			gm.avatar = fetchAvatar(gm.realm.name, gm.name, gm.thumbnail);
+			gm.name = gmname;
+			gm.realm = gmrealm;
+			gm.cclass = gmclass;
+			gm.race = gmrace;
+			gm.gender = gmgender;
+			gm.level = gmlevel;
+			gm.achievementPoints = gmachievementPoints;
+			gm.thumbnail = gmthumbnail;
+			gm.avatar = fetchAvatar(gm.realm.slug, gm.name, gm.thumbnail);
 			gm.guild = g;
 			gm.lastModified = new Date(gmlastModified);
 			gm.isGuildMember = isGuildMember;
 			gm.guildMember = guildm;
 			gm.lastUpdate = new Date();
+
+			gm.averageItemLevel = averageItemLevel;
+			gm.averageItemLevelEquipped = averageItemLevelEquipped;
+
 			gm.save();
 
 			if (guildm != null) {
 				guildm.wowcharacter = gm;
 				guildm.hasWoWCharacter = true;
 				guildm.achievementPoints = gmachievementPoints;
-				guildm.avatar = fetchAvatar(gm.realm.name, gm.name, gm.thumbnail);
+				guildm.avatar = gm.avatar;
 				guildm.save();
 			}
+
+			HashMap<String, JsonObject> itemMap = new HashMap<String, JsonObject>();
+
+			getItemsFromJson(items, itemMap);
+			
+			AvatarItem.delete("avatar = ?", gm);
+			
+			for (JsonObject item : itemMap.values()) {
+
+			//for (Map.Entry<String, JsonObject> e: itemMap.entrySet())
+
+				AvatarItem at = new AvatarItem();
+				
+				Long itemId = item.get("id").getAsLong();
+
+				JsonObject tooltipParams = item.get("tooltipParams").getAsJsonObject();
+				Long transmogItemId = 0L;
+				Item itemO = Item.setItem(itemId);
+				Item transmogItem = null;
+				String tooltipParamsS = "";
+				if (tooltipParams.has("transmogItem")) {
+					transmogItemId = tooltipParams.get("transmogItem").getAsLong();
+					transmogItem = Item.setItem(transmogItemId);
+				}
+				tooltipParamsS = tooltipParams.toString();
+				
+				String slottype = item.get("slottype").getAsString();				
+				at.itemId = itemId;
+				at.transmogItemId = transmogItemId;
+				at.tooltipParams = tooltipParamsS;
+				at.avatar = gm;
+				at.item = itemO;
+				at.itemSlot = ItemSlotType.setItemSlotType(slottype, itemO.slot);
+				at.transmogItem = transmogItem;
+				
+				JsonParser parser = new JsonParser();
+				String html = "";
+				if (tooltipParamsS.length() != 0) {
+					JsonObject o = (JsonObject)parser.parse(tooltipParamsS);
+					List<String> urlParts = new ArrayList<String>();
+					String enchant = "enchant";
+					if (o.has(enchant)) {
+						urlParts.add("e=" + o.get(enchant).getAsString());
+					}
+					String gem0 = "gem0";
+					if (o.has(gem0)) {
+						urlParts.add("g0=" + o.get(gem0).getAsString());
+					}
+					String gem1 = "gem1";
+					if (o.has(gem1)) {
+						urlParts.add("g1=" + o.get(gem1).getAsString());
+					}
+					String gem2 = "gem2";
+					if (o.has(gem2)) {
+						urlParts.add("g2=" + o.get(gem2).getAsString());
+					}
+					String gem3 = "gem3";
+					if (o.has(gem3)) {
+						urlParts.add("g3=" + o.get(gem3).getAsString());
+					}
+					String gem4 = "gem4";
+					if (o.has(gem4)) {
+						urlParts.add("g4=" + o.get(gem4).getAsString());
+					}
+					String reforge = "reforge";
+					if (o.has(reforge)) {
+						urlParts.add("re=" + o.get(reforge).getAsString());
+					}
+					String transmogItemid = "transmogItem";
+					if (o.has(transmogItemid)) {
+						urlParts.add("t=" + o.get(transmogItemid).getAsString());
+					}
+					String set = "set";
+					if (o.has(set)) {
+						JsonArray sets = o.get(set).getAsJsonArray();
+						urlParts.add("set=" + Tools.implodeArray(sets, ","));
+					}
+					String url = "http://eu.battle.net/wow/de/item/"+itemId+"/tooltip?"+Tools.implodeList(urlParts, "&");
+					at.armoryTooltipURL = url;
+					HttpResponse hr = WS.url(url).get();
+					
+					if (hr.success()) {
+						at.armoryTooltip = hr.getString();
+					}
+
+				}
+
+				gm.addItem(at);
+						//Item setItem
+			}
+
+			gm.profile = Armory.fetchProfile(gm.realm.slug, gm.name, gm.thumbnail.replace("avatar", "profilemain"));
+			gm.inset = Armory.fetchInset(gm.realm.slug, gm.name, gm.thumbnail.replace("avatar", "inset"));
+			gm.save();
 			return gm;
 		}
 		return null;
+	}
+
+	private static void getItemsFromJson(JsonObject items, HashMap<String, JsonObject> itemMap) {
+		if (items.has("head")) {
+			JsonObject head = items.get("head").getAsJsonObject();
+			head.add("slottype", new JsonPrimitive("head"));
+			itemMap.put("head", head);
+		}
+
+		if (items.has("neck")) {
+			JsonObject neck = items.get("neck").getAsJsonObject();
+			neck.add("slottype", new JsonPrimitive("neck"));
+			itemMap.put("neck", neck);
+		}
+
+		if (items.has("shoulder")) {
+			JsonObject shoulder = items.get("shoulder").getAsJsonObject();
+			shoulder.add("slottype", new JsonPrimitive("shoulder"));
+			itemMap.put("shoulder", shoulder);
+		}
+
+		if (items.has("back")) {
+			JsonObject back = items.get("back").getAsJsonObject();
+			back.add("slottype", new JsonPrimitive("back"));
+			itemMap.put("back", back);
+		}
+
+		if (items.has("chest")) {
+			JsonObject chest = items.get("chest").getAsJsonObject();
+			chest.add("slottype", new JsonPrimitive("chest"));
+			itemMap.put("chest", chest);
+		}
+
+		if (items.has("tabard")) {
+			JsonObject tabard = items.get("tabard").getAsJsonObject();
+			tabard.add("slottype", new JsonPrimitive("tabard"));
+			itemMap.put("tabard", tabard);
+		}
+
+		if (items.has("wrist")) {
+			JsonObject wrist = items.get("wrist").getAsJsonObject();
+			wrist.add("slottype", new JsonPrimitive("wrist"));
+			itemMap.put("wrist", wrist);
+		}
+
+		if (items.has("hands")) {
+			JsonObject hands = items.get("hands").getAsJsonObject();
+			hands.add("slottype", new JsonPrimitive("hands"));
+			itemMap.put("hands", hands);
+		}
+
+		if (items.has("waist")) {
+			JsonObject waist = items.get("waist").getAsJsonObject();
+			waist.add("slottype", new JsonPrimitive("waist"));
+			itemMap.put("waist", waist);
+		}
+
+		if (items.has("legs")) {
+			JsonObject legs = items.get("legs").getAsJsonObject();
+			legs.add("slottype", new JsonPrimitive("legs"));
+			itemMap.put("legs", legs);
+		}
+
+		if (items.has("feet")) {
+			JsonObject feet = items.get("feet").getAsJsonObject();
+			feet.add("slottype", new JsonPrimitive("feet"));
+			itemMap.put("feet", feet);
+		}
+
+		if (items.has("finger1")) {
+			JsonObject finger1 = items.get("finger1").getAsJsonObject();
+			finger1.add("slottype", new JsonPrimitive("finger1"));
+			itemMap.put("finger1", finger1);
+		}
+
+		if (items.has("finger2")) {
+			JsonObject finger2 = items.get("finger2").getAsJsonObject();
+			finger2.add("slottype", new JsonPrimitive("finger2"));
+			itemMap.put("finger2", finger2);
+		}
+
+		if (items.has("trinket1")) {
+			JsonObject trinket1 = items.get("trinket1").getAsJsonObject();
+			trinket1.add("slottype", new JsonPrimitive("trinket1"));
+			itemMap.put("trinket1", trinket1);
+		}
+
+		if (items.has("trinket2")) {
+			JsonObject trinket2 = items.get("trinket2").getAsJsonObject();
+			trinket2.add("slottype", new JsonPrimitive("trinket2"));
+			itemMap.put("trinket2", trinket2);
+		}
+
+		if (items.has("mainHand")) {
+			JsonObject mainHand = items.get("mainHand").getAsJsonObject();
+			mainHand.add("slottype", new JsonPrimitive("mainHand"));
+			itemMap.put("mainHand", mainHand);
+		}
+
+		if (items.has("offHand")) {
+			JsonObject offHand = items.get("offHand").getAsJsonObject();
+			offHand.add("slottype", new JsonPrimitive("offHand"));
+			itemMap.put("offHand", offHand);
+		}
+
+		if (items.has("ranged")) {
+			JsonObject ranged = items.get("ranged").getAsJsonObject();
+			ranged.add("slottype", new JsonPrimitive("ranged"));
+			itemMap.put("ranged", ranged);
+		}
 	}
 
 	public static void setRealms() {
@@ -774,7 +945,7 @@ public class Armory {
 		JsonArray members = mGuild.get("members").getAsJsonArray();
 
 		Logger.info("Fetching Guildmembers");
-		
+
 		for (JsonElement jsonElement : members) {
 
 			Long rank = jsonElement.getAsJsonObject().get("rank").getAsLong();
@@ -1104,9 +1275,9 @@ public class Armory {
 
 		HttpResponse hr = WS.url(battleNetApiURL).get();
 		if (hr.success()) {
-			
-			System.out.println(hr.getStatus() );
-			
+
+			System.out.println(hr.getStatus());
+
 			JsonElement armoryanswer = hr.getJson();
 			return armoryanswer;
 		} else {

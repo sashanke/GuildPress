@@ -1,4 +1,5 @@
 #{extends 'main.html' /} #{set title: avatar.name + ' von ' + avatar.guild.name /}
+#{set moreScripts:'<script type="text/javascript" src="/public/javascripts/char.js" charset="utf-8"></script>'.raw() /}
 #{css}
 /* overrides */
 .profile-contents { margin-left: 0; }
@@ -445,6 +446,7 @@ a.summary-stats-toggler:hover .inner { background-position: right bottom; }
 .summary-save-image { margin-top: 10px }
 .summary-save-image a { margin-right: 10px; background: url('http://eu.battle.net/wow/static/images/icons/down.gif') no-repeat right 3px; padding-right: 12px;}
 #{/css}
+#{css "char" /}
 <div class="box">
 	<div class="artheadline" style="background: black url(${avatar.getAvatarBanner()})  no-repeat top center;">
 		<div class="artheadlinshadow">
@@ -460,340 +462,51 @@ a.summary-stats-toggler:hover .inner { background-position: right bottom; }
 		</div>
 	</div>
 	<div class="post">
+	
+	
+
+	
+
 		<div class="clear"></div>
 		<div class="" style="height: 550px; width: 710px; background: transparent url(${avatar.getProfileMain()})  no-repeat -40px center;">
 			<div style="position: absolute; height: 550px; width: 710px; background: transparent url(/public/images/static/profilemain/overlay.png) no-repeat top center;">
 			<div id="summary-inventory" class="summary-inventory summary-inventory-advanced">
-			
-				<div class="slot slot-1 item-quality-4" style="left: 0px; top: 0px;">
+				#{list items:items, as:'item'}
+				<div class="slot slot-${item.itemSlot.slot.getMappedSlot()} slot-align-${item.itemSlot.layout.itemTextSide} item-quality-${item.item.itemQuality.qualityId}" style="#{if !item.itemSlot.layout.isBottom}${item.itemSlot.layout.itemSide}: 0px; top: ${item.itemSlot.layout.itemPlace}px#{/if}#{else}left: ${item.itemSlot.layout.itemPlace}px; bottom: 0px#{/else};">
 					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="slot slot-2 item-quality-4" style=" left: 0px; top: 58px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="slot slot-3 item-quality-4" style=" left: 0px; top: 116px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="slot slot-16 item-quality-4" style=" left: 0px; top: 174px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="slot slot-5 item-quality-4" style=" left: 0px; top: 232px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="slot slot-4 item-quality-4" style=" left: 0px; top: 290px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="slot slot-19 item-quality-4" style=" left: 0px; top: 348px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="slot slot-9 item-quality-4" style=" left: 0px; top: 406px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
+					
+					
+					<div class="slot-contents">
+					<a href="http://de.wowhead.com/item=${item.item.itemId}" class="item" rel="@{Char.showArmoryItem(item.id)}" target="_blank"><img src="http://wow.zamimg.com/images/wow/icons/large/${item.item.icon.icon.toLowerCase()}.jpg" alt="" /><span class="frame"></span></a>
 
+						#{if item.transmogItem}<a class="transmog-frame" href="http://de.wowhead.com/item=${item.transmogItem?.itemId}" rel="@{Char.showItem(item.transmogItem?.itemId)}" target="_blank"></a>#{/if}
+						<div class="details">
+							<span class="name-shadow">${item.item.name}</span>
+							<span class="name color-q${item.item.itemQuality.qualityId}">
+								<a href="http://de.wowhead.com/item=${item.item.itemId}" class="q${item.item.itemQuality.qualityId}">${item.item.name}</a>
+							</span>
+							<span class="enchant-shadow"></span>
+								
+						</div>
+					</div>
+					
+					
+<!-- 						<div class="slot-contents"> -->
+<!-- 							<a href="" class="empty" > -->
+<!-- 								<span class="frame"></span> -->
+<!-- 							</a> -->
+<!-- 							<div class="details"> -->
+<!-- 								<span class="name-shadow"></span> -->
+<!-- 								<span class="name color-q4"> -->
+<!-- 									<a href="/wow/de/item/70929"></a> -->
+<!-- 								</span> -->
+<!-- 								<span class="level"></span> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+					</div>
+				</div>
+				#{/list}
 
-
-
-
-
-
-				<div class="slot slot-10 item-quality-4 slot-align-right" style="right: 0px; top: 0px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="slot slot-6 item-quality-4 slot-align-right" style=" right: 0px; top: 58px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="slot slot-7 item-quality-4 slot-align-right" style=" right: 0px; top: 116px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="slot slot-8 item-quality-4 slot-align-right" style=" right: 0px; top: 174px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="slot slot-11 item-quality-4 slot-align-right" style=" right: 0px; top: 232px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="slot slot-11 item-quality-4 slot-align-right" style=" right: 0px; top: 290px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="slot slot-12 item-quality-4 slot-align-right" style=" right: 0px; top: 348px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="slot slot-12 item-quality-4 slot-align-right" style=" right: 0px; top: 406px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="slot slot-21 item-quality-4 slot-align-right" style=" left: 0px; bottom: 0px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-				<div class="slot slot-22 item-quality-4" style=" left: 271px; bottom: 0px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="slot slot-28 item-quality-4" style=" left: 448px; bottom: 0px;">
-					<div class="slot-inner">
-						<div class="slot-contents">
-							<a href="" class="empty" >
-								<span class="frame"></span>
-							</a>
-							<div class="details">
-								<span class="name-shadow"></span>
-								<span class="name color-q4">
-									<a href="/wow/de/item/70929"></a>
-								</span>
-								<span class="level"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				
 				
 				
 				

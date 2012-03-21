@@ -1,0 +1,48 @@
+#{extends 'main.html' /} 
+#{set title: 'Forum: ' + forum.title + ' von ' + guildTitle /}
+#{js "forum" /}
+#{css "forum" /}
+
+<div class="box">
+	<div id="welcome-message">
+		<h2 class="nav_t"><a href="@{Board.showCategory(forum.category.getSlug(),forum.category.id)}">${forum.title}</a></h2>
+		<div class="colBreak clear"></div>		
+		<div class="category category-${forum.id} category-${forum_parity}">
+			#{topic topics:forum.topics, as:'forum' /}
+		</div>
+</div>
+
+
+#{ifErrors}
+    <p class="error">
+        ${errors[0]}
+    </p>
+#{/ifErrors}
+
+
+	
+	<div class="colBreak clear"></div>
+<ul class="listing forum-listing">
+	#{form @Board.addTopic(forum.id)}
+	<li class="form-row form-row-odd">
+		<div class="gradient form-tools">
+			<span class="" style="min-width:200px">Starte ein neues Thema: </span>
+			<span class="right small"><input class="right" type="submit" value="Beitrag hinzufügen" /></a></span>
+		</div>
+		<div class="left form-info">
+			<div class="avatar-box">#{avatar avatar:user.avatar, as:'topic' /}</div>
+			<div class="post-info-text">Beiträge: ${user.getPostCount()}</div>
+		</div>
+		<div class="right form-content">
+			<div class="content">
+				<p><input type="text" name="title" id="title" value="${params.title}" />
+				<input type="text" name="description" id="description" value="${params.description}" /></p>
+				<textarea name="content" id="content">${params.content}</textarea></div>
+			<input type="hidden" name="authorId" value="${user.id}" />
+		</div>
+		<div class="clear"></div>
+	</li>
+	#{/form}
+</ul>
+<div class="clear"></div>
+</div>

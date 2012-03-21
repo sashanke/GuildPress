@@ -56,7 +56,7 @@ public class RaidTracker extends Controller {
 		RaidPool selectedPool = null;
 
 		if (selpool == null) {
-			selpool = 1L;
+			selpool = ((RaidPool) RaidPool.find("isMainRaid", true).first()).id;
 		}
 
 		selectedPool = RaidPool.findById(selpool);

@@ -11,6 +11,11 @@
         <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/jquery-ui-1.8.18.custom.css'}" />
         <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/flexigrid.css'}" />
         <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/font-awesome.css'}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/global.css'}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/world-of-warcraft.css'}" />
+        
+        
+        
         #{get 'moreStyles' /}
         #{css output: "all"}
         #{/css}
@@ -26,16 +31,20 @@
         <script src="@{'/public/javascripts/jquery-1.7.1.min.js'}"></script>
     	<script src="@{'/public/javascripts/jquery-ui-1.8.18.custom.min.js'}"></script>
     	
+    	<script src="@{'/public/tiny_mce/tiny_mce.js'}"></script>
+    	
     	<script src="@{'/public/javascripts/flexigrid.js'}"></script>
 
     	<script src="@{'/public/javascripts/guild-tabard.js'}"></script>
 		<script src="@{'/public/javascripts/jquery.cluetip.js'}"></script>
-
+		<script src="@{'/public/javascripts/jquery.ae.image.resize.js'}"></script>
 		<script src="@{'/public/javascripts/templating.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         <script src="@{'/public/javascripts/jquery.scrollTo-min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 <script src="@{'/public/javascripts/jquery.form.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 <script src="@{'/public/javascripts/jquery.cookie.js'}" type="text/javascript" charset="${_response_encoding}"></script>        
         
+        #{js output: "all"}
+        #{/js}
 		#{get 'moreScripts' /}
 		
  <style type="text/css">
@@ -291,14 +300,14 @@ $(document).ready(function() {
 				<ul class="user-meta group">
 		            <li class="user-meta-cell user-meta-race">
 		            	#{if session.username && user != null}
-		                <span class="icon-16 character-${user.wowCharacter.cclass.name.toLowerCase()} character-class-wow character-class-wow-${user.wowCharacter.cclass.name.toLowerCase()} ir"></span>
+		                <span class="icon-16 character-${user.avatar.cclass.name.toLowerCase()} character-class-wow character-class-wow-${user.avatar.cclass.name.toLowerCase()} ir"></span>
 		                <span class="icon-16 character-worgen character-race-wow character-race-wow-worgen character-female character-gender-wow character-gender-wow-female ir"></span>
 		            	#{/if}
 		            </li>
 		            <li class="user-meta-cell user-meta-name">
 		                #{if session.username && user != null}
-		                <a href="@{Application.character(user.wowCharacter.name.toLowerCase().urlEncode())}" id="register" class="no-tooltip user-name character character-member character-unverified character-${user.wowCharacter.cclass.name.toLowerCase()} character-class-wow character-class-wow-${user.wowCharacter.cclass.name.toLowerCase()} character-name-${user.wowCharacter.name.toLowerCase()}">${user.wowCharacter.name}</a>
-		                <a href="@{Application.guild(user.wowCharacter.guild.id,user.wowCharacter.guild.name)}">${user.wowCharacter.guild.name}</a>
+		                <a href="@{Char.show(user.avatar.name.toLowerCase().urlEncode())}" id="register" class="no-tooltip user-name character character-member character-unverified character-${user.avatar.cclass.name.toLowerCase()} character-class-wow character-class-wow-${user.avatar.cclass.name.toLowerCase()} character-name-${user.avatar.name.toLowerCase()}">${user.avatar.name}</a>
+		                <a href="@{Application.guild(user.avatar.guild.id,user.avatar.guild.name)}">${user.avatar.guild.name}</a>
 		                #{/if}
 		                #{else}
 		                <a href="@{Application.register()}" id="register" class="no-tooltip user-name character character-member character-unverified">Mitglied Werden?</a>
@@ -307,8 +316,8 @@ $(document).ready(function() {
 		            </li>
 		            <li class="user-meta-cell user-meta-avatar">
 		            	#{if session.username && user != null}
-		                <a class="no-tooltip" href="@{Application.character(user.wowCharacter.name.toLowerCase().urlEncode())}">
-		                    <img id="login-welcome-avatar" class="welcome-avatar" alt="Avatar" src="@{Avatar.getAvatar(user.wowCharacter.name)}">
+		                <a class="no-tooltip" href="@{Char.show(user.avatar.name.toLowerCase().urlEncode())}">
+		                    <img id="login-welcome-avatar" class="welcome-avatar" alt="Avatar" src="${user.avatar.avatar}">
 		                </a>
 		                #{/if}
 		            </li>
@@ -339,7 +348,7 @@ $(document).ready(function() {
 							<div id="daddy-shoutbox-div">
 								<form id="daddy-shoutbox-form" action="/shoutbox/add" method="post">
 									<span id="daddy-shoutbox-response"></span>
-									<input type="hidden" name="nickname" value="${user.wowCharacter.name}" /><input type="text" name="message" />
+									<input type="hidden" name="nickname" value="${user.avatar.name}" /><input type="text" name="message" />
 									<input type="hidden" name="submit" value="Submit" />
 									<input type="image" src="/public/images/type_article.png" width="14" height="14">
 								</form>
@@ -361,18 +370,20 @@ $(document).ready(function() {
 							<li><a href="@{Application.index()}" class="${request?.controller == 'Application' ? 'sel' : ''}" title="${guildTag} News">News</a></li>
 							<li><a href="@{RaidTracker.index()}" class="${request?.controller == 'RaidTracker' ? 'sel' : ''}" title="${guildTag} Raids">Raids</a></li>
 							
-							<li><a href="@{ChatRoom.room(user?.wowCharacter?.name)}" class="${request?.controller == 'LongPolling' ? 'sel' : ''}" title="${guildTag} Chat">Chat</a></li>
+							<li><a href="@{ChatRoom.room(user?.avatar?.name)}" class="${request?.controller == 'LongPolling' ? 'sel' : ''}" title="${guildTag} Chat">Chat</a></li>
 							<li><a href="@{Roster.index()}" class="${request?.controller == 'MitgliederVerzeichnis' ? 'sel' : ''}" title="${guildTag} Mitglieder">Mitglieder</a></li>
+							
+							<li><a href="@{Board.index()}" class="${request?.controller == 'Board' ? 'sel' : ''}" title="${guildTag} Forum">Forum</a></li>
 							<li><a href="@{Progress.index()}" class="${request?.controller == 'RaidFortschritt' ? 'sel' : ''}" title="${guildTag} Progress">Progress</a></li>
 							<li><a href="#nyi" class="nyi" title="${guildTag} Recruitment">Recruitment</a></li>
 							<li><a href="#nyi" class="nyi" title="${guildTag} Gallerie">Gallerie</a></li>
-							<li><a href="#nyi" class="nyi" title="${guildTag} Gilden Informationen">Gilden Informationen</a></li>
 							<li class="last"><a href="#nyi" class="nyi" title="${guildTag} Kalender">Kalender</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="clear"></div>
 				<div id="content_wrapper">
+					#{if !fullSize}
 					<div id="content_left">
 						<div class="box">
 							<div id="welcome-message">
@@ -517,7 +528,8 @@ $(document).ready(function() {
            					<div class="inviscolBreak clear"></div>
 						</div>
 					</div>
-					<div id="content_right">
+					#{/if}
+					<div id="#{if fullSize}content_full#{/if}#{else}content_right#{/else}">
 						#{doLayout /}
 					</div>
 				</div>

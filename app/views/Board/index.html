@@ -1,0 +1,19 @@
+#{extends 'main.html' /} 
+#{set title: 'Forum von ' + guildTitle /} 
+#{js "forum" /} 
+#{css "forum" /}
+
+<div class="box">
+	<div id="welcome-message">
+		<h2 class="nav_t"><a href="@{Application.index()}">Willkommen im Forum von ${guildTitle}</a></h2>
+		<div class="colBreak clear"></div>
+		#{list items:categories, as: 'category'}
+		<div class="category category-${category.id} category-${category_parity}">
+			<h1>
+				<a href="@{Board.showCategory(category.getSlug(),category.id)}">${category.title}</a>
+			</h1>
+			#{forum forums:category.forums, as:'category' /}
+		</div>
+		#{/list}
+	</div>
+</div>

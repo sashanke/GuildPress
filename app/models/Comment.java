@@ -15,9 +15,9 @@ public class Comment extends Model {
     public String content;
     
     @ManyToOne
-    public Post post;
+    public News post;
     
-    public Comment(Post post, String author, String content) {
+    public Comment(News post, String author, String content) {
         this.post = post;
         this.author = author;
         this.content = content;

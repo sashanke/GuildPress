@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import models.forum.Post;
 import models.wowapi.character.Avatar;
 import models.wowapi.guild.GuildEmblem;
 import models.wowapi.guild.GuildMember;
@@ -43,7 +44,7 @@ public class User extends Model {
 	
 	public boolean isGuildMember;
 	@OneToOne
-	public Avatar wowCharacter;
+	public Avatar avatar;
 
 	public User(String email, String password, String fullname) {
 		this.email = email;
@@ -55,6 +56,9 @@ public class User extends Model {
 
 	}
 	
+	public Long getPostCount() {
+		return Post.count("byAuthor", this);
+	}
 	
 	public String toString() {
 		return email;

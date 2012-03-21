@@ -20,7 +20,7 @@ import play.db.jpa.Model;
 import utils.FileUtils;
 
 @Entity
-public class Post extends Model {
+public class News extends Model {
 	@Required
     public String title;
     
@@ -51,7 +51,7 @@ public class Post extends Model {
     @ManyToMany(cascade=CascadeType.PERSIST)
     public Set<Tag> tags;
     
-    public Post(User author, String title, String content) {
+    public News(User author, String title, String content) {
     	this.comments = new ArrayList<Comment>();
     	this.tags = new TreeSet<Tag>();
         this.author = author;
@@ -66,8 +66,8 @@ public class Post extends Model {
     }
     
     
-    public Post previous() {
-    	Post post = Post.find("postedAt < ? order by postedAt desc", postedAt).first();
+    public News previous() {
+    	News post = News.find("postedAt < ? order by postedAt desc", postedAt).first();
 //    	if (post == null ) {
 //    		post = Post.find("order by postedAt asc").first();
 //		}
@@ -75,8 +75,8 @@ public class Post extends Model {
         return post;
     }
      
-    public Post next() {
-    	Post post = Post.find("postedAt > ? order by postedAt asc", postedAt).first();
+    public News next() {
+    	News post = News.find("postedAt > ? order by postedAt asc", postedAt).first();
     	
 //    	if (post == null ) {
 //    		post = Post.find("order by postedAt desc").first();
@@ -85,24 +85,24 @@ public class Post extends Model {
         return post; 
     }
     
-    public Post tagItWith(String name) {
+    public News tagItWith(String name) {
         tags.add(Tag.findOrCreateByName(name));
         return this;
     }
     
-    public static List<Post> findTaggedWith(String tag) {
-        return Post.find(
+    public static List<News> findTaggedWith(String tag) {
+        return News.find(
             "select distinct p from Post p join p.tags as t where t.name = ?", tag
         ).fetch();
     }
     
-    public static List<Post> findTaggedWith(String... tags) {
-        return Post.find(
+    public static List<News> findTaggedWith(String... tags) {
+        return News.find(
                 "select distinct p from Post p join p.tags as t where t.name in (:tags) group by p.id, p.author, p.title, p.content,p.postedAt having count(t.id) = :size"
         ).bind("tags", tags).bind("size", tags.length).fetch();
     }
     
-    public Post addComment(String author, String content) {
+    public News addComment(String author, String content) {
         Comment newComment = new Comment(this, author, content).save();
         this.comments.add(newComment);
         this.save();

@@ -1,0 +1,48 @@
+#{extends 'main.html' /} 
+#{set title: topic.title + ' ' + guildTitle /}
+#{js "forum" /}
+#{css "forum" /}
+
+<div class="box">
+	<div id="welcome-message">
+		<h2 class="nav_t"><a href="@{Board.showForum(topic.forum.getSlug(),topic.forum.id)}">${topic.title}</a></h2>
+		<div class="colBreak clear"></div>		
+		<div class="category category-${topic.id} category-${topic_parity}">
+			#{post posts:topic.posts, as:'topic' /}
+		</div>
+</div>
+
+#{if flash.success}
+    <p class="success">${flash.success}</p>
+#{/if}
+ 
+#{ifErrors}
+    <p class="error">
+        ${errors[0]}
+    </p>
+#{/ifErrors}
+    <p>
+        
+
+<div class="colBreak clear"></div>
+<ul class="listing forum-listing">
+	#{form @Board.addPost(topic.id)}
+	<li class="form-row form-row-odd">
+		<div class="gradient form-tools">
+			<span class="" style="min-width:200px">Scheibe einen neuen Beitrag: </span>
+			<span class="right small"><input class="right" type="submit" value="Beitrag hinzufügen" /></a></span>
+		</div>
+		<div class="left form-info">
+			<div class="avatar-box">#{avatar avatar:user.avatar, as:'topic' /}</div>
+			<div class="post-info-text">Beiträge: ${user.getPostCount()}</div>
+		</div>
+		<div class="right form-content"><a name="addPost"></a>
+			<textarea name="content" id="content">${params.content}</textarea>
+			<input type="hidden" name="authorId" value="${user.id}" />
+		</div>
+		<div class="clear"></div>
+	</li>
+	#{/form}
+</ul>
+<div class="clear"></div>
+</div>

@@ -17,6 +17,11 @@ GET     /news                                       		Application.index
 GET		/register											Application.register
 POST	/register											Application.registerd
 
+# Forum
+GET		/forums												Board.index
+GET		/forums/forum/{<[0-9]+>id}/{slug}					Board.showForum
+GET		/forums/category/{<[0-9]+>id}/{slug}				Board.showCategory
+GET		/forums/topic/{<[0-9]+>id}/{slug}					Board.showTopic
 # ITEMS!
 GET /wow/de/item/{<[0-9]+>id}								Char.showItem
 

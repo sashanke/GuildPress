@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
-import models.Post;
+import models.News;
 
 import play.db.jpa.Model;
 

@@ -1,0 +1,35 @@
+<table class="listing listing-forum forum-listing">
+	<thead>
+		<tr class="gradient">
+			<th></th>
+			<th>Themen</th>
+			<th>Antworten</th>
+			<th>Zugriffe</th>
+			<th>Letzter Beitrag</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{list items:_topics, as: 'topic'}
+		<tr class="forum-row forum-row-${topic_parity}">
+			<td class="col-status"><a href="javascript:void()" title="Mark Forum as Read"> </a></td>
+			<td class="col-forum">
+				<h4 class="title">
+					<a href="@{Board.showTopic(topic.getSlug(),topic.id)}">${topic.title}</a>
+				</h4> <span class="description">
+					von
+					<span class="class class-${topic.firstPost.author.avatar.cclass.name.toLowerCase()}">${topic.firstPost.author.avatar.name}</span>
+					<span class="icon-time"> ${topic.firstPost.created.format('dd. MMMM yyyy HH:mm','de')}</span>
+				</span>
+			</td>
+			
+			<td class="col-count">${topic.postCount}</td>
+			<td class="col-count">${topic.viewCount}</td>
+			<td class="col-last-post"><span class="description">
+					von
+					<span class="class class-${topic.lastPost.author.avatar.cclass.name.toLowerCase()}">${topic.lastPost.author.avatar.name}</span>&nbsp;&nbsp;&nbsp;<a href="@{Board.showTopic(topic.getSlug(),topic.id)}#${topic.lastPost.id}"><span class="icon-share-alt forum-goto-last-post"></span></a><br>
+					<span class="icon-time"> ${topic.lastPost.created.format('dd. MMMM yyyy HH:mm','de')}</span>
+				</span></td>
+		</tr>
+		#{/list}
+	</tbody>
+</table>

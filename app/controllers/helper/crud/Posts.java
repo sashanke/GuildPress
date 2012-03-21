@@ -1,8 +1,7 @@
 package controllers.helper.crud;
  
+import models.forum.Post;
 import controllers.CRUD;
-import play.*;
-import play.mvc.*;
- 
+@CRUD.For(Post.class)
 public class Posts extends CRUD {    
 }

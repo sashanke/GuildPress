@@ -1,0 +1,29 @@
+<ul class="listing forum-listing">
+	%{postcnt = 1}%
+	#{list items:_posts, as: 'post'}
+	<li class="post-row post-row-${post_parity}">
+		#{if flash.get("newPost") == post.id.toString()}
+			<script type="text/javascript">
+			$(document).ready(function() {
+				$.scrollTo("#newPost",{duration: 2000});
+			});
+			</script>
+    		<div id="newPost"></div>
+		#{/if}
+		<div class="gradient post-tools post-tools-${post_parity}">
+			<span class="classicon classicon-small classicon-left classicon-small-${post.author.avatar.cclass.name.toLowerCase()}"></span>&nbsp;
+			<span class="class class-${post.author.avatar.cclass.name.toLowerCase()}">${post.author.avatar.name}</span>
+			<span class="right small"><a name="${post.id}">#${postcnt}</a></span>
+			<span class="right small">Geschrieben am ${post.created.format('dd. MMMM yyyy','de')} um ${post.created.format('HH:mm')}&nbsp;&nbsp;</span>
+		</div>
+		<div class="left post-info post-info-${post_parity}">
+			<div class="avatar-box">#{avatar avatar:post.author.avatar, as:'topic' /}</div>
+			<div class="post-info-text">Beiträge: ${post.author.getPostCount()}</div>
+		</div>
+		<div class="right post-content post-content-${post_parity}">
+			<div class="content">${post.content.raw()}</div>
+			<div class="right" style="min-height: 20px;"><div class="post-content-tools" style="white-space: nowrap"> <a href="#addPost"><span class="icon-share"></span> Antworten</a></div></div>
+		</div>
+		<div class="clear"></div>
+	</li>%{postcnt++}%#{/list}
+</ul>

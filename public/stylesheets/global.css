@@ -1,0 +1,54 @@
+/* global styles */
+.left {
+	float:left;
+}
+.right {
+	float:right;
+}
+.small {
+	font-size: 10px;
+}
+/* Avatar Image*/
+.avatar {
+	position: relative;
+	width: 86px;
+}
+.avatar a {
+	font-style: bold;
+}
+.avatar img {
+	display: block;
+	border-color: #12202E;
+	border-style: solid;
+	border-width: 1px;
+}
+.character-rank {
+	position: absolute;
+	top: 1px;
+	right: -1px;
+	float:right;
+	width: 16px;
+	color: #DFDBC9;
+	margin-right: 2px;
+	font-family: Georgia,serif important!;
+	font-style: bold important!;
+	text-align: right;
+}
+.character-name {
+	position: absolute;
+	bottom:0px;
+	left:0px;
+	width: 100%;
+	color: #DFDBC9;
+	font-family: Georgia,serif;
+	font-style: bold;
+	text-align: right;
+	background: transparent url(/public/images/background/bg_dark.png);
+}
+.character-name a {
+	padding:0;
+	margin:0;
+	display: inline; white-space: nowrap;
+	padding-right: 2px;
+}
+

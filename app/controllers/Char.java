@@ -20,6 +20,7 @@ import models.wowapi.Armory;
 import models.wowapi.WoWHead;
 import models.wowapi.character.Avatar;
 import models.wowapi.character.AvatarItem;
+import models.wowapi.guild.GuildMember;
 import models.wowapi.resources.Item;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
@@ -36,13 +37,31 @@ public class Char extends Controller {
 	
 	public static void show(String name) {
 		Armory.fetchCharacter("Anub'arak", name);
-		Armory.fetchCharacter(true,"Anub'arak", name);
 		Avatar avatar = Avatar.find("name = ?", name).first();
-		List<AvatarItem> items = AvatarItem.getOrderedItemList(avatar);
+		if (avatar == null) {
+			GuildMember guildMember = GuildMember.find("name = ?", name).first();
+			if (guildMember == null) {
+				render("Char/nothingFound.html");
+			} else {
+				render("Char/showGuildMember.html",guildMember);
+			}
+		} else {
+			List<AvatarItem> items = AvatarItem.getOrderedItemList(avatar);
+			render(avatar,items);
+		}
 		
-		render(avatar,items);
+
 	}
 	public static void showItem(Long id) {
+		Item item = Item.find("byItemId",id).first();
+		if (item == null) {
+			item = WoWHead.checkItem(id);
+		}
+		List<RaidItem> items = RaidItem.find("itemId = ?", item.itemId).fetch();
+		List<AvatarItem> wearedItems = AvatarItem.find("itemId = ?", item.itemId).fetch();
+		render(item, items, wearedItems);
+	}
+	public static void showItemTooltip(Long id) {
 		Item item = Item.find("byItemId",id).first();
 		if (item == null) {
 			item = WoWHead.checkItem(id);
@@ -50,7 +69,7 @@ public class Char extends Controller {
 		render(item);
 	}
 	
-	public static void showArmoryItem(Long avatarItemId) {
+	public static void showArmoryItemTooltip(Long avatarItemId) {
 		AvatarItem item = AvatarItem.findById(avatarItemId);
 		render(item);
 	}

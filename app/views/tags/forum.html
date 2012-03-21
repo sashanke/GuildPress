@@ -1,0 +1,34 @@
+<table class="listing listing-forum forum-listing">
+	<thead>
+		<tr class="gradient">
+			<th></th>
+			<th>Forum</th>
+			<th>Themen</th>
+			<th>Beiträge</th>
+			<th>Letzter Beitrag</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{list items:_forums, as: 'forum'}
+		<tr class="forum-row forum-row-${forum_parity}">
+			<td class="col-status"></td>
+			<td class="col-forum">
+				<h4 class="title">
+					<a href="@{Board.showForum(forum.getSlug(),forum.id)}">${forum.title}</a>
+				</h4> <span class="description">${forum.description}</span>
+			</td>
+			
+			<td class="col-count">${forum.topicCount}</td>
+			<td class="col-count">${forum.postCount}</td>
+			<td class="col-last-post"><span class="description">
+					#{if forum.lastTopic}von
+					<span class="class class-${forum.lastTopic.lastPost.author.avatar.cclass.name.toLowerCase()}">${forum.lastTopic.lastPost.author.avatar.name}</span>&nbsp;&nbsp;&nbsp;<a href="@{Board.showTopic(forum.lastTopic.getSlug(),forum.lastTopic.id)}#${forum.lastTopic.lastPost.id}"><span class="icon-share-alt forum-goto-last-post"></span></a><br>
+					<span class="icon-time"> ${forum.lastTopic.lastPost.created.format('dd. MMMM yyyy HH:mm','de')}</span>
+					#{/if}#{else}
+					<span>Keine Beiträge vorhanden</span>
+					#{/else}
+				</span></td>
+		</tr>
+		#{/list}
+	</tbody>
+</table>

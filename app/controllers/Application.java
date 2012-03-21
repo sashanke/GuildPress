@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import models.Message;
-import models.Post;
+import models.News;
 import models.User;
 import models.wowapi.Armory;
 import models.wowapi.character.Avatar;
@@ -45,17 +45,18 @@ public class Application extends Controller {
 		renderArgs.put("logs", Logs.find("order by date desc").fetch(10));
 		renderArgs.put("wowpet", FileUtils.getRandomFile("./public/images/pets/"));
 		renderArgs.put("randomArtwork", Play.configuration.getProperty("conf.artworksdir") + FileUtils.getRandomFile("./public/images/artworks/"));
+		renderArgs.put("user", User.getConnectedUser(session.get("username")));
 	}
 	
 	public static void index() {
-		Post frontPost = Post.find("order by postedAt desc").first();
-		List<Post> olderPosts = Post.find("order by postedAt desc").from(1).fetch(10);
+		News frontPost = News.find("order by postedAt desc").first();
+		List<News> olderPosts = News.find("order by postedAt desc").from(1).fetch(10);
 
 		render(frontPost, olderPosts);
 	}
 
 	public static void postListXml() {
-		List<Post> posts = Post.find("order by postedAt desc").fetch(15);
+		List<News> posts = News.find("order by postedAt desc").fetch(15);
 		render(posts);
 	}
 
@@ -127,7 +128,7 @@ public class Application extends Controller {
 
 	public static void registerd(String first_name, String last_name, String email, String password, String password_check, String wowchar, Long wowrealm) {
 
-		User user = User.find("wowCharacter.name = ? and wowCharacter.realm.id = ?", wowchar, wowrealm).first();
+		User user = User.find("avatar.name = ? and avatar.realm.id = ?", wowchar, wowrealm).first();
 		Avatar wowChar = Avatar.find("name = ? and realm.id = ?", wowchar, wowrealm).first();
 
 		if (user == null && password.equals(password_check)) {
@@ -137,7 +138,7 @@ public class Application extends Controller {
 			user.fullname = first_name + " " + last_name;
 			user.email = email;
 			user.password = password;
-			user.wowCharacter = wowChar;
+			user.avatar = wowChar;
 
 			if (wowChar.isGuildMember) {
 				user.isGuildMember = wowChar.isGuildMember;
@@ -178,7 +179,7 @@ public class Application extends Controller {
 	}
 
 	public static void show(Long id) {
-		Post post = Post.findById(id);
+		News post = News.findById(id);
 		String randomID = Codec.UUID();
 		render(post, randomID);
 	}
@@ -191,12 +192,12 @@ public class Application extends Controller {
 	}
 
 	public static void listTagged(String tag) {
-		List<Post> posts = Post.findTaggedWith(tag);
+		List<News> posts = News.findTaggedWith(tag);
 		render(tag, posts);
 	}
 
 	public static void postComment(Long postId, @Required(message = "Author is required") String author, @Required(message = "A message is required") String content, @Required(message = "Please type the code") String code, String randomID) {
-		Post post = Post.findById(postId);
+		News post = News.findById(postId);
 		validation.equals(code, Cache.get(randomID)).message("Invalid code. Please type it again");
 		if (validation.hasErrors()) {
 			render("Application/show.html", post, randomID);

@@ -1,0 +1,14 @@
+#{extends 'main.html' /} 
+#{set title: 'Forum Kategorie: ' + category.title + ' von ' + guildTitle /}
+#{js "forum" /}
+#{css "forum" /}
+
+<div class="box">
+	<div id="welcome-message">
+		<h2 class="nav_t"><a href="@{Board.index()}">${category.title}</a></h2>
+		<div class="colBreak clear"></div>		
+		<div class="category category-${category.id} category-${category_parity}">
+			#{forum forums:category.forums, as:'category' /}
+		</div>
+</div>
+</div>

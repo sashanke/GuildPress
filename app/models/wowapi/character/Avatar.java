@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import models.Comment;
-import models.Post;
+import models.News;
 import models.wowapi.Armory;
 import models.wowapi.guild.Guild;
 import models.wowapi.guild.GuildMember;

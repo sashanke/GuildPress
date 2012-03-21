@@ -1,1 +1,57 @@
-${item.armoryTooltip.raw()}
+#{extends 'main.html' /}
+#{set title: item.name + ' - ' + guildTitle /}
+#{js "char" /}
+#{css "char" /}
+<div class="box">
+	<div class="artheadline" style="background: black url(${randomArtwork})} no-repeat top center  !important;">
+		<div class="artheadlinshadow">
+			<div class="postdate"></div>
+    		<h2 class="post-title">
+    			<a href="http://de.wowhead.com/item=${item.itemId}" target="_blank">${item.name}</a>
+			</h2>
+		</div>
+	</div>
+	<div class="post">
+        <div class="post-content">
+        	<div class="clear"></div>
+        	<div style="width:50%; float:left;">
+				${item.armoryTooltip.raw()}
+			</div>
+			<div style="width:50%; float:right;">
+				<table cellpadding="0" style="width:100%;" cellspacing="0" border="0" class="display" id="example">
+				<tbody>
+				#{list items:items, as:'item'}
+					<tr>
+						<td style="text-align: right;"><span title="${item.time.format('HH:mm')}">${item.time.format('dd. MMMM yyyy', 'de')}</span></td>
+						<td style="text-align: right;"><a href="@{RaidTracker.showChar(item.member.name.toLowerCase().urlEncode())}" 
+						class="user-name character character-member character-unverified character-${item.member.name.toLowerCase()} 
+						#{if item.member.name != "Bank" && item.member.name != "Entzaubert"} character-class-wow character-class-wow-${item.member.avatar.cclass.name.toLowerCase()} character-name-${item.member.avatar.name.toLowerCase()}#{/if}">${item.member.name}</a></td>
+					</tr>									
+				#{/list}
+				</tbody>
+				</table>
+				
+				<table cellpadding="0" style="width:100%;" cellspacing="0" border="0" class="display" id="example">
+				<thead>
+					<th></th>
+					<th style="text-align: right;">getragen von:</th>
+				</thead>
+				<tbody>
+				#{list items:wearedItems, as:'item'}
+					<tr>
+						<td style="text-align: right;"></span></td>
+						<td style="text-align: right;"><a href="@{Char.show(item.avatar.name.toLowerCase().urlEncode())}" 
+						class="user-name character character-member character-unverified character-${item.avatar.name.toLowerCase()} 
+						character-class-wow character-class-wow-${item.avatar.cclass.name.toLowerCase()} character-name-${item.avatar.name.toLowerCase()}">${item.avatar.name}</a></td>
+					</tr>									
+				#{/list}
+				</tbody>
+				</table>
+				
+			</div>
+     		<div class="colBreak clear"></div>
+     		<br>
+			<div class="clear"></div>
+        </div>
+	</div>
+</div>

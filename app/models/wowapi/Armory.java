@@ -1275,9 +1275,6 @@ public class Armory {
 
 		HttpResponse hr = WS.url(battleNetApiURL).get();
 		if (hr.success()) {
-
-			System.out.println(hr.getStatus());
-
 			JsonElement armoryanswer = hr.getJson();
 			return armoryanswer;
 		} else {

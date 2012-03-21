@@ -38,17 +38,17 @@ public class BasicTest extends UnitTest {
 	    User bob = new User("bob@gmail.com", "secret", "Bob").save();
 	    
 	    // Create a new post
-	    new Post(bob, "My first post", "Hello world").save();
+	    new News(bob, "My first post", "Hello world").save();
 	    
 	    // Test that the post has been created
-	    assertEquals(1, Post.count());
+	    assertEquals(1, News.count());
 	    
 	    // Retrieve all posts created by Bob
-	    List<Post> bobPosts = Post.find("byAuthor", bob).fetch();
+	    List<News> bobPosts = News.find("byAuthor", bob).fetch();
 	    
 	    // Tests
 	    assertEquals(1, bobPosts.size());
-	    Post firstPost = bobPosts.get(0);
+	    News firstPost = bobPosts.get(0);
 	    assertNotNull(firstPost);
 	    assertEquals(bob, firstPost.author);
 	    assertEquals("My first post", firstPost.title);
@@ -62,7 +62,7 @@ public class BasicTest extends UnitTest {
 	    User bob = new User("bob@gmail.com", "secret", "Bob").save();
 	 
 	    // Create a new post
-	    Post bobPost = new Post(bob, "My first post", "Hello world").save();
+	    News bobPost = new News(bob, "My first post", "Hello world").save();
 	 
 	    // Post a first comment
 	    new Comment(bobPost, "Jeff", "Nice post").save();
@@ -93,7 +93,7 @@ public class BasicTest extends UnitTest {
 	    User bob = new User("bob@gmail.com", "secret", "Bob").save();
 	 
 	    // Create a new post
-	    Post bobPost = new Post(bob, "My first post", "Hello world").save();
+	    News bobPost = new News(bob, "My first post", "Hello world").save();
 	 
 	    // Post a first comment
 	    bobPost.addComment("Jeff", "Nice post");
@@ -101,11 +101,11 @@ public class BasicTest extends UnitTest {
 	 
 	    // Count things
 	    assertEquals(1, User.count());
-	    assertEquals(1, Post.count());
+	    assertEquals(1, News.count());
 	    assertEquals(2, Comment.count());
 	 
 	    // Retrieve Bob's post
-	    bobPost = Post.find("byAuthor", bob).first();
+	    bobPost = News.find("byAuthor", bob).first();
 	    assertNotNull(bobPost);
 	 
 	    // Navigate to comments
@@ -117,7 +117,7 @@ public class BasicTest extends UnitTest {
 	    
 	    // Check that all comments have been deleted
 	    assertEquals(1, User.count());
-	    assertEquals(0, Post.count());
+	    assertEquals(0, News.count());
 	    assertEquals(0, Comment.count());
 	}
 	
@@ -127,7 +127,7 @@ public class BasicTest extends UnitTest {
 	 
 	    // Count things
 	    assertEquals(2, User.count());
-	    assertEquals(3, Post.count());
+	    assertEquals(3, News.count());
 	    assertEquals(3, Comment.count());
 	 
 	    // Try to connect as users
@@ -137,7 +137,7 @@ public class BasicTest extends UnitTest {
 	    assertNull(User.connect("tom@gmail.com", "secret"));
 	 
 	    // Find all of Bob's posts
-	    List<Post> bobPosts = Post.find("author.email", "bob@gmail.com").fetch();
+	    List<News> bobPosts = News.find("author.email", "bob@gmail.com").fetch();
 	    assertEquals(2, bobPosts.size());
 	 
 	    // Find all comments related to Bob's posts
@@ -145,7 +145,7 @@ public class BasicTest extends UnitTest {
 	    assertEquals(3, bobComments.size());
 	 
 	    // Find the most recent post
-	    Post frontPost = Post.find("order by postedAt desc").first();
+	    News frontPost = News.find("order by postedAt desc").first();
 	    assertNotNull(frontPost);
 	    assertEquals("About the model layer", frontPost.title);
 	 
@@ -163,25 +163,25 @@ public class BasicTest extends UnitTest {
 	    User bob = new User("bob@gmail.com", "secret", "Bob").save();
 	 
 	    // Create a new post
-	    Post bobPost = new Post(bob, "My first post", "Hello world").save();
-	    Post anotherBobPost = new Post(bob, "Hop", "Hello world").save();
+	    News bobPost = new News(bob, "My first post", "Hello world").save();
+	    News anotherBobPost = new News(bob, "Hop", "Hello world").save();
 	 
 	    // Well
-	    assertEquals(0, Post.findTaggedWith("Red").size());
+	    assertEquals(0, News.findTaggedWith("Red").size());
 	 
 	    // Tag it now
 	    bobPost.tagItWith("Red").tagItWith("Blue").save();
 	    anotherBobPost.tagItWith("Red").tagItWith("Green").save();
 	 
 	    // Check
-	    assertEquals(2, Post.findTaggedWith("Red").size());
-	    assertEquals(1, Post.findTaggedWith("Blue").size());
-	    assertEquals(1, Post.findTaggedWith("Green").size());
+	    assertEquals(2, News.findTaggedWith("Red").size());
+	    assertEquals(1, News.findTaggedWith("Blue").size());
+	    assertEquals(1, News.findTaggedWith("Green").size());
 	    
-	    assertEquals(1, Post.findTaggedWith("Red", "Blue").size());
-	    assertEquals(1, Post.findTaggedWith("Red", "Green").size());
-	    assertEquals(0, Post.findTaggedWith("Red", "Green", "Blue").size());
-	    assertEquals(0, Post.findTaggedWith("Green", "Blue").size());
+	    assertEquals(1, News.findTaggedWith("Red", "Blue").size());
+	    assertEquals(1, News.findTaggedWith("Red", "Green").size());
+	    assertEquals(0, News.findTaggedWith("Red", "Green", "Blue").size());
+	    assertEquals(0, News.findTaggedWith("Green", "Blue").size());
 	    
 	    List<Map> cloud = Tag.getCloud();
 	    assertEquals(

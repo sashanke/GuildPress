@@ -2,9 +2,16 @@ package models.wowapi.resources;
 
 import play.*;
 import play.data.validation.Required;
+import play.db.DB;
 import play.db.jpa.*;
 
 import javax.persistence.*;
+
+import models.wowapi.character.Avatar;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 @Entity
@@ -45,6 +52,23 @@ public class Realm extends Model {
 		}
     	return guildRealm;
     }
+    
+    public static Realm findByName(String name) {   	
+    	try {
+        	PreparedStatement ps = DB.getConnection().prepareStatement("select id from Realm where BINARY name = ?");
+        	ps.setString(1, name);
+        	ResultSet rs = ps.executeQuery();
+        	rs.next();
+        	return Realm.findById(rs.getLong("id"));
+		} catch (SQLException e) {
+			Logger.info("Keinen passenden Realm zu ("+name+") in der Datenbank gefunden",e);
+			return null;
+		}
+    	
+    	
+    }
+    
+    
     
     public String toString() {
         return name + " (" + region + ")";

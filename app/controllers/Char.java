@@ -1,5 +1,6 @@
 package controllers;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import models.wowapi.character.Avatar;
 import models.wowapi.character.AvatarItem;
 import models.wowapi.guild.GuildMember;
 import models.wowapi.resources.Item;
+import play.Play;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
 import play.mvc.Before;
@@ -35,9 +37,8 @@ public class Char extends Controller {
 		Application.addDefaults();
 	}
 	
-	public static void show(String name) {
-		Armory.fetchCharacter("Anub'arak", name);
-		Avatar avatar = Avatar.find("name = ?", name).first();
+	public static void show(String name) {		
+		Avatar avatar = Armory.fetchCharacter("Anub'arak", name);
 		if (avatar == null) {
 			GuildMember guildMember = GuildMember.find("name = ?", name).first();
 			if (guildMember == null) {

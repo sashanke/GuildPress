@@ -9,9 +9,14 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import org.apache.commons.collections.list.TreeList;
 
 import models.wowapi.character.Avatar;
 import models.wowapi.character.AvatarItem;
@@ -75,7 +80,7 @@ public class Armory {
 			new Gender(new Long(0), "male").save();
 			new Gender(new Long(1), "female").save();
 		}
-					
+
 		setRealms();
 		setCharacterClasses();
 		setCharacterRaces();
@@ -278,7 +283,6 @@ public class Armory {
 		return castURL(image);
 	}
 
-
 	private static String castURL(String image) {
 		image = image.replaceAll("\\.\\\\", "/");
 		image = image.replaceAll("\\\\", "/");
@@ -343,7 +347,7 @@ public class Armory {
 				JsonArray jaParticipants = jsonElement.getAsJsonObject().get("participants").getAsJsonArray();
 				for (JsonElement jaParticipant : jaParticipants) {
 					String name = jaParticipant.getAsString();
-					Avatar participant = Avatar.find("name = ? and realm.name = ?", name, Play.configuration.getProperty("wowapi.realmName")).first();
+					Avatar participant = Avatar.findByNameAndRealm(name, Play.configuration.getProperty("wowapi.realmName"));
 					if (participant == null) {
 						participant = fetchCharacter(Play.configuration.getProperty("wowapi.realmName"), name);
 					}
@@ -392,7 +396,7 @@ public class Armory {
 	}
 
 	public static Avatar fetchCharacter(String vRealm, String vName) {
-		Avatar m = Avatar.find("name = ? and realm.name = ?", vName, vRealm).first();
+		Avatar m = Avatar.findByNameAndRealm(vName, vRealm);
 
 		if (m != null && m.guild != null) {
 			checkGuild(m.guild.name, m.guild.realm);
@@ -416,12 +420,12 @@ public class Armory {
 	public static Avatar fetchCharacter(Boolean update, String vRealm, String vName) {
 		JsonElement armory = fetchFromArmory(Armory.CHARURL, "guild,stats,talents,items,professions,appearance,progression,pvp", vRealm, vName);
 		if (armory == null) {
-			Avatar m = Avatar.find("name = ? and realm.name = ?", vName, vRealm).first();
+			Avatar m = Avatar.findByNameAndRealm(vName, vRealm);
 			if (m != null) {
 				Logger.info("UpdateJob Error/Down but Char was found in Database: " + m.name + " - " + m.realm.name);
 				return m;
 			}
-			GuildMember gm = GuildMember.find("name = ? and realm = ?", vName, vRealm).first();
+			GuildMember gm = GuildMember.findByNameAndRealm(vName, vRealm);
 			if (gm != null && m == null) {
 				Logger.info("Creating new Char from Guildmember: " + gm.name + " - " + gm.realm);
 				m = new Avatar();
@@ -478,8 +482,8 @@ public class Armory {
 			Long averageItemLevel = items.get("averageItemLevel").getAsLong();
 			Long averageItemLevelEquipped = items.get("averageItemLevelEquipped").getAsLong();
 
-			Avatar gm = Avatar.find("name = ? and realm.name = ?", gmname, gmrealm.name).first();
-			GuildMember guildm = GuildMember.find("name = ? and realm = ?", gmname, gmrealm.name).first();
+			Avatar gm = Avatar.findByNameAndRealm(gmname, gmrealm.name);
+			GuildMember guildm = GuildMember.findByNameAndRealm(gmname, gmrealm.name);
 			Boolean isGuildMember = false;
 
 			if (guildm != null) {
@@ -522,15 +526,15 @@ public class Armory {
 			HashMap<String, JsonObject> itemMap = new HashMap<String, JsonObject>();
 
 			getItemsFromJson(items, itemMap);
-			
+
 			AvatarItem.delete("avatar = ?", gm);
-			
+
 			for (JsonObject item : itemMap.values()) {
 
-			//for (Map.Entry<String, JsonObject> e: itemMap.entrySet())
+				// for (Map.Entry<String, JsonObject> e: itemMap.entrySet())
 
 				AvatarItem at = new AvatarItem();
-				
+
 				Long itemId = item.get("id").getAsLong();
 
 				JsonObject tooltipParams = item.get("tooltipParams").getAsJsonObject();
@@ -543,8 +547,8 @@ public class Armory {
 					transmogItem = Item.setItem(transmogItemId);
 				}
 				tooltipParamsS = tooltipParams.toString();
-				
-				String slottype = item.get("slottype").getAsString();				
+
+				String slottype = item.get("slottype").getAsString();
 				at.itemId = itemId;
 				at.transmogItemId = transmogItemId;
 				at.tooltipParams = tooltipParamsS;
@@ -552,11 +556,11 @@ public class Armory {
 				at.item = itemO;
 				at.itemSlot = ItemSlotType.setItemSlotType(slottype, itemO.slot);
 				at.transmogItem = transmogItem;
-				
+
 				JsonParser parser = new JsonParser();
 				String html = "";
 				if (tooltipParamsS.length() != 0) {
-					JsonObject o = (JsonObject)parser.parse(tooltipParamsS);
+					JsonObject o = (JsonObject) parser.parse(tooltipParamsS);
 					List<String> urlParts = new ArrayList<String>();
 					String enchant = "enchant";
 					if (o.has(enchant)) {
@@ -595,10 +599,10 @@ public class Armory {
 						JsonArray sets = o.get(set).getAsJsonArray();
 						urlParts.add("set=" + Tools.implodeArray(sets, ","));
 					}
-					String url = "http://eu.battle.net/wow/de/item/"+itemId+"/tooltip?"+Tools.implodeList(urlParts, "&");
+					String url = "http://eu.battle.net/wow/de/item/" + itemId + "/tooltip?" + Tools.implodeList(urlParts, "&");
 					at.armoryTooltipURL = url;
 					HttpResponse hr = WS.url(url).get();
-					
+
 					if (hr.success()) {
 						at.armoryTooltip = hr.getString();
 					}
@@ -606,7 +610,7 @@ public class Armory {
 				}
 
 				gm.addItem(at);
-						//Item setItem
+				// Item setItem
 			}
 
 			gm.profile = Armory.fetchProfile(gm.realm.slug, gm.name, gm.thumbnail.replace("avatar", "profilemain"));
@@ -820,6 +824,95 @@ public class Armory {
 		return mGuild;
 	}
 
+	public static Guild updateGuild(String vname, String vrealm) {
+
+		JsonObject mGuild = getGuildJson(vname, vrealm);
+		Guild g = Guild.find("name = ?", vname).first();
+
+		Long llastModified = mGuild.get("lastModified").getAsLong();
+
+		if (g != null && (g.lastModified.getTime() >= new Date(llastModified).getTime())) {
+
+			System.out.println(g.lastModified.getTime() + ">=");
+			System.out.println(new Date(llastModified).getTime());
+			System.out.println("guild not modified");
+		}
+
+		String name = mGuild.get("name").getAsString();
+		String srealm = mGuild.get("realm").getAsString();
+		Long level = mGuild.get("level").getAsLong();
+		Long lside = mGuild.get("side").getAsLong();
+		Long achievementPoints = mGuild.get("achievementPoints").getAsLong();
+
+		Date lastModified = new Date(llastModified);
+		Realm realm = Realm.find("name = ? and region = ?", srealm, Play.configuration.getProperty("wowapi.realmArea")).first();
+
+		if (realm == null) {
+			realm = new Realm(srealm, Play.configuration.getProperty("wowapi.realmArea"));
+		}
+
+		Side side = Side.find("sId", lside).first();
+		JsonObject emblem = mGuild.get("emblem").getAsJsonObject();
+
+		GuildEmblem ge = GuildEmblem.find("guild = ?", name).first();
+		if (ge != null) {
+			ge.guild = name;
+			ge.icon = emblem.get("icon").getAsLong();
+			ge.iconColor = emblem.get("iconColor").getAsString();
+			ge.border = emblem.get("border").getAsLong();
+			ge.borderColor = emblem.get("borderColor").getAsString();
+			ge.backgroundColor = emblem.get("backgroundColor").getAsString();
+			ge.save();
+		}
+
+		if (g != null) {
+			g.name = name;
+			g.realm = realm;
+			g.level = level;
+			g.side = side;
+			g.achievementPoints = achievementPoints;
+			g.lastModified = lastModified;
+			g.lastUpdate = new Date();
+			g.emblem = ge;
+			if (g.isMainGuild) {
+				fetchGuildAchievements(mGuild);
+				fetchGuildMembers(mGuild);
+				g.members = (long) GuildMember.all().fetch().size();
+			}
+		}
+
+		// if (isMainGuild) {
+		// fetchGuildAchievements(mGuild);
+		// fetchGuildMembers(mGuild);
+		// g.members = (long) GuildMember.all().fetch().size();
+		// }
+		//
+		// JsonObject rankings = null;
+		// Long score = 0L;
+		// Long world_rank = 0L;
+		// Long area_rank = 0L;
+		// Long realm_rank = 0L;
+		// JsonElement eRankings = fetchFromWoWProgress(Armory.WOWPROGRESSURL +
+		// g.realm.region.toLowerCase() + "/" +
+		// replaceSpecialChars(g.realm.name.toLowerCase()) + "/" +
+		// encodeChars(g.name) + "/json_rank");
+		// if (eRankings.isJsonObject()) {
+		// rankings = eRankings.getAsJsonObject();
+		// score = rankings.get("score").getAsLong();
+		// world_rank = rankings.get("world_rank").getAsLong();
+		// area_rank = rankings.get("area_rank").getAsLong();
+		// realm_rank = rankings.get("realm_rank").getAsLong();
+		// }
+		//
+		// g.score = score;
+		// g.world_rank = world_rank;
+		// g.area_rank = area_rank;
+		// g.realm_rank = realm_rank;
+		//
+		g.save();
+		return g;
+	}
+
 	public static Guild fetchGuild(Boolean isMainGuild, String vname, Realm vrealm) {
 		JsonObject mGuild;
 		if (isMainGuild) {
@@ -936,6 +1029,11 @@ public class Armory {
 		return mGuild;
 	}
 
+	private static JsonObject getGuildJson(String vname, String vrealm) {
+		JsonObject mGuild = fetchFromArmory(Armory.GUILDURL, "achievements,members", vrealm, vname).getAsJsonObject();
+		return mGuild;
+	}
+
 	public static JsonObject getMainGuildJson() {
 		JsonObject mGuild = fetchFromArmory(Armory.GUILDURL, "achievements,members", Play.configuration.getProperty("wowapi.realmName"), Play.configuration.getProperty("wowapi.guildName")).getAsJsonObject();
 		return mGuild;
@@ -946,6 +1044,7 @@ public class Armory {
 
 		Logger.info("Fetching Guildmembers");
 
+		List<String> currentGuildMember = GuildMember.currentGuildMember();
 		for (JsonElement jsonElement : members) {
 
 			Long rank = jsonElement.getAsJsonObject().get("rank").getAsLong();
@@ -968,8 +1067,9 @@ public class Armory {
 			Long gmachievementPoints = character.get("achievementPoints").getAsLong();
 			String gmthumbnail = character.get("thumbnail").getAsString();
 
-			GuildMember gm = GuildMember.find("name = ?", gmname).first();
-
+			currentGuildMember.remove(gmname);
+			
+			GuildMember gm = GuildMember.findByNameAndRealm(gmname, gmrealm);
 			if (gm != null) {
 				gm.name = gmname;
 				gm.realm = gmrealm;
@@ -993,6 +1093,11 @@ public class Armory {
 				gm.save();
 			}
 		}
+		
+		// TODO: Remove old Guildmembers
+		Collections.sort(currentGuildMember);
+		System.out.println(currentGuildMember);
+		
 	}
 
 	public static void fetchGuildAchievements(JsonObject mGuild) {

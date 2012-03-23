@@ -1,6 +1,9 @@
 package models.wowapi.character;
 
 import java.io.File;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,6 +27,7 @@ import models.wowapi.resources.Realm;
 import models.wowapi.resources.Side;
 import play.Logger;
 import play.Play;
+import play.db.DB;
 import play.db.jpa.Model;
 
 @Entity
@@ -106,6 +110,22 @@ public class Avatar extends Model {
 	public Avatar() {
 		this.lastUpdate = new Date();
 		this.items = new ArrayList<AvatarItem>();
+	}
+	
+	
+	public static Avatar findByNameAndRealm(String name, String realm) {
+		try {
+			PreparedStatement ps = DB.getConnection().prepareStatement("select id from Avatar where BINARY name = ? and realm_id = ?");
+			ps.setString(1, name);
+			ps.setLong(2, Realm.findByName(realm).id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			return Avatar.findById(rs.getLong("id"));
+		} catch (SQLException e) {
+			Logger.info("Keinen passenden Avatar zu ("+name+") in der Datenbank gefunden",e);
+			return null;
+		}
+		
 	}
 	
 	public Avatar addItem(AvatarItem item) {

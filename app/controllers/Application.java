@@ -157,16 +157,8 @@ public class Application extends Controller {
 	}
 
 	public static void charfetch(Long id, String name) {
-
 		Realm realm = Realm.findById(id);
-		Armory.fetchCharacter(realm.name, name);
-
-		System.out.println(name);
-
-		// JSONSerializer characterSerializer = new JSONSerializer();
-		// renderJSON(characterSerializer.serialize(avatar));
-
-		Avatar avatar = Avatar.find("name = ? and realm.name = ?", name, realm.name).first();
+		Avatar avatar = Armory.fetchCharacter(realm.name, name);
 		render(avatar);
 	}
 

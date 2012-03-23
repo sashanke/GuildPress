@@ -27,7 +27,7 @@
 				<div class="slot slot-${item.itemSlot.slot.getMappedSlot()} slot-align-${item.itemSlot.layout.itemTextSide} item-quality-${item.item.itemQuality.qualityId}" style="#{if !item.itemSlot.layout.isBottom}${item.itemSlot.layout.itemSide}: 0px; top: ${item.itemSlot.layout.itemPlace}px#{/if}#{else}left: ${item.itemSlot.layout.itemPlace}px; bottom: 0px#{/else};">
 					<div class="slot-inner">
 					<div class="slot-contents">
-					<a href="@{Char.showItem(item.item?.itemId)}" class="item" rel="@{Char.showArmoryItemTooltip(item.id)}"><img src="http://wow.zamimg.com/images/wow/icons/large/${item.item.icon.icon.toLowerCase()}.jpg" alt="" /><span class="frame"></span></a>
+					<a href="@{Char.showItem(item.item?.itemId)}" class="item" rel="@{Char.showArmoryItemTooltip(item.id)}"><img src="/public/images/static/icons/${item.item.icon.icon}.png" alt="" /><span class="frame"></span></a>
 						#{if item.transmogItem}<a class="transmog-frame" href="@{Char.showItem(item.transmogItem?.itemId)}" rel="@{Char.showItemTooltip(item.transmogItem?.itemId)}"></a>#{/if}
 						<div class="details">
 							<span class="name-shadow">${item.item.name}</span>

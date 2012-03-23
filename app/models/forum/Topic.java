@@ -54,9 +54,13 @@ public class Topic extends Model {
 	public Long viewCount;
 	
 	public Long postCount;
-
 	
-	public Topic(Forum forum, User postAuthor, String description, String title) {
+	public String image;
+	
+	public String frontpageImage;
+	public String frontpageAbstract;
+	
+	public Topic(Forum forum, User postAuthor, String description, String title, String image, String frontpageImage, String frontpageAbstract) {
 		this.posts = new ArrayList<Post>();
 		this.author = postAuthor;
 		this.forum = forum;

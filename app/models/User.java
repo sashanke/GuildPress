@@ -38,7 +38,7 @@ public class User extends Model {
 	public String first_name;
 	public String last_name;
 	public boolean isAdmin;
-	
+	public boolean isNewsAdmin;
 	@ManyToOne
 	public GuildRank guildRank;
 	

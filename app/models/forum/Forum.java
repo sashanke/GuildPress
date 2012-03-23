@@ -30,6 +30,9 @@ public class Forum extends Model {
 	@Required
 	public Boolean isPublic;
 
+	@Required
+	public Boolean isNewsBoard;
+	
 	@Lob
 	@MaxSize(10000)
 	public String description;
@@ -55,8 +58,8 @@ public class Forum extends Model {
 		this.postCount = 0L;
 	}
 
-	public Topic addTopic(User postAuthor, String content, String title, String description) {
-		Topic newTopic = new Topic(this,postAuthor, description, title).save();
+	public Topic addTopic(User postAuthor, String content, String title, String description,String image, String frontpageImage, String frontpageAbstract) {
+		Topic newTopic = new Topic(this,postAuthor, description, title,image,frontpageImage,frontpageAbstract).save();
         Post newPost = new Post(newTopic, postAuthor, content, title).save();
         newTopic.posts.add(newPost);
         newTopic.firstPost = newPost;

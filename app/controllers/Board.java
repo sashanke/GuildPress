@@ -78,13 +78,13 @@ public class Board extends Controller {
 		showTopic(newPost.topic.getSlug(), newPost.topic.id);
 	}
 	
-	public static void addTopic(Long forumId, Long authorId, @Required(message = "A message is required") String content, @Required(message = "A title is required") String title , @Required(message = "A description is required") String description) {
+	public static void addTopic(Long forumId, Long authorId, @Required(message = "A message is required") String content, @Required(message = "A title is required") String title , @Required(message = "A description is required") String description, String image, String frontpageImage, String frontpageAbstract) {
 		Forum forum = Forum.findById(forumId);
 		User postAuthor = User.findById(authorId);
 		if (validation.hasErrors()) {
 			render("Board/showForum.html", forum);
 		}
-		Topic newTopic = forum.addTopic(postAuthor, content, title, description);
+		Topic newTopic = forum.addTopic(postAuthor, content, title, description,image, frontpageImage, frontpageAbstract);
 		flash.success("Thanks for posting %s", postAuthor.avatar.name);
 		showTopic(newTopic.getSlug(), newTopic.id);
 	}

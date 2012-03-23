@@ -398,7 +398,7 @@ $(document).ready(function() {
 	<h2 class="nav_t">Login</h2>
 	<div class="colBreak clear"></div>
 	
-	#{form @Secure.authenticate(), class: 'login_user_form'}
+	#{form @SecureC.authenticate(), class: 'login_user_form'}
 		
 		#{if flash.error}
 			<p id="box-login-error" class="msg error colBlurb">

@@ -1,7 +1,6 @@
 # ItemLayout schema
  
 # --- !Ups
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!40014 SET FOREIGN_KEY_CHECKS=0 */;
 DROP TABLE IF EXISTS `ItemLayout`;
@@ -41,4 +40,3 @@ INSERT INTO `ItemLayout` (`id`, `itemOrder`, `itemPlace`, `itemSide`, `itemSlotN
 	(19, 280, 448, 'left', 'ranged', 'left', b'1', NULL, NULL);
 /*!40000 ALTER TABLE `ItemLayout` ENABLE KEYS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=1 */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

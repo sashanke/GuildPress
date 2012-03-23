@@ -38,7 +38,15 @@ public class GuildMember extends Model {
 	
 	public Date lastUpdate;
 	public String avatar;
-	
+	public String getAvatar() {
+		if (this.avatar == null || this.avatar.contains("noavatar.png")) {
+			return "/public/images/static/avatar/" + this.race.crId + "-" + this.gender.gId + ".jpg";
+		}
+		if (this.avatar.startsWith(".")) {
+			return this.avatar.substring(1);
+		}
+		return this.avatar;
+	}
 	public GuildMember(String name, String realm, CharacterClass cclass, CharacterRace race, Gender gender, Long level, GuildRank rank, Long achievementPoints, String thumbnail) {
 		this.name = name;
 		this.realm = realm;

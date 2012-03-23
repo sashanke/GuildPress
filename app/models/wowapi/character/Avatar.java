@@ -42,8 +42,47 @@ public class Avatar extends Model {
 	public Long achievementPoints;
 	public String thumbnail;
 	public String avatar;
+	/**
+	 * @return the avatar
+	 */
+	public String getAvatar() {
+		if (this.avatar == null || this.avatar.contains("noavatar.png")) {
+			return "/public/images/static/avatar/" + this.race.crId + "-" + this.gender.gId + ".jpg";
+		}
+		if (this.avatar.startsWith(".")) {
+			return this.avatar.substring(1);
+		}
+		return this.avatar;
+	}
+
+	/**
+	 * @return the profile
+	 */
+	public String getProfile() {
+		if (this.profile == null) {
+			return "/public/images/static/profilemain/" + this.race.crId + "-" + this.gender.gId + ".jpg";
+		}
+		if (this.profile.startsWith(".")) {
+			return this.profile.substring(1);
+		}
+		return this.profile;
+	}
+
+	/**
+	 * @return the inset
+	 */
+	public String getInset() {
+		if (this.inset == null) {
+			return "/public/images/static/inset/" + this.race.crId + "-" + this.gender.gId + ".jpg";
+		}
+		if (this.inset.startsWith(".")) {
+			return this.inset.substring(1);
+		}
+		return this.inset;
+	}
 	//http://eu.battle.net/wow/static/images/character/summary/backgrounds/race/1.jpg
 	public String profile; //63010918-profilemain.jpg?alt=/wow/static/images/2d/profilemain/race/1-1.jpg
+	public String inset;
 	
 	@ManyToOne
 	public Guild guild;
@@ -61,7 +100,7 @@ public class Avatar extends Model {
 	
 	public Long averageItemLevel;
 	public Long averageItemLevelEquipped;
-	public String inset;
+	
 	
 	
 	public Avatar() {
@@ -81,10 +120,11 @@ public class Avatar extends Model {
 		String banner = Play.configuration.getProperty("conf.bannerdir") + this.race.side.name.toLowerCase() + "/" + this.race.name.toLowerCase() + "/" + this.race.name.toLowerCase() + "_" + this.cclass.name.toLowerCase() + "_" + this.gender.name_loc.toLowerCase() + ".jpg";
 		return banner;
 	}
+	
 	public String getProfileMain() {
-		String bg = "/public/images/static/profilemain/" + this.race.crId + "-" + this.gender.gId + ".jpg";
-		bg = "/public/profiles/" + this.race.crId + "-" + this.gender.gId + ".jpg";
-		
+		if (this.profile == null) {
+			return "/public/images/static/profilemain/" + this.race.crId + "-" + this.gender.gId + ".jpg";
+		}
 		return this.profile;
 	}
 }

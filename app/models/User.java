@@ -76,4 +76,12 @@ public class User extends Model {
 		return find("byEmail",email).first();
 	}
 	
+	public static Boolean checkGuildmember(String email) {
+		User user =  find("byEmail",email).first();
+		
+		if (user == null || !user.isGuildMember) {
+			return false;
+		}
+		return true;
+	}
 }

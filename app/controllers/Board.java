@@ -22,17 +22,36 @@ public class Board extends Controller {
 	}
 
 	public static void index() {
-		List<Category> categories = Category.find("order by position asc").fetch();
+		List<Category> categories;
+		
+		if (User.checkGuildmember(session.get("username"))) {
+			categories = Category.find("order by position asc").fetch();
+		} else {
+			categories = Category.find("isPublic = ? order by position asc", true).fetch();
+		}
 		render(categories);
 	}
 
 	public static void showForum(String slug, Long id) {
-		models.forum.Forum forum = models.forum.Forum.find("id = ? order by position asc", id).first();
+		Forum forum;
+		
+		if (User.checkGuildmember(session.get("username"))) {
+			forum = Forum.find("id = ? order by position asc", id).first();
+		} else {
+			forum = Forum.find("id = ? and isPublic = ? order by position asc", id, true).first();
+		}
 		render(forum);
 	}
 
 	public static void showCategory(String slug, Long id) {
-		Category category = Category.find("id = ? order by position asc", id).first();
+		Category category;
+		
+		if (User.checkGuildmember(session.get("username"))) {
+			category = Category.find("id = ? order by position asc", id).first();
+		} else {
+			category = Category.find("id = ? and isPublic = ? order by position asc", id, true).first();
+		}
+		
 		render(category);
 	}
 

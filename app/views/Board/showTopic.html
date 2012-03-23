@@ -23,7 +23,7 @@
 #{/ifErrors}
     <p>
         
-
+#{if user}
 <div class="colBreak clear"></div>
 <ul class="listing forum-listing">
 	#{form @Board.addPost(topic.id)}
@@ -44,5 +44,6 @@
 	</li>
 	#{/form}
 </ul>
+#{/if}
 <div class="clear"></div>
 </div>

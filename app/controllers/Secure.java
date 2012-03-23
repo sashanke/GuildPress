@@ -91,7 +91,11 @@ public class Secure extends Controller {
         response.removeCookie("rememberme");
         Security.invoke("onDisconnected");
         flash.success("secure.logout");
-        login();
+        String url = flash.get("url");
+        if(url == null) {
+            url = "/news";
+        }
+        redirect(url);
     }
 
     // ~~~ Utils
@@ -100,7 +104,7 @@ public class Secure extends Controller {
         Security.invoke("onAuthenticated");
         String url = flash.get("url");
         if(url == null) {
-            url = "/";
+            url = "/news";
         }
         redirect(url);
     }

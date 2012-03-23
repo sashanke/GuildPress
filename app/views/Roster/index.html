@@ -38,14 +38,14 @@
      <div class="colBreak clear"></div>
      <br>
         	<div class="roster">
+        	%{cnt = 0}%
 			#{list items:members, as:'member'}
-				<div class="avatar">
-					<a href="@{Char.show(member.name.toLowerCase().urlEncode())}">
-						<img src="${member.avatar}" height="84" width="84" alt="${member.name}s avatar" />
-					</a>
-					<div class="character-rank"><a href="@{Roster.index()}?rank=${member.rank.rank}"><img class="noborder" src="/public/images/ranks/${member.rank.rank}.png" height="16" width="16" alt="${member.name}s rank" /></a></div>
-					<div class="character-name"><a href="@{Char.show(member.name.toLowerCase().urlEncode())}" class="character character-member character-unverified character-${member.cclass.name.toLowerCase()} character-class-wow character-class-wow-${member.cclass.name.toLowerCase()} character-name-${member.name.toLowerCase()}">${member.name}</a></div>
+			#{if cnt == 0}<div class="avatar_row">#{/if}
+				<div class="avatar_box #{if cnt == 0}avatar_box_first#{/if}#{elseif cnt == 6}avatar_box_last#{/elseif}">
+				#{avatar avatar:member.wowcharacter, as:'roster' /}
 				</div>
+			#{if cnt == 6}</div>#{/if}
+				%{cnt++; if(cnt == 7) cnt=0;}%
 			#{/list}
 			</div>
 			<div class="clear"></div>

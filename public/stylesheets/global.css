@@ -51,4 +51,20 @@
 	display: inline; white-space: nowrap;
 	padding-right: 2px;
 }
-
+.avatar_row {
+	margin: auto;
+	clear:both;
+	width: 710px;
+}
+.avatar_box {
+	/*padding: 7px;*/
+	display: inline-block;
+	padding: 7px 15px 7px 0px;
+}
+.avatar_box_first {
+	padding: 7px 15px 7px 0px;
+}
+.avatar_box_last {
+	padding: 7px 0px 7px 0px;
+	float:right;
+}

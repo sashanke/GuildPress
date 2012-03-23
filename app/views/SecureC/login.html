@@ -1,36 +1,39 @@
 #{extends 'main.html' /}
-
-<div id="login">
+<div class="box">
+<div id="box-login">
+	<h2 class="nav_t">Login</h2>
+	<div class="colBreak clear"></div>
 	
-	<h1>&{'secure.title'}</h1>
-		
-	#{form @authenticate()}
+	#{form @SecureC.authenticate(), class: 'login_user_form'}
 		
 		#{if flash.error}
-			<p class="error">
+			<p id="box-login-error" class="msg error colBlurb">
 				&{flash.error}
 			</p>
 		#{/if}
 		#{if flash.success}
-			<p class="success">
+			<p id="box-login-success" class="msg success colBlurb">
 				&{flash.success}
 			</p>
 		#{/if}
 	
 		<p id="username-field">
-			<label for="username">&{'secure.username'}</label>
-			<input type="text" name="username" id="username" value="${flash.username}" />
+			<label class="username" for="username">Email</label>
+			<input class="username" type="text" name="username" id="username" value="${flash.username}" />
 		</p>
 		<p id="password-field">
-			<label for="password">&{'secure.password'}</label>
-			<input type="password" name="password" id="password" value="" />
+			<label class="password" for="password">Passwort</label>
+			<input class="password" type="password" name="password" id="password" value="" />
 		</p>
 		<p id="remember-field">
-			<input type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
-			<label for="remember">&{'secure.remember'}</label>
+			<label class="remember" for="remember">Merken</label>
+			<input class="remember" type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
+			
 		</p>
-		<p id="signin-field">
-			<input type="submit" id="signin" value="&{'secure.signin'}" />
-		</p>
+
+			<input type="submit" id="box-login-signin" value="Einloggen" />
+		
 	#{/form}
 </div>
+</div>						
+

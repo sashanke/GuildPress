@@ -28,25 +28,25 @@ CREATE TABLE IF NOT EXISTS `itemlayout` (
 -- Dumping data for table dev_guildpress.itemlayout: ~19 rows (approximately)
 /*!40000 ALTER TABLE `itemlayout` DISABLE KEYS */;
 INSERT INTO `itemlayout` (`id`, `itemOrder`, `itemPlace`, `itemSide`, `itemSlotName`, `itemTextSide`, `isBottom`, `isLeft`, `isRight`) VALUES
-	(1, 100, 0, 'left', 'head', 'left', NULL, b'10000000', NULL),
-	(2, 110, 58, 'left', 'neck', 'left', NULL, b'10000000', NULL),
-	(3, 120, 116, 'left', 'shoulder', 'left', NULL, b'10000000', NULL),
-	(4, 130, 174, 'left', 'back', 'left', NULL, b'10000000', NULL),
-	(5, 140, 232, 'left', 'chest', 'left', NULL, b'10000000', NULL),
-	(6, 150, 290, 'left', 'shirt', 'left', NULL, b'10000000', NULL),
-	(7, 160, 348, 'left', 'tabard', 'left', NULL, b'10000000', NULL),
-	(8, 170, 406, 'left', 'wrist', 'left', NULL, b'10000000', NULL),
-	(9, 180, 0, 'right', 'hands', 'right', NULL, NULL, b'10000000'),
-	(10, 190, 58, 'right', 'waist', 'right', NULL, NULL, b'10000000'),
-	(11, 200, 116, 'right', 'legs', 'right', NULL, NULL, b'10000000'),
-	(12, 210, 174, 'right', 'feet', 'right', NULL, NULL, b'10000000'),
-	(13, 220, 232, 'right', 'finger1', 'right', NULL, NULL, b'10000000'),
-	(14, 230, 290, 'right', 'finger2', 'right', NULL, NULL, b'10000000'),
-	(15, 240, 348, 'right', 'trinket1', 'right', NULL, NULL, b'10000000'),
-	(16, 250, 406, 'right', 'trinket2', 'right', NULL, NULL, b'10000000'),
-	(17, 260, 0, 'left', 'mainHand', 'right', b'10000000', NULL, NULL),
-	(18, 270, 271, 'left', 'offHand', 'left', b'10000000', NULL, NULL),
-	(19, 280, 448, 'left', 'ranged', 'left', b'10000000', NULL, NULL);
+	(1, 100, 0, 'left', 'head', 'left', NULL, b'1', NULL),
+	(2, 110, 58, 'left', 'neck', 'left', NULL, b'1', NULL),
+	(3, 120, 116, 'left', 'shoulder', 'left', NULL, b'1', NULL),
+	(4, 130, 174, 'left', 'back', 'left', NULL, b'1', NULL),
+	(5, 140, 232, 'left', 'chest', 'left', NULL, b'1', NULL),
+	(6, 150, 290, 'left', 'shirt', 'left', NULL, b'1', NULL),
+	(7, 160, 348, 'left', 'tabard', 'left', NULL, b'1', NULL),
+	(8, 170, 406, 'left', 'wrist', 'left', NULL, b'1', NULL),
+	(9, 180, 0, 'right', 'hands', 'right', NULL, NULL, b'1'),
+	(10, 190, 58, 'right', 'waist', 'right', NULL, NULL, b'1'),
+	(11, 200, 116, 'right', 'legs', 'right', NULL, NULL, b'1'),
+	(12, 210, 174, 'right', 'feet', 'right', NULL, NULL, b'1'),
+	(13, 220, 232, 'right', 'finger1', 'right', NULL, NULL, b'1'),
+	(14, 230, 290, 'right', 'finger2', 'right', NULL, NULL, b'1'),
+	(15, 240, 348, 'right', 'trinket1', 'right', NULL, NULL, b'1'),
+	(16, 250, 406, 'right', 'trinket2', 'right', NULL, NULL, b'1'),
+	(17, 260, 0, 'left', 'mainHand', 'right', b'1', NULL, NULL),
+	(18, 270, 271, 'left', 'offHand', 'left', b'1', NULL, NULL),
+	(19, 280, 448, 'left', 'ranged', 'left', b'1', NULL, NULL);
 /*!40000 ALTER TABLE `itemlayout` ENABLE KEYS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -147,7 +147,7 @@ public class Application extends Controller {
 		}
 
 		try {
-			Secure.authenticate(email, password, true);
+			SecureC.authenticate(email, password, true);
 		} catch (Throwable e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

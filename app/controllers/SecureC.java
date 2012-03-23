@@ -10,7 +10,7 @@ import play.data.validation.*;
 import play.libs.*;
 import play.utils.*;
 
-public class Secure extends Controller {
+public class SecureC extends Controller {
 	@Before
 	static void addDefaults() {
 		Application.addDefaults();

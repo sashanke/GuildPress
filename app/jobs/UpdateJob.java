@@ -1,5 +1,6 @@
 package jobs;
 
+import java.util.Date;
 import java.util.List;
 
 import com.google.gson.JsonElement;
@@ -7,6 +8,7 @@ import com.google.gson.JsonElement;
 import models.wowapi.Armory;
 import models.wowapi.guild.GuildMember;
 import models.wowapi.resources.Gender;
+import models.wowapi.resources.Side;
 import play.Logger;
 import play.jobs.Every;
 import play.jobs.Job;
@@ -27,7 +29,28 @@ public class UpdateJob extends Job {
 		HttpResponse hr = WS.url(url).get();
 		if (hr.success()) {
 			Logger.error("Armory ping: (" + hr.getStatus() + ") " + url);
-			new Armory();
+			
+			List<Side> sides = Side.findAll();
+			if (sides.size() == 0) {
+				new Side(new Long(0), "alliance").save();
+				new Side(new Long(1), "horde").save();
+			}
+			List<Gender> genders = Gender.findAll();
+			if (genders.size() == 0) {
+				new Gender(new Long(0), "male").save();
+				new Gender(new Long(1), "female").save();
+			}
+
+			Armory.setRealms();
+			Armory.setCharacterClasses();
+			Armory.setCharacterRaces();
+			Armory.setGuildPerks();
+			Armory.setItemClasses();
+			
+			
+			
+			
+			//new Armory();
 		} else {
 			Logger.error("Fetch failed: (" + hr.getStatus() + ") " + url);
 

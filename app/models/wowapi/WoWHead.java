@@ -164,7 +164,7 @@ public class WoWHead {
 		
 		
 		oJson = new JsonParser().parse(jsonEquip).getAsJsonObject();
-		System.out.println(oJson);
+
 		memberName = "int";
 		if (oJson.has(memberName)) {
 			item.inte = oJson.get(memberName).getAsFloat();

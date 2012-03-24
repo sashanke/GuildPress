@@ -9,18 +9,16 @@ import java.util.*;
 
 @Entity
 public class GuildEmblem extends Model {
+	@OneToOne
+	public Guild guild;
 
-	@Required
-	public String guild;
-	@Required
 	public String borderColor;
-	@Required
+	
 	public String iconColor;
-	@Required
+	
 	public String backgroundColor;
-	@Required
+	
 	public Long icon;
-	@Required
+	
 	public Long border;
-
 }

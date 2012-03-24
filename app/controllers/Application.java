@@ -47,7 +47,7 @@ public class Application extends Controller {
 		renderArgs.put("randomArtwork", Play.configuration.getProperty("conf.artworksdir") + FileUtils.getRandomFile("./public/images/artworks/"));
 		renderArgs.put("user", User.getConnectedUser(session.get("username")));
 	}
-	
+
 	public static void index() {
 		News frontPost = News.find("order by postedAt desc").first();
 		List<News> olderPosts = News.find("order by postedAt desc").from(1).fetch(10);

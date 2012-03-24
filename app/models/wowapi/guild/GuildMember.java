@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import models.wowapi.Armory;
 import models.wowapi.character.Avatar;
 import models.wowapi.resources.CharacterClass;
 import models.wowapi.resources.CharacterRace;
@@ -26,48 +33,124 @@ import play.db.jpa.Model;
 public class GuildMember extends Model {
 
 	public String name;
-	public String realm;
+	public String image;
+	public Long level;
+	public Date lastUpdate;
+	public Date lastModified;
+	public Date created;
+	
+	@OneToOne
+	public Avatar avatar;
+	@ManyToOne
+	public Guild guild;
+	@ManyToOne
+	public GuildRank rank;
+	@ManyToOne
+	public Realm realm;
 	@ManyToOne
 	public CharacterClass cclass;
 	@ManyToOne
 	public CharacterRace race;
 	@ManyToOne
 	public Gender gender;
-	public Long level;
-	@ManyToOne
-	public GuildRank rank;
-	public Long achievementPoints;
-	public String thumbnail;
 
-	@OneToOne
-	public Avatar wowcharacter;
-
-	public Boolean hasWoWCharacter;
-
-	public Date lastUpdate;
-	public String avatar;
-
-	public String getAvatar() {
-		if (this.avatar == null || this.avatar.contains("noavatar.png")) {
-			return "/public/images/static/avatar/" + this.race.crId + "-" + this.gender.gId + ".jpg";
-		}
-		if (this.avatar.startsWith(".")) {
-			return this.avatar.substring(1);
-		}
-		return this.avatar;
+	public GuildMember(String name, Guild guild) {
+		this.name = name;
+		this.guild = guild;
+		this.lastUpdate = new Date();
+		this.lastModified = new Date();
+		this.created = new Date();
 	}
 
-	public GuildMember(String name, String realm, CharacterClass cclass, CharacterRace race, Gender gender, Long level, GuildRank rank, Long achievementPoints, String thumbnail) {
-		this.name = name;
-		this.realm = realm;
-		this.cclass = cclass;
-		this.race = race;
-		this.gender = gender;
-		this.level = level;
-		this.rank = rank;
-		this.achievementPoints = achievementPoints;
-		this.thumbnail = thumbnail;
-		this.lastUpdate = new Date();
+	public static Long fetchGuildMembers(Guild guild, JsonObject guildJson) {
+		Logger.info("[GuildMember][fetchGuildMembers] " + guild.name + " (" + guild.realm + ")");
+		JsonArray guildMembersJson = guildJson.get("members").getAsJsonArray();
+
+		List<String> currentGuildMember = GuildMember.currentGuildMember();
+		for (JsonElement guildMemberJson : guildMembersJson) {
+
+			Long rank = guildMemberJson.getAsJsonObject().get("rank").getAsLong();
+			GuildRank gr = GuildRank.find("rank = ?", rank).first();
+			if (gr == null) {
+				gr = new GuildRank(rank);
+				gr.save();
+			}
+
+			JsonObject character = guildMemberJson.getAsJsonObject().get("character").getAsJsonObject();
+			String gmname = character.get("name").getAsString();
+			CharacterClass gmclass = CharacterClass.find("ccId", character.get("class").getAsLong()).first();
+			CharacterRace gmrace = CharacterRace.find("crId", character.get("race").getAsLong()).first();
+			Gender gmgender = Gender.find("gId", character.get("gender").getAsLong()).first();
+			Long gmlevel = character.get("level").getAsLong();
+			GuildRank gmrank = GuildRank.find("rank", gr.rank).first();
+			String gmthumbnail = character.get("thumbnail").getAsString();
+
+			currentGuildMember.remove(gmname);
+
+			GuildMember gm = GuildMember.findByNameAndRealm(gmname, guild.realm);
+
+			if (gm == null) {
+				gm = new GuildMember(gmname, guild);
+			}
+
+			Logger.info("[GuildMember][fetchGuildMembers] " + gm.name + " " + guild.name + " (" + guild.realm + ")");
+			gm.guild = guild;
+			gm.name = gmname;
+			gm.realm = guild.realm;
+			gm.cclass = gmclass;
+			gm.race = gmrace;
+			gm.gender = gmgender;
+			gm.level = gmlevel;
+			gm.rank = gmrank;
+			gm.image = Armory.fetchAvatar(gm.realm, gm.name, gmthumbnail);
+			gm.lastUpdate = new Date();
+			gm.lastModified = new Date();
+			gm.save();
+			gm.avatar = Avatar.createAvatar(gm.name, gm.realm.name);
+			gm.save();
+		}
+
+		// TODO: Remove old Guildmembers
+		Collections.sort(currentGuildMember);
+
+		return GuildMember.count();
+	}
+	
+	/**
+	 * Finds a guild member by name and realm, Binary Safe!
+	 * 
+	 * @param name
+	 * @param realm
+	 * @return GuildMember
+	 */
+	public static GuildMember findByNameAndRealm(String name, String realm) {
+		return findByNameAndRealm(name, Realm.findByName(realm));
+	}
+	
+	/**
+	 * Finds a guild member by name and realm, Binary Safe!
+	 * 
+	 * @param name
+	 * @param realm
+	 * @return GuildMember
+	 */
+	public static GuildMember findByNameAndRealm(String name, Realm realm) {
+		try {
+			PreparedStatement ps = DB.getConnection().prepareStatement("select id from GuildMember where BINARY name = ? and BINARY realm_id = ?");
+			ps.setString(1, name);
+			ps.setLong(2, realm.id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.first()) {
+				Logger.info("[GuildMember][findByNameAndRealm] GuildMember " + name + " found");
+				return GuildMember.findById(rs.getLong("id"));
+			} else {
+				Logger.info("[GuildMember][findByNameAndRealm] GuildMember " + name + " not found");
+				return null;
+			}
+		} catch (SQLException e) {
+			Logger.warn("[GuildMember][FindByNameAndRealm] " + e.getLocalizedMessage(), e);
+			return null;
+		}
 	}
 
 	public static List<String> currentGuildMember() {
@@ -83,20 +166,5 @@ public class GuildMember extends Model {
 			Logger.info("Keinen passenden GuildMember in der Datenbank gefunden", e);
 			return null;
 		}
-	}
-
-	public static GuildMember findByNameAndRealm(String name, String realm) {
-		try {
-			PreparedStatement ps = DB.getConnection().prepareStatement("select id from GuildMember where BINARY name = ? and BINARY realm = ?");
-			ps.setString(1, name);
-			ps.setString(2, realm);
-			ResultSet rs = ps.executeQuery();
-			rs.next();
-			return GuildMember.findById(rs.getLong("id"));
-		} catch (SQLException e) {
-			Logger.info("Keinen passenden GuildMember zu (" + name + ") in der Datenbank gefunden", e);
-			return null;
-		}
-
 	}
 }

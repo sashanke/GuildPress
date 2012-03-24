@@ -21,6 +21,7 @@ import models.wowapi.Armory;
 import models.wowapi.WoWHead;
 import models.wowapi.character.Avatar;
 import models.wowapi.character.AvatarItem;
+import models.wowapi.guild.Guild;
 import models.wowapi.guild.GuildMember;
 import models.wowapi.resources.Item;
 import play.Play;
@@ -37,7 +38,8 @@ public class Char extends Controller {
 		Application.addDefaults();
 	}
 	
-	public static void show(String name) {		
+	public static void show(String name) {	
+
 		Avatar avatar = Armory.fetchCharacter("Anub'arak", name);
 		if (avatar == null) {
 			GuildMember guildMember = GuildMember.find("name = ?", name).first();

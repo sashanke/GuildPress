@@ -1,1 +1,4 @@
 FOR %G IN (*.blp) DO .\BLP2PNG.exe %G
+
+Linux alle dateien lowercase:
+rename 'y/A-Z/a-z/' *

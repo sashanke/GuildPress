@@ -7,6 +7,11 @@ GET			/login			SecureC.login
 POST        /login          SecureC.authenticate
 GET         /logout         SecureC.logout
 
+# Service
+GET		/ws/guild/{name}/{realm}/update						Service.updateGuild
+GET		/ws/realm/update									Service.updateRealms
+GET		/ws/avatar/{name}/{realm}/update					Service.updateAvatar
+
 # Front page
 GET     /                                       			FrontPage.index
 GET		/public/flash/rotator/images.xml					Application.postListXml(format:'xml')

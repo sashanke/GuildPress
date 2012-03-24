@@ -317,7 +317,7 @@ $(document).ready(function() {
 		            <li class="user-meta-cell user-meta-avatar">
 		            	#{if session.username && user != null}
 		                <a class="no-tooltip" href="@{Char.show(user.avatar.name.toLowerCase().urlEncode())}">
-		                    <img id="login-welcome-avatar" class="welcome-avatar" alt="Avatar" src="${user.avatar.avatar}">
+		                    <img id="login-welcome-avatar" class="welcome-avatar" alt="Avatar" src="${user.avatar.image}">
 		                </a>
 		                #{/if}
 		            </li>

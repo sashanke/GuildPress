@@ -42,9 +42,9 @@
 			#{list items:members, as:'member'}
 			#{if cnt == 0}<div class="avatar_row">#{/if}
 				<div class="avatar_box #{if cnt == 0}avatar_box_first#{/if}#{elseif cnt == 6}avatar_box_last#{/elseif}">
-				#{avatar avatar:member.wowcharacter, as:'roster' /}
+				#{avatar avatar:member.avatar, as:'roster' /}
 				</div>
-			#{if cnt == 6}</div>#{/if}
+			#{if cnt == 6 || member_isLast}</div>#{/if}
 				%{cnt++; if(cnt == 7) cnt=0;}%
 			#{/list}
 			</div>

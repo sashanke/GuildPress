@@ -115,43 +115,43 @@
 	display: inline;
 	white-space: nowrap;
 }
-
+.class-druide a,
 .class-druide {
 	color: #ff7c0a !important;
 }
-
+.class-jäger a,
 .class-jäger {
 	color: #aad372 !important;
 }
-
+.class-magier a,
 .class-magier {
 	color: #68ccef !important;
 }
-
+.class-paladin a,
 .class-paladin {
 	color: #f48cba !important;
 }
-
+.class-priester a,
 .class-priester {
 	color: #f0ebe0 !important;
 }
-
+.class-schurke a,
 .class-schurke {
 	color: #fff468 !important;
 }
-
+.class-schamane a,
 .class-schamane {
 	color: #2359ff !important;
 }
-
+.class-hexenmeister a,
 .class-hexenmeister {
 	color: #9382c9 !important;
 }
-
+.class-krieger a,
 .class-krieger {
 	color: #c69b6d !important;
 }
-
+.class-todesritter a,
 .class-todesritter {
 	color: #c41e3b !important;
 }

@@ -4,7 +4,7 @@
 
 html, body {
 	margin:0; padding:0;
-    background: black url(/public/images/backgrounds/cataclysm.jpg) no-repeat top center fixed !important;
+    background: black url(/public/images/background/main.jpg) no-repeat top center fixed !important;
     font-family: Helvetica, Arial, Sans !important;
     font-size:90.5%;/* schriftgroesse relative machen, um spaeter mit em zu arbeiten    */
 	text-align:center;   /* vertikal zentrieren im IE6 */
@@ -190,11 +190,7 @@ div.clear {
    clear:both;
 }
 
-div.menu {z-index:5;position:relative;top:0px;left:15px;width:968px;height:44px;font-size:14px;padding:0px;text-align: center;}
-div.menu ul {list-style:none;margin-top:0px;text-align: center;}
-div.menu ul li {float:left;padding:10px 23px;background:transparent url(/public/images/menubg.png) no-repeat right center;}
-div.menu ul li.last {background:transparent url('');}
-div.menu ul li small {color:#fc0;position:relative;top:-7px;font-size:8px;}
+
 
 /**********************************************************************/
 /*           	             Ebenen - Text			                      

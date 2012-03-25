@@ -8,6 +8,7 @@ import java.util.List;
 import models.Message;
 import models.News;
 import models.User;
+import models.forum.Topic;
 import models.wowapi.Armory;
 import models.wowapi.character.Avatar;
 import models.wowapi.guild.Guild;
@@ -49,9 +50,12 @@ public class Application extends Controller {
 	}
 
 	public static void index() {
-		News frontPost = News.find("order by postedAt desc").first();
-		List<News> olderPosts = News.find("order by postedAt desc").from(1).fetch(10);
-		render(frontPost, olderPosts);
+//		News frontPost = News.find("order by postedAt desc").first();
+//		List<News> olderPosts = News.find("order by postedAt desc").from(1).fetch(10);
+//		
+		List<Topic> topics = Topic.find("forum.isNewsBoard = ? order by created asc", true).fetch();
+
+		render(topics);
 	}
 
 	public static void postListXml() {

@@ -11,7 +11,7 @@
 				<img class="noborder" src="/public/images/class/${avatar.cclass.ccId}.png" height="38" width="38" alt="${avatar.name}s Klasse" /> -->
 			</div>
 			<h2 class="post-title">
-				<a href="@{Char.show(avatar.name)}">${avatar.name}</a>
+				<a href="@{Char.show(avatar.id, avatar.name, avatar.realm.name)}">${avatar.name}</a>
 			</h2>
 			<span class="post-subtitle">${avatar.guild?.name}</span>
 		</div>

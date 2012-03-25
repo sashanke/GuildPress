@@ -22,6 +22,9 @@ GET     /news                                       		Application.index
 GET		/register											Application.register
 POST	/register											Application.registerd
 
+# Character
+GET		/avatar/{id}/{name}/{realm}							Char.show
+
 # Forum
 GET		/forums												Board.index
 GET		/forums/forum/{<[0-9]+>id}/{slug}					Board.showForum

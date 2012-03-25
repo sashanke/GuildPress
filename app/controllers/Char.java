@@ -38,22 +38,10 @@ public class Char extends Controller {
 		Application.addDefaults();
 	}
 	
-	public static void show(String name) {	
-
-		Avatar avatar = Armory.fetchCharacter("Anub'arak", name);
-		if (avatar == null) {
-			GuildMember guildMember = GuildMember.find("name = ?", name).first();
-			if (guildMember == null) {
-				render("Char/nothingFound.html");
-			} else {
-				render("Char/showGuildMember.html",guildMember);
-			}
-		} else {
-			List<AvatarItem> items = AvatarItem.getOrderedItemList(avatar);
-			render(avatar,items);
-		}
-		
-
+	public static void show(Long id, String name, String realm) {	
+		Avatar avatar = Avatar.findById(id);
+		List<AvatarItem> items = AvatarItem.getOrderedItemList(avatar);
+		render(avatar,items);
 	}
 	public static void showItem(Long id) {
 		Item item = Item.find("byItemId",id).first();

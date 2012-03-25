@@ -40,7 +40,7 @@
 				#{list items:wearedItems, as:'item'}
 					<tr>
 						<td style="text-align: right;"></span></td>
-						<td style="text-align: right;"><a href="@{Char.show(item.avatar.name.toLowerCase().urlEncode())}" 
+						<td style="text-align: right;"><a href="@{Char.show(item.avatar.id, item.avatar.name, item.avatar.realm.name)}" 
 						class="user-name character character-member character-unverified character-${item.avatar.name.toLowerCase()} 
 						character-class-wow character-class-wow-${item.avatar.cclass.name.toLowerCase()} character-name-${item.avatar.name.toLowerCase()}">${item.avatar.name}</a></td>
 					</tr>									

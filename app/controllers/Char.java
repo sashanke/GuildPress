@@ -1,5 +1,7 @@
 package controllers;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,11 @@ import models.wowapi.character.Avatar;
 import models.wowapi.character.AvatarItem;
 import models.wowapi.guild.Guild;
 import models.wowapi.guild.GuildMember;
+import models.wowapi.resources.CharacterClass;
+import models.wowapi.resources.CharacterRace;
 import models.wowapi.resources.Item;
+import models.wowapi.resources.RaceClassMap;
+import models.wowapi.resources.Side;
 import play.Play;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
@@ -38,7 +44,33 @@ public class Char extends Controller {
 		Application.addDefaults();
 	}
 	
-	public static void show(Long id, String name, String realm) {	
+	public static void show(Long id, String name, String realm) throws IOException {
+		
+		
+		//String banner = Play.configuration.getProperty("conf.bannerdir") + this.race.side.name.toLowerCase() + "/" + this.race.name.toLowerCase() + "/" + this.race.name.toLowerCase() + "_" + Tools.replaceUmlauts(this.cclass.name.toLowerCase()) + "_" + Tools.replaceUmlauts(this.gender.name_loc.toLowerCase()) + ".jpg";
+		
+//		List<CharacterClass> cr = CharacterClass.findAll();
+//		for (CharacterClass characterRace : cr) {
+//			System.out.println("public static final int "+characterRace.name.toUpperCase()+" = "+characterRace.ccId+";");
+//		}
+		
+		//RaceClassMap.createMap();
+		
+//		List<RaceClassMap> rcm = RaceClassMap.findAll();
+//		for (RaceClassMap raceClassMap : rcm) {
+//			for (CharacterClass cclass : raceClassMap.cclass) {
+//				File one = new File("." + Play.configuration.getProperty("conf.bannerdir") + raceClassMap.side.name.toLowerCase() + "/" + raceClassMap.race.name.toLowerCase() + "/" + raceClassMap.race.name.toLowerCase() + "_" + Tools.replaceUmlauts(cclass.name.toLowerCase()) + "_" + Tools.replaceUmlauts("männlich") + ".jpg");
+//				File two = new File("." + Play.configuration.getProperty("conf.bannerdir") + raceClassMap.side.name.toLowerCase() + "/" + raceClassMap.race.name.toLowerCase() + "/" + raceClassMap.race.name.toLowerCase() + "_" + Tools.replaceUmlauts(cclass.name.toLowerCase()) + "_" + Tools.replaceUmlauts("weiblich") + ".jpg");
+//				if(!one.exists()){
+//					one.createNewFile();
+//				}
+//				if(!two.exists()){
+//					two.createNewFile();
+//				}
+//			}
+//		}
+		
+		
 		Avatar avatar = Avatar.findById(id);
 		List<AvatarItem> items = AvatarItem.getOrderedItemList(avatar);
 		render(avatar,items);

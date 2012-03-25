@@ -372,7 +372,7 @@ public class Avatar extends Model {
 	}
 
 	public String getAvatarBanner() {
-		String banner = Play.configuration.getProperty("conf.bannerdir") + this.race.side.name.toLowerCase() + "/" + this.race.name.toLowerCase() + "/" + this.race.name.toLowerCase() + "_" + this.cclass.name.toLowerCase() + "_" + this.gender.name_loc.toLowerCase() + ".jpg";
+		String banner = Play.configuration.getProperty("conf.bannerdir") + this.race.side.name.toLowerCase() + "/" + this.race.name.toLowerCase() + "/" + this.race.name.toLowerCase() + "_" + Tools.replaceUmlauts(this.cclass.name.toLowerCase()) + "_" + Tools.replaceUmlauts(this.gender.name_loc.toLowerCase()) + ".jpg";
 		return banner;
 	}
 

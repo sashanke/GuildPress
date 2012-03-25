@@ -21,6 +21,19 @@ import play.db.jpa.Model;
 @Entity
 public class CharacterRace extends Model {
 
+	public static final int DRAENEI = 11;
+	public static final int MENSCH = 1;
+	public static final int UNTOTER = 5;
+	public static final int GNOM = 7;
+	public static final int TROLL = 8;
+	public static final int ORC = 2;
+	public static final int ZWERG = 3;
+	public static final int NACHTELF = 4;
+	public static final int BLUTELF = 10;
+	public static final int WORGEN = 22;
+	public static final int TAUREN = 6;
+	public static final int GOBLIN = 9;
+	
 	public Long crId;
 	public Long mask;
 	@ManyToOne

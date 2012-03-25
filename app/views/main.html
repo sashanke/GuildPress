@@ -370,7 +370,7 @@ $(document).ready(function() {
 							<li><a href="@{Application.index()}" class="${request?.controller == 'Application' ? 'sel' : ''}" title="${guildTag} News">News</a></li>
 							<li><a href="@{RaidTracker.index()}" class="${request?.controller == 'RaidTracker' ? 'sel' : ''}" title="${guildTag} Raids">Raids</a></li>
 							
-							<li><a href="@{ChatRoom.room(user?.avatar?.name)}" class="${request?.controller == 'LongPolling' ? 'sel' : ''}" title="${guildTag} Chat">Chat</a></li>
+							<!--  <li><a href="@{ChatRoom.room(user?.avatar?.name)}" class="${request?.controller == 'LongPolling' ? 'sel' : ''}" title="${guildTag} Chat">Chat</a></li> -->
 							<li><a href="@{Roster.index()}" class="${request?.controller == 'MitgliederVerzeichnis' ? 'sel' : ''}" title="${guildTag} Mitglieder">Mitglieder</a></li>
 							
 							<li><a href="@{Board.index()}" class="${request?.controller == 'Board' ? 'sel' : ''}" title="${guildTag} Forum">Forum</a></li>
@@ -392,74 +392,77 @@ $(document).ready(function() {
 								<div class="colBlurb">${guildWellcomemsg}<br></div>
 							</div>
 						</div>
-#{if !session.username}				
-<div class="box spacer">
-<div id="box-login">
-	<h2 class="nav_t">Login</h2>
-	<div class="colBreak clear"></div>
-	
-	#{form @SecureC.authenticate(), class: 'login_user_form'}
-		
-		#{if flash.error}
-			<p id="box-login-error" class="msg error colBlurb">
-				&{flash.error}
-			</p>
-		#{/if}
-		#{if flash.success}
-			<p id="box-login-success" class="msg success colBlurb">
-				&{flash.success}
-			</p>
-		#{/if}
-	
-		<p id="username-field">
-			<label class="username" for="username">Email</label>
-			<input class="username" type="text" name="username" id="username" value="${flash.username}" />
-		</p>
-		<p id="password-field">
-			<label class="password" for="password">Passwort</label>
-			<input class="password" type="password" name="password" id="password" value="" />
-		</p>
-		<p id="remember-field">
-			<label class="remember" for="remember">Merken</label>
-			<input class="remember" type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
-			
-		</p>
-
-			<input type="submit" id="box-login-signin" value="Einloggen" />
-		
-	#{/form}
-</div>
-</div>						
-#{/if}
+						
+						#{if !session.username}				
+						<div class="box spacer">
+						<div id="box-login">
+							<h2 class="nav_t">Login</h2>
+							<div class="colBreak clear"></div>
+							
+							#{form @SecureC.authenticate(), class: 'login_user_form'}
+								
+								#{if flash.error}
+									<p id="box-login-error" class="msg error colBlurb">
+										&{flash.error}
+									</p>
+								#{/if}
+								#{if flash.success}
+									<p id="box-login-success" class="msg success colBlurb">
+										&{flash.success}
+									</p>
+								#{/if}
+							
+								<p id="username-field">
+									<label class="username" for="username">Email</label>
+									<input class="username" type="text" name="username" id="username" value="${flash.username}" />
+								</p>
+								<p id="password-field">
+									<label class="password" for="password">Passwort</label>
+									<input class="password" type="password" name="password" id="password" value="" />
+								</p>
+								<p id="remember-field">
+									<label class="remember" for="remember">Merken</label>
+									<input class="remember" type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
+									
+								</p>
+						
+									<input type="submit" id="box-login-signin" value="Einloggen" />
+								
+							#{/form}
+						</div>
+						</div>						
+						#{/if}
         				
 						<div class="box spacer">
 							<div class="guildinfo">
 								<h2 class="nav_t">Gildenstatus</h2>
 								<div class="colBreak clear"></div>
-								<div class="guildlogo"><canvas xmlns="http://www.w3.org/1999/xhtml" id="guild-tabard" width="150" height="150">
-			<div class="guild-tabard-default "></div>
-		</canvas>
-		<script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
-        //<![CDATA[
-
-			$(document).ready(function() {
-
-				var tabard = new GuildTabard('guild-tabard', {
-
-					'ring': 'alliance',
-
-					'bg': [ 0, 49 ],
-
-					'border': [ 0, 15 ],
-
-					'emblem': [ 164, 15 ]
-
-				});
-
-			});
-
-        //]]>
-        </script></div>
+								<div class="guildlogo">
+									<canvas xmlns="http://www.w3.org/1999/xhtml" id="guild-tabard" width="150" height="150">
+										<div class="guild-tabard-default "></div>
+									</canvas>
+									<script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+							        //<![CDATA[
+							
+										$(document).ready(function() {
+							
+											var tabard = new GuildTabard('guild-tabard', {
+							
+												'ring': 'alliance',
+							
+												'bg': [ 0, 49 ],
+							
+												'border': [ 0, 15 ],
+							
+												'emblem': [ 164, 15 ]
+							
+											});
+							
+										});
+							
+							        //]]>
+							        </script>
+							    </div>
 						        <ul class="guildinformation">
 						            <li class="guildname">${guild.name}</li>
 						            <li class="realmstatus">${realm.name} ${realm.status ? '(Up)' : '(Down)'} </li>

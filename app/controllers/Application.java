@@ -53,7 +53,7 @@ public class Application extends Controller {
 //		News frontPost = News.find("order by postedAt desc").first();
 //		List<News> olderPosts = News.find("order by postedAt desc").from(1).fetch(10);
 //		
-		List<Topic> topics = Topic.find("forum.isNewsBoard = ? order by created asc", true).fetch();
+		List<Topic> topics = Topic.find("forum.isNewsBoard = ? order by created desc", true).fetch();
 
 		render(topics);
 	}

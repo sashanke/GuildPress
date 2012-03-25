@@ -17,7 +17,7 @@
         	
         	<div class="avatar">
 					<a href="@{Char.show(member.avatar.id, member.avatar.name, member.avatar.realm.name)}">
-						<img src="${member.avatar.avatar}" height="84" width="84" alt="${member.name}s avatar" />
+						<img src="${member.avatar.image}" height="84" width="84" alt="${member.name}s avatar" />
 					</a>
 					<div class="character-rank"><a href="@{Roster.index()}"><img class="noborder" src="/public/images/transparent.png" height="16" width="16" alt="${member.avatar.name}s rank" /></a></div>
 					<div class="character-name"><a href="/character/${member.avatar.name.toLowerCase().urlEncode()}" class="character character-member character-unverified character-${member.avatar.cclass.name.toLowerCase()} character-class-wow character-class-wow-${member.avatar.cclass.name.toLowerCase()} character-name-${member.avatar.name.toLowerCase()}">${member.avatar.name}</a></div>

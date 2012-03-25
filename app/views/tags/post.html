@@ -11,7 +11,7 @@
     		<div id="newPost"></div>
 		#{/if}
 		<div class="gradient post-tools post-tools-${post_parity}">
-			<span class="classicon classicon-small classicon-left classicon-small-${post.author.avatar.cclass.name.toLowerCase()}"></span>&nbsp;
+			<span class="classicon classicon-small classicon-left classicon-small-transparent-${post.author.avatar.cclass.name.toLowerCase()}"></span>&nbsp;
 			<span class="class class-${post.author.avatar.cclass.name.toLowerCase()}">${post.author.avatar.name}</span>
 			<span class="right small"><a name="${post.id}">#${postcnt}</a></span>
 			<span class="right small">Geschrieben am ${post.created.format('dd. MMMM yyyy','de')} um ${post.created.format('HH:mm')}&nbsp;&nbsp;</span>

@@ -14,7 +14,7 @@
 }
 
 .classicon-small {
-	background: transparent url(/public/images/world-of-warcraft/wow-icons.png) no-repeat top left;
+	background: transparent url(/public/images/world-of-warcraft/class-icons/class-icons.png) no-repeat top left;
 	border: none;
 	height: 16px;
 	font-size:14px;
@@ -42,9 +42,7 @@
 }
 
 .classicon-small-priester {
-	background: transparent url(/public/images/world-of-warcraft/class-icons/16/priester-tranparent.png) no-repeat top left;
-	
-	background-position: 0px 0px !important;
+	background-position: -51px 0px !important;
 }
 
 .classicon-small-schurke {
@@ -65,6 +63,50 @@
 
 .classicon-small-todesritter {
 	background-position: 0px 0px !important;
+}
+
+.classicon-small-transparent-druide {
+	background-position: -170px -200px !important;
+}
+
+.classicon-small-transparent-mönch {
+	background-position: -85px -200px !important;
+}
+
+.classicon-small-transparent-jäger {
+	background-position: -136px -200px !important;
+}
+
+.classicon-small-transparent-magier {
+	background-position: -102px -200px !important;
+}
+
+.classicon-small-transparent-paladin {
+	background-position: -68px -200px !important;
+}
+
+.classicon-small-transparent-priester {
+	background-position: -51px -200px !important;
+}
+
+.classicon-small-transparent-schurke {
+	background-position: -17px -200px !important;
+}
+
+.classicon-small-transparent-schamane {
+	background-position: -34px -200px !important;
+}
+
+.classicon-small-transparent-hexenmeister {
+	background-position: -153px 200px !important;
+}
+
+.classicon-small-transparent-krieger {
+	background-position: -119px -200px !important;
+}
+
+.classicon-small-transparent-todesritter {
+	background-position: 0px -200px !important;
 }
 
 .class {

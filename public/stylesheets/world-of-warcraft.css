@@ -42,7 +42,9 @@
 }
 
 .classicon-small-priester {
-	background-position: -51px 0px !important;
+	background: transparent url(/public/images/world-of-warcraft/class-icons/16/priester-tranparent.png) no-repeat top left;
+	
+	background-position: 0px 0px !important;
 }
 
 .classicon-small-schurke {

@@ -36,6 +36,7 @@ import org.xml.sax.SAXException;
 
 import play.Play;
 import play.db.DB;
+import play.libs.Codec;
 import play.libs.XPath;
 import play.mvc.Before;
 import play.mvc.Controller;
@@ -195,7 +196,7 @@ public class RaidTracker extends Controller {
 				if (member.equals("disenchanted")) {
 					member = "Entzaubert";
 				}
-				RaidMember rm = RaidMember.find("id = ? and raid =?", RaidMember.findByName(member).id, raid).first();
+				RaidMember rm = RaidMember.find("hash = ? and raid =?", Codec.hexMD5(member), raid).first();
 
 				String sitemId = XPath.selectText("itemid", items);
 				Long itemId = Long.parseLong(sitemId.substring(0, sitemId.indexOf(":")));

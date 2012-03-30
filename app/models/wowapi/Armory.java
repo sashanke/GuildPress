@@ -40,9 +40,12 @@ import models.wowapi.resources.Realm;
 import models.wowapi.resources.Side;
 import play.Logger;
 import play.Play;
+import play.libs.F.Promise;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
 import play.libs.WS.WSRequest;
+import play.libs.ws.WSAsync;
+import play.libs.ws.WSAsync.WSAsyncRequest;
 import utils.Tools;
 
 import com.google.gson.JsonArray;
@@ -1287,6 +1290,7 @@ public class Armory {
 		Logger.info("[Armory][fetchFromArmory][url] " + battleNetApiURL);
 
 		HttpResponse hr = WS.url(battleNetApiURL).get();
+	
 		if (hr.success()) {
 			JsonElement armoryanswer = hr.getJson();
 			return armoryanswer;

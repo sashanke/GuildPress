@@ -29,6 +29,7 @@ import play.Logger;
 import play.db.DB;
 import play.db.jpa.Model;
 import play.libs.Codec;
+import play.libs.F.Promise;
 
 @Entity
 public class GuildMember extends Model {
@@ -111,8 +112,8 @@ public class GuildMember extends Model {
 			gm.lastUpdate = new Date();
 			gm.lastModified = new Date();
 			gm.save();
-			gm.avatar = Avatar.createAvatar(gm.name, gm.realm.name);
-			gm.save();
+//			gm.avatar = Avatar.createAvatar(gm.name, gm.realm.name);
+//			gm.save();
 		}
 
 		// TODO: Remove old Guildmembers

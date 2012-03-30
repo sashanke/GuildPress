@@ -30,6 +30,7 @@ import play.data.validation.Required;
 import play.db.DB;
 import play.db.jpa.Model;
 import play.libs.Codec;
+import play.libs.F.Promise;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
 import utils.Tools;
@@ -429,5 +430,11 @@ public class Avatar extends Model {
 			return this.inset.substring(1);
 		}
 		return this.inset;
+	}
+
+	public static Promise<Avatar> createAsyncAvatar(String name, String realm) {
+		Promise<Avatar> futureAvatar = new Promise<Avatar>();
+		futureAvatar.invoke(Avatar.createAvatar(name, realm));
+		return futureAvatar;
 	}
 }

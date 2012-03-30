@@ -45,6 +45,8 @@ public class User extends Model {
 	public boolean isGuildMember;
 	@OneToOne
 	public Avatar avatar;
+	
+	public Date lastActiveTime;
 
 	public User(String email, String password, String fullname) {
 		this.email = email;
@@ -83,5 +85,10 @@ public class User extends Model {
 			return false;
 		}
 		return true;
+	}
+
+	public void activity() {
+		this.lastActiveTime = new Date();
+		this.save();
 	}
 }

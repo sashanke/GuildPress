@@ -46,7 +46,19 @@ public class Application extends Controller {
 		renderArgs.put("logs", Logs.find("order by date desc").fetch(10));
 		renderArgs.put("wowpet", FileUtils.getRandomFile("./public/images/pets/"));
 		renderArgs.put("randomArtwork", Play.configuration.getProperty("conf.artworksdir") + FileUtils.getRandomFile("./public/images/artworks/"));
-		renderArgs.put("user", User.getConnectedUser(session.get("username")));
+		
+		User user = User.getConnectedUser(session.get("username"));
+		if (user != null) {
+			user.activity();
+		}
+		
+		
+		renderArgs.put("user", user);
+		
+		Date date = new Date();
+		
+		List<User> lastActiveUsers = User.find("lastActiveTime BETWEEN ? and ?", new Date(date.getTime() - 300000L), date).fetch();
+		renderArgs.put("lastActiveUsers", lastActiveUsers);
 	}
 
 	public static void index() {
@@ -162,7 +174,7 @@ public class Application extends Controller {
 
 	public static void charfetch(Long id, String name) {
 		Realm realm = Realm.findById(id);
-		Avatar avatar = Armory.fetchCharacter(realm.name, name);
+		Avatar avatar = Avatar.createAvatar(name, realm.name);
 		render(avatar);
 	}
 

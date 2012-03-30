@@ -537,7 +537,7 @@ $(document).ready(function() {
 			</div>
 			<div class="wrapper">
 				<div id="footer_top">
-					<div id="footer_top_t">Wer ist Online: <span id="whosOnline"><i><a href="" class="nyi no-tooltip user-name character character-member character-unverified character-druid character-class-wow character-class-wow-druid">Calenria</a></i></span></div>
+					<div id="footer_top_t">Wer ist Online: <span id="whosOnline"><i>#{list items:lastActiveUsers, as:'lastUser'}#{name_with_link avatar:lastUser.avatar, as:'link' /}#{if !lastUser_isLast}, #{/if}#{/list}</i></span></div>
 				</div>
 				<!--<div id="footer_bottom">
 					<div id="footer_bottom_t">Ich bin ein footer_bottom Text.</div>-->    

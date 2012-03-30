@@ -110,7 +110,7 @@ public class Avatar extends Model {
 		if (avatar == null) {
 			return createAvatar(new Avatar(name, realm));
 		} else {
-			return createAvatar(avatar);
+			return updateAvatar(avatar);
 		}
 	}
 

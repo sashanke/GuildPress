@@ -352,7 +352,7 @@ public class Avatar extends Model {
 	 * @return Avatar
 	 */
 	public static Avatar findByNameAndRealm(String name, Realm realm) {
-		return Avatar.find("name = ?", Codec.hexMD5(name)).first();
+		return Avatar.find("hash = ?", Codec.hexMD5(name)).first();
 //		try {
 //			PreparedStatement ps = DB.getConnection().prepareStatement("select id from Avatar where BINARY name = ? and realm_id = ?");
 //			ps.setString(1, name);

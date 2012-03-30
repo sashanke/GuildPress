@@ -140,7 +140,7 @@ public class GuildMember extends Model {
 	 * @return GuildMember
 	 */
 	public static GuildMember findByNameAndRealm(String name, Realm realm) {
-		return GuildMember.find("name = ?", Codec.hexMD5(name)).first();
+		return GuildMember.find("hash = ?", Codec.hexMD5(name)).first();
 //		try {
 //			PreparedStatement ps = DB.getConnection().prepareStatement("select id from GuildMember where BINARY name = ? and BINARY realm_id = ?");
 //			ps.setString(1, name);

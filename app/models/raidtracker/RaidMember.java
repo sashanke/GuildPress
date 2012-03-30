@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 import models.wowapi.character.Avatar;
+import models.wowapi.guild.GuildMember;
 import models.wowapi.resources.Realm;
 
 import play.Logger;
@@ -47,22 +48,23 @@ public class RaidMember extends Model {
 	 * @return RaidMember
 	 */
 	public static RaidMember findByName(String name) {
-		try {
-			PreparedStatement ps = DB.getConnection().prepareStatement("select id from RaidMember where BINARY name = ?");
-			ps.setString(1, name);
-			ResultSet rs = ps.executeQuery();
-			if (rs.first()) {
-				Logger.info("[RaidMember][findByNameAndRealm] RaidMember " + name + " found");
-				return Avatar.findById(rs.getLong("id"));
-			} else {
-				Logger.info("[RaidMember][findByNameAndRealm] RaidMember " + name + " not found");
-				return null;
-			}
-
-		} catch (SQLException e) {
-			Logger.warn("[RaidMember][FindByNameAndRealm] " + e.getLocalizedMessage(), e);
-			return null;
-		}
+		return RaidMember.find("hash = ?", Codec.hexMD5(name)).first();
+//		try {
+//			PreparedStatement ps = DB.getConnection().prepareStatement("select id from RaidMember where BINARY name = ?");
+//			ps.setString(1, name);
+//			ResultSet rs = ps.executeQuery();
+//			if (rs.first()) {
+//				Logger.info("[RaidMember][findByNameAndRealm] RaidMember " + name + " found");
+//				return Avatar.findById(rs.getLong("id"));
+//			} else {
+//				Logger.info("[RaidMember][findByNameAndRealm] RaidMember " + name + " not found");
+//				return null;
+//			}
+//
+//		} catch (SQLException e) {
+//			Logger.warn("[RaidMember][FindByNameAndRealm] " + e.getLocalizedMessage(), e);
+//			return null;
+//		}
 
 	}
 	

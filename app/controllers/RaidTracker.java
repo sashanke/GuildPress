@@ -110,8 +110,8 @@ public class RaidTracker extends Controller {
 		List<RaidItem> mitems = RaidItem.find("order by raid desc").fetch();
 
 		List<Raid> raids = new ArrayList<Raid>();
-		PreparedStatement ps = DB.getConnection().prepareStatement("select r.id raidId from Raid r join RaidMember rm on (r.id = rm.raid_id) where rm.name = ? order by r.id desc");
-		ps.setString(1, name);
+		PreparedStatement ps = DB.getConnection().prepareStatement("select r.id raidId from Raid r join RaidMember rm on (r.id = rm.raid_id) where BINARY rm.name = ? order by r.id desc");
+		ps.setString(1, member.name);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
 			raids.add((Raid)Raid.findById(rs.getLong("raidId")));

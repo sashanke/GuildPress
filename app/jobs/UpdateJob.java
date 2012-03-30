@@ -55,8 +55,6 @@ public class UpdateJob extends Job {
 
 			Guild.createGuild(Play.configuration.getProperty("wowapi.guildName"), Play.configuration.getProperty("wowapi.realmName"));
 			
-			
-			
 			List<GuildMember> guildMember = GuildMember.findAll();
 			for (GuildMember guildMember2 : guildMember) {
 				Promise<Avatar> futureAvatar = Avatar.createAsyncAvatar(guildMember2.name, guildMember2.realm.name);

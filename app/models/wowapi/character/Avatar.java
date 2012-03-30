@@ -352,23 +352,24 @@ public class Avatar extends Model {
 	 * @return Avatar
 	 */
 	public static Avatar findByNameAndRealm(String name, Realm realm) {
-		try {
-			PreparedStatement ps = DB.getConnection().prepareStatement("select id from Avatar where BINARY name = ? and realm_id = ?");
-			ps.setString(1, name);
-			ps.setLong(2, realm.id);
-			ResultSet rs = ps.executeQuery();
-			if (rs.first()) {
-				Logger.info("[Avatar][findByNameAndRealm] Avatar " + name + " found");
-				return Avatar.findById(rs.getLong("id"));
-			} else {
-				Logger.info("[Avatar][findByNameAndRealm] Avatar " + name + " not found");
-				return null;
-			}
-
-		} catch (SQLException e) {
-			Logger.warn("[Avatar][FindByNameAndRealm] " + e.getLocalizedMessage(), e);
-			return null;
-		}
+		return Avatar.find("name = ?", Codec.hexMD5(name)).first();
+//		try {
+//			PreparedStatement ps = DB.getConnection().prepareStatement("select id from Avatar where BINARY name = ? and realm_id = ?");
+//			ps.setString(1, name);
+//			ps.setLong(2, realm.id);
+//			ResultSet rs = ps.executeQuery();
+//			if (rs.first()) {
+//				Logger.info("[Avatar][findByNameAndRealm] Avatar " + name + " found");
+//				return Avatar.findById(rs.getLong("id"));
+//			} else {
+//				Logger.info("[Avatar][findByNameAndRealm] Avatar " + name + " not found");
+//				return null;
+//			}
+//
+//		} catch (SQLException e) {
+//			Logger.warn("[Avatar][FindByNameAndRealm] " + e.getLocalizedMessage(), e);
+//			return null;
+//		}
 
 	}
 

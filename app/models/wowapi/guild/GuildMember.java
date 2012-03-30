@@ -140,22 +140,23 @@ public class GuildMember extends Model {
 	 * @return GuildMember
 	 */
 	public static GuildMember findByNameAndRealm(String name, Realm realm) {
-		try {
-			PreparedStatement ps = DB.getConnection().prepareStatement("select id from GuildMember where BINARY name = ? and BINARY realm_id = ?");
-			ps.setString(1, name);
-			ps.setLong(2, realm.id);
-			ResultSet rs = ps.executeQuery();
-			if (rs.first()) {
-				Logger.info("[GuildMember][findByNameAndRealm] GuildMember " + name + " found");
-				return GuildMember.findById(rs.getLong("id"));
-			} else {
-				Logger.info("[GuildMember][findByNameAndRealm] GuildMember " + name + " not found");
-				return null;
-			}
-		} catch (SQLException e) {
-			Logger.warn("[GuildMember][FindByNameAndRealm] " + e.getLocalizedMessage(), e);
-			return null;
-		}
+		return GuildMember.find("name = ?", Codec.hexMD5(name)).first();
+//		try {
+//			PreparedStatement ps = DB.getConnection().prepareStatement("select id from GuildMember where BINARY name = ? and BINARY realm_id = ?");
+//			ps.setString(1, name);
+//			ps.setLong(2, realm.id);
+//			ResultSet rs = ps.executeQuery();
+//			if (rs.first()) {
+//				Logger.info("[GuildMember][findByNameAndRealm] GuildMember " + name + " found");
+//				return GuildMember.findById(rs.getLong("id"));
+//			} else {
+//				Logger.info("[GuildMember][findByNameAndRealm] GuildMember " + name + " not found");
+//				return null;
+//			}
+//		} catch (SQLException e) {
+//			Logger.warn("[GuildMember][FindByNameAndRealm] " + e.getLocalizedMessage(), e);
+//			return null;
+//		}
 	}
 
 	public static List<String> currentGuildMember() {

@@ -28,11 +28,13 @@ import models.wowapi.resources.Realm;
 import play.Logger;
 import play.db.DB;
 import play.db.jpa.Model;
+import play.libs.Codec;
 
 @Entity
 public class GuildMember extends Model {
 
 	public String name;
+	public String hash;
 	public String image;
 	public Long level;
 	public Date lastUpdate;
@@ -56,9 +58,10 @@ public class GuildMember extends Model {
 
 	public GuildMember(String name, Guild guild) {
 		this.name = name;
+		this.hash = Codec.hexMD5(name); //27f9435463a2b883194b7fc8c9095148
 		this.guild = guild;
 		this.lastUpdate = new Date();
-		this.lastModified = new Date();
+		this.lastModified = new Date(); 
 		this.created = new Date();
 	}
 
@@ -78,6 +81,7 @@ public class GuildMember extends Model {
 
 			JsonObject character = guildMemberJson.getAsJsonObject().get("character").getAsJsonObject();
 			String gmname = character.get("name").getAsString();
+			String gmhash = Codec.hexMD5(gmname);
 			CharacterClass gmclass = CharacterClass.find("ccId", character.get("class").getAsLong()).first();
 			CharacterRace gmrace = CharacterRace.find("crId", character.get("race").getAsLong()).first();
 			Gender gmgender = Gender.find("gId", character.get("gender").getAsLong()).first();
@@ -96,6 +100,7 @@ public class GuildMember extends Model {
 			Logger.info("[GuildMember][fetchGuildMembers] " + gm.name + " " + guild.name + " (" + guild.realm + ")");
 			gm.guild = guild;
 			gm.name = gmname;
+			gm.hash = gmhash;
 			gm.realm = guild.realm;
 			gm.cclass = gmclass;
 			gm.race = gmrace;

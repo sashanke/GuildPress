@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.UniqueConstraint;
 
 import models.wowapi.Armory;
 import models.wowapi.guild.Guild;
@@ -25,8 +26,10 @@ import models.wowapi.resources.ItemSlotType;
 import models.wowapi.resources.Realm;
 import play.Logger;
 import play.Play;
+import play.data.validation.Required;
 import play.db.DB;
 import play.db.jpa.Model;
+import play.libs.Codec;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
 import utils.Tools;
@@ -38,7 +41,11 @@ import com.google.gson.JsonParser;
 @Entity
 public class Avatar extends Model {
 
+	@Required
 	public String name;
+	
+	public String hash;
+	
 	@ManyToOne
 	public Realm realm;
 	@ManyToOne
@@ -81,6 +88,7 @@ public class Avatar extends Model {
 
 	public Avatar(String name, String realm) {
 		this.name = name;
+		this.hash = Codec.hexMD5(name);
 		this.realm = Realm.findByName(realm);
 		this.lastModified = new Date();
 		this.lastUpdate = new Date();

@@ -54,7 +54,7 @@ public class Roster extends Controller {
 	
 		} else {
 			members = GuildMember.find(
-					"rank.rank != 6 order by rank.rank, name asc").fetch();
+					"rank.rank in (0,1,3) order by rank.rank, name asc").fetch();
 		}
 	
 		List<GuildRank> granks = GuildRank.find("order by rank asc").fetch();

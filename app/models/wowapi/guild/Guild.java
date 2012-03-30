@@ -4,6 +4,7 @@ import play.*;
 import play.data.validation.Required;
 import play.db.DB;
 import play.db.jpa.*;
+import play.libs.Codec;
 
 import javax.persistence.*;
 
@@ -42,6 +43,8 @@ public class Guild extends Model {
 
 	public String name;
 
+	public String hash;
+	
 	public Long level;
 
 	public Long members;
@@ -81,6 +84,7 @@ public class Guild extends Model {
 	 */
 	public Guild(String name, String realm) {
 		this.name = name;
+		this.hash = Codec.hexMD5(name);
 		this.realm = Realm.findByName(realm);
 		this.created = new Date();
 		this.lastUpdate = new Date();
@@ -157,6 +161,7 @@ public class Guild extends Model {
 		JsonObject guildJson = Armory.getGuildJson(guild.name, guild.realm);
 		guild.lastModified = new Date(guildJson.get("lastModified").getAsLong());
 		guild.name = guildJson.get("name").getAsString();
+		guild.hash = Codec.hexMD5(guild.name);
 		guild.level = guildJson.get("level").getAsLong();
 		guild.side = Side.find("sId", guildJson.get("side").getAsLong()).first();
 		guild.achievementPoints = guildJson.get("achievementPoints").getAsLong();

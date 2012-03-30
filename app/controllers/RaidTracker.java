@@ -105,7 +105,7 @@ public class RaidTracker extends Controller {
 
 	public static void showChar(String name) throws SQLException {
 		List<RaidItem> items = new ArrayList<RaidItem>();
-		RaidMember member = RaidMember.find("name = ?", name).first();
+		RaidMember member = RaidMember.findByName(name);
 		List<RaidItem> mitems = RaidItem.find("order by raid desc").fetch();
 
 		List<Raid> raids = new ArrayList<Raid>();
@@ -195,7 +195,7 @@ public class RaidTracker extends Controller {
 				if (member.equals("disenchanted")) {
 					member = "Entzaubert";
 				}
-				RaidMember rm = RaidMember.find("name = ? and raid =?", member, raid).first();
+				RaidMember rm = RaidMember.find("id = ? and raid =?", RaidMember.findByName(member).id, raid).first();
 
 				String sitemId = XPath.selectText("itemid", items);
 				Long itemId = Long.parseLong(sitemId.substring(0, sitemId.indexOf(":")));

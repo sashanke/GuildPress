@@ -76,7 +76,7 @@ public class RaidPoolHelper implements Comparable {
 	}
 
 	private void setCharacter(String name) {
-		this.avatar = ((RaidMember) RaidMember.find("name = ?", name).first()).avatar;
+		this.avatar = RaidMember.findByName(name).avatar;
 	}
 
 	public static List<RaidPoolHelper> getRaidPool(Long pool, List<Raid> raids) {

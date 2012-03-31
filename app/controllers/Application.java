@@ -47,13 +47,10 @@ public class Application extends Controller {
 		renderArgs.put("wowpet", FileUtils.getRandomFile("./public/images/pets/"));
 		renderArgs.put("randomArtwork", Play.configuration.getProperty("conf.artworksdir") + FileUtils.getRandomFile("./public/images/artworks/"));
 		
-		User user = User.getConnectedUser(session.get("username"));
-		if (user != null) {
-			user.activity();
-		}
 		
 		
-		renderArgs.put("user", user);
+		
+		renderArgs.put("user", User.getConnectedUser(session.get("username")));
 		
 		Date date = new Date();
 		
@@ -65,6 +62,13 @@ public class Application extends Controller {
 //		News frontPost = News.find("order by postedAt desc").first();
 //		List<News> olderPosts = News.find("order by postedAt desc").from(1).fetch(10);
 //		
+		
+		User user = User.getConnectedUser(session.get("username"));
+		if (user != null) {
+			user.activity();
+		}
+		
+		
 		List<Topic> topics = Topic.find("forum.isNewsBoard = ? order by id desc", true).fetch();
 
 		render(topics);
@@ -99,9 +103,19 @@ public class Application extends Controller {
 			cm = Message.find("date > ? order by date desc", new Date(time)).fetch(1);
 		}
 
-		JSONSerializer characterSerializer = new JSONSerializer().include("date", "id", "msg_date", "message", "name", "raw_message", "user.wowCharacter.name").exclude("*").prettyPrint(true);
+		JSONSerializer characterSerializer = new JSONSerializer().include("date", "id", "msg_date", "message", "name", "raw_message").exclude("*").prettyPrint(true);
+		
+		
+		Date date = new Date();
+		List<User> lastActiveUsers;
 
-		renderJSON(characterSerializer.serialize(cm));
+			lastActiveUsers = User.find("lastActiveTime BETWEEN ? and ? order by lastActiveTime desc", new Date(date.getTime() - 300000L), date).fetch();
+
+		
+    	
+		JSONSerializer onlineUsersSerializer = new JSONSerializer().include("id","avatar.avatarLink","lastActiveTime","avatar.name","avatar.race.name","avatar.cclass.name").exclude("*").prettyPrint(true);
+    	
+		renderJSON("{ \"messages\":" +characterSerializer.serialize(cm) + ", \n \"onlineUsers\":" + onlineUsersSerializer.serialize(lastActiveUsers) + "}");
 	}
 
 	public static void shoutboxGetMessage(Long id) {

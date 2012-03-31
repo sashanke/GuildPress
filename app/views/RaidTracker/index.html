@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
 #{set title: 'Raid Übersicht - ' + guildTitle /}
-#{set moreScripts:'<script type="text/javascript" src="/public/javascripts/raidtracker.js" charset="utf-8"></script><script type="text/javascript" src="/public/javascripts/jquery.dataTables.js" charset="utf-8"></script>'.raw() /}
-#{set moreStyles:'<link rel="stylesheet" type="text/css" media="screen" href="/public/stylesheets/raidtracker.css" /><link rel="stylesheet" type="text/css" media="screen" href="/public/stylesheets/jquery.dataTables.css" />'.raw() /}
+#{js 'raidtracker.js jquery.dataTables.js' /}
+#{css 'raidtracker.css jquery.dataTables.css' /}
 
 
 

@@ -92,6 +92,20 @@ ul.navigation-list li { display:inline;  padding:0 20px; letter-spacing:2px; }
 ul.navigation-list li a { text-decoration:none; }
 ul.navigation-list li a:hover { text-decoration:underline; }
 
+
+#user-online {
+	position:fixed;
+	width:180px;
+	height:100%;
+	top:50px;
+	right:0px;
+	float:right;
+}
+
+.user-online-box{
+	text-align: right;
+}
+
 /* div.menu {z-index:5;position:relative;top:0px;left:15px;width:968px;height:44px;font-size:14px;padding:0px;text-align: center;} */
 /* div.menu ul {list-style:none;margin-top:0px;text-align: center;} */
 /* div.menu ul li {float:left;padding:10px 23px;background:transparent url(/public/images/menubg.png) no-repeat right center;} */

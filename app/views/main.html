@@ -5,270 +5,29 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <link rel="icon" href="@{'/public/images/favicon.png'}" sizes="32x32">
         <link rel="shortcut icon" href="@{'/public/images/favicon.ico'}">
-        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/guildbar.css'}" />
-        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/wow.css'}" />
-        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/style.css'}" />
-        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/jquery-ui-1.8.18.custom.css'}" />
-        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/flexigrid.css'}" />
-        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/font-awesome.css'}" />
-        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/global.css'}" />
-        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/world-of-warcraft.css'}" />
         
-        
-        
-        #{get 'moreStyles' /}
+        #{css 'shoutbox.css < world-of-warcraft.css < global.css < /public/stylesheets/highslide/highslide.css < font-awesome.css < flexigrid.css < query-ui-1.8.18.custom.css < style.css < wow.css < guildbar.css' /}
+        #{css '/public/stylesheets/highslide/highslide-ie6.css', browser: 'lt IE 7'/}
+
         #{css output: "all"}
         #{/css}
-		<link rel="stylesheet" type="text/css" href="/public/stylesheets/highslide/highslide.css" />
-		<!--[if lt IE 7]>
-		<link rel="stylesheet" type="text/css" href="/public/stylesheets/highslide/highslide-ie6.css" />
-		<![endif]-->
 
-		<script type="text/javascript" src="/public/javascripts/highslide/highslide.js"></script>
-		<script type="text/javascript" src="/public/javascripts/highslide/highslide.config.js" charset="utf-8"></script>
-
-        
-        <script src="@{'/public/javascripts/jquery-1.7.1.min.js'}"></script>
-    	<script src="@{'/public/javascripts/jquery-ui-1.8.18.custom.min.js'}"></script>
-    	
-    	<script src="@{'/public/tiny_mce/tiny_mce.js'}"></script>
-    	
-    	<script src="@{'/public/javascripts/flexigrid.js'}"></script>
-
-    	<script src="@{'/public/javascripts/guild-tabard.js'}"></script>
-		<script src="@{'/public/javascripts/jquery.cluetip.js'}"></script>
-		<script src="@{'/public/javascripts/jquery.ae.image.resize.js'}"></script>
-		<script src="@{'/public/javascripts/templating.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-        <script src="@{'/public/javascripts/jquery.scrollTo-min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-<script src="@{'/public/javascripts/jquery.form.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-<script src="@{'/public/javascripts/jquery.cookie.js'}" type="text/javascript" charset="${_response_encoding}"></script>        
+        #{js 'global.js < jquery.cookie.js < jquery.form.js < jquery.scrollTo-min.js < templating.js < jquery.ae.image.resize.js < jquery.cluetip.js < guild-tabard.js < flexigrid.js < /public/tiny_mce/tiny_mce.js < /public/javascripts/highslide/highslide.config.js < query-ui-1.8.18.custom.css < /public/javascripts/highslide/highslide.js < jquery-ui-1.8.18.custom.min.js < jquery-1.7.1.min.js' /}
         
         #{js output: "all"}
         #{/js}
-		#{get 'moreScripts' /}
-		
- <style type="text/css">
-    #daddy-shoutbox {
-    	position:relative;
-    	float:right;
-		padding: 5px;
-      background: transparent;
-      color: white;
-      width: 500px;
-      height:145px;
-      font-family: Arial,Helvetica,sans-serif;
-      font-size: 11px;
-    }
-    
-    #daddy-shoutbox-list {
-    	width: 500px;
-    	height:125px;
-    	overflow:hidden;
-    }
-    
-    #daddy-shoutbox-div {
-      text-align: right;
-    }
-    
-    .shoutbox-list {
-      border-bottom: 0px solid #627C98;
-      padding: 5px;
-      display: none;
-    }
-    #daddy-shoutbox-list {
-      text-align: right;
-      margin: 0px auto;
-    }
-    #daddy-shoutbox-form {
-      text-align: right;
-      
-    }
-    .shoutbox-list-time {
-      color: #8DA2B4;
-    }
-    .shoutbox-list-nick {
-      margin-right: 5px;
-      font-weight: bold;
-    }
-    .shoutbox-list-message {
-      margin-right: 5px;
-    }
-    
-    #daddy-shoutbox-response img{
-    	vertical-align: baseline;
-    	margin-bottom:-3px;
-    }
-    
-    input[type=image] {
-    	padding-left: 4px;
- 		border:0;
- 		background:0;
- 		margin:0;
- 		vertical-align: middle;
-	}
-  </style>
- <script type="text/javascript">
-        var count = 0;
-        var files = '/public/';
-        var lastTime = 0;
-        
-        function prepare(response) {
-          var d = new Date();
-          count++;
-          d.setTime(response.msg_date);
-          var mytime = d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
-          var string = '<div class="shoutbox-list" id="list-'+count+'">'
-              + '<span class="shoutbox-list-message" style="white-space:nowrap; overflow:hidden;">'+response.message+'</span>'
-              + '<span class="shoutbox-list-nick">'+response.name+'</span>'
-              
-              +'</div>';
-          
-          return string;
-        }
-        
-        function success(response, status)  { 
-          if(status == 'success') {
-            lastTime = response.date;
-            $('#daddy-shoutbox-response').html('<img src="'+files+'images/accept.png" />');
-            $('#daddy-shoutbox-list').append(prepare(response));
-            $('input[name=message]').attr('value', '').focus();
-            $('.shoutbox-more').cluetip({showTitle:false, sticky:true, closeText: 'Schließen'});
-           $($('.shoutbox-list').get().reverse()).each(function(i, shoutboxlist) {
-      			if(i >= 5) {
-      				$(shoutboxlist).hide('slow');
-      			}
-			});
-            $('#list-'+count).fadeIn('slow');
-            timeoutID = setTimeout(refresh, 3000);
-          }
-        }
-        
-        function validate(formData, jqForm, options) {
-          for (var i=0; i < formData.length; i++) { 
-              if (!formData[i].value) {
-                  alert('Please fill in all the fields'); 
-                  $('input[@name='+formData[i].name+']').css('background', 'red');
-                  return false; 
-              } 
-          } 
-          $('#daddy-shoutbox-response').html('<img src="'+files+'images/loader.gif" />');
-          clearTimeout(timeoutID);
-        }
 
-        function refresh() {
-          $.getJSON("/shoutbox/"+lastTime, function(json) {
-            if(json.length) {
-              for(i=0; i < json.length; i++) {
-              	var newHtml = prepare(json[i]);
-                $('#daddy-shoutbox-list').append(newHtml);
-                $('#list-' + count).fadeIn('slow');
-                $('.shoutbox-more').cluetip({showTitle:false, sticky:true, closeText: 'Schließen'});
-              }
-              var j = i-1;
-              lastTime = json[j].msg_date;              
-            }
-          });
-          
-          $($('.shoutbox-list').get().reverse()).each(function(i, shoutboxlist) {
-      			if(i >= 5) {
-      				$(shoutboxlist).hide('slow');
-      			}
-			});
 
-          timeoutID = setTimeout(refresh, 3000);
-        }
-        
-        // wait for the DOM to be loaded 
-        $(document).ready(function() { 
-        	$("#daddy-shoutbox-div").hide();
-            var options = { 
-              dataType:       'json',
-              beforeSubmit:   validate,
-              success:        success
-            }; 
-            $('#daddy-shoutbox-form').ajaxForm(options);
-            timeoutID = setTimeout(refresh, 100);
-            
-            
-            $("#daddy-shoutbox").hover(
-            function() {
-                $("#daddy-shoutbox-div", this).show('slow');
-            },
-            function() {
-                $("#daddy-shoutbox-div", this).hide('slow');
-            });
-            
-        });
-        
-        
-        
-        
-  </script>
-
-		<script>
-
-	$(function() {	
-		$('#box-login-success').delay(5000).fadeOut('slow');
-		$('#box-login-error').delay(5000).fadeOut('slow');
-		
-		$("#dialog-nyi").dialog({
-			modal: true,
-			autoOpen: false,
-			buttons: {
-				Ok: function() {
-					$( this ).dialog( "close" );
-				}
-			}
-		});
-		$(".nyi").click(function() {
-				$("#dialog-nyi").dialog("open");
-			});
-			
-		$("#dialog-login").dialog({
-			modal: true,
-			autoOpen: false
-		});
-		$(".dologgin").click(function() {
-				$("#dialog-login").dialog("open");
-			});	
-			
-			
-
-	});
-	
-	
-	
-$(document).ready(function() {
-
-	$('.log-boss').cluetip({
-		width: '260px', 
-		showTitle: false,
-		hoverClass: 'highlight',
-		sticky: true,
-		closePosition: 'top',
-		closeText: 'Schließen'
-	});
-
-  $.ajax({
-	url: "/login",
-	type: "GET",
-	success: function (html) {
-		//wenn Response true bzw. den Status 1 zurückliefert
-		//$("#char-banner-request").remove();
-		$("#dialog-login").append(html);
-	}
-	});
-});
-
-	
-	
-		</script>
+ 
     </head>
     <body>
 		<div id="dialog-nyi" title="Funktion noch nicht verfügbar">
 			<p>Diese Funktion ist noch nicht verfügbar</p>
 		</div>
-
+		<div id="user-online">
+			
+		</div>
+		</div>
 		<div class="guildbar">
 			<ul class="link-bar">
 				<li class="link-cell link-annoucement suckerfish">
@@ -537,7 +296,7 @@ $(document).ready(function() {
 			</div>
 			<div class="wrapper">
 				<div id="footer_top">
-					<div id="footer_top_t">Wer ist Online: <span id="whosOnline"><i>#{list items:lastActiveUsers, as:'lastUser'}#{name_with_link avatar:lastUser.avatar, as:'link' /}#{if !lastUser_isLast}, #{/if}#{/list}</i></span></div>
+					<div id="footer_top_t">Wer ist Online: <span id="whosOnline"><span id="noone">Keiner</span></span></div>
 				</div>
 				<!--<div id="footer_bottom">
 					<div id="footer_bottom_t">Ich bin ein footer_bottom Text.</div>-->    

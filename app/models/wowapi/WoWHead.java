@@ -53,14 +53,14 @@ public class WoWHead {
 
 	}
 
-	private void fetchTestItem() {
-		// TODO Auto-generated method stub
-		Long id = 78878L;
-		//id = 52722L;
-		id = 73435L;
-		checkItem(id);
-	}
-	
+//	private void fetchTestItem() {
+//		// TODO Auto-generated method stub
+//		Long id = 78878L;
+//		//id = 52722L;
+//		id = 73435L;
+//		checkItem(id);
+//	}
+//	
 	
 	public static Item checkItem(Long id) {
 		Item item = Item.setItem(id);

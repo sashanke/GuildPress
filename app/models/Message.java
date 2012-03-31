@@ -28,7 +28,7 @@ public class Message extends Model {
     @Lob
     @MaxSize(10000)
 	public String raw_message;
-    
+
     public Message(String name, String message, User user) {
     	this.name = name;
     	this.message = message;
@@ -36,4 +36,6 @@ public class Message extends Model {
     	this.date = new Date();
     	this.msg_date = new Date().getTime();
     }
+
+    
 }

@@ -131,7 +131,7 @@ public class RaidTracker extends Controller {
 		String offizier = XPath.selectText("charactername", gameinfo);
 		Avatar avatar = Avatar.findByNameAndRealm(offizier, Play.configuration.getProperty("wowapi.realmName"));
 		if (avatar == null) {
-			avatar = Armory.fetchCharacter(Play.configuration.getProperty("wowapi.realmName"), offizier);
+			avatar = Avatar.createAvatar(offizier,Play.configuration.getProperty("wowapi.realmName"));
 		}
 		Date startDate = null;
 		Date endDate = null;
@@ -178,7 +178,7 @@ public class RaidTracker extends Controller {
 				Date leave = new Date(Long.parseLong(XPath.selectText("times/time[@type='leave']", member)) * 1000);
 				Avatar c = Avatar.findByNameAndRealm(name, Play.configuration.getProperty("wowapi.realmName"));
 				if (c == null) {
-					c = Armory.fetchCharacter(Play.configuration.getProperty("wowapi.realmName"), name);
+					c = Avatar.createAvatar(name,Play.configuration.getProperty("wowapi.realmName"));
 				}
 
 				RaidMember rm = new RaidMember(name, join, leave, c, raid);

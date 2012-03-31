@@ -22,7 +22,7 @@ import play.libs.WS;
 import play.libs.F.Promise;
 import play.libs.WS.HttpResponse;
 
-@OnApplicationStart
+//@OnApplicationStart
 @Every("30mn")
 public class UpdateJob extends Job {
 	public void doJob() {
@@ -52,7 +52,7 @@ public class UpdateJob extends Job {
 			Armory.setCharacterRaces();
 			Armory.setGuildPerks();
 			Armory.setItemClasses();
-
+			Armory.setLastLogs();
 			Guild.createGuild(Play.configuration.getProperty("wowapi.guildName"), Play.configuration.getProperty("wowapi.realmName"));
 			
 			List<GuildMember> guildMember = GuildMember.findAll();

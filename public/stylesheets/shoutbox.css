@@ -1,0 +1,62 @@
+#daddy-shoutbox {
+	position: relative;
+	float: right;
+	padding: 5px;
+	background: transparent;
+	color: white;
+	width: 500px;
+	height: 145px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+#daddy-shoutbox-list {
+	width: 500px;
+	height: 125px;
+	overflow: hidden;
+}
+
+#daddy-shoutbox-div {
+	text-align: right;
+}
+
+.shoutbox-list {
+	border-bottom: 0px solid #627C98;
+	padding: 5px;
+	display: none;
+}
+
+#daddy-shoutbox-list {
+	text-align: right;
+	margin: 0px auto;
+}
+
+#daddy-shoutbox-form {
+	text-align: right;
+}
+
+.shoutbox-list-time {
+	color: #8DA2B4;
+}
+
+.shoutbox-list-nick {
+	margin-right: 5px;
+	font-weight: bold;
+}
+
+.shoutbox-list-message {
+	margin-right: 5px;
+}
+
+#daddy-shoutbox-response img {
+	vertical-align: baseline;
+	margin-bottom: -3px;
+}
+
+input[type=image] {
+	padding-left: 4px;
+	border: 0;
+	background: 0;
+	margin: 0;
+	vertical-align: middle;
+}

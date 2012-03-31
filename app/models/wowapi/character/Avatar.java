@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -33,6 +34,8 @@ import play.libs.Codec;
 import play.libs.F.Promise;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
+import play.mvc.Router;
+import play.mvc.Router.Route;
 import utils.Tools;
 
 import com.google.gson.JsonArray;
@@ -80,6 +83,8 @@ public class Avatar extends Model {
 
 	public Date created;
 
+	private String avatarLink;
+	
 	@OneToMany(mappedBy = "avatar", cascade = CascadeType.ALL)
 	public List<AvatarItem> items;
 
@@ -432,6 +437,17 @@ public class Avatar extends Model {
 		return this.inset;
 	}
 
+	
+	public String getAvatarLink() {
+		Map<String, Object> args = new HashMap<String, Object>();
+		
+		args.put("id", this.id);
+		args.put("name", this.name);
+		args.put("realm", this.realm.name);
+		//Long id, String name, String realm
+		return "<a href=\""+Router.getFullUrl("Char.show", args )+"\" class=\"class class-"+this.cclass.name.toLowerCase()+"\">"+this.name+"</a>";
+	}
+	
 	public static Promise<Avatar> createAsyncAvatar(String name, String realm) {
 		Promise<Avatar> futureAvatar = new Promise<Avatar>();
 		futureAvatar.invoke(Avatar.createAvatar(name, realm));

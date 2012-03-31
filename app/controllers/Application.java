@@ -47,15 +47,16 @@ public class Application extends Controller {
 		renderArgs.put("wowpet", FileUtils.getRandomFile("./public/images/pets/"));
 		renderArgs.put("randomArtwork", Play.configuration.getProperty("conf.artworksdir") + FileUtils.getRandomFile("./public/images/artworks/"));
 		
+
+		User user = User.getConnectedUser(session.get("username"));
+		if (user != null) {
+			user.activity();
+		}
 		
+		renderArgs.put("user", user);
 		
-		
-		renderArgs.put("user", User.getConnectedUser(session.get("username")));
-		
-		Date date = new Date();
-		
-		List<User> lastActiveUsers = User.find("lastActiveTime BETWEEN ? and ?", new Date(date.getTime() - 300000L), date).fetch();
-		renderArgs.put("lastActiveUsers", lastActiveUsers);
+
+
 	}
 
 	public static void index() {

@@ -80,15 +80,15 @@
 	float: right;
 }
 
-.post-content ul { color: #9e0036;   }
-.post-content ul li { list-style-type:square; margin-left:25px; }
-.post-content ul li span { color: #F2FAFF; }
-.post-content ul li span+span {  }
-.post-content ul li p em { display:block; }
+/* .post-content ul { color: #9e0036;   } */
+/* .post-content ul li { list-style-type:square; margin-left:25px; } */
+/* .post-content ul li span { color: #F2FAFF; } */
+/* .post-content ul li span+span {  } */
+/* .post-content ul li p em { display:block; } */
 
 div.menu {z-index:5;position:relative;top:0px;left:15px;width:968px;height:44px;font-size:14px;padding:0px;text-align: center;}
 ul.navigation-list { font-family:Georgia, serif; color: #DFDBC9; list-style:none; text-align:left;  padding:10px 0;}
-ul.navigation-list li { display:inline;  padding:0 20px; letter-spacing:2px; }
+ul.navigation-list li { display:inline;  padding:0 15px; letter-spacing:2px; }
 ul.navigation-list li a { text-decoration:none; }
 ul.navigation-list li a:hover { text-decoration:underline; }
 
@@ -111,3 +111,64 @@ ul.navigation-list li a:hover { text-decoration:underline; }
 /* div.menu ul li {float:left;padding:10px 23px;background:transparent url(/public/images/menubg.png) no-repeat right center;} */
 /* div.menu ul li.last {background:transparent url('');} */
 /* div.menu ul li small {color:#fc0;position:relative;top:-7px;font-size:8px;} */
+
+
+.r1 {
+	color: #FF8040 !important;
+}
+
+.r2 {
+	color: #FF0 !important;
+}
+
+.r3 {
+	color: #40BF40 !important;
+}
+
+.r4 {
+	color: #808080 !important;
+}
+
+.c1,.c1 a {
+	color: #C69B6D !important;
+}
+
+.c2,.c2 a {
+	color: #F48CBA !important;
+}
+
+.c3,.c3 a {
+	color: #AAD372 !important;
+}
+
+.c4,.c4 a {
+	color: #FFF468 !important;
+}
+
+.c5,.c5 a {
+	color: #FFF !important;
+}
+
+.c6,.c6 a {
+	color: #C41E3B !important;
+}
+
+.c7,.c7 a {
+	color: #2359FF !important;
+}
+
+.c8,.c8 a {
+	color: #68CCEF !important;
+}
+
+.c9,.c9 a {
+	color: #9382C9 !important;
+}
+
+.c10,.c10 a {
+	color: #008467 !important;
+}
+
+.c11,.c11 a {
+	color: #FF7C0A !important;
+}

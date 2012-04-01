@@ -50,7 +50,7 @@ public class RaidItem extends Model {
 	}
 
 	public Item checkItem() {
-		return WoWHead.checkItem(this.itemId);
+		return Item.setItem(this.itemId);
 	}
 	
 	@JSON

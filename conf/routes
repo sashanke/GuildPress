@@ -12,6 +12,9 @@ GET		/ws/guild/{name}/{realm}/update						Service.updateGuild
 GET		/ws/realm/update									Service.updateRealms
 GET		/ws/avatar/{name}/{realm}/update					Service.updateAvatar
 
+# Recipes & Professions
+GET		/recipes											Recipes.index
+GET		/recipes/profession/{<[0-9]+>id}/{name}				Recipes.showProfession
 # Front page
 GET     /                                       			FrontPage.index
 GET		/public/flash/rotator/images.xml					Application.postListXml(format:'xml')

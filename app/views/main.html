@@ -5,21 +5,42 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <link rel="icon" href="@{'/public/images/favicon.png'}" sizes="32x32">
         <link rel="shortcut icon" href="@{'/public/images/favicon.ico'}">
-        
-        #{css 'shoutbox.css < world-of-warcraft.css < global.css < /public/stylesheets/highslide/highslide.css < font-awesome.css < flexigrid.css < query-ui-1.8.18.custom.css < style.css < wow.css < guildbar.css' /}
-        #{css '/public/stylesheets/highslide/highslide-ie6.css', browser: 'lt IE 7'/}
 
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/guildbar.css'}" />
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/wow.css'}" />
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/style.css'}" />
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/jquery-ui-1.8.18.custom.css'}" />
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/flexigrid.css'}" />
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/font-awesome.css'}" />
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/global.css'}" />
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/world-of-warcraft.css'}" />
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/shoutbox.css'}" />
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="/public/stylesheets/highslide/highslide.css" />
+		<!--[if lt IE 7]>
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="/public/stylesheets/highslide/highslide-ie6.css" />
+		<![endif]-->
+		
         #{css output: "all"}
         #{/css}
-
-        #{js 'global.js < jquery.cookie.js < jquery.form.js < jquery.scrollTo-min.js < templating.js < jquery.ae.image.resize.js < jquery.cluetip.js < guild-tabard.js < flexigrid.js < /public/tiny_mce/tiny_mce.js < /public/javascripts/highslide/highslide.config.js < query-ui-1.8.18.custom.css < /public/javascripts/highslide/highslide.js < jquery-ui-1.8.18.custom.min.js < jquery-1.7.1.min.js' /}
         
-        #{js output: "all"}
-        #{/js}
+		<script type="text/javascript" charset="${_response_encoding}" src="/public/javascripts/highslide/highslide.js"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="/public/javascripts/highslide/highslide.config.js"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery-1.7.1.min.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery-ui-1.8.18.custom.min.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/tiny_mce/tiny_mce.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/flexigrid.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/guild-tabard.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.cluetip.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.ae.image.resize.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/templating.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.scrollTo-min.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.form.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.cookie.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/global.js'}"></script>
 
-
- 
-    </head>
+		#{js output: "all"}
+		#{/js}
+</head>
     <body>
 		<div id="dialog-nyi" title="Funktion noch nicht verfügbar">
 			<p>Diese Funktion ist noch nicht verfügbar</p>
@@ -125,7 +146,7 @@
 							<li><a href="@{Application.index()}" class="${request?.controller == 'Application' ? 'sel' : ''}" title="${guildTag} News">News</a></li>
 							<li><a href="@{RaidTracker.index()}" class="${request?.controller == 'RaidTracker' ? 'sel' : ''}" title="${guildTag} Raids">Raids</a></li>
 							
-							<!--  <li><a href="@{ChatRoom.room(user?.avatar?.name)}" class="${request?.controller == 'LongPolling' ? 'sel' : ''}" title="${guildTag} Chat">Chat</a></li> -->
+							<li><a href="@{Recipes.index()}" class="${request?.controller == 'Recipes' ? 'sel' : ''}" title="${guildTag} Rezepte">Rezepte</a></li>
 							<li><a href="@{Roster.index()}" class="${request?.controller == 'MitgliederVerzeichnis' ? 'sel' : ''}" title="${guildTag} Mitglieder">Mitglieder</a></li>
 							
 							<li><a href="@{Board.index()}" class="${request?.controller == 'Board' ? 'sel' : ''}" title="${guildTag} Forum">Forum</a></li>

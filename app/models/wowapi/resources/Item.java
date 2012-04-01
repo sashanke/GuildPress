@@ -140,17 +140,27 @@ public class Item extends Model {
 	public Item(Long id) {
 		this.itemId = id;
 	}
-
+	public Item(String name) {
+		this.name = name;
+	}
 	public static Item setItem(Long id) {
 		Item iq = Item.find("itemId = ?", id).first();
 		if (iq == null) {
 			iq = new Item(id);
 			iq.save();
-			WoWHead.checkItem(id);
+			WoWHead.checkItem(iq);
 		}
 		return iq;
 	}
-	
+	public static Item setItemByName(String name) {
+		Item iq = Item.find("name = ?", name).first();
+		if (iq == null) {
+			iq = new Item(name);
+			iq.save();
+			return WoWHead.checkItem(iq);
+		}
+		return iq;
+	}
 	public String toString() {
 		return name;
 	}

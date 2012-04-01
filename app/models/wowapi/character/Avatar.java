@@ -88,6 +88,10 @@ public class Avatar extends Model {
 	@OneToMany(mappedBy = "avatar", cascade = CascadeType.ALL)
 	public List<AvatarItem> items;
 
+	
+	@OneToMany(mappedBy = "avatar", cascade = CascadeType.ALL)
+	public List<AvatarProfession> professions;
+	
 	public Long averageItemLevel;
 
 	public Long averageItemLevelEquipped;
@@ -213,6 +217,12 @@ public class Avatar extends Model {
 		Long gmlastModified = avatarJson.get("lastModified").getAsLong();
 
 		JsonObject items = avatarJson.get("items").getAsJsonObject();
+		
+		JsonObject professions = avatarJson.get("professions").getAsJsonObject();
+
+		
+		
+		
 		Long averageItemLevel = items.get("averageItemLevel").getAsLong();
 		Long averageItemLevelEquipped = items.get("averageItemLevelEquipped").getAsLong();
 
@@ -240,7 +250,11 @@ public class Avatar extends Model {
 
 		avatar.averageItemLevel = averageItemLevel;
 		avatar.averageItemLevelEquipped = averageItemLevelEquipped;
-
+		
+		List<AvatarProfession> professionsList = AvatarProfession.createProfessions(professions, avatar);
+		
+		System.out.println(professionsList);
+		
 		avatar.save();
 
 		if (guildMemeber != null) {

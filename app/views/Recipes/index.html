@@ -1,0 +1,91 @@
+#{extends 'main.html' /}
+#{set title: 'Rezept Übersicht - ' + guildTitle /}
+#{js 'recipes.js jquery.dataTables.js' /}
+#{css 'recipes.css jquery.dataTables.css' /}
+
+<div class="box">
+	<div class="artheadline" style="background: black url(${play.configuration.getProperty("conf.artworksdir")}professions.jpg) no-repeat top center  !important;">
+		<div class="artheadlinshadow">
+			<div class="postdate"></div>
+			<h2 class="post-title">
+				<a href="@{Recipes.index()}">Rezepte</a>
+			</h2>
+		</div>
+	</div>
+	<div class="post">
+		<div class="post-content">
+			<div class="profession-list">
+				<div class="prof-box prof-alchemie left">
+					<div class="prof-box-content">
+						<h2 class="nav_t">Alchemie</h2>
+						<div><a href="@{Recipes.showProfession(171,'Alchemie')}"><img src="/public/images/recipes/professions/alchemie.png" /></a></div>
+					</div>
+				</div>
+				<div class="prof-box prof-lederverarbeitung right">
+					<div class="prof-box-content">
+						<h2 class="nav_t">Lederverarbeitung</h2>
+						<div><a href="@{Recipes.showProfession(165,'Lederverarbeitung')}"><img src="/public/images/recipes/professions/lederverarbeitung.png" /></a></div>
+					</div>
+				</div>
+				<div class="clear"><br></div>
+				<div class="prof-box prof-ingenieurskunst left">
+					<div class="prof-box-content">
+						<h2 class="nav_t">Ingenieurskunst</h2>
+						<div><a href="@{Recipes.showProfession(202,'Ingenieurskunst')}"><img src="/public/images/recipes/professions/ingenieurskunst.png" /></a></div>
+					</div>
+				</div>
+				<div class="prof-box prof-inschriftenkunde right">
+					<div class="prof-box-content">
+						<h2 class="nav_t">Inschriftenkunde</h2>
+						<div><a href="@{Recipes.showProfession(773,'Inschriftenkunde')}"><img src="/public/images/recipes/professions/inschriftenkunde.png" /></a></div>
+					</div>
+				</div>
+				<div class="clear"><br></div>
+				<div class="prof-box prof-juwelenschleifen left">
+					<div class="prof-box-content">
+						<h2 class="nav_t">Juwelenschleifen</h2>
+						<div><a href="@{Recipes.showProfession(755,'Juwelenschleifen')}"><img src="/public/images/recipes/professions/juwelenschleifen.png" /></a></div>
+					</div>
+				</div>
+				<div class="prof-box prof-schmieden right">
+					<div class="prof-box-content">
+						<h2 class="nav_t">Schmieden</h2>
+						<div><a href="@{Recipes.showProfession(164,'Schmiedekunst')}"><img src="/public/images/recipes/professions/schmieden.png" /></a></div>
+					</div>
+				</div>
+				<div class="clear"><br></div>
+				<div class="prof-box prof-schneiderei left">
+					<div class="prof-box-content">
+						<h2 class="nav_t">Schneiderei</h2>
+						<div><a href="@{Recipes.showProfession(197,'Schneiderei')}"><img src="/public/images/recipes/professions/schneiderei.png" /></a></div>
+					</div>
+				</div>
+				<div class="prof-box prof-verzaubern right">
+				<div class="prof-box-content">
+						<h2 class="nav_t">Verzaubern</h2>
+						<div><a href="@{Recipes.showProfession(333,'Verzauberkunst')}"><img src="/public/images/recipes/professions/verzaubern.png" /></a></div>
+					</div>
+				</div>
+				<div class="colBreak clear"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(document).ready(function() {
+		$('#datatable-items').dataTable({
+			"bProcessing" : true,
+			"bStateSave" : true,
+			"oLanguage" : {
+				"sUrl" : "/public/datatables_de_DE.txt"
+			}
+		});
+		$('#datatable-raids').dataTable({
+			"bProcessing" : true,
+			"bStateSave" : true,
+			"oLanguage" : {
+				"sUrl" : "/public/datatables_de_DE.txt"
+			}
+		});
+	});
+</script>

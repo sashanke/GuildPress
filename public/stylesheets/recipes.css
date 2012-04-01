@@ -1,0 +1,52 @@
+.prof-box {
+	width: 50%;
+	height: 240px;
+	padding: 0;
+	margin: 0;
+}
+
+.prof-alchemie {
+/* 	background-color: #ff0000; */
+}
+
+.prof-lederverarbeitung {
+/* 	background-color: #ffff00; */
+}
+
+.prof-ingenieurskunst {
+/* 	background-color: #ffffff; */
+}
+
+.prof-inschriftenkunde {
+/* 	background-color: #000000; */
+}
+
+.prof-juwelenschleifen {
+/* 	background-color: #0000ff; */
+}
+
+.prof-schmieden {
+/* 	background-color: #00ff00; */
+}
+
+.prof-schneiderei {
+/* 	background-color: #ff0000; */
+}
+
+.prof-verzaubern {
+/* 	background-color: #ffff00; */
+}
+
+.prof-box-content {
+	width: 300px;
+    margin: 0px auto;
+}
+
+.prof-box-content img {
+	width: 300px;
+	height: 200px;
+    margin: 0px auto;
+    border-color: #12202E;
+	border-style: solid;
+	border-width: 1px;
+}

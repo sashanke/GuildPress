@@ -106,7 +106,7 @@ public class Char extends Controller {
 	public static void showItem(Long id) {
 		Item item = Item.find("byItemId",id).first();
 		if (item == null) {
-			item = WoWHead.checkItem(id);
+			item = Item.setItem(id);
 		}
 		List<RaidItem> items = RaidItem.find("itemId = ?", item.itemId).fetch();
 		List<AvatarItem> wearedItems = AvatarItem.find("itemId = ?", item.itemId).fetch();
@@ -115,7 +115,7 @@ public class Char extends Controller {
 	public static void showItemTooltip(Long id) {
 		Item item = Item.find("byItemId",id).first();
 		if (item == null) {
-			item = WoWHead.checkItem(id);
+			item = Item.setItem(id);
 		}
 		render(item);
 	}

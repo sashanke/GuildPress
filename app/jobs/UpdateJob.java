@@ -36,30 +36,15 @@ public class UpdateJob extends Job {
 		if (hr.success()) {
 			Logger.error("Armory ping: (" + hr.getStatus() + ") " + url);
 			
-			List<Side> sides = Side.findAll();
-			if (sides.size() == 0) {
-				new Side(new Long(0), "alliance").save();
-				new Side(new Long(1), "horde").save();
-			}
-			List<Gender> genders = Gender.findAll();
-			if (genders.size() == 0) {
-				new Gender(new Long(0), "male").save();
-				new Gender(new Long(1), "female").save();
-			}
 
-			Armory.setRealms();
-			Armory.setCharacterClasses();
-			Armory.setCharacterRaces();
-			Armory.setGuildPerks();
-			Armory.setItemClasses();
-			Armory.setLastLogs();
-			Guild.createGuild(Play.configuration.getProperty("wowapi.guildName"), Play.configuration.getProperty("wowapi.realmName"));
+
 			
-			List<GuildMember> guildMember = GuildMember.findAll();
-			for (GuildMember guildMember2 : guildMember) {
-				Promise<Avatar> futureAvatar = Avatar.createAsyncAvatar(guildMember2.name, guildMember2.realm.name);
-				futureAvatar.getOrNull();
-			}
+			
+//			List<GuildMember> guildMember = GuildMember.findAll();
+//			for (GuildMember guildMember2 : guildMember) {
+//				Promise<Avatar> futureAvatar = Avatar.createAsyncAvatar(guildMember2.name, guildMember2.realm.name);
+//				futureAvatar.getOrNull();
+//			}
 			
 			//new Armory();
 		} else {

@@ -1,19 +1,55 @@
-#{extends 'main.html' /}
-#{set title: 'Alchemie - ' + guildTitle /}
+#{extends 'main.html'/}
+
+#{set title: profession?.name + ' - ' + guildTitle /}
 #{js 'recipes.js jquery.dataTables.js' /}
-#{css 'recipes.css jquery.dataTables.css' /}
+#{css 'recipes.css char.css jquery.dataTables.css' /}
 
 <div class="box">
-	<div class="artheadline" style="background: black url(/public/images/recipes/professions/alchemie-banner.jpg) no-repeat top center  !important;">
+	<div class="artheadline" style="background: black url(/public/images/recipes/professions/${profession?.name?.toLowerCase()}-banner.jpg) no-repeat top center  !important;">
 		<div class="artheadlinshadow">
 			<div class="postdate"></div>
 			<h2 class="post-title">
-				<a href="@{Recipes.index()}">Alchemie</a>
+				<a href="@{Recipes.index()}">${profession?.name}</a>
 			</h2>
 		</div>
 	</div>
 	<div class="post">
 		<div class="post-content">
+			<div style="width:100%;" class="datatable">
+				<table cellpadding="0" cellspacing="0" border="0" style="width:100%;" class="display" id="datatable-${profession?.name}">
+				<thead>
+					<tr><th width="23px"></th>
+						<th>Rezept</th>
+						<th width="180px">Reagenzien</th>
+						<th width="25">Level</th>
+						<th width="25">iLevel</th>
+						<th width="100">Besitzer</th>
+					</tr>
+				</thead>
+				<tbody>
+					#{list items:recipes, as:'recipe'}
+					<tr>
+						<td>#{if recipe.recipe.item}<a #{if recipe.recipe.item}href="@{Char.showItem(recipe.recipe.item?.itemId)}" rel="@{Char.showItemTooltip(recipe.recipe.item?.itemId)}"#{/if}class="item q${recipe.recipe.item?.itemQuality?.qualityId}" target="_self"><img alt="${recipe.recipe.item.name}" src="/public/images/static/icons/${recipe.recipe.item.icon.icon}.png" width="22px" height="22px" /></a>#{/if}</td>
+						<td style="text-align: left;"><a #{if recipe.recipe.item}href="@{Char.showItem(recipe.recipe.item?.itemId)}"#{/if}class="item q${recipe.recipe.item?.itemQuality?.qualityId}" target="_self">${recipe.recipe.name}</a></td>
+						<td>#{recipe_reagent_icon_list reagents:recipe.recipe.reagents, as:'reagents' /}</td>
+						<td>#{if recipe.recipe.item}${recipe.recipe.item.reqlevel}#{/if}</td>
+						<td>#{if recipe.recipe.item}${recipe.recipe.item.level}#{/if}</td>
+						<td>#{list items:recipe.avatars, as:'avatar'}#{name_with_link avatar:avatar, as:'avatar' /}#{if !avatar_isLast}, #{/if}#{/list}</td>
+					</tr>
+					#{/list}
+				</tbody>
+				<tfoot>
+					<tr>
+						<th></th>
+						<th>Rezept</th>
+						<th>Reagenzien</th>
+						<th>Level</th>
+						<th>iLevel</th>
+						<th>Besitzer</th>
+					</tr>
+				</tfoot>
+				</table>
+			</div>
 			<div class="colBreak clear"></div>
 		</div>
 	</div>
@@ -21,14 +57,7 @@
 
 <script>
 	$(document).ready(function() {
-		$('#datatable-items').dataTable({
-			"bProcessing" : true,
-			"bStateSave" : true,
-			"oLanguage" : {
-				"sUrl" : "/public/datatables_de_DE.txt"
-			}
-		});
-		$('#datatable-raids').dataTable({
+		$('#datatable-${profession?.name}').dataTable({
 			"bProcessing" : true,
 			"bStateSave" : true,
 			"oLanguage" : {

@@ -11,7 +11,8 @@ GET         /logout         SecureC.logout
 GET		/ws/guild/{name}/{realm}/update						Service.updateGuild
 GET		/ws/realm/update									Service.updateRealms
 GET		/ws/avatar/{name}/{realm}/update					Service.updateAvatar
-
+GET		/ws/item/{<[0-9]+>itemId}/update					Service.updateItem
+GET		/ws/recipe/{<[0-9]+>spellId}/update					Service.updateRecipe
 # Recipes & Professions
 GET		/recipes											Recipes.index
 GET		/recipes/profession/{<[0-9]+>id}/{name}				Recipes.showProfession

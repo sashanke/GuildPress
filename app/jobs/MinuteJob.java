@@ -23,14 +23,14 @@ import play.libs.WS;
 import play.libs.F.Promise;
 import play.libs.WS.HttpResponse;
 
-//@OnApplicationStart
 @Every("1mn")
-public class NightJob extends Job {
+public class MinuteJob extends Job {
 	public void doJob() {
-//		List<Recipe> recipes = Recipe.all().fetch(5);
-//		for (Recipe recipe : recipes) {
-//			recipe.setTooltip();
-//			System.out.println(recipe.armoryTooltip);
-//		}
+		Logger.info("[MinuteJob][start]");
+		List<Recipe> recipes = Recipe.find("name is null").fetch(5);		
+		for (Recipe recipe : recipes) {
+			recipe.setTooltip();
+		}
+		Logger.info("[MinuteJob][stop]");
 	}
 }

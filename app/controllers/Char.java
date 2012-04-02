@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -51,6 +52,11 @@ public class Char extends Controller {
 	
 	public static void show(Long id, String name, String realm) throws IOException, SQLException {
 		
+		
+		if (id == 0L) {
+			Avatar avatar = Avatar.createAvatar(name, realm);
+			show(avatar.id, name, realm);
+		}
 		
 		//String banner = Play.configuration.getProperty("conf.bannerdir") + this.race.side.name.toLowerCase() + "/" + this.race.name.toLowerCase() + "/" + this.race.name.toLowerCase() + "_" + Tools.replaceUmlauts(this.cclass.name.toLowerCase()) + "_" + Tools.replaceUmlauts(this.gender.name_loc.toLowerCase()) + ".jpg";
 		

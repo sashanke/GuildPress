@@ -1,0 +1,15 @@
+<div class="reagents">
+#{list items:_reagents, as:'reagent'}
+	<div class="reagent left">
+		<a href="@{Char.showItem(reagent.item?.itemId)}" rel="@{Char.showItemTooltip(reagent.item?.itemId)}" class="item q${reagent.item?.itemQuality?.qualityId}" target="_self"><img alt="${reagent.item.name}" src="/public/images/static/icons/${reagent.item.icon.icon}.png" width="22px" height="22px" />
+		<span class="reagent-count">${reagent.count}</span>
+		</a>
+	</div>
+#{/list}
+</div>
+
+
+
+
+
+

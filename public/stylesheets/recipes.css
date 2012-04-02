@@ -50,3 +50,30 @@
 	border-style: solid;
 	border-width: 1px;
 }
+
+table.dataTable td {
+	padding:0;
+	padding-left: 13px;
+	vertical-align:middle;
+	text-align: center;
+	height: 40px;
+}
+
+.reagent {
+	position: relative;
+	margin-right: 5px;
+}
+
+
+
+.reagent-count {
+		right: 2px;
+	bottom: -2px;
+	position: absolute;
+color: white;
+font-weight: bold;
+font-size: 13px;
+text-align: right;
+
+text-shadow: 0 0 3px black, 0 0 3px black, 0 0 2px black, 0 0 2px black, 0 0 1px black;
+}

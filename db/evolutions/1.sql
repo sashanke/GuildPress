@@ -1,23 +1,6 @@
 # ItemLayout schema
  
 # --- !Ups
-/*!40101 SET NAMES utf8 */;
-/*!40014 SET FOREIGN_KEY_CHECKS=0 */;
-DROP TABLE IF EXISTS `ItemLayout`;
-CREATE TABLE IF NOT EXISTS `ItemLayout` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `itemOrder` bigint(20) DEFAULT NULL,
-  `itemPlace` bigint(20) DEFAULT NULL,
-  `itemSide` varchar(255) DEFAULT NULL,
-  `itemSlotName` varchar(255) DEFAULT NULL,
-  `itemTextSide` varchar(255) DEFAULT NULL,
-  `isBottom` bit(1) DEFAULT NULL,
-  `isLeft` bit(1) DEFAULT NULL,
-  `isRight` bit(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
-
-/*!40000 ALTER TABLE `ItemLayout` DISABLE KEYS */;
 INSERT INTO `ItemLayout` (`id`, `itemOrder`, `itemPlace`, `itemSide`, `itemSlotName`, `itemTextSide`, `isBottom`, `isLeft`, `isRight`) VALUES
 	(1, 100, 0, 'left', 'head', 'left', NULL, b'1', NULL),
 	(2, 110, 58, 'left', 'neck', 'left', NULL, b'1', NULL),
@@ -38,5 +21,3 @@ INSERT INTO `ItemLayout` (`id`, `itemOrder`, `itemPlace`, `itemSide`, `itemSlotN
 	(17, 260, 0, 'left', 'mainHand', 'right', b'1', NULL, NULL),
 	(18, 270, 271, 'left', 'offHand', 'left', b'1', NULL, NULL),
 	(19, 280, 448, 'left', 'ranged', 'left', b'1', NULL, NULL);
-/*!40000 ALTER TABLE `ItemLayout` ENABLE KEYS */;
-/*!40014 SET FOREIGN_KEY_CHECKS=1 */;

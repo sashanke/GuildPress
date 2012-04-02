@@ -36,19 +36,26 @@
 		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.scrollTo-min.js'}"></script>
 		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.form.js'}"></script>
 		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.cookie.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.blockUI.js'}"></script>
+		
 		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/global.js'}"></script>
 
 		#{js output: "all"}
 		#{/js}
 </head>
     <body>
-		<div id="dialog-nyi" title="Funktion noch nicht verfügbar">
+		<div id="dialog-nyi" title="Funktion noch nicht verfügbar" style="display:none;">
 			<p>Diese Funktion ist noch nicht verfügbar</p>
 		</div>
 		<div id="user-online">
 			
 		</div>
-		</div>
+		
+		<div id="waitMessage" style="display:none;"> 
+    		<img alt="Kontent wir geladen" src="/public/images/ajax-loader.gif" /> 
+		</div> 
+		
+		
 		<div class="guildbar">
 			<ul class="link-bar">
 				<li class="link-cell link-annoucement suckerfish">

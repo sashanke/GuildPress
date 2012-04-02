@@ -178,9 +178,37 @@ function refresh() {
 	timeoutID = setTimeout(refresh, 3000);
 }
 
+
+
+
 // wait for the DOM to be loaded
 $(document).ready(function() {
 
+	$(".class").click(
+		    function(){
+		    $.ajax({
+		        url: $(this).attr('href'),
+		        type: 'GET',
+		        async: true,
+		        cache: false,
+		        timeout: 30000,
+		        beforeSend: function() {
+		  		  $.blockUI({ message: $('#waitMessage'),css: { backgroundColor: 'transparent', border: '0' } });
+		  	  	},
+		        error: function(){
+		            return true;
+		        },
+		        complete: function(){
+		  		  
+		  	  	},
+		        success: function(msg){ 
+		        	$.unblockUI();
+		        }
+		    });
+		});
+	
+	
+	
 	$("#daddy-shoutbox-div").hide();
 	var options = {
 		dataType : 'json',

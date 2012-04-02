@@ -6,7 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -30,6 +32,8 @@ import play.db.DB;
 import play.db.jpa.Model;
 import play.libs.Codec;
 import play.libs.F.Promise;
+import play.mvc.Router;
+import play.mvc.results.RenderHtml;
 
 @Entity
 public class GuildMember extends Model {
@@ -173,5 +177,19 @@ public class GuildMember extends Model {
 			Logger.info("Keinen passenden GuildMember in der Datenbank gefunden", e);
 			return null;
 		}
+	}
+	
+	
+	/**
+	 * @return the avatar
+	 */
+	public String getImage() {
+		if (this.image == null || this.image.contains("noavatar.png")) {
+			return "/public/images/static/avatar/" + this.race.crId + "-" + this.gender.gId + ".jpg";
+		}
+		if (this.image.startsWith(".")) {
+			this.image = this.image.substring(1);
+		}
+		return this.image;
 	}
 }

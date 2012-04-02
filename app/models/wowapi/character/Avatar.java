@@ -250,12 +250,14 @@ public class Avatar extends Model {
 
 		avatar.averageItemLevel = averageItemLevel;
 		avatar.averageItemLevelEquipped = averageItemLevelEquipped;
-		
-		List<AvatarProfession> professionsList = AvatarProfession.createProfessions(professions, avatar);
-		
-		System.out.println(professionsList);
-		
 		avatar.save();
+		
+		if (avatar.isGuildMember) {
+			List<AvatarProfession> professionsList = AvatarProfession.createProfessions(professions, avatar);
+			avatar.professions = professionsList;
+			avatar.save();
+		}
+		
 
 		if (guildMemeber != null) {
 			guildMemeber.image = avatar.getImage();
@@ -451,20 +453,8 @@ public class Avatar extends Model {
 		return this.inset;
 	}
 
-	
-	public String getAvatarLink() {
-		Map<String, Object> args = new HashMap<String, Object>();
-		
-		args.put("id", this.id);
-		args.put("name", this.name);
-		args.put("realm", this.realm.name);
-		//Long id, String name, String realm
-		return "<a href=\""+Router.getFullUrl("Char.show", args )+"\" class=\"class class-"+this.cclass.name.toLowerCase()+"\">"+this.name+"</a>";
-	}
-	
-	public static Promise<Avatar> createAsyncAvatar(String name, String realm) {
+	public static void createAsyncAvatar(String name, String realm) {
 		Promise<Avatar> futureAvatar = new Promise<Avatar>();
 		futureAvatar.invoke(Avatar.createAvatar(name, realm));
-		return futureAvatar;
 	}
 }

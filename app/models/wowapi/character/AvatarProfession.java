@@ -85,7 +85,7 @@ public class AvatarProfession extends Model {
 		ap.icon = Icon.setIcon(ap.profId, profession.get("icon").getAsString());
 		ap.save();
 
-		if (profession.has("recipes") && profession.get("recipes").isJsonArray() ) {
+		if (profession.has("recipes") && profession.get("recipes").isJsonArray() && ap.isPrimary) {
 			JsonArray recipes = profession.get("recipes").getAsJsonArray();
 			for (JsonElement recipe : recipes) {
 				AvatarRecipe avatarRecipe = AvatarRecipe.setAvatarRecipe(avatar,ap,recipe.getAsLong());

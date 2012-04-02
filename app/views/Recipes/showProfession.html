@@ -34,7 +34,7 @@
 						<td>#{recipe_reagent_icon_list reagents:recipe.recipe.reagents, as:'reagents' /}</td>
 						<td>#{if recipe.recipe.item}${recipe.recipe.item.reqlevel}#{/if}</td>
 						<td>#{if recipe.recipe.item}${recipe.recipe.item.level}#{/if}</td>
-						<td>#{list items:recipe.avatars, as:'avatar'}#{name_with_link avatar:avatar, as:'avatar' /}#{if !avatar_isLast}, #{/if}#{/list}</td>
+						<td><div class="recipe-holder">#{list items:recipe.avatars, as:'avatar'}#{name_with_link avatar:avatar, as:'icon' /}#{/list}</div></td>
 					</tr>
 					#{/list}
 				</tbody>

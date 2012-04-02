@@ -5,56 +5,56 @@
 	margin: 0;
 }
 
-.prof-alchemie {
-/* 	background-color: #ff0000; */
+.prof-alchemie { /* 	background-color: #ff0000; */
+	
 }
 
-.prof-lederverarbeitung {
-/* 	background-color: #ffff00; */
+.prof-lederverarbeitung { /* 	background-color: #ffff00; */
+	
 }
 
-.prof-ingenieurskunst {
-/* 	background-color: #ffffff; */
+.prof-ingenieurskunst { /* 	background-color: #ffffff; */
+	
 }
 
-.prof-inschriftenkunde {
-/* 	background-color: #000000; */
+.prof-inschriftenkunde { /* 	background-color: #000000; */
+	
 }
 
-.prof-juwelenschleifen {
-/* 	background-color: #0000ff; */
+.prof-juwelenschleifen { /* 	background-color: #0000ff; */
+	
 }
 
-.prof-schmieden {
-/* 	background-color: #00ff00; */
+.prof-schmieden { /* 	background-color: #00ff00; */
+	
 }
 
-.prof-schneiderei {
-/* 	background-color: #ff0000; */
+.prof-schneiderei { /* 	background-color: #ff0000; */
+	
 }
 
-.prof-verzaubern {
-/* 	background-color: #ffff00; */
+.prof-verzaubern { /* 	background-color: #ffff00; */
+	
 }
 
 .prof-box-content {
 	width: 300px;
-    margin: 0px auto;
+	margin: 0px auto;
 }
 
 .prof-box-content img {
 	width: 300px;
 	height: 200px;
-    margin: 0px auto;
-    border-color: #12202E;
+	margin: 0px auto;
+	border-color: #12202E;
 	border-style: solid;
 	border-width: 1px;
 }
 
 table.dataTable td {
-	padding:0;
+	padding: 0;
 	padding-left: 13px;
-	vertical-align:middle;
+	vertical-align: middle;
 	text-align: center;
 	height: 40px;
 }
@@ -64,16 +64,17 @@ table.dataTable td {
 	margin-right: 5px;
 }
 
-
-
 .reagent-count {
-		right: 2px;
+	right: 2px;
 	bottom: -2px;
 	position: absolute;
-color: white;
-font-weight: bold;
-font-size: 13px;
-text-align: right;
+	color: white;
+	font-weight: bold;
+	font-size: 13px;
+	text-align: right;
+	text-shadow: 0 0 3px black, 0 0 3px black, 0 0 2px black, 0 0 2px black, 0 0 1px black;
+}
 
-text-shadow: 0 0 3px black, 0 0 3px black, 0 0 2px black, 0 0 2px black, 0 0 1px black;
+.recipe-holder img {
+	margin-right: 5px;
 }

@@ -61,11 +61,11 @@ public class Bootstrap extends Job {
 		}
 		
 		
-		List<Recipe> recipes = Recipe.find("lastUpdate between ? and ?",new Date(new Date().getTime() - 1900000L),new Date()).fetch();
-
-		for (Recipe recipe : recipes) {
-			recipe.setTooltip();
-		}
+//		List<Recipe> recipes = Recipe.find("lastUpdate between ? and ?",new Date(new Date().getTime() - 1900000L),new Date()).fetch();
+//
+//		for (Recipe recipe : recipes) {
+//			recipe.setTooltip();
+//		}
 		
 //		Item.setItem(3371L); //Kristallphiole
 //		Item.setItem(52980L); //Makelloser Balg

@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.List;
 
 import play.*;
@@ -15,6 +16,7 @@ import models.wowapi.resources.Item;
 import models.wowapi.resources.ItemClass;
 import models.wowapi.resources.RaceClassMap;
 import models.wowapi.resources.Realm;
+import models.wowapi.resources.Recipe;
 import models.wowapi.resources.Side;
  
 @OnApplicationStart
@@ -56,6 +58,13 @@ public class Bootstrap extends Job {
 		
 		if (Guild.findAll().size() == 0) {
 			Guild.createGuild(Play.configuration.getProperty("wowapi.guildName"), Play.configuration.getProperty("wowapi.realmName"));
+		}
+		
+		
+		List<Recipe> recipes = Recipe.find("lastUpdate between ? and ?",new Date(new Date().getTime() - 1900000L),new Date()).fetch();
+
+		for (Recipe recipe : recipes) {
+			recipe.setTooltip();
 		}
 		
 //		Item.setItem(3371L); //Kristallphiole

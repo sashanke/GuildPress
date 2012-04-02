@@ -29,7 +29,7 @@
 				<tbody>
 					#{list items:recipes, as:'recipe'}
 					<tr>
-						<td>#{if recipe.recipe.item}<a #{if recipe.recipe.item}href="@{Char.showItem(recipe.recipe.item?.itemId)}" rel="@{Char.showItemTooltip(recipe.recipe.item?.itemId)}"#{/if}class="item q${recipe.recipe.item?.itemQuality?.qualityId}" target="_self"><img alt="${recipe.recipe.item.name}" src="/public/images/static/icons/${recipe.recipe.item.icon.icon}.png" width="22px" height="22px" /></a>#{/if}</td>
+						<td>#{if recipe.recipe.item}<a #{if recipe.recipe.item}href="@{Char.showItem(recipe.recipe.item?.itemId)}" rel="@{Char.showItemTooltip(recipe.recipe.item?.itemId)}"#{/if}class="item q${recipe.recipe.item?.itemQuality?.qualityId}" target="_self"><img alt="${recipe.recipe.item.name}" src="/public/images/static/icons/${recipe.recipe.item.icon.icon.toLowerCase()}.png" width="22px" height="22px" /></a>#{/if}</td>
 						<td style="text-align: left;"><a #{if recipe.recipe.item}href="@{Char.showItem(recipe.recipe.item?.itemId)}"#{/if}class="item q${recipe.recipe.item?.itemQuality?.qualityId}" target="_self">${recipe.recipe.name}</a></td>
 						<td>#{recipe_reagent_icon_list reagents:recipe.recipe.reagents, as:'reagents' /}</td>
 						<td>#{if recipe.recipe.item}${recipe.recipe.item.reqlevel}#{/if}</td>

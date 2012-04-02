@@ -49,8 +49,8 @@ public class WoWHead {
 	public static long WEEKLYUPDATE = 604800000;
 	public static long QUATERDAYUPDATE = 21600000;
 	
-	public static String ITEMURL = "http://de.wowhead.com/item=";
-	
+	public static String ITEMURL = "http://de.wowhead.com/item="; //41380
+	public static String FAILITEMURL = "http://www.wowhead.com/item=";
 	public WoWHead() {
 
 	}
@@ -99,7 +99,14 @@ public class WoWHead {
 	public static Item fetchItemByName(Item checkedItem) {
 		Document xmlDoc = null;
 		if (checkedItem.name == null && checkedItem.itemId != null) {
-			xmlDoc = getXMLDocument(ITEMURL,checkedItem.itemId);
+			
+			if (checkedItem.itemId == 41380L) {
+				xmlDoc = getXMLDocument(FAILITEMURL,checkedItem.itemId);
+			} else {
+				xmlDoc = getXMLDocument(ITEMURL,checkedItem.itemId);
+			}
+			
+			
 			Node itemInfo = XPath.selectNode("/wowhead/item", xmlDoc);
 			
 			String name = XPath.selectText("name", itemInfo);

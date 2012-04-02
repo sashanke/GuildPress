@@ -452,6 +452,18 @@ public class Avatar extends Model {
 		}
 		return this.inset;
 	}
+	/**
+	 * For javascript/json!
+	 */
+	public String getAvatarLink() {
+		Map<String, Object> args = new HashMap<String, Object>();
+
+		args.put("id", this.id);
+		args.put("name", this.name);
+		args.put("realm", this.realm.name);
+
+		return "<a href=\""+Router.getFullUrl("Char.show", args )+"\" class=\"class class-"+this.cclass.name.toLowerCase()+"\">"+this.name+"</a>";
+	}
 
 	public static void createAsyncAvatar(String name, String realm) {
 		Promise<Avatar> futureAvatar = new Promise<Avatar>();

@@ -46,6 +46,8 @@ public class Recipe extends Model {
 
 	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
 	public List<RecipeReagent> reagents;
+	
+	public Boolean isEffect;
 
 	public Recipe(Long spellId, Long profId) {
 		this.reagents = new ArrayList<RecipeReagent>();
@@ -56,6 +58,7 @@ public class Recipe extends Model {
 		}
 		this.lastModified = new Date();
 		this.lastUpdate = new Date();
+		this.isEffect = false;
 	}
 
 	public static Recipe setRecipe(Long spellId, Long profId) {
@@ -129,11 +132,13 @@ public class Recipe extends Model {
 	}
 
 	private Item getCreatedItem(String body) {
-		Pattern pattern = Pattern.compile("(?ism)(Create Item)(.*?)(<a href=\"/item=)(.*?)(\">)(.*?)(</span>)");
+		Pattern pattern = Pattern.compile("(?ism)(Create.*?Item)(.*?)(<a href=\"/item=)(.*?)(\">)(.*?)(</span>)");
 		Matcher matcher = pattern.matcher(body);
 
 		if (matcher.find()) {
 			return Item.setItem(Long.parseLong(matcher.group(4)));
+		} else {
+			this.isEffect = true;
 		}
 
 		return null;

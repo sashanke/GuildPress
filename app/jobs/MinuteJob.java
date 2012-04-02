@@ -27,7 +27,12 @@ import play.libs.WS.HttpResponse;
 public class MinuteJob extends Job {
 	public void doJob() {
 		Logger.info("[MinuteJob][start]");
-		List<Recipe> recipes = Recipe.find("name is null").fetch(5);		
+		List<Recipe> recipes = Recipe.find("name is null").fetch(5);
+		for (Recipe recipe : recipes) {
+			recipe.setTooltip();
+		}
+
+		recipes = Recipe.find("item_id is null and name is not null and isEffect is null").fetch();
 		for (Recipe recipe : recipes) {
 			recipe.setTooltip();
 		}

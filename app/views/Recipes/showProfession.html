@@ -23,7 +23,7 @@
 						<th width="180px">Reagenzien</th>
 						<th width="25">Fertigkeit</th>
 						<th width="25">iLevel</th>
-						<th width="100">Besitzer</th>
+						<th width="25">Merken</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -34,7 +34,8 @@
 						<td>#{recipe_reagent_icon_list reagents:recipe.recipe.reagents, as:'reagents' /}</td>
 						<td>#{if recipe.recipe.item}${recipe.recipe.profLevel}#{/if}</td>
 						<td>#{if recipe.recipe.item}${recipe.recipe.item.level}#{/if}</td>
-						<td><div class="recipe-holder">#{list items:recipe.avatars, as:'avatar'}#{name_with_link avatar:avatar, as:'icon' /}#{/list}</div></td>
+						*{<td><div class="recipe-holder">#{list items:recipe.avatars, as:'avatar'}#{name_with_link avatar:avatar, as:'icon' /}#{/list}</div></td>}*
+						<td><a class="recipe-remember" href="#${recipe.recipe.id}" rel="${recipe.recipe.id}"><span class="icon-shopping-cart"/></span></a> <a class="recipe-remove" href="#${recipe.recipe.id}" rel="${recipe.recipe.id}"><span id="recipe-${recipe.recipe.id}"/>${recipeIdCounts.get(recipe.recipe.id)}</span></a></td>
 					</tr>
 					#{/list}
 				</tbody>
@@ -49,6 +50,16 @@
 					</tr>
 				</tfoot>
 				</table>
+			</div>
+			<div class="clear"></div>
+			<div class="shoppingcart" id="shoppingcart">
+			#{if recipeShoppingCart}
+			<br />
+			<h2 class="nav_t">Warenkorb</h2>
+			<div class="colBreak clear"></div>
+			<br />
+				#{recipe.shoppingcart shoppingCart:recipeShoppingCart, as:'recipe_row' /}
+			#{/if}
 			</div>
 			<div class="colBreak clear"></div>
 		</div>

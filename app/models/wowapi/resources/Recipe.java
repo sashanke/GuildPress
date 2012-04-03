@@ -13,6 +13,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import play.Logger;
 import play.db.jpa.Model;
@@ -49,6 +50,9 @@ public class Recipe extends Model {
 	
 	public Boolean isEffect;
 
+	@Transient
+	public int recCount;
+	
 	public Recipe(Long spellId, Long profId) {
 		this.reagents = new ArrayList<RecipeReagent>();
 		this.spellId = spellId;

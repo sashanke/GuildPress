@@ -1,0 +1,10 @@
+<div class="shoppingcart" id="shoppingcart">
+#{if recipeShoppingCart}
+<br />
+<h2 class="nav_t">Warenkorb</h2>
+<div class="colBreak clear"></div>
+<br />
+#{recipe.shoppingcart shoppingCart:recipeShoppingCart, as:'recipe_row' /}
+#{/if}
+</div>
+

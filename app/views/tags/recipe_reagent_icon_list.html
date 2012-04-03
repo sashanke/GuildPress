@@ -1,3 +1,4 @@
+#{if _as == 'reagents'}
 <div class="reagents">
 #{list items:_reagents, as:'reagent'}
 	<div class="reagent left">
@@ -7,3 +8,18 @@
 	</div>
 #{/list}
 </div>
+#{/if}
+
+#{if _as == 'shoppingkart'}
+<div class="shoppingcart-reagent-holder">
+<div class="shoppingcart-reagents">
+#{list items:_reagents, as:'reagent'}
+	<div class="shoppingcart-reagent left">
+		<a href="@{Char.showItem(reagent.getValue().itemId)}" rel="@{Char.showItemTooltip(reagent.getValue().itemId)}" class="item q${reagent.getValue().itemQuality?.qualityId}" target="_self"><img alt="${reagent.getValue().name}" src="/public/images/static/icons/${reagent.getValue().icon.icon.toLowerCase()}.png" width="22px" height="22px" />
+		<span class="shoppingcart-reagent-count">${reagent.getValue().recCount}</span>
+		</a>
+	</div>
+#{/list}
+</div>
+</div>
+#{/if}

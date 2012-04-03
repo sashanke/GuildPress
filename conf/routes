@@ -15,6 +15,8 @@ GET		/ws/item/{<[0-9]+>itemId}/update					Service.updateItem
 GET		/ws/recipe/{<[0-9]+>spellId}/update					Service.updateRecipe
 # Recipes & Professions
 GET		/recipes											Recipes.index
+GET		/recipe/save/{<[0-9]+>id}							Recipes.save
+GET		/recipe/remove/{<[0-9]+>id}							Recipes.remove
 GET		/recipes/profession/{<[0-9]+>id}/{name}				Recipes.showProfession
 # Front page
 GET     /                                       			FrontPage.index

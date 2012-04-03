@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import models.wowapi.WoWHead;
 
@@ -136,6 +137,9 @@ public class Item extends Model {
 
 	@Lob
 	public String armoryTooltip;
+
+	@Transient
+	public int recCount;
 	
 	public Item(Long id) {
 		this.itemId = id;

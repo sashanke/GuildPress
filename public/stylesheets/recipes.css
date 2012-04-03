@@ -59,12 +59,12 @@ table.dataTable td {
 	height: 40px;
 }
 
-.reagent {
+.reagent,.items,.shoppingcart-reagent {
 	position: relative;
 	margin-right: 5px;
 }
 
-.reagent-count {
+.reagent-count,.item-count,.shoppingcart-reagent-count {
 	right: 2px;
 	bottom: -2px;
 	position: absolute;
@@ -77,4 +77,50 @@ table.dataTable td {
 
 .recipe-holder img {
 	margin-right: 5px;
+}
+
+.shoppingcart-reagent-holder img {
+	margin-right: 5px;
+	margin-top: 5px;
+	width: 40px;
+	height: 40px;
+}
+
+.shoppingcart {
+	position: relative;
+}
+
+.shoppingcart-reagent-count {
+	right: 7px;
+}
+.shoppingcart-reagents {
+
+}
+.item-count {
+	font-size: 40px;
+	bottom: -10px;
+	right: 45px;
+}
+.item-remove {
+	position: absolute;
+	font-size: 20px;
+	top: 0px;
+	left: 10px;
+}
+.crafter {
+	height: 96px;
+	-moz-column-gap: 20px;
+	-moz-column-rule: rgba(102, 102, 102, 1) 1px solid;
+	-moz-column-width: 200px;
+	-webkit-column-gap: 0px;
+	
+	-webkit-column-width: 16px;
+	column-gap: 20px;
+	column-rule: rgba(102, 102, 102, 1) 1px solid;
+	column-width: 200px;
+}
+
+.crafter img {
+	margin-left: 2px;
+	margin-bottom: 1px;
 }

@@ -1,7 +1,9 @@
 package models.wowapi.character;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import models.wowapi.resources.Recipe;
 import play.db.jpa.Model;

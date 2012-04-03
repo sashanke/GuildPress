@@ -26,6 +26,10 @@ public class Recipes extends Controller {
 	
 	public static void save(Long id) {	
 		Cookie savedRecipes = request.cookies.get("savedRecipes");
+		if (savedRecipes == null) {
+			savedRecipes = new Cookie();
+			savedRecipes.value = "";
+		}
 		List<String> recipeIdsList = new ArrayList<String>();
 		recipeIdsList.addAll(Arrays.asList(savedRecipes.value.split(",")));
 		recipeIdsList.add(id.toString());
@@ -50,6 +54,10 @@ public class Recipes extends Controller {
 	}
 	public static void remove(Long id) {	
 		Cookie savedRecipes = request.cookies.get("savedRecipes");
+		if (savedRecipes == null) {
+			savedRecipes = new Cookie();
+			savedRecipes.value = "";
+		}
 		List<String> recipeIdsList = new ArrayList<String>();
 		recipeIdsList.addAll(Arrays.asList(savedRecipes.value.split(",")));
 		recipeIdsList.remove(id.toString());

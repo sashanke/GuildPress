@@ -7,6 +7,7 @@ import java.util.List;
 
 import models.wowapi.character.AvatarProfession;
 import models.wowapi.character.helper.AvatarProfessionHelper;
+import models.wowapi.resources.Recipe;
 import models.wowapi.resources.helper.RecipeShoppingCart;
 import play.mvc.Before;
 import play.mvc.Controller;
@@ -111,13 +112,11 @@ public class Recipes extends Controller {
 		} catch (NumberFormatException e) {
 			// TODO: handle exception
 		}
-
-		System.out.println(recipeShoppingCart);
 		
 		AvatarProfession profession = AvatarProfession.find("byProfId", id).first();
 		
-		List<AvatarProfessionHelper> recipes = AvatarProfessionHelper.getList(profession);
-
+		//List<AvatarProfessionHelper> recipes = AvatarProfessionHelper.getList(profession);
+		List<Recipe> recipes = Recipe.find("byProfId", id).fetch();
 		
 		
 		

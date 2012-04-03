@@ -2,7 +2,7 @@
 	<div class="shoppingcart left">
 		<div class="icon left">
 			<a rel="@{Char.showItemTooltip(recipe.recipe.item?.itemId)}" class="item q${recipe.recipe.item?.itemQuality?.qualityId}" >
-				<img src="/public/images/static/icons/${recipe.recipe.item.icon.icon.toLowerCase()}.png" height="96" width="96" alt="" />
+				<img src="/public/images/static/icons/${recipe.recipe.item?.icon?.icon?.toLowerCase()}.png" height="96" width="96" alt="" />
 			</a>
 			<span class="item-count">${recipe.recipe.recCount}</span>
 		</div>

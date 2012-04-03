@@ -22,20 +22,20 @@
 						<th>Rezept</th>
 						<th width="180px">Reagenzien</th>
 						<th width="25">Fertigkeit</th>
-						<th width="25">iLevel</th>
-						<th width="25">Merken</th>
+						*{<th width="25">iLevel</th>}*
+						<th width="25"></th>
 					</tr>
 				</thead>
 				<tbody>
 					#{list items:recipes, as:'recipe'}
 					<tr>
-						<td><span style="display: none;">${recipe.recipe.profLevel}</span>#{if recipe.recipe.item}<a #{if recipe.recipe.item}href="@{Char.showItem(recipe.recipe.item?.itemId)}" rel="@{Char.showItemTooltip(recipe.recipe.item?.itemId)}"#{/if}class="item q${recipe.recipe.item?.itemQuality?.qualityId}" target="_self"><img alt="${recipe.recipe.item.name}" src="/public/images/static/icons/${recipe.recipe.item.icon.icon.toLowerCase()}.png" width="22px" height="22px" /></a>#{/if}</td>
-						<td style="text-align: left;"><a #{if recipe.recipe.item}href="@{Char.showItem(recipe.recipe.item?.itemId)}"#{/if}class="item q${recipe.recipe.item?.itemQuality?.qualityId}" target="_self">${recipe.recipe.name.raw()}</a></td>
-						<td>#{recipe_reagent_icon_list reagents:recipe.recipe.reagents, as:'reagents' /}</td>
-						<td>#{if recipe.recipe.item}${recipe.recipe.profLevel}#{/if}</td>
-						<td>#{if recipe.recipe.item}${recipe.recipe.item.level}#{/if}</td>
+						<td><span style="display: none;">${recipe.profLevel}</span>#{if recipe.item}<a #{if recipe.item}href="@{Char.showItem(recipe.item?.itemId)}" rel="@{Char.showItemTooltip(recipe.item?.itemId)}"#{/if}class="item q${recipe.item?.itemQuality?.qualityId}" target="_self"><img alt="${recipe.item.name}" src="/public/images/static/icons/${recipe.item.icon.icon.toLowerCase()}.png" width="22px" height="22px" /></a>#{/if}</td>
+						<td style="text-align: left;"><a #{if recipe.item}href="@{Char.showItem(recipe.item?.itemId)}"#{/if}class="item q${recipe.item?.itemQuality?.qualityId}" target="_self">${recipe.name.raw()}</a></td>
+						<td>#{recipe_reagent_icon_list reagents:recipe.reagents, as:'reagents' /}</td>
+						<td>#{if recipe.item}${recipe.profLevel}#{/if}</td>
+						*{<td>#{if recipe.item}${recipe.item.level}#{/if}</td>}*
 						*{<td><div class="recipe-holder">#{list items:recipe.avatars, as:'avatar'}#{name_with_link avatar:avatar, as:'icon' /}#{/list}</div></td>}*
-						<td><a class="recipe-update" href="#${recipe.recipe.id}" rel="/ws/recipe/${recipe.recipe.spellId}/update"><span class="icon-refresh"/></span></a>&nbsp;&nbsp;<a class="recipe-remember" href="#${recipe.recipe.id}" rel="${recipe.recipe.id}"><span class="icon-shopping-cart"/></span></a> <a class="recipe-remove" href="#${recipe.recipe.id}" rel="${recipe.recipe.id}"><span id="recipe-${recipe.recipe.id}"/>${recipeIdCounts.get(recipe.recipe.id)}</span></a></td>
+						<td><a class="recipe-update" href="#${recipe.id}" rel="/ws/recipe/${recipe.spellId}/update"><span class="icon-refresh"/></span></a>&nbsp;&nbsp;<a class="recipe-remember" href="#${recipe.id}" rel="${recipe.id}"><span class="icon-shopping-cart"/></span></a> <a class="recipe-remove" href="#${recipe.id}" rel="${recipe.id}"><span id="recipe-${recipe.id}"/>${recipeIdCounts.get(recipe.id)}</span></a></td>
 					</tr>
 					#{/list}
 				</tbody>
@@ -45,8 +45,8 @@
 						<th>Rezept</th>
 						<th>Reagenzien</th>
 						<th>Level</th>
-						<th>iLevel</th>
-						<th>Besitzer</th>
+						*{<th>iLevel</th>}*
+						<th></th>
 					</tr>
 				</tfoot>
 				</table>
@@ -71,6 +71,12 @@
 		$('#datatable-${profession?.name}').dataTable({
 			"bProcessing" : true,
 			"bStateSave" : true,
+			"aaSorting": [[ 3, "desc" ]],
+			"sPaginationType": "full_numbers",
+			"aoColumnDefs": [ 
+				{ "bSearchable": false, "bSortable": false, "bVisible": true, "aTargets": [ 0 ] },
+				{ "bSearchable": false, "bSortable": false, "bVisible": true, "aTargets": [ 4 ] }
+			],
 			"oLanguage" : {
 				"sUrl" : "/public/datatables_de_DE.txt"
 			}

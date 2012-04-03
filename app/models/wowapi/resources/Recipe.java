@@ -144,6 +144,11 @@ public class Recipe extends Model {
 			return Item.setItem(Long.parseLong(matcher.group(6)));
 		} else {
 			this.isEffect = true;
+			pattern = Pattern.compile("(?ism)(template: 'item', id: 'taught-by-item')(.*?)(\"id\":)(.*?)(,)");
+			matcher = pattern.matcher(body);
+			if (matcher.find()) {
+				return Item.setItem(Long.parseLong(matcher.group(4)));
+			}
 		}
 
 		return null;

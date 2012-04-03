@@ -36,6 +36,13 @@ public class MinuteJob extends Job {
 		for (Recipe recipe : recipes) {
 			recipe.setTooltip();
 		}
+		
+		
+//		recipes = Recipe.find("item_id is null and name is not null").fetch();
+//		for (Recipe recipe : recipes) {
+//			recipe.setTooltip();
+//		}
+		
 		Logger.info("[MinuteJob][stop]");
 	}
 }

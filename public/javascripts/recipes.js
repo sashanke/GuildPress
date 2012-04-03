@@ -71,6 +71,33 @@ $(document)
 						});
 					});
 					
+					
+					$(".recipe-update").click(function() {
+						$.ajax({
+							url : $(this).attr('rel'),
+							type : 'GET',
+							async : true,
+							cache : false,
+							timeout : 30000,
+							beforeSend : function() {
+								$.blockUI({
+									message : $('#waitMessage'),
+									css : {
+										backgroundColor : 'transparent',
+										border : '0'
+									}
+								});
+							},
+							error : function() {
+								$.unblockUI();
+							},
+							success : function(msg) {
+								location.reload();
+								$.unblockUI();
+							}
+						});
+					});
+					
 					$(".recipe-remove").click(function() {
 						var count = $("#recipe-" + $(this).attr('rel')).text();
 						if (count != null) {

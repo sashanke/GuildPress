@@ -136,11 +136,12 @@ public class Recipe extends Model {
 	}
 
 	private Item getCreatedItem(String body) {
-		Pattern pattern = Pattern.compile("(?ism)(Create [Tradeskill Item|Item])(.*?)(<a href=\"/item=)(.*?)(\">)(.*?)(</span>)");
+		Pattern pattern = Pattern.compile("(?ism)((Create Tradeskill Item)|(Create Item))(.*?)(<a href=\"/item=)(.*?)(\">)(.*?)(</span>)");
 		Matcher matcher = pattern.matcher(body);
 
 		if (matcher.find()) {
-			return Item.setItem(Long.parseLong(matcher.group(4)));
+			System.out.println(matcher.group(6));
+			return Item.setItem(Long.parseLong(matcher.group(6)));
 		} else {
 			this.isEffect = true;
 		}

@@ -35,7 +35,7 @@
 						<td>#{if recipe.recipe.item}${recipe.recipe.profLevel}#{/if}</td>
 						<td>#{if recipe.recipe.item}${recipe.recipe.item.level}#{/if}</td>
 						*{<td><div class="recipe-holder">#{list items:recipe.avatars, as:'avatar'}#{name_with_link avatar:avatar, as:'icon' /}#{/list}</div></td>}*
-						<td><a class="recipe-remember" href="#${recipe.recipe.id}" rel="${recipe.recipe.id}"><span class="icon-shopping-cart"/></span></a> <a class="recipe-remove" href="#${recipe.recipe.id}" rel="${recipe.recipe.id}"><span id="recipe-${recipe.recipe.id}"/>${recipeIdCounts.get(recipe.recipe.id)}</span></a></td>
+						<td><a class="recipe-update" href="#${recipe.recipe.id}" rel="/ws/recipe/${recipe.recipe.spellId}/update"><span class="icon-refresh"/></span></a>&nbsp;&nbsp;<a class="recipe-remember" href="#${recipe.recipe.id}" rel="${recipe.recipe.id}"><span class="icon-shopping-cart"/></span></a> <a class="recipe-remove" href="#${recipe.recipe.id}" rel="${recipe.recipe.id}"><span id="recipe-${recipe.recipe.id}"/>${recipeIdCounts.get(recipe.recipe.id)}</span></a></td>
 					</tr>
 					#{/list}
 				</tbody>

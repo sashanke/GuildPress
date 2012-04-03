@@ -34,7 +34,7 @@ public class Recipes extends Controller {
 		recipeIdsList.addAll(Arrays.asList(savedRecipes.value.split(",")));
 		recipeIdsList.add(id.toString());
 		recipeIdsList.remove("");
-		response.setCookie("savedRecipes", Tools.implodeList(recipeIdsList,","), "30d");
+		response.setCookie("savedRecipes", Tools.implodeList(recipeIdsList,","));
 
 		HashMap<Long, Integer> recipeIdCounts = new HashMap<Long, Integer>();
 		RecipeShoppingCart recipeShoppingCart = null;
@@ -57,12 +57,13 @@ public class Recipes extends Controller {
 		if (savedRecipes == null) {
 			savedRecipes = new Cookie();
 			savedRecipes.value = "";
+			response.setCookie("savedRecipes", "");
 		}
 		List<String> recipeIdsList = new ArrayList<String>();
 		recipeIdsList.addAll(Arrays.asList(savedRecipes.value.split(",")));
 		recipeIdsList.remove(id.toString());
 		recipeIdsList.remove("");
-		response.setCookie("savedRecipes", Tools.implodeList(recipeIdsList,","), "30d");
+		response.setCookie("savedRecipes", Tools.implodeList(recipeIdsList,","));
 		
 		HashMap<Long, Integer> recipeIdCounts = new HashMap<Long, Integer>();
 		RecipeShoppingCart recipeShoppingCart = null;
@@ -85,12 +86,13 @@ public class Recipes extends Controller {
 		if (savedRecipes == null) {
 			savedRecipes = new Cookie();
 			savedRecipes.value = "";
+			response.setCookie("savedRecipes", "");
 		}
 		List<String> recipeIdsList = new ArrayList<String>();
 		HashMap<Long, Integer> recipeIdCounts = new HashMap<Long, Integer>();
 		RecipeShoppingCart recipeShoppingCart = null;
 		recipeIdsList.addAll(Arrays.asList(savedRecipes.value.split(",")));
-		if (recipeIdsList.size() > 1) {
+		if (recipeIdsList.size() > 0) {
 			for (String string : recipeIdsList) {
 				Integer test = recipeIdCounts.get(Long.parseLong(string));
 				if (test == null) {
@@ -103,6 +105,8 @@ public class Recipes extends Controller {
 			recipeShoppingCart = new RecipeShoppingCart(recipeIdsList);
 		}
 
+		
+		System.out.println(recipeShoppingCart);
 		
 		AvatarProfession profession = AvatarProfession.find("byProfId", id).first();
 		

@@ -81,6 +81,8 @@ public class Recipes extends Controller {
 		}
 		render("Recipes/shoppingcart.html",recipeShoppingCart);
 	}
+	
+	
 	public static void showProfession(Long id, String name) {
 		Cookie savedRecipes = request.cookies.get("savedRecipes");
 		if (savedRecipes == null) {
@@ -92,20 +94,24 @@ public class Recipes extends Controller {
 		HashMap<Long, Integer> recipeIdCounts = new HashMap<Long, Integer>();
 		RecipeShoppingCart recipeShoppingCart = null;
 		recipeIdsList.addAll(Arrays.asList(savedRecipes.value.split(",")));
-		if (recipeIdsList.size() > 0) {
-			for (String string : recipeIdsList) {
-				Integer test = recipeIdCounts.get(Long.parseLong(string));
-				if (test == null) {
-					test = 1;
-				} else {
-					test = test + 1;
+		
+		try {
+			if (recipeIdsList.size() > 0) {
+				for (String string : recipeIdsList) {
+					Integer test = recipeIdCounts.get(Long.parseLong(string));
+					if (test == null) {
+						test = 1;
+					} else {
+						test = test + 1;
+					}
+					recipeIdCounts.put(Long.parseLong(string), test);
 				}
-				recipeIdCounts.put(Long.parseLong(string), test);
+				recipeShoppingCart = new RecipeShoppingCart(recipeIdsList);
 			}
-			recipeShoppingCart = new RecipeShoppingCart(recipeIdsList);
+		} catch (NumberFormatException e) {
+			// TODO: handle exception
 		}
 
-		
 		System.out.println(recipeShoppingCart);
 		
 		AvatarProfession profession = AvatarProfession.find("byProfId", id).first();

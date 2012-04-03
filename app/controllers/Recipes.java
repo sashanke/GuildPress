@@ -74,6 +74,9 @@ public class Recipes extends Controller {
 	}
 	public static void showProfession(Long id, String name) {
 		Cookie savedRecipes = request.cookies.get("savedRecipes");
+		if (savedRecipes == null) {
+			savedRecipes = new Cookie();
+		}
 		List<String> recipeIdsList = new ArrayList<String>();
 		HashMap<Long, Integer> recipeIdCounts = new HashMap<Long, Integer>();
 		RecipeShoppingCart recipeShoppingCart = null;

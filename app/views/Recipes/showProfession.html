@@ -29,8 +29,8 @@
 				<tbody>
 					#{list items:recipes, as:'recipe'}
 					<tr>
-						<td><span style="display: none;">${recipe.profLevel}</span>#{if recipe.item}<a #{if recipe.item}href="@{Char.showItem(recipe.item?.itemId)}" rel="@{Char.showItemTooltip(recipe.item?.itemId)}"#{/if}class="item q${recipe.item?.itemQuality?.qualityId}" target="_self"><img alt="${recipe.item.name}" src="/public/images/static/icons/${recipe.item.icon.icon.toLowerCase()}.png" width="22px" height="22px" /></a>#{/if}</td>
-						<td style="text-align: left;"><a #{if recipe.item}href="@{Char.showItem(recipe.item?.itemId)}"#{/if}class="item q${recipe.item?.itemQuality?.qualityId}" target="_self">${recipe.name.raw()}</a></td>
+						<td><a href="@{Service.showRecipe(recipe.id)}" rel="@{Service.showTooltip(recipe.tooltip.id,recipe.tooltip.type)}" class="item q${recipe.item?.itemQuality?.qualityId}" target="_self"><img alt="${recipe.name}" src="${recipe.icon.getImage()}" width="22px" height="22px" /></a></td>
+						<td style="text-align: left;"><a href="@{Service.showRecipe(recipe.id)}" class="item q${recipe.item?.itemQuality?.qualityId ? recipe.item?.itemQuality?.qualityId : 1}" target="_self">${recipe.name.raw()}</a></td>
 						<td>#{recipe_reagent_icon_list reagents:recipe.reagents, as:'reagents' /}</td>
 						<td>#{if recipe.item}${recipe.profLevel}#{/if}</td>
 						*{<td>#{if recipe.item}${recipe.item.level}#{/if}</td>}*

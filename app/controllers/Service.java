@@ -5,6 +5,8 @@ import java.util.List;
 
 import flexjson.JSONSerializer;
 import models.wowapi.Armory;
+import models.wowapi.ArmoryTooltip;
+import models.wowapi.Type;
 import models.wowapi.character.Avatar;
 import models.wowapi.guild.Guild;
 import models.wowapi.guild.GuildMember;
@@ -18,7 +20,11 @@ import play.mvc.Before;
 import play.mvc.Controller;
 
 public class Service extends Controller {
-
+	@Before
+	static void addDefaults() {
+		Application.addDefaults();
+	}
+	
 	public static void updateGuild(String name, String realm) {
 		Logger.info("[Service][Request][updateGuild] " + name + " (" + realm + ")");
 		JSONSerializer guildSerializer = new JSONSerializer().prettyPrint(true);
@@ -63,7 +69,15 @@ public class Service extends Controller {
 	}
 
 
+	public static void showTooltip(Long id, String type) {
+		ArmoryTooltip toolTip = ArmoryTooltip.findById(id);
+		render("/Service/show" + type + "Tooltip.html",toolTip);
+	}
 	
+	public static void showRecipe(Long id) {
+		Recipe recipe = Recipe.findById(id);
+		render(recipe);
+	}
 	public static void update() {
 		List<Recipe> recipes = Recipe.find("item_id is null and name is not null").fetch();
 		for (Recipe recipe : recipes) {

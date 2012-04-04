@@ -38,10 +38,10 @@ public class MinuteJob extends Job {
 		}
 		
 		
-//		recipes = Recipe.find("item_id is null and name is not null").fetch();
-//		for (Recipe recipe : recipes) {
-//			recipe.setTooltip();
-//		}
+		recipes = Recipe.find("icon_id is null").fetch(20);
+		for (Recipe recipe : recipes) {
+			recipe.setTooltip();
+		}
 		
 		Logger.info("[MinuteJob][stop]");
 	}

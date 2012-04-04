@@ -1,0 +1,29 @@
+#{extends 'main.html' /}
+#{set title: recipe.name + ' - ' + guildTitle /}
+#{js "char recipe" /}
+#{css "char recipe" /}
+<div class="box">
+	<div class="artheadline" style="background: black url(${randomArtwork})} no-repeat top center  !important;">
+		<div class="artheadlinshadow">
+			<div class="postdate"></div>
+    		<h2 class="post-title">
+    			<a href="http://de.wowhead.com/spell=${recipe.spellId}" target="_blank">${recipe.name}</a>
+			</h2>
+		</div>
+	</div>
+	<div class="post">
+        <div class="post-content">
+        	<div class="clear"></div>
+        	<div style="width:50%; float:left;">
+				${recipe.tooltip.toolTip.raw()}
+			</div>
+			<div style="width:50%; float:right;">
+
+				
+			</div>
+     		<div class="colBreak clear"></div>
+     		<br>
+			<div class="clear"></div>
+        </div>
+	</div>
+</div>

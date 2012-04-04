@@ -18,6 +18,9 @@ import models.wowapi.resources.RaceClassMap;
 import models.wowapi.resources.Realm;
 import models.wowapi.resources.Recipe;
 import models.wowapi.resources.Side;
+import models.wowapi.resources.Skill;
+import models.wowapi.resources.SkillCategorie;
+import models.wowapi.resources.Source;
  
 @OnApplicationStart
 public class Bootstrap extends Job {
@@ -60,6 +63,11 @@ public class Bootstrap extends Job {
 			Guild.createGuild(Play.configuration.getProperty("wowapi.guildName"), Play.configuration.getProperty("wowapi.realmName"));
 		}
 		
+		Source.createSources();
+		SkillCategorie.createSkillCategories();
+		Skill.createSkills();
+		
+		//{"-6":"Haustiere","-5":"Reittiere","-4":"Völkerfertigkeiten","6":"Waffenfertigkeiten","8":"Rüstungssachverstand","9":"Nebenberufe","10":"Sprachen","11":"Berufe"}
 		
 //		List<Recipe> recipes = Recipe.find("lastUpdate between ? and ?",new Date(new Date().getTime() - 1900000L),new Date()).fetch();
 //

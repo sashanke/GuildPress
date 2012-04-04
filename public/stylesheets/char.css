@@ -3,7 +3,7 @@
 	border-style: solid;
 	border-width: 1px;
 	color: #FFFFFF;
-	background: transparent url(/public/images/background/bg.png);
+	background: transparent url(/public/images/background/bg_dark.png);
 	text-align: left;
 	padding: 5px;
 	padding-left: 7px;
@@ -14,6 +14,7 @@
 	position: absolute;
 	left: -72px;
 	top: 0px;
+	background-position: -1px -2px;
 }
 
 .color-close {
@@ -506,16 +507,20 @@ a.color-q0:hover,a.color-q1:hover,a.color-q2:hover,a.color-q3:hover,a.color-q4:h
 .icon-frame {
 	display: inline-block;
 	overflow: hidden;
-	padding: 1px;
+	padding: 0px;
+	margin: 0px;
 	background-color: #000;
-	background-position: 1px 1px;
+	background-position: 0px 0px;
 	background-repeat: no-repeat;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	border: 1px solid #434445;
-	border-bottom-color: #2f3032;
-	border-top-color: #b1b2b4;
+	border-color: #12202E;
+	border-style: solid;
+	border-width: 1px;
+/* 	-moz-border-radius: 3px; */
+/* 	-webkit-border-radius: 3px; */
+/* 	border-radius: 3px; */
+/* 	border: 1px solid #434445; */
+/* 	border-bottom-color: #2f3032; */
+/* 	border-top-color: #b1b2b4; */
 }
 
 .icon-frame img {

@@ -29,6 +29,14 @@ public class StringUtils {
 	}
 
 	
+	public static String replaceWhiteSpaces(String string) {
+		String pattern = "([\\n|\\r|\\t])";
+		String newString = string.replaceAll(pattern, "");
+		newString = newString.replaceAll("  ", " ");
+		return newString.trim();
+	}
+	
+	
 	public static String replaceUrls(String text, String cssClass, String aOptions) {
 		String regex = "\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]*"; // matches <http://google.com>
 

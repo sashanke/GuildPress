@@ -31,6 +31,7 @@ import play.db.jpa.Model;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
 import utils.FetchSite;
+import utils.NumberUtils;
 import utils.StringUtils;
 
 @Entity
@@ -74,7 +75,10 @@ public class Recipe extends Model {
 	public List<Source> source;
 
 	public long points;
+	
 	public long trainingcost;
+	
+	public float reagentcost;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	Color color;
@@ -118,99 +122,10 @@ public class Recipe extends Model {
 		String response = site.response;
 
 		getInfo(response);
-		// this.item = getCreatedItem(response);
-
-		// Pattern pattern =
-		// Pattern.compile("(?ism)(<h3>Reagenzien</h3>)(.*?)(<table class=\"iconlist\">)(.*?)(</table>)");
-		// Matcher matcher = pattern.matcher(response);
-		// Pattern countPattern = Pattern.compile("(?ism)(" + Pattern.quote("(")
-		// + ")([0-9]*?)(" + Pattern.quote(")") + ")");
-		//
-		// if (matcher.find()) {
-		// pattern =
-		// Pattern.compile("(?ism)(<a href=\"/item=)([0-9]*?)(\">)(.*?)</td>");
-		// matcher = pattern.matcher(matcher.group(4));
-		// while (matcher.find()) {
-		//
-		// Matcher countMatcher = countPattern.matcher(matcher.group());
-		// Long count = 1L;
-		// if (countMatcher.find()) {
-		// count = Long.parseLong(countMatcher.group(2));
-		// }
-		// this.reagents.add(RecipeReagent.setRagent(this,
-		// Item.setItem(Long.parseLong(matcher.group(2))), count));
-		// this.save();
-		// }
-		//
-		//
-		//
-		// }
 	}
 
-	// private Item getCreatedItem(String body) {
-	// Pattern pattern =
-	// Pattern.compile("(?ism)((Create Tradeskill Item)|(Create Item))(.*?)(<a href=\"/item=)(.*?)(\">)(.*?)(</span>)");
-	// Matcher matcher = pattern.matcher(body);
-	//
-	// if (matcher.find()) {
-	// return Item.setItem(Long.parseLong(matcher.group(6)));
-	// } else {
-	// this.isEffect = true;
-	// pattern =
-	// Pattern.compile("(?ism)(template: 'item', id: 'taught-by-item')(.*?)(\"id\":)(.*?)(,)");
-	// matcher = pattern.matcher(body);
-	// if (matcher.find()) {
-	// return Item.setItem(Long.parseLong(matcher.group(4)));
-	// }
-	// }
-	//
-	// return null;
-	// }
-
 	private void getInfo(String body) {
-
-		// Pattern pattern =
-		// Pattern.compile("(?ism)(<table class=\"infobox\">)(.*?)(<div class=\"text\">)");
-		// Matcher matcher = pattern.matcher(body);
-		//
-		// String infoBox = "";
-		//
-		// while (matcher.find()) {
-		// Pattern infoPattern = Pattern.compile("(?ism)(" +
-		// Pattern.quote("[ul]") + ")(.*?)(" + Pattern.quote("[/ul]") + ")");
-		// Matcher infoMatcher = infoPattern.matcher(matcher.group());
-		// if (infoMatcher.find()) {
-		// String infos = infoMatcher.group();
-		// infoBox = replace(infos, "(" + Pattern.quote("[") + ")", "<");
-		// infoBox = replace(infoBox, "(" + Pattern.quote("]") + ")", ">");
-		//
-		// String test = "(?i)(<color=)(.*?)(>)(.*?)(</color>)";
-		// infoBox = infoBox.replaceAll(test, "<span class=\"$2\">$4</span>");
-		//
-		// Pattern profPattern =
-		// Pattern.compile("(?ism)(<li>)(Benötigt )(.*?)(</li>)");
-		// Matcher profMatcher = profPattern.matcher(infoBox);
-		// if (profMatcher.find()) {
-		// String professionInfo = profMatcher.group(3);
-		// Pattern countPattern = Pattern.compile("(?ism)(" + Pattern.quote("(")
-		// + ")(.*?)(" + Pattern.quote(")") + ")");
-		// Matcher countMatcher = countPattern.matcher(professionInfo);
-		// if (countMatcher.find()) {
-		// this.profLevel = Long.parseLong(countMatcher.group(2));
-		// }
-		// professionInfo = professionInfo.replaceAll("(?ism)(" +
-		// Pattern.quote("(") + ")(.*?)(" + Pattern.quote(")") + ")", "");
-		// this.profName = professionInfo.trim();
-		// }
-		// }
-		// }
-
-		// new Listview({template: 'spell', id: 'recipes', name:
-		// LANG.tab_recipes, tabs: tabsRelated, parent: 'lkljbjkb574', sort:
-		// ['skill', 'name'], hiddenCols: ['slot'], visibleCols: ['source'],
-		// data:
-		// [{"cat":11,"colors":[40,90,110,130],"id":7426,"learnedat":40,"level":0,"name":"@Brust - Schwache Absorption","nskillup":1,"reagents":[[10940,2],[10938,1]],"schools":1,"skill":[333],"source":[6],"trainingcost":100}]});
-
+		
 		Pattern pattern = Pattern.compile("(?ism)((Listview" + Pattern.quote("({") + ")template: 'spell', id: 'recipes')(.*?)(" + Pattern.quote(")") + ";)");
 		Matcher matcher = pattern.matcher(body);
 		if (matcher.find()) {
@@ -263,7 +178,11 @@ public class Recipe extends Model {
 				JsonArray reagents = oJson.get("reagents").getAsJsonArray();
 				for (JsonElement reagent : reagents) {
 					JsonArray reag = reagent.getAsJsonArray();
-					this.reagents.add(RecipeReagent.setRagent(this, Item.setItem(reag.get(0).getAsLong()), reag.get(1).getAsLong()));
+					
+					RecipeReagent recipeReagent = RecipeReagent.setRagent(this, Item.setItem(reag.get(0).getAsLong()), reag.get(1).getAsLong());
+					
+					this.reagentcost = this.reagentcost + (recipeReagent.item.avgbuyout * recipeReagent.count);				
+					this.reagents.add(recipeReagent);
 				}
 				if (oJson.has("creates")) {
 					JsonArray creates = oJson.get("creates").getAsJsonArray();
@@ -279,7 +198,20 @@ public class Recipe extends Model {
 		this.save();
 
 	}
-
+	
+	public String getCosts(String type) {
+		return formatGold(this.reagentcost,type);
+	}
+	
+	public static String formatGold(float costs, String type) {
+		if (type.equals("json")) {
+			return NumberUtils.formatGold(costs).replaceAll("\\\"", "\\\\\"");
+		}
+		if (type.equals("html")) {
+			return NumberUtils.formatGold(costs);
+		}
+		return null;
+	}
 	static String replace(String string, String pattern, String with) {
 		String newString = string.replaceAll(pattern, with);
 		return newString.trim();

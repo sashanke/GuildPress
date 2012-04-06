@@ -1,5 +1,8 @@
 package models.wowapi.resources;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -9,9 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import models.wowapi.WoWHead;
+import models.wowapi.character.Avatar;
 
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
+import play.db.DB;
 import play.db.jpa.Model;
 
 /**
@@ -140,7 +145,20 @@ public class Item extends Model {
 
 	@Transient
 	public int recCount;
+
+	public float avgbuyout;
 	
+	public float buyout;
+	public float minbid;
+	
+	public float buyout3Day;
+	public float minbid3Day;
+	
+	public float buyout10Day;
+	public float minbid10Day;
+	
+	public float buyout30Day;
+	public float minbid30Day;
 	public Item(Long id) {
 		this.itemId = id;
 	}
@@ -167,6 +185,46 @@ public class Item extends Model {
 	}
 	public String toString() {
 		return name;
+	}
+	
+	public void setAuctionData() {
+		
+		try {
+			PreparedStatement ps = DB.getConnection().prepareStatement("select round(avg(ad.buyout / ad.count)) as buyout, round(avg(ad.minbid / ad.count)) as minbid, ad.itemid as itemId from AuctionData ad where ad.itemid = ? and ad.time BETWEEN SYSDATE() - INTERVAL 12 HOUR AND SYSDATE() group by ad.itemid, ad.name");
+			ps.setLong(1, this.itemId);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				this.buyout = rs.getFloat("buyout");
+				this.minbid = rs.getFloat("minbid");
+			}
+			ps = DB.getConnection().prepareStatement("select round(avg(ad.buyout / ad.count)) as buyout, round(avg(ad.minbid / ad.count)) as minbid, ad.itemid as itemId from AuctionData ad where ad.itemid = ? and ad.time BETWEEN SYSDATE() - INTERVAL 3 DAY AND SYSDATE() group by ad.itemid, ad.name");
+			ps.setLong(1, this.itemId);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				this.buyout3Day = rs.getFloat("buyout");
+				this.minbid3Day = rs.getFloat("minbid");
+			}
+			ps = DB.getConnection().prepareStatement("select round(avg(ad.buyout / ad.count)) as buyout, round(avg(ad.minbid / ad.count)) as minbid, ad.itemid as itemId from AuctionData ad where ad.itemid = ? and ad.time BETWEEN SYSDATE() - INTERVAL 10 DAY AND SYSDATE() group by ad.itemid, ad.name");
+			ps.setLong(1, this.itemId);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				this.buyout10Day = rs.getFloat("buyout");
+				this.minbid10Day = rs.getFloat("minbid");
+			}
+			ps = DB.getConnection().prepareStatement("select round(avg(ad.buyout / ad.count)) as buyout, round(avg(ad.minbid / ad.count)) as minbid, ad.itemid as itemId from AuctionData ad where ad.itemid = ? and ad.time BETWEEN SYSDATE() - INTERVAL 30 DAY AND SYSDATE() group by ad.itemid, ad.name");
+			ps.setLong(1, this.itemId);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				this.buyout30Day = rs.getFloat("buyout");
+				this.minbid30Day = rs.getFloat("minbid");
+			}
+			this.save();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		
+		
 	}
 	
 	public String getTooltip() {

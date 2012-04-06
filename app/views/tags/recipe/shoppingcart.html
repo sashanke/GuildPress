@@ -6,7 +6,7 @@
 			</a>
 			<span class="item-count">${recipe.recipe.recCount}</span>
 		</div>
-		<div class="crafter" style="width: 44px;">#{list items:recipe.crafter, as:'avatar'}#{name_with_link avatar:avatar, as:'icon_shoppingcart' /}#{/list}</div>
+		<div class="crafter" style="width: 44px;">#{list items:recipe.crafter, as:'avatar'}#{name_with_link avatar:avatar, as:'icon_shoppingcart', size:'16' /}#{/list}</div>
 	</div>
 #{/list}
 <div class="clear"></div>
@@ -17,5 +17,5 @@
 #{list items:_shoppingCart?.reagents, as:'reagents'}
 	#{recipe_reagent_icon_list reagents:reagents, as:'shoppingkart' /}
 #{/list}
-<div class="clear"></div>
+<div class="clear"><br> Gesamtkosten: ${_shoppingCart?.getCosts('html').raw()}</div>
 </div>

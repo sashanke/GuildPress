@@ -11,13 +11,13 @@
 #{/if}
 
 #{if _as == 'icon'}
-	<a href="@{Char.show(_avatar.id, _avatar.name, _avatar.realm.name)}" title="${_avatar?.name}" class="left class class-${_avatar.cclass.name.toLowerCase()} character-name-${_avatar.name.toLowerCase()}">
-		<img src="${_avatar.getImage()}" height="16" width="16" alt="${_avatar?.name}s avatar" />
+	<a href="@{Char.show(_avatar.id, _avatar.name, _avatar.realm.name)}" title="${_avatar?.name}" class="reagent left class class-${_avatar.cclass.name.toLowerCase()} character-name-${_avatar.name.toLowerCase()}">
+		<img src="${_avatar.getImage()}" height="${_size}" width="${_size}" alt="${_avatar?.name}s avatar" />
 	</a>
 #{/if}
 
 #{if _as == 'icon_shoppingcart'}
 	<a href="@{Char.show(_avatar.id, _avatar.name, _avatar.realm.name)}" title="${_avatar?.name}" class="test class class-${_avatar.cclass.name.toLowerCase()} character-name-${_avatar.name.toLowerCase()}">
-		<img src="${_avatar.getImage()}" height="16" width="16" alt="${_avatar?.name}s avatar" />
+		<img src="${_avatar.getImage()}" height="${_size}" width="${_size}" alt="${_avatar?.name}s avatar" />
 	</a>
 #{/if}

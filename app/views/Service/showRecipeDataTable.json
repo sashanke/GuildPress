@@ -1,0 +1,24 @@
+{
+	"sEcho": ${sEcho},
+	"iTotalRecords": "${recipeCount}",
+	"iTotalDisplayRecords": "${filterCount}",
+	"aaData": [
+	#{list items:recipes, as:'recipe'}
+		{
+			"0": "<a href=\"@{Service.showRecipe(recipe.id)}\" rel=\"@{Service.showTooltip(recipe.tooltip.id,recipe.tooltip.type)}\" class=\"item q${recipe.item?.itemQuality?.qualityId}\" target=\"_self\"><img alt=\"${recipe.name}\" src=\"${recipe.icon.getImage()}\" width=\"22px\" height=\"22px\" /></a>",
+			"1": "<a href=\"@{Service.showRecipe(recipe.id)}\" class=\"item q${recipe.item?.itemQuality?.qualityId ? recipe.item?.itemQuality?.qualityId : 1}\" target=\"_self\">${recipe.name.raw()}</a>",
+			"2": "#{recipe_reagent_icon_list reagents:recipe.reagents, as:'reagents' /}",
+			"3": "${recipe.profLevel}",
+			"4": "<a class=\"recipe-costs\" title=\"Klick mich für weitere Informationen!\" href=\"javascript:void(0);\"><span class=\"icon-exclamation-sign\"/></span></a><a class=\"recipe-remember\" href=\"#${recipe.id}\" rel=\"${recipe.id}\"><span class=\"icon-shopping-cart\"/></span></a> <a class=\"recipe-remove\" href=\"#${recipe.id}\" rel=\"${recipe.id}\"><span id=\"recipe-${recipe.id}\"/>${recipeIdCounts.get(recipe.id)}</span></a>",
+			"5": "${recipe.getCosts('json')}",
+			"6": "${recipe.id}",
+			"DT_RowId": "${recipe.id}",
+      		"DT_RowClass": "normal",
+      		"extra": "hrmll"
+		}#{if !recipe_isLast},#{/if}
+	#{/list}
+	]
+}
+
+
+

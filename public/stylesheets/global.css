@@ -172,3 +172,52 @@ ul.navigation-list li a:hover { text-decoration:underline; }
 .c11,.c11 a {
 	color: #FF7C0A !important;
 }
+#waitMessage {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 350px;
+	height: 70px;
+	margin-left: -175px;
+	margin-top: -35px;
+	padding: 14px 0 2px 0;
+	border: 1px solid #12202E;
+	text-align: center;
+	color: #DFDBC9;
+	font-size: 14px;
+	background-color: #000000;
+	z-index: 10000;
+}
+
+#waitMessage img {
+	float:left;
+	border:0;
+	height: 60px;
+	width: 42px;
+}
+
+#waitMessagemiddle {
+	width: 100%; text-align: center;
+}
+#waitMessageImage {
+	width: 300px; margin-left: auto; margin-right: auto; text-align: center;
+}
+#waitMessageText {
+	padding-top:12px;
+	margin-bottom: auto;
+	height:20px;
+	
+	
+	color: #DFDBC9;
+font-size: 20px;
+font-family: Georgia,serif;
+text-decoration: none;
+text-transform: uppercase;
+letter-spacing: 0.2ex;
+pointer-events: auto;
+	
+}
+.datatable {
+	min-height: 474px;
+	width: 710px;
+}

@@ -41,6 +41,13 @@ table.dataTable tr.even td.sorting_1 { background-color: #141619; }
 table.dataTable tr.even td.sorting_2 { background-color: #141619; }
 table.dataTable tr.even td.sorting_3 { background-color: #141619; }
 
+table.display tr.even.row_selected td {
+	background-color: #B0BED9;
+}
+
+table.display tr.odd.row_selected td {
+	background-color: #9FAFD1;
+}
 
 /*
  * Table wrapper
@@ -180,19 +187,7 @@ border-left-color: black;
  * Processing indicator
  */
 .dataTables_processing {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 250px;
-	height: 30px;
-	margin-left: -125px;
-	margin-top: -15px;
-	padding: 14px 0 2px 0;
-	border: 1px solid #ddd;
-	text-align: center;
-	color: #999;
-	font-size: 14px;
-	background-color: white;
+	visibility: hidden;
 }
 
 

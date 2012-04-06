@@ -14,6 +14,7 @@ GET		/ws/realm/update									Service.updateRealms
 GET		/ws/avatar/{name}/{realm}/update					Service.updateAvatar
 GET		/ws/item/{<[0-9]+>itemId}/update					Service.updateItem
 GET		/ws/recipe/{<[0-9]+>spellId}/update					Service.updateRecipe
+GET		/ws/recipe/crafter/{<[0-9]+>id}						Service.getRecipeCrafter
 
 # Recipes & Professions
 GET		/recipes											Recipes.index

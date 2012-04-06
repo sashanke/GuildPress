@@ -116,10 +116,10 @@ public class Recipes extends Controller {
 		AvatarProfession profession = AvatarProfession.find("byProfId", id).first();
 		
 		//List<AvatarProfessionHelper> recipes = AvatarProfessionHelper.getList(profession);
-		List<Recipe> recipes = Recipe.find("profId = ? and tooltip is not null order by profLevel desc", id).fetch();
+		//List<Recipe> recipes = Recipe.find("profId = ? and tooltip is not null order by profLevel desc", id).fetch();
+		//recipes
 		
 		
-		
-		render(profession,recipes,recipeIdCounts,recipeShoppingCart);
+		render(profession,recipeIdCounts,recipeShoppingCart);
 	}
 }

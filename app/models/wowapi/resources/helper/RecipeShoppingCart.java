@@ -22,6 +22,9 @@ public class RecipeShoppingCart {
 	List<RecipeShoppingCartEntry> entries = new ArrayList<RecipeShoppingCartEntry>();
 	List<Recipe> recipes = new ArrayList<Recipe>();
 	HashMap<Long, Item> reagents = new HashMap<Long, Item>();
+	
+	float matsCosts = 0;
+	
 	public RecipeShoppingCart(List<String> recipeIdsList) {
 		HashMap<Long, Integer> recipeIdCounts = new HashMap<Long, Integer>();
 		for (String string : recipeIdsList) {
@@ -46,9 +49,10 @@ public class RecipeShoppingCart {
 				
 				RecipeReagent rg = reagent.getKey();
 				int count = reagent.getValue();
+				this.matsCosts = this.matsCosts + (rg.item.buyout * count);
+
 				
 				if (this.reagents.containsKey(rg.item.id)) {
-					System.out.println("yeah");
 					rg.item.recCount = rg.item.recCount + count;
 					this.reagents.put(rg.item.id, rg.item);
 				} else {
@@ -57,8 +61,10 @@ public class RecipeShoppingCart {
 				}
 			}
 		}
-		
-		System.out.println(this.reagents);
+	}
+	
+	public String getCosts(String type) {
+		return Recipe.formatGold(this.matsCosts,type);
 	}
 	
 }

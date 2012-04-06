@@ -124,3 +124,22 @@ table.dataTable td {
 	margin-left: 2px;
 	margin-bottom: 1px;
 }
+
+.datatable_icon {
+	text-align: left !important;
+}
+.datatable_name {
+	text-align: left !important;
+}
+.datatable_reagents {
+	text-align: left !important;
+}
+.datatable_level {
+	text-align: center !important;
+}
+.datatable_options {
+	text-align: left !important;
+}
+.recipe-costs {
+	padding-right: 10px;
+}

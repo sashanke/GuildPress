@@ -1,6 +1,6 @@
 
 {
-	"sProcessing": "Bitte warten...",
+	"sProcessing": "",
 	"sLengthMenu": "_MENU_ Einträge anzeigen",
 	"sZeroRecords": "Keine Einträge vorhanden.",
 	"sInfo": "_START_ bis _END_ von _TOTAL_ Einträgen",

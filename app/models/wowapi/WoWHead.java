@@ -326,7 +326,11 @@ public class WoWHead {
 			if (oJson.has(memberName)) {
 				item.resirtng = oJson.get(memberName).getAsFloat();
 			}
-			
+			memberName = "avgbuyout";
+			if (oJson.has(memberName)) {
+				item.avgbuyout = oJson.get(memberName).getAsFloat();
+			}
+
 		}
 
 		String url = "http://eu.battle.net/wow/de/item/" + item.itemId + "/tooltip?";

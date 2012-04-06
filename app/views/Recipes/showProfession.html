@@ -14,30 +14,28 @@
 		</div>
 	</div>
 	<div class="post">
-		<div class="post-content">
+		<div class="post-content clear">
 			<div style="width:100%;" class="datatable">
 				<table cellpadding="0" cellspacing="0" border="0" style="width:100%;" class="display" id="datatable-${profession?.name}">
 				<thead>
 					<tr><th width="23px"></th>
-						<th>Rezept</th>
+						<th style="text-align: left;">Rezept</th>
 						<th width="180px">Reagenzien</th>
 						<th width="25">Fertigkeit</th>
 						*{<th width="25">iLevel</th>}*
 						<th width="25"></th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody>*{
 					#{list items:recipes, as:'recipe'}
 					<tr>
 						<td><a href="@{Service.showRecipe(recipe.id)}" rel="@{Service.showTooltip(recipe.tooltip.id,recipe.tooltip.type)}" class="item q${recipe.item?.itemQuality?.qualityId}" target="_self"><img alt="${recipe.name}" src="${recipe.icon.getImage()}" width="22px" height="22px" /></a></td>
 						<td style="text-align: left;"><a href="@{Service.showRecipe(recipe.id)}" class="item q${recipe.item?.itemQuality?.qualityId ? recipe.item?.itemQuality?.qualityId : 1}" target="_self">${recipe.name.raw()}</a></td>
 						<td>#{recipe_reagent_icon_list reagents:recipe.reagents, as:'reagents' /}</td>
 						<td>#{if recipe.item}${recipe.profLevel}#{/if}</td>
-						*{<td>#{if recipe.item}${recipe.item.level}#{/if}</td>}*
-						*{<td><div class="recipe-holder">#{list items:recipe.avatars, as:'avatar'}#{name_with_link avatar:avatar, as:'icon' /}#{/list}</div></td>}*
 						<td><a class="recipe-update" href="#${recipe.id}" rel="/ws/recipe/${recipe.spellId}/update"><span class="icon-refresh"/></span></a>&nbsp;&nbsp;<a class="recipe-remember" href="#${recipe.id}" rel="${recipe.id}"><span class="icon-shopping-cart"/></span></a> <a class="recipe-remove" href="#${recipe.id}" rel="${recipe.id}"><span id="recipe-${recipe.id}"/>${recipeIdCounts.get(recipe.id)}</span></a></td>
 					</tr>
-					#{/list}
+					#{/list}}*
 				</tbody>
 				<tfoot>
 					<tr>
@@ -67,19 +65,336 @@
 </div>
 
 <script>
-	$(document).ready(function() {
-		$('#datatable-${profession?.name}').dataTable({
-			"bProcessing" : true,
-			"bStateSave" : true,
-			"aaSorting": [[ 3, "desc" ]],
-			"sPaginationType": "full_numbers",
-			"aoColumnDefs": [ 
-				{ "bSearchable": false, "bSortable": false, "bVisible": true, "aTargets": [ 0 ] },
-				{ "bSearchable": false, "bSortable": false, "bVisible": true, "aTargets": [ 4 ] }
-			],
-			"oLanguage" : {
-				"sUrl" : "/public/datatables_de_DE.txt"
-			}
-		});
-	});
+	var oTable;
+
+	jQuery.fn.dataTableExt.oApi.fnSetFilteringDelay = function(oSettings,
+			iDelay) {
+		/*
+		 * Inputs:      object:oSettings - dataTables settings object - automatically given
+		 *              integer:iDelay - delay in milliseconds
+		 * Usage:       $('#example').dataTable().fnSetFilteringDelay(250);
+		 * Author:      Zygimantas Berziunas (www.zygimantas.com) and Allan Jardine
+		 * License:     GPL v2 or BSD 3 point style
+		 * Contact:     zygimantas.berziunas /AT\ hotmail.com
+		 */
+		var _that = this, iDelay = (typeof iDelay == 'undefined') ? 250
+				: iDelay;
+
+		this
+				.each(function(i) {
+					$.fn.dataTableExt.iApiIndex = i;
+					var $this = this, oTimerId = null, sPreviousSearch = null, anControl = $(
+							'input', _that.fnSettings().aanFeatures.f);
+
+					anControl.unbind('keyup').bind(
+							'keyup',
+							function() {
+								var $$this = $this;
+
+								if (sPreviousSearch === null
+										|| sPreviousSearch != anControl.val()) {
+									window.clearTimeout(oTimerId);
+									sPreviousSearch = anControl.val();
+									oTimerId = window.setTimeout(function() {
+										$.fn.dataTableExt.iApiIndex = i;
+										_that.fnFilter(anControl.val());
+									}, iDelay);
+								}
+							});
+
+					return this;
+				});
+		return this;
+	}
+
+	function fnFormatDetails(nTr) {
+		var aData = oTable.fnGetData(nTr);
+		var crafter;
+		
+			$.ajax({
+				url : '/ws/recipe/crafter/' + aData[6],
+				type : 'GET',
+				async : true,
+				cache : false,
+				timeout : 30000,
+				success : function(msg) {
+					$("#recipe-info-row-" + aData[6]).replaceWith(msg);
+				}
+			});
+
+		
+		
+		
+		
+		var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+		sOut += '<tr><td class="datatable_name">Benötigte Materialien:</td><td class="datatable_name">'
+				+ aData[2] + '</td></tr>';
+		sOut += '<tr><td class="datatable_name">Materialkosten:</td><td class="datatable_name">'
+				+ aData[5] + ' <small>(Geschätzt)</small></td></tr>';
+		sOut += '<tr><td class="datatable_name">Crafter:</td><td class="datatable_name"><div class="crafterlist" id="recipe-info-row-'+aData[6]+'"></div></td></tr>';
+		sOut += '</table>';
+		return sOut;
+	}
+	$(document)
+			.ready(
+					function() {
+						$('.datatable').block({
+							message : $('#waitMessage'),
+							css : {
+								backgroundColor : '#000000',
+								border : '0'
+							},
+							overlayCSS : {
+								backgroundColor : '#0E0F11',
+								opacity : 0.9
+							},
+							fadeIn : 0,
+							fadeOut : 0
+						});
+
+						oTable = $('#datatable-${profession?.name}')
+								.dataTable(
+										{
+											"bProcessing" : true,
+											"bStateSave" : true,
+											"bServerSide" : true,
+											"sAjaxSource" : "@{Service.showRecipeDataTable(profession?.profId)}",
+											"aaSorting" : [ [ 3, "desc" ] ],
+											"sPaginationType" : "full_numbers",
+											"aoColumnDefs" : [
+													{
+														"sClass" : "datatable_icon",
+														"bSearchable" : false,
+														"bSortable" : false,
+														"bVisible" : true,
+														"aTargets" : [ 0 ]
+													},
+													{
+														"sClass" : "datatable_name",
+														"bSearchable" : true,
+														"bSortable" : true,
+														"bVisible" : true,
+														"aTargets" : [ 1 ]
+													},
+													{
+														"sClass" : "datatable_reagents",
+														"bSearchable" : true,
+														"bSortable" : true,
+														"bVisible" : true,
+														"aTargets" : [ 2 ]
+													},
+													{
+														"sClass" : "datatable_level",
+														"bSearchable" : true,
+														"bSortable" : true,
+														"bVisible" : true,
+														"aTargets" : [ 3 ]
+													},
+													{
+														"sClass" : "datatable_options",
+														"bSearchable" : false,
+														"bSortable" : false,
+														"bVisible" : true,
+														"aTargets" : [ 4 ]
+													} ],
+											"oLanguage" : {
+												"sProcessing" : "",
+												"sLengthMenu" : "_MENU_ Einträge anzeigen",
+												"sZeroRecords" : "Keine Einträge vorhanden.",
+												"sInfo" : "_START_ bis _END_ von _TOTAL_ Einträgen",
+												"sInfoEmpty" : "0 bis 0 von 0 Einträgen",
+												"sInfoFiltered" : "(gefiltert von _MAX_  Einträgen)",
+												"sInfoPostFix" : "",
+												"sSearch" : "Suchen",
+												"sUrl" : "",
+												"oPaginate" : {
+													"sFirst" : "Erster",
+													"sPrevious" : "Zurück",
+													"sNext" : "Nächster",
+													"sLast" : "Letzter"
+												}
+											},
+											"fnPreDrawCallback" : function() {
+												// gather info to compose a message
+												$('.datatable')
+														.block(
+																{
+																	message : $('#waitMessage'),
+																	css : {
+																		backgroundColor : '#000000',
+																		border : '0'
+																	},
+																	overlayCSS : {
+																		backgroundColor : '#0E0F11',
+																		opacity : 0.9
+																	},
+																	fadeIn : 0,
+																	fadeOut : 0
+																});
+												return true;
+											},
+											"fnDrawCallback" : function() {
+												this
+														.$('a.item')
+														.cluetip(
+																{
+																	showTitle : false,
+																	tracking : true,
+																	cluetipClass : 'wiki-tooltip',
+																	leftOffset : '70',
+																	sticky : true,
+																	closePosition : 'top',
+																	closeText : '<span style="font-size: 20px;" class="color-close icon-remove"></span>',
+																	fx : {
+																		open : 'fadeIn', // can be 'show' or 'slideDown' or 'fadeIn'
+																		openSpeed : '15000'
+																	},
+																	hoverIntent : {
+																		sensitivity : 3,
+																		interval : 250,
+																		timeout : 0
+																	}
+																});
+												$('.datatable').unblock();
+											}
+										});
+
+						oTable.fnSetFilteringDelay(500);
+
+						$('.icon-exclamation-sign').live(
+								'click',
+								function() {
+									var nTr = $(this).parents('tr')[0];
+									if (oTable.fnIsOpen(nTr)) {
+										$(this).css('color', '#DFDBC9');
+										oTable.fnClose(nTr);
+
+									} else {
+										$(this).css('color', 'red');
+										oTable
+												.fnOpen(nTr,
+														fnFormatDetails(nTr),
+														'details');
+										$('a.item')
+										.cluetip(
+												{
+													showTitle : false,
+													tracking : true,
+													cluetipClass : 'wiki-tooltip',
+													leftOffset : '70',
+													sticky : true,
+													closePosition : 'top',
+													closeText : '<span style="font-size: 20px;" class="color-close icon-remove"></span>',
+													fx : {
+														open : 'fadeIn', // can be 'show' or 'slideDown' or 'fadeIn'
+														openSpeed : '15000'
+													},
+													hoverIntent : {
+														sensitivity : 3,
+														interval : 250,
+														timeout : 0
+													}
+												});
+									}
+								});
+						
+						$(".recipe-remember").live('click',	function() {		
+							var count = $("#recipe-" + $(this).attr('rel')).text();
+							if (count == null) {
+								count = 1;
+							} else {
+								count++;
+							}
+							
+							$("#recipe-" + $(this).attr('rel')).text(count);
+							$.ajax({
+								url : '/recipe/save/' + $(this).attr('rel'),
+								type : 'GET',
+								async : true,
+								cache : false,
+								timeout : 30000,
+								beforeSend : function() {
+									$.blockUI({
+										message : $('#waitMessage'),
+										css : {
+											backgroundColor : 'transparent',
+											border : '0'
+										}
+									});
+								},
+								error : function() {
+									$.unblockUI();
+								},
+								success : function(msg) {
+									$("#shoppingcart").replaceWith(msg);
+									
+									$('#shoppingcart a.item')
+									.cluetip(
+											{
+												showTitle : false,
+												tracking : true,
+												cluetipClass : 'wiki-tooltip',
+												leftOffset : '70',
+												sticky : true,
+												closePosition : 'top',
+												closeText : '<span style="font-size: 20px;" class="color-close icon-remove"></span>'
+											});
+									
+									$.unblockUI();
+								}
+							});
+						});
+						
+						$(".recipe-remove").live('click',	function() {	
+							var count = $("#recipe-" + $(this).attr('rel')).text();
+							if (count != null) {
+								count--;
+							}
+							if (count == 0) {
+								count = "";
+							}
+							$("#recipe-" + $(this).attr('rel')).text(count);
+							
+							$.ajax({
+								url : '/recipe/remove/' + $(this).attr('rel'),
+								type : 'GET',
+								async : true,
+								cache : false,
+								timeout : 30000,
+								beforeSend : function() {
+									$.blockUI({
+										message : $('#waitMessage'),
+										css : {
+											backgroundColor : 'transparent',
+											border : '0'
+										}
+									});
+								},
+								error : function() {
+									$.unblockUI();
+								},
+								success : function(msg) {
+									$("#shoppingcart").replaceWith(msg);
+									$('#shoppingcart a.item')
+									.cluetip(
+											{
+												showTitle : false,
+												tracking : true,
+												cluetipClass : 'wiki-tooltip',
+												leftOffset : '70',
+												sticky : true,
+												closePosition : 'top',
+												closeText : '<span style="font-size: 20px;" class="color-close icon-remove"></span>'
+											});
+									$.unblockUI();
+								}
+							});
+						});
+						
+						$('#datatable-${profession?.name} tbody tr').live(
+								'click', function() {
+									var id = this.id;
+
+								});
+					});
 </script>

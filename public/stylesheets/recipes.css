@@ -143,3 +143,7 @@ table.dataTable td {
 .recipe-costs {
 	padding-right: 10px;
 }
+.datatable {
+	min-height: 474px;
+	width: 710px;
+}

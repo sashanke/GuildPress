@@ -15,6 +15,8 @@
 		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/global.css'}" />
 		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/world-of-warcraft.css'}" />
 		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/shoutbox.css'}" />
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/menu.css'}" />
+		
 		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/highslide/highslide.css'}" />
 		<!--[if lt IE 7]>
 		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/highslide/highslide-ie6.css'}" />
@@ -38,6 +40,7 @@
 		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.form.js'}"></script>
 		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.cookie.js'}"></script>
 		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.blockUI.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/superfish.js'}"></script>
 		
 		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/global.js'}"></script>
 
@@ -157,20 +160,25 @@
 				<div class="clear"></div>
 				<div id="navigation">
 					<div class="menu box">
-						<ul class="navigation-list">
-							<li><a href="@{Application.index()}" class="${request?.controller == 'Application' ? 'sel' : ''}" title="${guildTag} News">News</a></li>
-							<li><a href="@{RaidTracker.index()}" class="${request?.controller == 'RaidTracker' ? 'sel' : ''}" title="${guildTag} Raids">Raids</a></li>
-							
-							<li><a href="@{Recipes.index()}" class="${request?.controller == 'Recipes' ? 'sel' : ''}" title="${guildTag} Rezepte">Rezepte</a></li>
-							<li><a href="@{Roster.index()}" class="${request?.controller == 'MitgliederVerzeichnis' ? 'sel' : ''}" title="${guildTag} Mitglieder">Mitglieder</a></li>
-							
-							<li><a href="@{Board.index()}" class="${request?.controller == 'Board' ? 'sel' : ''}" title="${guildTag} Forum">Forum</a></li>
-							<!--  <li><a href="@{Progress.index()}" class="${request?.controller == 'RaidFortschritt' ? 'sel' : ''}" title="${guildTag} Progress">Progress</a></li> -->
-							<li><a href="#nyi" class="nyi" title="${guildTag} Progress">Progress</a></li>
-							<li><a href="#nyi" class="nyi" title="${guildTag} Recruitment">Recruitment</a></li>
-							<li><a href="#nyi" class="nyi" title="${guildTag} Galerie">Galerie</a></li>
-							<li class="last"><a href="#nyi" class="nyi" title="${guildTag} Kalender">Kalender</a></li>
-						</ul>
+						<div class="main-menu">
+							<ul class="sf-menu">
+								<li><a href="@{Application.index()}" class="${request?.controller == 'Application' ? 'current' : ''}" title="${guildTag} News">News</a></li>
+								<li><a href="@{Roster.index()}" class="${request?.controller == 'MitgliederVerzeichnis' ? 'current' : ''}" title="${guildTag} Mitglieder">Mitglieder</a></li>
+								<li><a href="@{Board.index()}" class="${request?.controller == 'Board' ? 'current' : ''}" title="${guildTag} Forum">Forum</a></li>
+								<li><a href="#">Gilde</a>
+						    		<ul>
+						    			<li><a href="@{RaidTracker.index()}" class="${request?.controller == 'RaidTracker' ? 'current' : ''}" title="${guildTag} Raids">Raids</a></li>
+										<li><a href="@{Recipes.index()}" class="${request?.controller == 'Recipes' ? 'current' : ''}" title="${guildTag} Rezepte">Rezepte</a></li>
+										<li><a href="#nyi" class="nyi" title="${guildTag} Progress">Progress</a></li>
+										<li><a href="#nyi" class="nyi" title="${guildTag} Recruitment">Recruitment</a></li>
+									</ul>
+								</li>
+	
+								<!--  <li><a href="@{Progress.index()}" class="${request?.controller == 'RaidFortschritt' ? 'sel' : ''}" title="${guildTag} Progress">Progress</a></li> -->
+								<li><a href="#nyi" class="nyi" title="${guildTag} Galerie">Galerie</a></li>
+								<li class="last"><a href="#nyi" class="nyi" title="${guildTag} Kalender">Kalender</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 				<div class="clear"></div>

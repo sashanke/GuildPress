@@ -80,6 +80,7 @@
 	float: right;
 }
 
+
 .post-content ul { color: #9e0036;   }
 .post-content ul li { list-style-type:square; margin-left:25px; background: url(/public/images/redbullet.png) no-repeat left 5px;}
 .post-content ul li span { color: #F2FAFF; }
@@ -87,11 +88,6 @@
 .post-content ul li p em { display:block; }
 
 div.menu {z-index:5;position:relative;top:0px;left:15px;width:968px;height:44px;font-size:14px;padding:0px;text-align: center;}
-ul.navigation-list { font-family:Georgia, serif; color: #DFDBC9; list-style:none; text-align:left;  padding:10px 0;}
-ul.navigation-list li { display:inline;  padding:0 15px; letter-spacing:2px; }
-ul.navigation-list li a { text-decoration:none; }
-ul.navigation-list li a:hover { text-decoration:underline; }
-
 
 #user-online {
 	position:fixed;
@@ -217,7 +213,4 @@ letter-spacing: 0.2ex;
 pointer-events: auto;
 	
 }
-.datatable {
-	min-height: 474px;
-	width: 710px;
-}
+

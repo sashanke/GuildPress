@@ -184,6 +184,16 @@ function refresh() {
 // wait for the DOM to be loaded
 $(document).ready(function() {
 
+	
+
+
+
+        $('ul.top-navigation').superfish(); 
+    
+
+
+
+	
 	$(".class").click(
 		    function(){
 		    $.ajax({

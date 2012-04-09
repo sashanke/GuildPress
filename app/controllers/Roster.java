@@ -17,10 +17,10 @@ public class Roster extends Controller {
 	}
 
 	public static void index(Long rank, Long cclass, Long race, String search) {
-	
+
 		Guild guild = Guild.find("isMainGuild = ?", true).first();
 		List<GuildMember> members;
-	
+
 		String filter = "1=1 ";
 		Boolean isFiltered = false;
 		if (rank != null) {
@@ -35,35 +35,28 @@ public class Roster extends Controller {
 			filter = filter + "and race.crId = " + race;
 			isFiltered = true;
 		}
-	
+
 		if (search != null && search.length() != 0) {
 			filter = filter + "and name like ? ";
 			isFiltered = true;
 		}
-	
+
 		if (isFiltered) {
-	
+
 			if (search == null || search.length() == 0) {
-				members = GuildMember.find(
-						filter + " order by rank.rank, name asc").fetch();
+				members = GuildMember.find(filter + " order by rank.rank, name asc").fetch();
 			} else {
-				members = GuildMember.find(
-						filter + " order by rank.rank, name asc",
-						"%" + search + "%").fetch();
+				members = GuildMember.find(filter + " order by rank.rank, name asc", "%" + search + "%").fetch();
 			}
-	
+
 		} else {
-			members = GuildMember.find(
-					"rank.rank in (0,1,3) order by rank.rank, name asc").fetch();
+			members = GuildMember.find("rank.rank in (0,1,3) order by rank.rank, name asc").fetch();
 		}
-	
+
 		List<GuildRank> granks = GuildRank.find("order by rank asc").fetch();
-		List<CharacterClass> cclasses = CharacterClass
-				.find("order by name asc").fetch();
-		List<CharacterRace> craces = CharacterRace.find("order by name asc")
-				.fetch();
+		List<CharacterClass> cclasses = CharacterClass.find("order by name asc").fetch();
+		List<CharacterRace> craces = CharacterRace.find("order by name asc").fetch();
 		render(members, guild, granks, cclasses, craces);
 	}
-	
-	
+
 }

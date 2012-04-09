@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
 import play.db.jpa.Model;
+
 @Entity
 public class Color extends Model {
 	public long orange;
@@ -12,7 +13,8 @@ public class Color extends Model {
 	public long grey;
 	@OneToOne
 	Recipe recipe;
-	public Color(Recipe recipe,long orange,long yellow,long green,long grey) {
+
+	public Color(Recipe recipe, long orange, long yellow, long green, long grey) {
 		this.recipe = recipe;
 		this.orange = orange;
 		this.yellow = yellow;

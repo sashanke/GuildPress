@@ -1,5 +1,7 @@
 import org.junit.*;
 import java.util.*;
+
+import play.db.jpa.GenericModel;
 import play.test.*;
 import models.*;
 
@@ -15,7 +17,7 @@ public class BasicTest extends UnitTest {
 		new User("bob@gmail.com", "secret", "Bob").save();
 
 		// Retrieve the user with e-mail address bob@gmail.com
-		User bob = User.find("byEmail", "bob@gmail.com").first();
+		User bob = GenericModel.find("byEmail", "bob@gmail.com").first();
 
 		// Test
 		assertNotNull(bob);
@@ -41,10 +43,10 @@ public class BasicTest extends UnitTest {
 	    new News(bob, "My first post", "Hello world").save();
 	    
 	    // Test that the post has been created
-	    assertEquals(1, News.count());
+	    assertEquals(1, GenericModel.count());
 	    
 	    // Retrieve all posts created by Bob
-	    List<News> bobPosts = News.find("byAuthor", bob).fetch();
+	    List<News> bobPosts = GenericModel.find("byAuthor", bob).fetch();
 	    
 	    // Tests
 	    assertEquals(1, bobPosts.size());
@@ -69,7 +71,7 @@ public class BasicTest extends UnitTest {
 	    new Comment(bobPost, "Tom", "I knew that !").save();
 	 
 	    // Retrieve all comments
-	    List<Comment> bobPostComments = Comment.find("byPost", bobPost).fetch();
+	    List<Comment> bobPostComments = GenericModel.find("byPost", bobPost).fetch();
 	 
 	    // Tests
 	    assertEquals(2, bobPostComments.size());
@@ -100,12 +102,12 @@ public class BasicTest extends UnitTest {
 	    bobPost.addComment("Tom", "I knew that !");
 	 
 	    // Count things
-	    assertEquals(1, User.count());
-	    assertEquals(1, News.count());
-	    assertEquals(2, Comment.count());
+	    assertEquals(1, GenericModel.count());
+	    assertEquals(1, GenericModel.count());
+	    assertEquals(2, GenericModel.count());
 	 
 	    // Retrieve Bob's post
-	    bobPost = News.find("byAuthor", bob).first();
+	    bobPost = GenericModel.find("byAuthor", bob).first();
 	    assertNotNull(bobPost);
 	 
 	    // Navigate to comments
@@ -116,9 +118,9 @@ public class BasicTest extends UnitTest {
 	    bobPost.delete();
 	    
 	    // Check that all comments have been deleted
-	    assertEquals(1, User.count());
-	    assertEquals(0, News.count());
-	    assertEquals(0, Comment.count());
+	    assertEquals(1, GenericModel.count());
+	    assertEquals(0, GenericModel.count());
+	    assertEquals(0, GenericModel.count());
 	}
 	
 	@Test
@@ -126,9 +128,9 @@ public class BasicTest extends UnitTest {
 	    Fixtures.loadModels("data.yml");
 	 
 	    // Count things
-	    assertEquals(2, User.count());
-	    assertEquals(3, News.count());
-	    assertEquals(3, Comment.count());
+	    assertEquals(2, GenericModel.count());
+	    assertEquals(3, GenericModel.count());
+	    assertEquals(3, GenericModel.count());
 	 
 	    // Try to connect as users
 	    assertNotNull(User.connect("bob@gmail.com", "secret"));
@@ -137,15 +139,15 @@ public class BasicTest extends UnitTest {
 	    assertNull(User.connect("tom@gmail.com", "secret"));
 	 
 	    // Find all of Bob's posts
-	    List<News> bobPosts = News.find("author.email", "bob@gmail.com").fetch();
+	    List<News> bobPosts = GenericModel.find("author.email", "bob@gmail.com").fetch();
 	    assertEquals(2, bobPosts.size());
 	 
 	    // Find all comments related to Bob's posts
-	    List<Comment> bobComments = Comment.find("post.author.email", "bob@gmail.com").fetch();
+	    List<Comment> bobComments = GenericModel.find("post.author.email", "bob@gmail.com").fetch();
 	    assertEquals(3, bobComments.size());
 	 
 	    // Find the most recent post
-	    News frontPost = News.find("order by postedAt desc").first();
+	    News frontPost = GenericModel.find("order by postedAt desc").first();
 	    assertNotNull(frontPost);
 	    assertEquals("About the model layer", frontPost.title);
 	 
@@ -155,7 +157,7 @@ public class BasicTest extends UnitTest {
 	    // Post a new comment
 	    frontPost.addComment("Jim", "Hello guys");
 	    assertEquals(3, frontPost.comments.size());
-	    assertEquals(4, Comment.count());
+	    assertEquals(4, GenericModel.count());
 	}
 	@Test
 	public void testTags() {

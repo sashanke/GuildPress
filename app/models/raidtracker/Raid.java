@@ -6,35 +6,35 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import models.wowapi.character.Avatar;
 import play.db.jpa.Model;
+
 @Entity
 public class Raid extends Model {
 	@ManyToOne
 	public RaidPool pool;
-	
+
 	@ManyToOne
 	public Avatar offizier;
-	
+
 	public Date startDate;
 	public Date endDate;
-	
-	@OneToMany(mappedBy="raid", cascade=CascadeType.ALL)
+
+	@OneToMany(mappedBy = "raid", cascade = CascadeType.ALL)
 	public List<RaidZones> zonen;
-	
-	@OneToMany(mappedBy="raid", cascade=CascadeType.ALL)
+
+	@OneToMany(mappedBy = "raid", cascade = CascadeType.ALL)
 	public List<RaidBossKills> bosse;
-	
-	@OneToMany(mappedBy="raid", cascade=CascadeType.ALL)
+
+	@OneToMany(mappedBy = "raid", cascade = CascadeType.ALL)
 	public List<RaidMember> member;
-	
-	@OneToMany(mappedBy="raid", cascade=CascadeType.ALL)
+
+	@OneToMany(mappedBy = "raid", cascade = CascadeType.ALL)
 	public List<RaidItem> items;
-	
+
 	public Raid(Long poolid, Date startDate, Date endDate, Avatar offizier) {
 		this.pool = RaidPool.findById(poolid);
 		this.startDate = startDate;
@@ -45,5 +45,5 @@ public class Raid extends Model {
 		this.member = new ArrayList<RaidMember>();
 		this.items = new ArrayList<RaidItem>();
 	}
-	
+
 }

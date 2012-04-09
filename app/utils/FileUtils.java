@@ -13,34 +13,6 @@ import org.apache.commons.io.FilenameUtils;
 
 public class FileUtils {
 
-	public static void writeFileFromString(String data, File file) {
-		try {
-			FileWriter fw = new FileWriter(file);
-			// Write strings to the file
-			fw.write(data);
-			// Close file writer
-			fw.close();
-		} catch (FileNotFoundException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	public static String getRandomFile(String dir) {
-		List<File> files = getFilesInDirectory(new File(dir));
-		Collections.shuffle(files);
-		for (File f : files) {
-
-			if (f.exists() && (FilenameUtils.getExtension(f.getAbsolutePath()).contains("png") || FilenameUtils.getExtension(f.getAbsolutePath()).contains("jpg"))) {
-				return FilenameUtils.getName(f.getAbsolutePath());
-			}
-		}
-		return "nothing found";
-	}
-
 	public static List<File> getFilesInDirectory(File dir) {
 
 		File[] files = dir.listFiles();
@@ -55,21 +27,49 @@ public class FileUtils {
 		return sfiles;
 	}
 
+	public static String getRandomFile(String dir) {
+		List<File> files = getFilesInDirectory(new File(dir));
+		Collections.shuffle(files);
+		for (File f : files) {
+
+			if (f.exists() && (FilenameUtils.getExtension(f.getAbsolutePath()).contains("png") || FilenameUtils.getExtension(f.getAbsolutePath()).contains("jpg"))) {
+				return FilenameUtils.getName(f.getAbsolutePath());
+			}
+		}
+		return "nothing found";
+	}
+
 	public static ArrayList<File> searchFile(File dir, String find) {
 
 		File[] files = dir.listFiles();
 		ArrayList<File> matches = new ArrayList<File>();
 		if (files != null) {
-			for (int i = 0; i < files.length; i++) {
-				if (files[i].getName().equalsIgnoreCase(find)) {
-					matches.add(files[i]);
+			for (File file : files) {
+				if (file.getName().equalsIgnoreCase(find)) {
+					matches.add(file);
 				}
-				if (files[i].isDirectory()) {
-					matches.addAll(searchFile(files[i], find));
+				if (file.isDirectory()) {
+					matches.addAll(searchFile(file, find));
 				}
 			}
 		}
 		return matches;
+	}
+
+	public static void writeFileFromString(String data, File file) {
+		try {
+			FileWriter fw = new FileWriter(file);
+			// Write strings to the file
+			fw.write(data);
+			// Close file writer
+			fw.close();
+		} catch (FileNotFoundException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

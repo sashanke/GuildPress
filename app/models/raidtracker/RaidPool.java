@@ -8,10 +8,10 @@ import play.db.jpa.Model;
 public class RaidPool extends Model {
 	public String name;
 	public Boolean isMainRaid;
-	
+
 	public RaidPool(String name, Boolean isMainRaid) {
 		this.name = name;
 		this.isMainRaid = isMainRaid;
 	}
-	
+
 }

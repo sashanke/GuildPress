@@ -1,26 +1,28 @@
 package models;
 
-import play.*;
-import play.db.jpa.*;
+import java.util.Date;
 
-import javax.persistence.*;
-import java.util.*;
+import javax.persistence.Entity;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+
+import play.db.jpa.Model;
 
 @Entity
 public class Comment extends Model {
 	public String author;
-    public Date postedAt;
-     
-    @Lob
-    public String content;
-    
-    @ManyToOne
-    public News post;
-    
-    public Comment(News post, String author, String content) {
-        this.post = post;
-        this.author = author;
-        this.content = content;
-        this.postedAt = new Date();
-    }
+	public Date postedAt;
+
+	@Lob
+	public String content;
+
+	@ManyToOne
+	public News post;
+
+	public Comment(News post, String author, String content) {
+		this.post = post;
+		this.author = author;
+		this.content = content;
+		this.postedAt = new Date();
+	}
 }

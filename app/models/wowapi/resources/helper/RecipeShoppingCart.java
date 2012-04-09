@@ -1,19 +1,10 @@
 package models.wowapi.resources.helper;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
-import play.db.DB;
-
-import models.wowapi.character.Avatar;
 import models.wowapi.resources.Item;
 import models.wowapi.resources.Recipe;
 import models.wowapi.resources.RecipeReagent;
@@ -22,9 +13,9 @@ public class RecipeShoppingCart {
 	List<RecipeShoppingCartEntry> entries = new ArrayList<RecipeShoppingCartEntry>();
 	List<Recipe> recipes = new ArrayList<Recipe>();
 	HashMap<Long, Item> reagents = new HashMap<Long, Item>();
-	
+
 	float matsCosts = 0;
-	
+
 	public RecipeShoppingCart(List<String> recipeIdsList) {
 		HashMap<Long, Integer> recipeIdCounts = new HashMap<Long, Integer>();
 		for (String string : recipeIdsList) {
@@ -38,20 +29,19 @@ public class RecipeShoppingCart {
 		}
 
 		for (Entry<Long, Integer> recipes : recipeIdCounts.entrySet()) {
-			RecipeShoppingCartEntry recipeShoppingCartEntry = new RecipeShoppingCartEntry(recipes.getKey(),recipes.getValue());
+			RecipeShoppingCartEntry recipeShoppingCartEntry = new RecipeShoppingCartEntry(recipes.getKey(), recipes.getValue());
 			this.recipes.add(recipeShoppingCartEntry.recipe);
-			entries.add(recipeShoppingCartEntry);
+			this.entries.add(recipeShoppingCartEntry);
 		}
-		
-		for (RecipeShoppingCartEntry entry : entries) {
+
+		for (RecipeShoppingCartEntry entry : this.entries) {
 			HashMap<RecipeReagent, Integer> recipe_reagents = entry.recipe_reagents;
 			for (Entry<RecipeReagent, Integer> reagent : recipe_reagents.entrySet()) {
-				
+
 				RecipeReagent rg = reagent.getKey();
 				int count = reagent.getValue();
-				this.matsCosts = this.matsCosts + (rg.item.buyout * count);
+				this.matsCosts = this.matsCosts + (rg.item.avgbuy * count);
 
-				
 				if (this.reagents.containsKey(rg.item.id)) {
 					rg.item.recCount = rg.item.recCount + count;
 					this.reagents.put(rg.item.id, rg.item);
@@ -62,9 +52,9 @@ public class RecipeShoppingCart {
 			}
 		}
 	}
-	
+
 	public String getCosts(String type) {
-		return Recipe.formatGold(this.matsCosts,type);
+		return Recipe.formatGold(this.matsCosts, type);
 	}
-	
+
 }

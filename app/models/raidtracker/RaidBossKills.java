@@ -15,7 +15,7 @@ public class RaidBossKills extends Model {
 	public RaidType modus;
 	@ManyToOne
 	public Raid raid;
-	
+
 	public RaidBossKills(String name, Date date, RaidType modus, Raid raid) {
 		this.name = name;
 		this.date = date;

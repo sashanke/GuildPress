@@ -18,7 +18,7 @@ public class Category extends Model {
 	public String title;
 
 	private String slug;
-	
+
 	@Required
 	public Long position;
 
@@ -29,13 +29,22 @@ public class Category extends Model {
 	@MaxSize(10000)
 	public String description;
 
+	@SuppressWarnings("unused")
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 	private List<Forum> forums;
-	
+
 	public List<Forum> getForums() {
-		return Forum.find("category = ? order by position asc", this).fetch();
+		return Category.find("category = ? order by position asc", this).fetch();
 	}
-	
+
+	public String getSlug() {
+		if (this.slug == null) {
+			this.slug = Tools.Slugify(this.title);
+			this.save();
+		}
+		return this.slug;
+	}
+
 	@Override
 	public String toString() {
 		if (this.title != null) {
@@ -44,13 +53,5 @@ public class Category extends Model {
 			return super.toString();
 		}
 	}
-	
-	public String getSlug() {
-		if (this.slug == null) {
-			this.slug = Tools.Slugify(this.title);
-			this.save();
-		}
-		return slug;
-	}
-	
+
 }

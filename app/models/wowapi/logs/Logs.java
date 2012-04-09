@@ -37,7 +37,7 @@ public class Logs extends Model {
 	public String getDuration() {
 		SimpleDateFormat sdf = new SimpleDateFormat("H 'Stunden und' m 'Minuten'", Locale.getDefault());
 		sdf.setTimeZone(TimeZone.getTimeZone("GMT+1"));
-		return sdf.format(new Date(duration - TimeZone.getDefault().getRawOffset()));
+		return sdf.format(new Date(this.duration - TimeZone.getDefault().getRawOffset()));
 	}
 
 }

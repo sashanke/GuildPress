@@ -46,7 +46,8 @@ public class Armory {
 	public static String GUILDPERKSURL = "/api/wow/data/guild/perks";
 	public static String GUILDURL = "/api/wow/guild/";
 	public static String ITEMCLASSESURL = "/api/wow/data/item/classes";
-	public static long QUATERDAYUPDATE = 21600000;
+	// public static long QUATERDAYUPDATE = 21600000;
+	public static long QUATERDAYUPDATE = 904800000;
 	public static String REALMSURL = "/api/wow/realm/status";
 	public static long WEEKLYUPDATE = 604800000;
 
@@ -109,8 +110,9 @@ public class Armory {
 
 						byte buf[] = new byte[1024];
 						int len;
-						while ((len = inputStream.read(buf)) > 0)
+						while ((len = inputStream.read(buf)) > 0) {
 							out.write(buf, 0, len);
+						}
 						out.close();
 						inputStream.close();
 						return castURL(avImage);
@@ -345,8 +347,9 @@ public class Armory {
 
 						byte buf[] = new byte[1024];
 						int len;
-						while ((len = inputStream.read(buf)) > 0)
+						while ((len = inputStream.read(buf)) > 0) {
 							out.write(buf, 0, len);
+						}
 						out.close();
 						inputStream.close();
 						return castURL(avImage);
@@ -460,8 +463,9 @@ public class Armory {
 
 						byte buf[] = new byte[1024];
 						int len;
-						while ((len = inputStream.read(buf)) > 0)
+						while ((len = inputStream.read(buf)) > 0) {
 							out.write(buf, 0, len);
+						}
 						out.close();
 						inputStream.close();
 						return castURL(avImage);
@@ -548,8 +552,9 @@ public class Armory {
 
 					byte buf[] = new byte[1024];
 					int len;
-					while ((len = inputStream.read(buf)) > 0)
+					while ((len = inputStream.read(buf)) > 0) {
 						out.write(buf, 0, len);
+					}
 					out.close();
 					inputStream.close();
 				} catch (FileNotFoundException e) {
@@ -618,11 +623,6 @@ public class Armory {
 	public static JsonObject getGuildJson(String vname, Realm vrealm) {
 		JsonObject guildJson = fetchFromArmory(Armory.GUILDURL, "achievements,members", vrealm.name, vname).getAsJsonObject();
 		return guildJson;
-	}
-
-	private static JsonObject getGuildJson(String vname, String vrealm) {
-		JsonObject mGuild = fetchFromArmory(Armory.GUILDURL, "achievements,members", vrealm, vname).getAsJsonObject();
-		return mGuild;
 	}
 
 	public static JsonElement getGuildRankJson(Guild guild) {
@@ -864,7 +864,7 @@ public class Armory {
 			fetchRealms();
 		}
 	}
-	
+
 	// public static Avatar fetchCharacter(String vRealm, String vName) {
 	// Avatar m = Avatar.findByNameAndRealm(vName, vRealm);
 	//
@@ -1107,7 +1107,7 @@ public class Armory {
 	// }
 	// return null;
 	// }
-	
+
 	// public static void setMainGuild() {
 	// Guild mGuild = Guild.find("isMainGuild = ?", true).first();
 	// Boolean update = false;

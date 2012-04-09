@@ -1,6 +1,5 @@
 package controllers;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.sql.PreparedStatement;
@@ -19,13 +18,12 @@ import models.raidtracker.Raid;
 import models.raidtracker.RaidBossKills;
 import models.raidtracker.RaidItem;
 import models.raidtracker.RaidMember;
-import models.raidtracker.RaidType;
 import models.raidtracker.RaidPool;
+import models.raidtracker.RaidType;
 import models.raidtracker.RaidZones;
 import models.raidtracker.helpers.RaidPoolHelper;
 import models.raidtracker.helpers.SortPoolByItems;
 import models.raidtracker.helpers.SortPoolByRaidTeilnahme;
-import models.wowapi.Armory;
 import models.wowapi.character.Avatar;
 import models.wowapi.resources.Item;
 
@@ -48,82 +46,6 @@ public class RaidTracker extends Controller {
 		Application.addDefaults();
 		RaidTracker.setupDefaultData();
 	}
-	public static void showRaid(Long id) {
-		Raid raid = Raid.findById(id);
-		render(raid);
-	}
-	public static void index(Long selpool) {
-		List<RaidPool> pools = RaidPool.findAll();
-		RaidPool selectedPool = null;
-
-		if (selpool == null) {
-			selpool = ((RaidPool) RaidPool.find("isMainRaid", true).first()).id;
-		}
-
-		selectedPool = RaidPool.findById(selpool);
-		List<RaidItem> items = RaidItem.find("raid.pool = ? order by time desc", selectedPool).fetch();
-
-		for (RaidItem raidItem : items) {
-			raidItem.checkItem();
-		}
-		List<Raid> raids = Raid.find("pool = ? order by startDate desc", selectedPool).fetch();
-		List<RaidPoolHelper> members = RaidPoolHelper.getRaidPool(selpool, raids);
-		List<SortPoolByItems> poolByItems = new ArrayList<SortPoolByItems>();
-		List<SortPoolByRaidTeilnahme> poolByRaidTeilnahme = new ArrayList<SortPoolByRaidTeilnahme>();
-
-		for (RaidPoolHelper raidPoolHelper : members) {
-			poolByItems.add(new SortPoolByItems(raidPoolHelper));
-			poolByRaidTeilnahme.add(new SortPoolByRaidTeilnahme(raidPoolHelper));
-		}
-
-		Collections.sort(poolByItems);
-		Collections.sort(poolByRaidTeilnahme);
-
-		render(pools, selpool, items, selectedPool, members, raids, poolByItems, poolByRaidTeilnahme);
-	}
-
-	public static void showItem(Long id) {
-		Item item = Item.findById(id);
-		render(item);
-	}
-
-	public static void showRaidItem(Long id) {
-		RaidItem raiditem = RaidItem.findById(id);
-		List<RaidItem> items = RaidItem.find("itemId = ?", raiditem.itemId).fetch();
-		render(raiditem, items);
-	}
-
-	public static void itemsAsJSON(Long selpool) {
-		List<RaidItem> items;
-		if (selpool != null) {
-			items = RaidItem.find("raid.pool = ? order by time desc", RaidPool.findById(selpool)).fetch(30);
-		} else {
-			items = RaidItem.all().fetch();
-		}
-		JSONSerializer characterSerializer = new JSONSerializer().include("formatedDate", "name", "memberName").exclude("*").prettyPrint(true).rootName("aaData");
-		renderJSON(characterSerializer.serialize(items));
-	}
-
-	public static void showChar(String name) throws SQLException {
-		List<RaidItem> items = new ArrayList<RaidItem>();
-		RaidMember member = RaidMember.findByName(name);
-		List<RaidItem> mitems = RaidItem.find("order by raid desc").fetch();
-
-		List<Raid> raids = new ArrayList<Raid>();
-		PreparedStatement ps = DB.getConnection().prepareStatement("select r.id raidId from Raid r join RaidMember rm on (r.id = rm.raid_id) where BINARY rm.name = ? order by r.id desc");
-		ps.setString(1, member.name);
-		ResultSet rs = ps.executeQuery();
-		while (rs.next()) {
-			raids.add((Raid)Raid.findById(rs.getLong("raidId")));
-		}
-		
-		for (RaidItem item : mitems) {
-			if (member.name.equals(item.member.name)) {
-				items.add(item);
-			}
-		}
-		render(member, items, raids);
-	}
 
 	public static void addRaid(Long raidpool, String raidxml) {
 		Document xmlDoc = getXMLDocument(raidxml);
@@ -131,7 +53,7 @@ public class RaidTracker extends Controller {
 		String offizier = XPath.selectText("charactername", gameinfo);
 		Avatar avatar = Avatar.findByNameAndRealm(offizier, Play.configuration.getProperty("wowapi.realmName"));
 		if (avatar == null) {
-			avatar = Avatar.createAvatar(offizier,Play.configuration.getProperty("wowapi.realmName"));
+			avatar = Avatar.createAvatar(offizier, Play.configuration.getProperty("wowapi.realmName"));
 		}
 		Date startDate = null;
 		Date endDate = null;
@@ -178,7 +100,7 @@ public class RaidTracker extends Controller {
 				Date leave = new Date(Long.parseLong(XPath.selectText("times/time[@type='leave']", member)) * 1000);
 				Avatar c = Avatar.findByNameAndRealm(name, Play.configuration.getProperty("wowapi.realmName"));
 				if (c == null) {
-					c = Avatar.createAvatar(name,Play.configuration.getProperty("wowapi.realmName"));
+					c = Avatar.createAvatar(name, Play.configuration.getProperty("wowapi.realmName"));
 				}
 
 				RaidMember rm = new RaidMember(name, join, leave, c, raid);
@@ -207,9 +129,25 @@ public class RaidTracker extends Controller {
 				ri.save();
 			}
 		}
-		
-		redirect("RaidTracker.index",raidpool);
 
+		redirect("RaidTracker.index", raidpool);
+
+	}
+
+	private static Date getEndDate(Document xmlDoc, Date endDate) {
+		for (Node zones : XPath.selectNodes("//zone", xmlDoc)) {
+			String dates = XPath.selectText("leave", zones);
+			endDate = new Date(Long.parseLong(dates) * 1000);
+		}
+		return endDate;
+	}
+
+	private static Date getStartDate(Document xmlDoc, Date startDate) {
+		for (Node zones : XPath.selectNodes("//zone[1]", xmlDoc)) {
+			String dates = XPath.selectText("enter", zones);
+			startDate = new Date(Long.parseLong(dates) * 1000);
+		}
+		return startDate;
 	}
 
 	private static Document getXMLDocument(String raidxml) {
@@ -235,42 +173,45 @@ public class RaidTracker extends Controller {
 		return xmlDoc;
 	}
 
-	private static Document getTestXMLDocument() {
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder = null;
-		try {
-			builder = factory.newDocumentBuilder();
-		} catch (ParserConfigurationException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
+	public static void index(Long selpool) {
+		List<RaidPool> pools = RaidPool.findAll();
+		RaidPool selectedPool = null;
+
+		if (selpool == null) {
+			selpool = ((RaidPool) RaidPool.find("isMainRaid", true).first()).id;
 		}
-		Document xmlDoc = null;
-		try {
-			xmlDoc = builder.parse(new File("./public/raid1.xml"));
-		} catch (SAXException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+
+		selectedPool = RaidPool.findById(selpool);
+		List<RaidItem> items = RaidItem.find("raid.pool = ? order by time desc", selectedPool).fetch();
+
+		for (RaidItem raidItem : items) {
+			raidItem.checkItem();
 		}
-		return xmlDoc;
+		List<Raid> raids = Raid.find("pool = ? order by startDate desc", selectedPool).fetch();
+		List<RaidPoolHelper> members = RaidPoolHelper.getRaidPool(selpool, raids);
+		List<SortPoolByItems> poolByItems = new ArrayList<SortPoolByItems>();
+		List<SortPoolByRaidTeilnahme> poolByRaidTeilnahme = new ArrayList<SortPoolByRaidTeilnahme>();
+
+		for (RaidPoolHelper raidPoolHelper : members) {
+			poolByItems.add(new SortPoolByItems(raidPoolHelper));
+			poolByRaidTeilnahme.add(new SortPoolByRaidTeilnahme(raidPoolHelper));
+		}
+
+		Collections.sort(poolByItems);
+		Collections.sort(poolByRaidTeilnahme);
+
+		render(pools, selpool, items, selectedPool, members, raids, poolByItems, poolByRaidTeilnahme);
 	}
 
-	private static Date getEndDate(Document xmlDoc, Date endDate) {
-		for (Node zones : XPath.selectNodes("//zone", xmlDoc)) {
-			String dates = XPath.selectText("leave", zones);
-			endDate = new Date(Long.parseLong(dates) * 1000);
+	public static void itemsAsJSON(Long selpool) {
+		List<RaidItem> items;
+		if (selpool != null) {
+			items = RaidItem.find("raid.pool = ? order by time desc", RaidPool.findById(selpool)).fetch(30);
+		} else {
+			items = RaidItem.all().fetch();
 		}
-		return endDate;
-	}
-
-	private static Date getStartDate(Document xmlDoc, Date startDate) {
-		for (Node zones : XPath.selectNodes("//zone[1]", xmlDoc)) {
-			String dates = XPath.selectText("enter", zones);
-			startDate = new Date(Long.parseLong(dates) * 1000);
-		}
-		return startDate;
+		JSONSerializer characterSerializer = new JSONSerializer().include("formatedDate", "name", "memberName").exclude("*").prettyPrint(true).rootName("aaData");
+		renderJSON(characterSerializer.serialize(items));
 	}
 
 	private static void setupDefaultData() {
@@ -284,6 +225,43 @@ public class RaidTracker extends Controller {
 			new RaidPool("Twink Raid", false).save();
 		}
 
+	}
+
+	public static void showChar(String name) throws SQLException {
+		List<RaidItem> items = new ArrayList<RaidItem>();
+		RaidMember member = RaidMember.findByName(name);
+		List<RaidItem> mitems = RaidItem.find("order by raid desc").fetch();
+
+		List<Raid> raids = new ArrayList<Raid>();
+		PreparedStatement ps = DB.getConnection().prepareStatement("select r.id raidId from Raid r join RaidMember rm on (r.id = rm.raid_id) where BINARY rm.name = ? order by r.id desc");
+		ps.setString(1, member.name);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			raids.add((Raid) Raid.findById(rs.getLong("raidId")));
+		}
+
+		for (RaidItem item : mitems) {
+			if (member.name.equals(item.member.name)) {
+				items.add(item);
+			}
+		}
+		render(member, items, raids);
+	}
+
+	public static void showItem(Long id) {
+		Item item = Item.findById(id);
+		render(item);
+	}
+
+	public static void showRaid(Long id) {
+		Raid raid = Raid.findById(id);
+		render(raid);
+	}
+
+	public static void showRaidItem(Long id) {
+		RaidItem raiditem = RaidItem.findById(id);
+		List<RaidItem> items = RaidItem.find("itemId = ?", raiditem.itemId).fetch();
+		render(raiditem, items);
 	}
 
 }

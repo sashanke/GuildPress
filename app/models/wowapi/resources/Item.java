@@ -1,69 +1,89 @@
 package models.wowapi.resources;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
+import models.wowapi.AuctionData;
 import models.wowapi.WoWHead;
-import models.wowapi.character.Avatar;
+
+import org.hibernate.annotations.Index;
 
 import play.data.validation.MaxSize;
-import play.data.validation.Required;
-import play.db.DB;
 import play.db.jpa.Model;
 
 /**
  * http://de.wowhead.com/item=78878&xml
+ * 
  * @author prime
- *
+ * 
  */
 @Entity
 public class Item extends Model {
 
+	public static Item setItem(Long id) {
+		Item iq = Item.find("itemId = ?", id).first();
+		if (iq == null) {
+			iq = new Item(id);
+			iq.save();
+			WoWHead.checkItem(iq);
+		}
+		return iq;
+	}
+
+	public static Item setItemByName(String name) {
+		Item iq = Item.find("name = ?", name).first();
+		if (iq == null) {
+			iq = new Item(name);
+			iq.save();
+			return WoWHead.checkItem(iq);
+		}
+		return iq;
+	}
+
+	@Index(name = "idx_item_itemId")
 	public Long itemId;
-	
 	public String name;
+
 	public Long level;
+
 	public Float gearScore;
-	
+
 	@ManyToOne
 	public ItemQuality itemQuality;
-	
+
 	@ManyToOne
 	public ItemClass itemClass;
-	
+
 	@ManyToOne
 	public ItemSubClass itemSubClass;
-	
+
 	@ManyToOne
 	public Icon icon;
-	
+
 	@ManyToOne
 	public ItemSlot slot;
-	
-    @Lob
-    @MaxSize(10000)
+
+	@Lob
+	@MaxSize(10000)
 	public String tooltip;
-	
-    @Lob
-    @MaxSize(10000)
+
+	@Lob
+	@MaxSize(10000)
 	public String json;
-    
-    @Lob
-    @MaxSize(10000)
+
+	@Lob
+	@MaxSize(10000)
 	public String jsonEquip;
-    
-    @Lob
-    @MaxSize(10000)
-    public String link;
-    
+
+	@Lob
+	@MaxSize(10000)
+	public String link;
+
 	public Date lastUpdate;
 
 	public Float dps;
@@ -145,130 +165,107 @@ public class Item extends Model {
 
 	@Transient
 	public int recCount;
-
 	public float avgbuyout;
-	
-	public float buyout;
-	public float minbid;
-	
+
+	public float avgbuy;
+	public float avgbid;
+
+	public float buyout12H;
+	public float minbid12H;
+
 	public float buyout3Day;
 	public float minbid3Day;
-	
+
 	public float buyout10Day;
 	public float minbid10Day;
-	
+
 	public float buyout30Day;
+
 	public float minbid30Day;
+
 	public Item(Long id) {
 		this.itemId = id;
 	}
+
 	public Item(String name) {
 		this.name = name;
 	}
-	public static Item setItem(Long id) {
-		Item iq = Item.find("itemId = ?", id).first();
-		if (iq == null) {
-			iq = new Item(id);
-			iq.save();
-			WoWHead.checkItem(iq);
-		}
-		return iq;
-	}
-	public static Item setItemByName(String name) {
-		Item iq = Item.find("name = ?", name).first();
-		if (iq == null) {
-			iq = new Item(name);
-			iq.save();
-			return WoWHead.checkItem(iq);
-		}
-		return iq;
-	}
-	public String toString() {
-		return name;
-	}
-	
-	public void setAuctionData() {
-		
-		try {
-			PreparedStatement ps = DB.getConnection().prepareStatement("select round(avg(ad.buyout / ad.count)) as buyout, round(avg(ad.minbid / ad.count)) as minbid, ad.itemid as itemId from AuctionData ad where ad.itemid = ? and ad.time BETWEEN SYSDATE() - INTERVAL 12 HOUR AND SYSDATE() group by ad.itemid, ad.name");
-			ps.setLong(1, this.itemId);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				this.buyout = rs.getFloat("buyout");
-				this.minbid = rs.getFloat("minbid");
-			}
-			ps = DB.getConnection().prepareStatement("select round(avg(ad.buyout / ad.count)) as buyout, round(avg(ad.minbid / ad.count)) as minbid, ad.itemid as itemId from AuctionData ad where ad.itemid = ? and ad.time BETWEEN SYSDATE() - INTERVAL 3 DAY AND SYSDATE() group by ad.itemid, ad.name");
-			ps.setLong(1, this.itemId);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				this.buyout3Day = rs.getFloat("buyout");
-				this.minbid3Day = rs.getFloat("minbid");
-			}
-			ps = DB.getConnection().prepareStatement("select round(avg(ad.buyout / ad.count)) as buyout, round(avg(ad.minbid / ad.count)) as minbid, ad.itemid as itemId from AuctionData ad where ad.itemid = ? and ad.time BETWEEN SYSDATE() - INTERVAL 10 DAY AND SYSDATE() group by ad.itemid, ad.name");
-			ps.setLong(1, this.itemId);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				this.buyout10Day = rs.getFloat("buyout");
-				this.minbid10Day = rs.getFloat("minbid");
-			}
-			ps = DB.getConnection().prepareStatement("select round(avg(ad.buyout / ad.count)) as buyout, round(avg(ad.minbid / ad.count)) as minbid, ad.itemid as itemId from AuctionData ad where ad.itemid = ? and ad.time BETWEEN SYSDATE() - INTERVAL 30 DAY AND SYSDATE() group by ad.itemid, ad.name");
-			ps.setLong(1, this.itemId);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				this.buyout30Day = rs.getFloat("buyout");
-				this.minbid30Day = rs.getFloat("minbid");
-			}
-			this.save();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 
-		
-		
-	}
-	
 	public String getTooltip() {
 		String tooltip = this.tooltip;
 		tooltip = tooltip.replace("table", "table class=\"tooltip\"");
 		tooltip = tooltip.replaceAll(this.name, "<a class=\"q" + this.itemQuality.qualityId + "\" href=\"" + this.link + "\" target=\"_new\">" + this.name + "</a>");
 		return tooltip;
 	}
-	
+
+	public void setAuctionData() throws SQLException {
+		AuctionData.updatePrices(this.itemId);
+		this.refresh();
+	}
+
+	@Override
+	public String toString() {
+		return this.name;
+	}
+
 }
 
 /**
-<wowhead>
-<item id="78878">
-<name>
-<![CDATA[ Dorn der tausend Schnitte ]]>
-</name>
-<level>397</level>
-<gearScore>167.484</gearScore>
-<quality id="4">Episch</quality>
-<class id="2">
-<![CDATA[ Waffen ]]>
-</class>
-<subclass id="7">
-<![CDATA[ Einhandschwerter ]]>
-</subclass>
-<icon displayId="103577">inv_sword_1h_deathwingraid_d_01</icon>
-<inventorySlot id="21">Waffenhand</inventorySlot>
-<htmlTooltip>
-<![CDATA[
-<table><tr><td><b class="q4">Dorn der tausend Schnitte</b><br /><!--bo-->Wird beim Aufheben gebunden<table width="100%"><tr><td>Waffenhand</td><th>Schwert</th></tr></table><!--rf--><table width="100%"><tr><td><span>1198 - 2227 Schaden</span></td><th>Tempo 2.60</th></tr></table>(658.7 Schaden pro Sekunde)<br /><span><!--stat3-->+208 Beweglichkeit</span><br /><span><!--stat7-->+312 Ausdauer</span><!--rs--><!--e--><!--ps--><br />Haltbarkeit 110 / 110<br />Benötigt Stufe 85<br />Gegenstandsstufe 397</td></tr></table><table><tr><td><!--rr--><span class="q2">Anlegen: Erhöht Eure Tempowertung um <!--rtg36-->122&nbsp;<small>(<!--rtg%36-->0.95%&nbsp;@&nbsp;L<!--lvl-->85)</small>.</span><br /><span class="q2">Anlegen: Erhöht Eure Waffenkundewertung um <!--rtg37-->149&nbsp;<small>(<!--rtg%37-->4.96&nbsp;@&nbsp;L<!--lvl-->85)</small>.</span><br />Verkaufspreis: <span class="moneygold">38</span> <span class="moneysilver">76</span> <span class="moneycopper">96</span></td></tr></table><!--?78878:1:85:85-->
-]]>
-</htmlTooltip>
-<json>
-<![CDATA[
-"classs":2,"displayid":103577,"dps":658.7,"id":78878,"level":397,"name":"3Dorn der tausend Schnitte","reqlevel":85,"slot":21,"slotbak":21,"source":[2],"sourcemore":[{"z":5892}],"speed":2.60,"subclass":7
-]]>
-</json>
-<jsonEquip>
-<![CDATA[
-"agi":208,"displayid":103577,"dmgmax1":2227,"dmgmin1":1198,"dmgtype1":0,"dps":658.7,"dura":110,"exprtng":149,"hastertng":122,"mledmgmax":2227,"mledmgmin":1198,"mledps":658.7,"mlespeed":2.60,"reqlevel":85,"sellprice":387696,"slotbak":21,"speed":2.60,"sta":312
-]]>
-</jsonEquip>
-<link>http://de.wowhead.com/item=78878</link>
-</item>
-</wowhead>
+ * <wowhead> <item id="78878"> <name> <![CDATA[ Dorn der tausend Schnitte ]]>
+ * </name> <level>397</level> <gearScore>167.484</gearScore> <quality
+ * id="4">Episch</quality> <class id="2"> <![CDATA[ Waffen ]]> </class>
+ * <subclass id="7"> <![CDATA[ Einhandschwerter ]]> </subclass> <icon
+ * displayId="103577">inv_sword_1h_deathwingraid_d_01</icon> <inventorySlot
+ * id="21">Waffenhand</inventorySlot> <htmlTooltip> <![CDATA[
+ * <table>
+ * <tr>
+ * <td><b class="q4">Dorn der tausend Schnitte</b><br />
+ * <!--bo-->Wird beim Aufheben gebunden
+ * <table width="100%">
+ * <tr>
+ * <td>Waffenhand</td>
+ * <th>Schwert</th>
+ * </tr>
+ * </table>
+ * <!--rf-->
+ * <table width="100%">
+ * <tr>
+ * <td><span>1198 - 2227 Schaden</span></td>
+ * <th>Tempo 2.60</th>
+ * </tr>
+ * </table>
+ * (658.7 Schaden pro Sekunde)<br />
+ * <span><!--stat3-->+208 Beweglichkeit</span><br />
+ * <span><!--stat7-->+312 Ausdauer</span><!--rs--><!--e--><!--ps--><br />
+ * Haltbarkeit 110 / 110<br />
+ * Benötigt Stufe 85<br />
+ * Gegenstandsstufe 397</td>
+ * </tr>
+ * </table>
+ * <table>
+ * <tr>
+ * <td><!--rr--><span class="q2">Anlegen: Erhöht Eure Tempowertung um
+ * <!--rtg36--
+ * >122&nbsp;<small>(<!--rtg%36-->0.95%&nbsp;@&nbsp;L<!--lvl-->85)</small
+ * >.</span><br />
+ * <span class="q2">Anlegen: Erhöht Eure Waffenkundewertung um
+ * <!--rtg37-->149&nbsp
+ * ;<small>(<!--rtg%37-->4.96&nbsp;@&nbsp;L<!--lvl-->85)</small>.</span><br />
+ * Verkaufspreis: <span class="moneygold">38</span> <span
+ * class="moneysilver">76</span> <span class="moneycopper">96</span></td>
+ * </tr>
+ * </table>
+ * <!--?78878:1:85:85--> ]]> </htmlTooltip> <json> <![CDATA[
+ * "classs":2,"displayid":103577,"dps":658.7,"id":78878,"level":397,"name":
+ * "3Dorn der tausend Schnitte"
+ * ,"reqlevel":85,"slot":21,"slotbak":21,"source":[2]
+ * ,"sourcemore":[{"z":5892}],"speed":2.60,"subclass":7 ]]> </json> <jsonEquip>
+ * <![CDATA[
+ * "agi":208,"displayid":103577,"dmgmax1":2227,"dmgmin1":1198,"dmgtype1"
+ * :0,"dps":
+ * 658.7,"dura":110,"exprtng":149,"hastertng":122,"mledmgmax":2227,"mledmgmin"
+ * :1198
+ * ,"mledps":658.7,"mlespeed":2.60,"reqlevel":85,"sellprice":387696,"slotbak"
+ * :21,"speed":2.60,"sta":312 ]]> </jsonEquip>
+ * <link>http://de.wowhead.com/item=78878</link> </item> </wowhead>
  */

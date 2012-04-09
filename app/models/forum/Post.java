@@ -43,6 +43,15 @@ public class Post extends Model {
 		this.created = new Date();
 		this.slug = Tools.Slugify(title);
 	}
+
+	public String getSlug() {
+		if (this.slug == null) {
+			this.slug = Tools.Slugify(this.title);
+			this.save();
+		}
+		return this.slug;
+	}
+
 	@Override
 	public String toString() {
 		if (this.title != null) {
@@ -50,12 +59,5 @@ public class Post extends Model {
 		} else {
 			return super.toString();
 		}
-	}
-	public String getSlug() {
-		if (this.slug == null) {
-			this.slug = Tools.Slugify(this.title);
-			this.save();
-		}
-		return slug;
 	}
 }

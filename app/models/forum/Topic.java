@@ -11,8 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import models.Comment;
-import models.News;
 import models.User;
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
@@ -44,22 +42,22 @@ public class Topic extends Model {
 
 	@OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
 	public List<Post> posts;
-	
+
 	@OneToOne
 	public Post lastPost;
-	
+
 	@OneToOne
 	public Post firstPost;
-	
+
 	public Long viewCount;
-	
+
 	public Long postCount;
-	
+
 	public String image;
-	
+
 	public String frontpageImage;
 	public String frontpageAbstract;
-	
+
 	public Topic(Forum forum, User postAuthor, String description, String title, String image, String frontpageImage, String frontpageAbstract) {
 		this.posts = new ArrayList<Post>();
 		this.author = postAuthor;
@@ -72,31 +70,15 @@ public class Topic extends Model {
 		this.postCount = 1L;
 	}
 
-
 	public Post addPost(User postAuthor, String content, String title) {
-        Post newPost = new Post(this, postAuthor, content, title).save();
-        this.posts.add(newPost);
-        this.lastPost = newPost;
-        this.postCount = this.postCount + 1L;
-        this.save();
-        this.forum.postCount = this.forum.postCount + 1L;
-        this.forum.save();
-        return newPost;
-    }
-	
-	public void onView() {
-		this.viewCount = this.viewCount + 1L;
+		Post newPost = new Post(this, postAuthor, content, title).save();
+		this.posts.add(newPost);
+		this.lastPost = newPost;
+		this.postCount = this.postCount + 1L;
 		this.save();
-	}
-	
-	
-	@Override
-	public String toString() {
-		if (this.title != null) {
-			return this.title;
-		} else {
-			return super.toString();
-		}
+		this.forum.postCount = this.forum.postCount + 1L;
+		this.forum.save();
+		return newPost;
 	}
 
 	public String getSlug() {
@@ -104,6 +86,20 @@ public class Topic extends Model {
 			this.slug = Tools.Slugify(this.title);
 			this.save();
 		}
-		return slug;
+		return this.slug;
+	}
+
+	public void onView() {
+		this.viewCount = this.viewCount + 1L;
+		this.save();
+	}
+
+	@Override
+	public String toString() {
+		if (this.title != null) {
+			return this.title;
+		} else {
+			return super.toString();
+		}
 	}
 }

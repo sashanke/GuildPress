@@ -4,18 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
-
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
-import play.db.DB;
 
 import models.wowapi.character.Avatar;
 import models.wowapi.resources.Recipe;
 import models.wowapi.resources.RecipeReagent;
+import play.db.DB;
 
 public class RecipeShoppingCartEntry {
 	Recipe recipe;
@@ -31,7 +26,7 @@ public class RecipeShoppingCartEntry {
 
 			while (rs.next()) {
 				Long avatarId = rs.getLong("avatar_id");
-				crafter.add((Avatar) Avatar.findById(avatarId));
+				this.crafter.add((Avatar) Avatar.findById(avatarId));
 			}
 
 			Recipe recipe = Recipe.findById(recipeId);
@@ -39,7 +34,7 @@ public class RecipeShoppingCartEntry {
 			this.recipe.recCount = count;
 			this.count = count;
 			for (RecipeReagent reagent : recipe.reagents) {
-					recipe_reagents.put(reagent, (int) (reagent.count * count));
+				this.recipe_reagents.put(reagent, (int) (reagent.count * count));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

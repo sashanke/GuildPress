@@ -13,54 +13,6 @@ import java.util.StringTokenizer;
  */
 public class StringUtils {
 	/**
-	 * Überprüft ob ein String null ist oder keinen Text enthält
-	 * 
-	 * @param string
-	 *            Der zu überprüfende String
-	 * @return true wenn der String nichts enthält oder false wenn er etwas
-	 *         enthält
-	 */
-	public static boolean nullCheck(String string) {
-		if (string == null || string.length() == 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	
-	public static String replaceWhiteSpaces(String string) {
-		String pattern = "([\\n|\\r|\\t])";
-		String newString = string.replaceAll(pattern, "");
-		newString = newString.replaceAll("  ", " ");
-		return newString.trim();
-	}
-	
-	
-	public static String replaceUrls(String text, String cssClass, String aOptions) {
-		String regex = "\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]*"; // matches <http://google.com>
-
-		String aStart = "<a href=\"";
-		String aMiddle = "\" class=\"" + cssClass + "\" " + aOptions + " >";
-		String aEnd = "</a>";
-		StringTokenizer st = new StringTokenizer(text, " ");
-		
-		String replaced = "";
-		
-		while (st.hasMoreElements()) {
-			String token = (String) st.nextToken();
-			if (token.matches(regex)) {
-				replaced += " " + aStart + token + aMiddle + token + aEnd;
-			} else {
-				replaced += " " + token;
-			}
-		}
-		
-		return replaced;
-	}
-
-
-	/**
 	 * Entfernt die erste und letzte stelle vom String
 	 * 
 	 * @param string
@@ -90,9 +42,20 @@ public class StringUtils {
 		return null;
 	}
 
-	public static String seoURL(String string) {
-		string = string.replaceAll(" ", "_");
-		return string;
+	/**
+	 * Überprüft ob ein String null ist oder keinen Text enthält
+	 * 
+	 * @param string
+	 *            Der zu überprüfende String
+	 * @return true wenn der String nichts enthält oder false wenn er etwas
+	 *         enthält
+	 */
+	public static boolean nullCheck(String string) {
+		if (string == null || string.length() == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -286,10 +249,45 @@ public class StringUtils {
 
 		for (Map.Entry entry : bbMap.entrySet()) {
 			String key = entry.getKey().toString();
-			
+
 			text = text.replace(entry.getKey().toString(), imgStart + entry.getValue().toString() + "\" alt=\"" + bbMapalt.get(key) + "\" title=\"" + bbMapalt.get(key) + imgEnd);
 		}
 		return text;
+	}
+
+	public static String replaceUrls(String text, String cssClass, String aOptions) {
+		String regex = "\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]*"; // matches
+																										// <http://google.com>
+
+		String aStart = "<a href=\"";
+		String aMiddle = "\" class=\"" + cssClass + "\" " + aOptions + " >";
+		String aEnd = "</a>";
+		StringTokenizer st = new StringTokenizer(text, " ");
+
+		String replaced = "";
+
+		while (st.hasMoreElements()) {
+			String token = st.nextToken();
+			if (token.matches(regex)) {
+				replaced += " " + aStart + token + aMiddle + token + aEnd;
+			} else {
+				replaced += " " + token;
+			}
+		}
+
+		return replaced;
+	}
+
+	public static String replaceWhiteSpaces(String string) {
+		String pattern = "([\\n|\\r|\\t])";
+		String newString = string.replaceAll(pattern, "");
+		newString = newString.replaceAll("  ", " ");
+		return newString.trim();
+	}
+
+	public static String seoURL(String string) {
+		string = string.replaceAll(" ", "_");
+		return string;
 	}
 
 }

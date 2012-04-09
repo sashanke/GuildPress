@@ -4,7 +4,10 @@ require:
     - play
     - play -> crud
     - play -> greenscript 1.2.8
+    - play -> betterlogs 1.0
+    - play -> log4play 0.4
     - commons-io -> commons-io 2.0.1
     - net.sf.jtidy -> jtidy r938
     - org.jsoup -> jsoup 1.6.1
     - net.sf.flexjson -> flexjson 2.1
+    

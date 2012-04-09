@@ -1,11 +1,9 @@
 package models.wowapi.guild;
 
-import play.*;
-import play.data.validation.Required;
-import play.db.jpa.*;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
-import javax.persistence.*;
-import java.util.*;
+import play.db.jpa.Model;
 
 @Entity
 public class GuildEmblem extends Model {
@@ -13,12 +11,12 @@ public class GuildEmblem extends Model {
 	public Guild guild;
 
 	public String borderColor;
-	
+
 	public String iconColor;
-	
+
 	public String backgroundColor;
-	
+
 	public Long icon;
-	
+
 	public Long border;
 }

@@ -1,8 +1,5 @@
 package models.wowapi.character;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.UniqueConstraint;
 
 import models.wowapi.Armory;
 import models.wowapi.guild.Guild;
@@ -28,14 +24,12 @@ import models.wowapi.resources.Realm;
 import play.Logger;
 import play.Play;
 import play.data.validation.Required;
-import play.db.DB;
 import play.db.jpa.Model;
 import play.libs.Codec;
 import play.libs.F.Promise;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
 import play.mvc.Router;
-import play.mvc.Router.Route;
 import utils.Tools;
 
 import com.google.gson.JsonArray;
@@ -45,67 +39,21 @@ import com.google.gson.JsonParser;
 @Entity
 public class Avatar extends Model {
 
-	@Required
-	public String name;
-	
-	public String hash;
-	
-	@ManyToOne
-	public Realm realm;
-	@ManyToOne
-	public CharacterClass cclass;
-	@ManyToOne
-	public CharacterRace race;
-	@ManyToOne
-	public Gender gender;
+	public static void createAsyncAvatar(String name, String realm) {
+		Promise<Avatar> futureAvatar = new Promise<Avatar>();
+		futureAvatar.invoke(Avatar.createAvatar(name, realm));
+	}
 
-	public Long level;
-
-	public Long achievementPoints;
-
-	public String image;
-
-	public String profile;
-
-	public String inset;
-
-	@ManyToOne
-	public Guild guild;
-
-	@OneToOne
-	public GuildMember guildMember;
-
-	public Boolean isGuildMember;
-
-	public Date lastModified;
-
-	public Date lastUpdate;
-
-	public Date created;
-
-	private String avatarLink;
-	
-	@OneToMany(mappedBy = "avatar", cascade = CascadeType.ALL)
-	public List<AvatarItem> items;
-
-	
-	@OneToMany(mappedBy = "avatar", cascade = CascadeType.ALL)
-	public List<AvatarProfession> professions;
-	
-	public Long averageItemLevel;
-
-	public Long averageItemLevelEquipped;
-
-	public Avatar(String name, String realm) {
-		this.name = name;
-		this.hash = Codec.hexMD5(name);
-		this.realm = Realm.findByName(realm);
-		this.lastModified = new Date();
-		this.lastUpdate = new Date();
-		this.created = new Date();
-		this.items = new ArrayList<AvatarItem>();
-		this.averageItemLevel = 0L;
-		this.averageItemLevelEquipped = 0L;
+	/**
+	 * Creates an Avatar
+	 * 
+	 * @param avatar
+	 * 
+	 * @return Avatar
+	 */
+	private static Avatar createAvatar(Avatar avatar) {
+		Logger.info("[Avatar][createAvatar] " + avatar.name + " (" + avatar.realm + ")");
+		return fetchAvatar(avatar);
 	}
 
 	/**
@@ -122,44 +70,6 @@ public class Avatar extends Model {
 		} else {
 			return updateAvatar(avatar);
 		}
-	}
-
-	/**
-	 * Creates an Avatar
-	 * 
-	 * @param avatar
-	 * 
-	 * @return Avatar
-	 */
-	private static Avatar createAvatar(Avatar avatar) {
-		Logger.info("[Avatar][createAvatar] " + avatar.name + " (" + avatar.realm + ")");
-		return fetchAvatar(avatar);
-	}
-
-	/**
-	 * Update an Avatar
-	 * 
-	 * @param avatar
-	 * 
-	 * @return Avatar
-	 */
-	public static Avatar updateAvatar(Avatar avatar) {
-		if (Armory.checkUpdate(avatar.lastUpdate, Armory.QUATERDAYUPDATE)) {
-			Logger.info("[Avatar][updateAvatar] " + avatar.name + " (" + avatar.realm + ")");
-			return fetchAvatar(avatar);
-		}
-		return avatar;
-	}
-
-	/**
-	 * Fetch an specific Avatar from the WoW Armory
-	 * 
-	 * @param name
-	 * @param realm
-	 * @return Avatar
-	 */
-	public static Avatar fetchAvatar(String name, String realm) {
-		return fetchAvatar(Avatar.findByNameAndRealm(name, realm));
 	}
 
 	public static Avatar fetchAvatar(Avatar avatar) {
@@ -217,12 +127,9 @@ public class Avatar extends Model {
 		Long gmlastModified = avatarJson.get("lastModified").getAsLong();
 
 		JsonObject items = avatarJson.get("items").getAsJsonObject();
-		
+
 		JsonObject professions = avatarJson.get("professions").getAsJsonObject();
 
-		
-		
-		
 		Long averageItemLevel = items.get("averageItemLevel").getAsLong();
 		Long averageItemLevelEquipped = items.get("averageItemLevelEquipped").getAsLong();
 
@@ -251,13 +158,12 @@ public class Avatar extends Model {
 		avatar.averageItemLevel = averageItemLevel;
 		avatar.averageItemLevelEquipped = averageItemLevelEquipped;
 		avatar.save();
-		
+
 		if (avatar.isGuildMember) {
 			List<AvatarProfession> professionsList = AvatarProfession.createProfessions(professions, avatar);
 			avatar.professions = professionsList;
 			avatar.save();
 		}
-		
 
 		if (guildMemeber != null) {
 			guildMemeber.image = avatar.getImage();
@@ -298,7 +204,6 @@ public class Avatar extends Model {
 			at.transmogItem = transmogItem;
 
 			JsonParser parser = new JsonParser();
-			String html = "";
 			if (tooltipParamsS.length() != 0) {
 				JsonObject o = (JsonObject) parser.parse(tooltipParamsS);
 				List<String> urlParts = new ArrayList<String>();
@@ -356,14 +261,14 @@ public class Avatar extends Model {
 	}
 
 	/**
-	 * Finds an avatar by name and realm, Binary Safe!
+	 * Fetch an specific Avatar from the WoW Armory
 	 * 
 	 * @param name
 	 * @param realm
 	 * @return Avatar
 	 */
-	public static Avatar findByNameAndRealm(String name, String realm) {
-		return findByNameAndRealm(name, Realm.findByName(realm));
+	public static Avatar fetchAvatar(String name, String realm) {
+		return fetchAvatar(Avatar.findByNameAndRealm(name, realm));
 	}
 
 	/**
@@ -375,24 +280,120 @@ public class Avatar extends Model {
 	 */
 	public static Avatar findByNameAndRealm(String name, Realm realm) {
 		return Avatar.find("hash = ?", Codec.hexMD5(name)).first();
-//		try {
-//			PreparedStatement ps = DB.getConnection().prepareStatement("select id from Avatar where BINARY name = ? and realm_id = ?");
-//			ps.setString(1, name);
-//			ps.setLong(2, realm.id);
-//			ResultSet rs = ps.executeQuery();
-//			if (rs.first()) {
-//				Logger.info("[Avatar][findByNameAndRealm] Avatar " + name + " found");
-//				return Avatar.findById(rs.getLong("id"));
-//			} else {
-//				Logger.info("[Avatar][findByNameAndRealm] Avatar " + name + " not found");
-//				return null;
-//			}
-//
-//		} catch (SQLException e) {
-//			Logger.warn("[Avatar][FindByNameAndRealm] " + e.getLocalizedMessage(), e);
-//			return null;
-//		}
+		// try {
+		// PreparedStatement ps =
+		// DB.getConnection().prepareStatement("select id from Avatar where BINARY name = ? and realm_id = ?");
+		// ps.setString(1, name);
+		// ps.setLong(2, realm.id);
+		// ResultSet rs = ps.executeQuery();
+		// if (rs.first()) {
+		// Logger.info("[Avatar][findByNameAndRealm] Avatar " + name +
+		// " found");
+		// return Avatar.findById(rs.getLong("id"));
+		// } else {
+		// Logger.info("[Avatar][findByNameAndRealm] Avatar " + name +
+		// " not found");
+		// return null;
+		// }
+		//
+		// } catch (SQLException e) {
+		// Logger.warn("[Avatar][FindByNameAndRealm] " +
+		// e.getLocalizedMessage(), e);
+		// return null;
+		// }
 
+	}
+
+	/**
+	 * Finds an avatar by name and realm, Binary Safe!
+	 * 
+	 * @param name
+	 * @param realm
+	 * @return Avatar
+	 */
+	public static Avatar findByNameAndRealm(String name, String realm) {
+		return findByNameAndRealm(name, Realm.findByName(realm));
+	}
+
+	/**
+	 * Update an Avatar
+	 * 
+	 * @param avatar
+	 * 
+	 * @return Avatar
+	 */
+	public static Avatar updateAvatar(Avatar avatar) {
+		if (Armory.checkUpdate(avatar.lastUpdate, Armory.QUATERDAYUPDATE)) {
+			Logger.info("[Avatar][updateAvatar] " + avatar.name + " (" + avatar.realm + ")");
+			return fetchAvatar(avatar);
+		}
+		return avatar;
+	}
+
+	@Required
+	public String name;
+
+	public String hash;
+
+	@ManyToOne
+	public Realm realm;
+
+	@ManyToOne
+	public CharacterClass cclass;
+
+	@ManyToOne
+	public CharacterRace race;
+
+	@ManyToOne
+	public Gender gender;
+
+	public Long level;
+
+	public Long achievementPoints;
+
+	public String image;
+
+	public String profile;
+
+	public String inset;
+
+	@ManyToOne
+	public Guild guild;
+
+	@OneToOne
+	public GuildMember guildMember;
+
+	public Boolean isGuildMember;
+
+	public Date lastModified;
+
+	public Date lastUpdate;
+
+	public Date created;
+
+	@SuppressWarnings("unused")
+	private String avatarLink;
+
+	@OneToMany(mappedBy = "avatar", cascade = CascadeType.ALL)
+	public List<AvatarItem> items;
+
+	@OneToMany(mappedBy = "avatar", cascade = CascadeType.ALL)
+	public List<AvatarProfession> professions;
+
+	public Long averageItemLevel;
+
+	public Long averageItemLevelEquipped;
+
+	public Avatar(String name, String realm) {
+		this.name = name;
+		this.hash = Codec.hexMD5(name);
+		this.realm = Realm.findByName(realm);
+		this.lastModified = new Date();
+		this.lastUpdate = new Date();
+		this.created = new Date();
+		this.items = new ArrayList<AvatarItem>();
+		this.averageItemLevel = 0L;
+		this.averageItemLevelEquipped = 0L;
 	}
 
 	public Avatar addItem(AvatarItem item) {
@@ -403,15 +404,22 @@ public class Avatar extends Model {
 	}
 
 	public String getAvatarBanner() {
-		String banner = Play.configuration.getProperty("conf.bannerdir") + this.race.side.name.toLowerCase() + "/" + this.race.name.toLowerCase() + "/" + this.race.name.toLowerCase() + "_" + Tools.replaceUmlauts(this.cclass.name.toLowerCase()) + "_" + Tools.replaceUmlauts(this.gender.name_loc.toLowerCase()) + ".jpg";
+		String banner = Play.configuration.getProperty("conf.bannerdir") + this.race.side.name.toLowerCase() + "/" + this.race.name.toLowerCase() + "/" + this.race.name.toLowerCase() + "_" + Tools.replaceUmlauts(this.cclass.name.toLowerCase()) + "_"
+				+ Tools.replaceUmlauts(this.gender.name_loc.toLowerCase()) + ".jpg";
 		return banner;
 	}
 
-	public String getProfileMain() {
-		if (this.profile == null) {
-			return "/public/images/static/profilemain/" + this.race.crId + "-" + this.gender.gId + ".jpg";
-		}
-		return this.profile;
+	/**
+	 * For javascript/json!
+	 */
+	public String getAvatarLink() {
+		Map<String, Object> args = new HashMap<String, Object>();
+
+		args.put("id", this.id);
+		args.put("name", this.name);
+		args.put("realm", this.realm.name);
+
+		return "<a href=\"" + Router.getFullUrl("Char.show", args) + "\" class=\"class class-" + this.cclass.name.toLowerCase() + "\">" + this.name + "</a>";
 	}
 
 	/**
@@ -428,6 +436,19 @@ public class Avatar extends Model {
 	}
 
 	/**
+	 * @return the inset
+	 */
+	public String getInset() {
+		if (this.inset == null) {
+			return "/public/images/static/inset/" + this.race.crId + "-" + this.gender.gId + ".jpg";
+		}
+		if (this.inset.startsWith(".")) {
+			return this.inset.substring(1);
+		}
+		return this.inset;
+	}
+
+	/**
 	 * @return the profile
 	 */
 	public String getProfile() {
@@ -440,33 +461,10 @@ public class Avatar extends Model {
 		return this.profile;
 	}
 
-	/**
-	 * @return the inset
-	 */
-	public String getInset() {
-		if (this.inset == null) {
-			return "/public/images/static/inset/" + this.race.crId + "-" + this.gender.gId + ".jpg";
+	public String getProfileMain() {
+		if (this.profile == null) {
+			return "/public/images/static/profilemain/" + this.race.crId + "-" + this.gender.gId + ".jpg";
 		}
-		if (this.inset.startsWith(".")) {
-			return this.inset.substring(1);
-		}
-		return this.inset;
-	}
-	/**
-	 * For javascript/json!
-	 */
-	public String getAvatarLink() {
-		Map<String, Object> args = new HashMap<String, Object>();
-
-		args.put("id", this.id);
-		args.put("name", this.name);
-		args.put("realm", this.realm.name);
-
-		return "<a href=\""+Router.getFullUrl("Char.show", args )+"\" class=\"class class-"+this.cclass.name.toLowerCase()+"\">"+this.name+"</a>";
-	}
-
-	public static void createAsyncAvatar(String name, String realm) {
-		Promise<Avatar> futureAvatar = new Promise<Avatar>();
-		futureAvatar.invoke(Avatar.createAvatar(name, realm));
+		return this.profile;
 	}
 }

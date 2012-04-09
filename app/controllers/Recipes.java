@@ -6,54 +6,23 @@ import java.util.HashMap;
 import java.util.List;
 
 import models.wowapi.character.AvatarProfession;
-import models.wowapi.character.helper.AvatarProfessionHelper;
-import models.wowapi.resources.Recipe;
 import models.wowapi.resources.helper.RecipeShoppingCart;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.Http.Cookie;
 import utils.Tools;
-import flexjson.JSONSerializer;
 
 public class Recipes extends Controller {
 	@Before
 	static void addDefaults() {
 		Application.addDefaults();
 	}
-	
+
 	public static void index() {
 		render();
 	}
-	
-	public static void save(Long id) {	
-		Cookie savedRecipes = request.cookies.get("savedRecipes");
-		if (savedRecipes == null) {
-			savedRecipes = new Cookie();
-			savedRecipes.value = "";
-		}
-		List<String> recipeIdsList = new ArrayList<String>();
-		recipeIdsList.addAll(Arrays.asList(savedRecipes.value.split(",")));
-		recipeIdsList.add(id.toString());
-		recipeIdsList.remove("");
-		response.setCookie("savedRecipes", Tools.implodeList(recipeIdsList,","));
 
-		HashMap<Long, Integer> recipeIdCounts = new HashMap<Long, Integer>();
-		RecipeShoppingCart recipeShoppingCart = null;
-		if (recipeIdsList.size() > 0) {
-			for (String string : recipeIdsList) {
-				Integer test = recipeIdCounts.get(Long.parseLong(string));
-				if (test == null) {
-					test = 1;
-				} else {
-					test = test + 1;
-				}
-				recipeIdCounts.put(Long.parseLong(string), test);
-			}
-			recipeShoppingCart = new RecipeShoppingCart(recipeIdsList);
-		}
-		render("Recipes/shoppingcart.html",recipeShoppingCart);
-	}
-	public static void remove(Long id) {	
+	public static void remove(Long id) {
 		Cookie savedRecipes = request.cookies.get("savedRecipes");
 		if (savedRecipes == null) {
 			savedRecipes = new Cookie();
@@ -64,8 +33,8 @@ public class Recipes extends Controller {
 		recipeIdsList.addAll(Arrays.asList(savedRecipes.value.split(",")));
 		recipeIdsList.remove(id.toString());
 		recipeIdsList.remove("");
-		response.setCookie("savedRecipes", Tools.implodeList(recipeIdsList,","));
-		
+		response.setCookie("savedRecipes", Tools.implodeList(recipeIdsList, ","));
+
 		HashMap<Long, Integer> recipeIdCounts = new HashMap<Long, Integer>();
 		RecipeShoppingCart recipeShoppingCart = null;
 		if (recipeIdsList.size() > 0) {
@@ -80,10 +49,38 @@ public class Recipes extends Controller {
 			}
 			recipeShoppingCart = new RecipeShoppingCart(recipeIdsList);
 		}
-		render("Recipes/shoppingcart.html",recipeShoppingCart);
+		render("Recipes/shoppingcart.html", recipeShoppingCart);
 	}
-	
-	
+
+	public static void save(Long id) {
+		Cookie savedRecipes = request.cookies.get("savedRecipes");
+		if (savedRecipes == null) {
+			savedRecipes = new Cookie();
+			savedRecipes.value = "";
+		}
+		List<String> recipeIdsList = new ArrayList<String>();
+		recipeIdsList.addAll(Arrays.asList(savedRecipes.value.split(",")));
+		recipeIdsList.add(id.toString());
+		recipeIdsList.remove("");
+		response.setCookie("savedRecipes", Tools.implodeList(recipeIdsList, ","));
+
+		HashMap<Long, Integer> recipeIdCounts = new HashMap<Long, Integer>();
+		RecipeShoppingCart recipeShoppingCart = null;
+		if (recipeIdsList.size() > 0) {
+			for (String string : recipeIdsList) {
+				Integer test = recipeIdCounts.get(Long.parseLong(string));
+				if (test == null) {
+					test = 1;
+				} else {
+					test = test + 1;
+				}
+				recipeIdCounts.put(Long.parseLong(string), test);
+			}
+			recipeShoppingCart = new RecipeShoppingCart(recipeIdsList);
+		}
+		render("Recipes/shoppingcart.html", recipeShoppingCart);
+	}
+
 	public static void showProfession(Long id, String name) {
 		Cookie savedRecipes = request.cookies.get("savedRecipes");
 		if (savedRecipes == null) {
@@ -95,7 +92,7 @@ public class Recipes extends Controller {
 		HashMap<Long, Integer> recipeIdCounts = new HashMap<Long, Integer>();
 		RecipeShoppingCart recipeShoppingCart = null;
 		recipeIdsList.addAll(Arrays.asList(savedRecipes.value.split(",")));
-		
+
 		try {
 			if (recipeIdsList.size() > 0) {
 				for (String string : recipeIdsList) {
@@ -112,14 +109,16 @@ public class Recipes extends Controller {
 		} catch (NumberFormatException e) {
 			// TODO: handle exception
 		}
-		
+
 		AvatarProfession profession = AvatarProfession.find("byProfId", id).first();
-		
-		//List<AvatarProfessionHelper> recipes = AvatarProfessionHelper.getList(profession);
-		//List<Recipe> recipes = Recipe.find("profId = ? and tooltip is not null order by profLevel desc", id).fetch();
-		//recipes
-		
-		
-		render(profession,recipeIdCounts,recipeShoppingCart);
+
+		// List<AvatarProfessionHelper> recipes =
+		// AvatarProfessionHelper.getList(profession);
+		// List<Recipe> recipes =
+		// Recipe.find("profId = ? and tooltip is not null order by profLevel desc",
+		// id).fetch();
+		// recipes
+
+		render(profession, recipeIdCounts, recipeShoppingCart);
 	}
 }

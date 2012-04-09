@@ -64,13 +64,14 @@ public class ImageUtils {
 			int currentStepSize, centerStep;
 			double scaledW = inImage.getWidth(null);
 			double scaledH = inImage.getHeight(null);
-			if (numSteps % 2 == 1) // if there's an odd number of steps
-				centerStep = (int) Math.ceil((double) numSteps / 2d); // find
-																		// the
-																		// center
-																		// step
-			else
+			if (numSteps % 2 == 1) {
+				centerStep = (int) Math.ceil(numSteps / 2d); // find
+																// the
+																// center
+																// step
+			} else {
 				centerStep = -1; // set it to -1 so it's ignored later
+			}
 			Integer intermediateSize = originalImageLargestDim, previousIntermediateSize = originalImageLargestDim;
 			for (Integer i = 0; i < numSteps; i++) {
 				if (i + 1 != centerStep) // if this isn't the center step
@@ -81,12 +82,13 @@ public class ImageUtils {
 						// previously
 						currentStepSize = previousIntermediateSize - largestDimension;
 					} else {
-						if (numSteps - i > numSteps / 2) // if we're in the
-															// first half of the
-															// reductions
+						if (numSteps - i > numSteps / 2) {
+							// first half of the
+							// reductions
 							currentStepSize = heavierStepSize;
-						else
+						} else {
 							currentStepSize = lighterStepSize;
+						}
 					}
 				} else // center step, use natural step size
 				{

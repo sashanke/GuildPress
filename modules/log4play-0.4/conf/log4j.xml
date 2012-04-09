@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" threshold="all">
+
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out"/>
+		<param name="encoding" value="ISO-8859-1"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%t %d{yyyy-MM-dd HH:mm:ss} %5p ~ %C:%M %m%n"/>
+		</layout>
+	</appender>
+
+	<appender-ref ref="console"/>
+
+	<logger name="play">
+		<level value="ALL"/>
+		<appender-ref ref="console"/>
+	</logger>
+
+</log4j:configuration>

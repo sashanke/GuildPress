@@ -14,6 +14,19 @@ public class Tools {
 	private static final Pattern NONLATIN = Pattern.compile("[^\\w-]");
 	private static final Pattern WHITESPACE = Pattern.compile("[\\s]");
 
+	public static String implodeArray(JsonArray inputArray, String glueString) {
+		/** Output variable */
+		String output = "";
+		StringBuilder sb = new StringBuilder();
+		for (JsonElement jsonElement : inputArray) {
+			sb.append(glueString);
+			sb.append(jsonElement.getAsString());
+
+		}
+		output = sb.toString().substring(1);
+		return output;
+	}
+
 	public static String implodeArray(String[] inputArray, String glueString) {
 
 		/** Output variable */
@@ -31,19 +44,6 @@ public class Tools {
 			output = sb.toString();
 		}
 
-		return output;
-	}
-
-	public static String implodeArray(JsonArray inputArray, String glueString) {
-		/** Output variable */
-		String output = "";
-		StringBuilder sb = new StringBuilder();
-		for (JsonElement jsonElement : inputArray) {
-			sb.append(glueString);
-			sb.append(jsonElement.getAsString());
-
-		}
-		output = sb.toString().substring(1);
 		return output;
 	}
 
@@ -65,6 +65,17 @@ public class Tools {
 		return output;
 	}
 
+	/**
+	 * convenience method for replacing german umlauts with html unicode codes
+	 * 
+	 * @param text
+	 *            the text to compute
+	 * @return the altered text
+	 */
+	public static String replaceUmlauts(String text) {
+		return text.replaceAll("ä", "a").replaceAll("Ä", "A").replaceAll("ö", "o").replaceAll("Ö", "O").replaceAll("ü", "u").replaceAll("Ü", "U").replaceAll("ß", "s");
+	}
+
 	public static String Slugify(String toSlug) {
 		if (toSlug == null) {
 			return null;
@@ -74,17 +85,4 @@ public class Tools {
 		String slug = NONLATIN.matcher(normalized).replaceAll("");
 		return slug.toLowerCase(Locale.GERMAN);
 	}
-	/**
-     * convenience method for replacing german umlauts with html unicode codes
-     * 
-     * @param text
-     *            the text to compute
-     * @return the altered text
-     */
-    public static String replaceUmlauts(String text) {
-        return text.replaceAll("ä", "a").replaceAll("Ä", "A")
-                .replaceAll("ö", "o").replaceAll("Ö", "O")
-                .replaceAll("ü", "u").replaceAll("Ü", "U")
-                .replaceAll("ß", "s");
-    }
 }

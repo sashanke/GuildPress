@@ -2,6 +2,8 @@ package jobs;
 
 import java.util.List;
 
+import models.wowapi.character.Avatar;
+import models.wowapi.guild.GuildMember;
 import models.wowapi.resources.Recipe;
 import play.Logger;
 import play.jobs.Every;
@@ -18,5 +20,15 @@ public class Minute extends Job {
 				recipe.setTooltip();
 			}
 		}
+		
+		List<GuildMember> guildMembers = GuildMember.find("avatar_id is null").fetch(2);
+		if (guildMembers.size() > 0) {
+			Logger.info("[MinuteJob][setAvatar]");
+			for (GuildMember guildMember : guildMembers) {
+				Avatar.fetchAvatar(guildMember.name, guildMember.realm.name);
+			}
+		}
+		
+		
 	}
 }

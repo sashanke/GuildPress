@@ -28,6 +28,7 @@ import models.wowapi.resources.Realm;
 import models.wowapi.resources.Side;
 import play.Logger;
 import play.Play;
+import play.libs.Codec;
 import play.libs.WS;
 import play.libs.WS.HttpResponse;
 import play.libs.WS.WSRequest;
@@ -102,7 +103,7 @@ public class Armory {
 				avatarDir.mkdirs();
 				String contentType = hr.getContentType();
 				if (contentType.contains("image")) {
-					String avImage = dir + name + "." + contentType.substring(6);
+					String avImage = dir + Codec.hexMD5(name) + "." + contentType.substring(6);
 					File avatar = new File(avImage);
 					try {
 						InputStream inputStream = hr.getStream();

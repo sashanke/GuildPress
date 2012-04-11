@@ -9,7 +9,7 @@ import play.Logger;
 import play.jobs.Every;
 import play.jobs.Job;
 
-@Every("1mn")
+@Every("5mn")
 public class Minute extends Job {
 	@Override
 	public void doJob() {
@@ -25,7 +25,7 @@ public class Minute extends Job {
 		if (guildMembers.size() > 0) {
 			Logger.info("[MinuteJob][setAvatar]");
 			for (GuildMember guildMember : guildMembers) {
-				Avatar.fetchAvatar(guildMember.name, guildMember.realm.name);
+				Avatar.createAvatar(guildMember.name, guildMember.realm.name);
 			}
 		}
 		

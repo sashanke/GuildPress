@@ -9,6 +9,7 @@ import models.wowapi.resources.ItemClass;
 import models.wowapi.resources.RaceClassMap;
 import models.wowapi.resources.Realm;
 import models.wowapi.resources.Role;
+import models.wowapi.resources.Icon;
 import models.wowapi.resources.Side;
 import models.wowapi.resources.Skill;
 import models.wowapi.resources.SkillCategorie;
@@ -56,13 +57,15 @@ public class Bootstrap extends Job {
 			RaceClassMap.createMap();
 		}
 
-		if (Role.findAll().size() == 0) {
-			Role.createRoles();
-		}
+		//Icon.setIcon(1L,"test");
 		
-		if (CharacterSpec.findAll().size() == 0) {
-			CharacterSpec.createSpecs();
-		}
+		//if (Role.findAll().size() == 0) {
+		//	Role.createRoles();
+		//}
+		
+		//if (CharacterSpec.findAll().size() == 0) {
+		//	CharacterSpec.createSpecs();
+		//}
 		
 
 		
@@ -70,8 +73,8 @@ public class Bootstrap extends Job {
 		SkillCategorie.createSkillCategories();
 		Skill.createSkills();
 		
-		JPA.em().flush();
-		JPA.em().getTransaction().commit();
+		//JPA.em().flush();
+		//JPA.em().getTransaction().commit();
 		
 		if (Guild.findAll().size() == 0) {
 			Guild.createGuild(Play.configuration.getProperty("wowapi.guildName"), Play.configuration.getProperty("wowapi.realmName"));

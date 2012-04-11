@@ -340,7 +340,7 @@ public class Armory {
 				avatarDir.mkdirs();
 				String contentType = hr.getContentType();
 				if (contentType.contains("image")) {
-					String avImage = dir + name + "." + contentType.substring(6);
+					String avImage = dir + Codec.hexMD5(name) + "." + contentType.substring(6);
 					File avatar = new File(avImage);
 					try {
 						InputStream inputStream = hr.getStream();
@@ -456,7 +456,7 @@ public class Armory {
 				avatarDir.mkdirs();
 				String contentType = hr.getContentType();
 				if (contentType.contains("image")) {
-					String avImage = dir + name + "." + contentType.substring(6);
+					String avImage = dir + Codec.hexMD5(name) + "." + contentType.substring(6);
 					File avatar = new File(avImage);
 					try {
 						InputStream inputStream = hr.getStream();

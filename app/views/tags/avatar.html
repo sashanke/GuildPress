@@ -11,6 +11,19 @@
 	</div>
 </div>
 #{/if}
+#{if _as == 'topic'}
+<div class="avatar">
+	<div class="character-rank">
+		#{if _avatar?.guildMember}<a href="@{Roster.index()}?rank=${_avatar?.guildMember?.rank?.rank}">
+			<img class="noborder" src="/public/images/ranks/${_avatar?.guildMember?.rank?.rank}.png" height="16" width="16" alt="${_avatar?.guildMember?.name}s rank" />
+		</a>#{/if}
+	</div>
+		#{name_with_link avatar:_avatar, as:'avatar', image:true /}
+	<div class="character-name">
+		#{name_with_link avatar:_avatar, as:'avatar', image:false /}
+	</div>
+</div>
+#{/if}
 #{if _as == 'member'}
 <div class="avatar">
 	<div class="character-rank">

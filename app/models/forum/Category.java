@@ -34,7 +34,7 @@ public class Category extends Model {
 	private List<Forum> forums;
 
 	public List<Forum> getForums() {
-		return Category.find("category = ? order by position asc", this).fetch();
+		return Forum.find("category = ? order by position asc", this).fetch();
 	}
 
 	public String getSlug() {

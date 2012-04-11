@@ -24,14 +24,8 @@ duration (duration for each image but change the value of autoTiming to false in
 -->
 
 <slideshow>
-	<photo image="../../../public/images/artworks/rotator/panda.jpg" url="@@{Application.index()}" target="_self" duration="15">
-	<![CDATA[<head>Auf nach Pandararia</head><body>Melde dich jetzt!</body>]]></photo>
-	
-	<photo image="../../../public/images/artworks/rotator/recruitment.jpg" url="@@{Application.index()}" target="_self" duration="15"></photo>
-
-	#{list items:posts, as:'post'}
-	<photo image="../../../public/images/artworks/rotator/${post.image_frontpage}" url="@@{Application.show(post.id)}" target="_self" duration="15" effect="random" zoomPercent="20" direction="left" hZoomPos="random" vZoomPos="random">
-	<![CDATA[<head>${post.title}</head><body>${post.post_abstract}</body>]]></photo>
+	#{list items:topics, as:'topic'}
+	<photo image="../../../public/images/artworks/rotator/${topic.frontpageImage}" url="@@{Board.showTopic(topic.getSlug(),topic.id)}" target="_self" duration="15" effect="random" zoomPercent="20" direction="left" hZoomPos="random" vZoomPos="random">
+	<![CDATA[<head>${topic.title}</head><body>${topic.frontpageAbstract}</body>]]></photo>
 	#{/list}
-	
 </slideshow>

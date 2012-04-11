@@ -113,8 +113,8 @@ public class Application extends Controller {
 	}
 
 	public static void postListXml() {
-		List<News> posts = News.find("order by postedAt desc").fetch(15);
-		render(posts);
+		List<Topic> topics = Topic.find("forum.isNewsBoard = ? order by id desc", true).fetch(15);
+		render(topics);
 	}
 
 	public static void register() {

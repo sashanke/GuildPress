@@ -12,6 +12,10 @@ import utils.FileUtils;
 
 public class Utils extends JavaExtensions {
 
+	public static String replaceUmlauts(String text) {
+		return text.replaceAll("ä", "a").replaceAll("Ä", "A").replaceAll("ö", "o").replaceAll("Ö", "O").replaceAll("ü", "u").replaceAll("Ü", "U").replaceAll("ß", "s");
+	}
+	
 	public static String getRandomFile(String dir) {
 		return FileUtils.getRandomFile(dir);
 

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import models.forum.Post;
 import models.wowapi.character.Avatar;
 import models.wowapi.resources.GuildRank;
 import play.data.validation.Email;
@@ -74,7 +75,7 @@ public class User extends Model {
 	}
 
 	public Long getPostCount() {
-		return User.count("byAuthor", this);
+		return Post.count("byAuthor", this);
 	}
 
 	@Override

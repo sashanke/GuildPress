@@ -227,7 +227,7 @@ public class Recipe extends Model {
 		this.lastModified = new Date();
 		this.lastUpdate = new Date();
 		this.reagents.clear();
-		ArmoryTooltip.delete("recipe_id = ?", this.id);
+		ArmoryTooltip.delete("typeId = ?", this.spellId);
 		this.tooltip = ArmoryTooltip.createTooltip(Type.SPELL, this.spellId);
 		this.icon = this.tooltip.icon;
 		this.setExtraInfos();

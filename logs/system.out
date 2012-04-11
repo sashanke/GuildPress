@@ -1,388 +1,412 @@
 Listening for transport dt_socket at address: 8000
-2012-04-11 16:29:07,048 INFO  [main] play: Starting /home/guildpress/guildpress
-2012-04-11 16:29:07,066 INFO  [main] play: Module greenscript is available (/home/guildpress/guildpress/modules/greenscript-1.2.8)
-2012-04-11 16:29:07,067 INFO  [main] play: Module secure is available (/home/guildpress/play/modules/secure)
-2012-04-11 16:29:07,068 INFO  [main] play: Module crud is available (/home/guildpress/play/modules/crud)
-2012-04-11 16:29:07,068 INFO  [main] play: Module betterlogs is available (/home/guildpress/guildpress/modules/betterlogs-1.0)
-2012-04-11 16:29:07,069 INFO  [main] play: Module log4play is available (/home/guildpress/guildpress/modules/log4play-0.4)
-2012-04-11 16:29:07,069 INFO  [main] play: Module messages is available (/home/guildpress/guildpress/modules/messages-1.3)
-2012-04-11 16:29:09,425 INFO  [main] play: GreenScript-1.2.7> rythm not presented
-2012-04-11 16:29:09,428 WARN  [main] play: You're running Play! in DEV mode
-2012-04-11 16:29:09,787 INFO  [main] play: Listening for HTTP at /127.0.0.1:9000 (Waiting a first request to start) ...
-2012-04-11 16:29:28,758 INFO  [play-thread-2] play: GreenScript-1.2.7> dependency loaded
-2012-04-11 16:29:28,759 INFO  [play-thread-2] play: GreenScript-1.2.7> initialized
-2012-04-11 16:29:32,043 INFO  [play-thread-1] play: GreenScript-1.2.7> minimizer initialized
-2012-04-11 16:29:32,226 DEBUG [play-thread-1] play: route added: /public/gs/{key} handled by greenscript.Service.getInMemoryCache
-2012-04-11 16:29:33,176 INFO  [play-thread-2] play: Connected to jdbc:mysql://localhost/guildpress?useUnicode=yes&characterEncoding=UTF-8
-2012-04-11 16:29:43,242 INFO  [play-thread-2] play: Application 'GuildPress' is now started !
-2012-04-11 16:29:44,555 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:864] setRealms() ::  Fetching Realms
-2012-04-11 16:29:44,594 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:259] fetchFromArmory() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/realm/status?locale=de_DE
-2012-04-11 16:29:47,922 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:783] setCharacterClasses() ::  Fetching Character Classes
-2012-04-11 16:29:47,929 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:259] fetchFromArmory() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/data/character/classes?locale=de_DE
-2012-04-11 16:29:48,037 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:799] setCharacterRaces() ::  Fetching Character Races
-2012-04-11 16:29:48,037 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:259] fetchFromArmory() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/data/character/races?locale=de_DE
-2012-04-11 16:29:48,178 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:815] setGuildPerks() ::  Fetching Guild Perks
-2012-04-11 16:29:48,178 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:259] fetchFromArmory() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/data/guild/perks?locale=de_DE
-2012-04-11 16:29:48,617 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:831] setItemClasses() ::  Fetching Items Classes
-2012-04-11 16:29:48,618 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:259] fetchFromArmory() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/data/item/classes?locale=de_DE
-2012-04-11 16:29:49,781 INFO  [play-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
-2012-04-11 16:29:49,789 INFO  [play-thread-2] play: [/app/models/wowapi/guild/Guild.java:140] findByNameAndRealm() ::  [Guild][findByNameAndRealm] Guild Novus Ordo Mundi not found
-2012-04-11 16:29:49,792 INFO  [play-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
-2012-04-11 16:29:49,799 INFO  [play-thread-2] play: [/app/models/wowapi/guild/Guild.java:60] createGuild() ::  [Guild][createGuild] Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:49,801 INFO  [play-thread-2] play: [/app/models/wowapi/guild/Guild.java:88] fetchGuild() ::  [Guild][fetchGuild] Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:49,803 INFO  [play-thread-2] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/guild/Anub%27arak/Novus%20Ordo%20Mundi?locale=de_DE&fields=achievements,members
-2012-04-11 16:29:50,040 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:50] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:50,095 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Amemiel Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:50,096 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/95/185183-avatar.jpg
-2012-04-11 16:29:50,258 ERROR [play-thread-2] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Amemiel nicht vom UpdateJob holen. (404)
-2012-04-11 16:29:50,280 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Gobbo Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:50,281 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/229/186853-avatar.jpg
-2012-04-11 16:29:50,627 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Aneca Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:50,628 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/93/197213-avatar.jpg
-2012-04-11 16:29:50,697 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Saarzwerg Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:50,703 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/132/203908-avatar.jpg
-2012-04-11 16:29:50,987 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Farramir Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:50,988 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/85/420693-avatar.jpg
-2012-04-11 16:29:51,146 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Shaadaa Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:51,147 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/17/449553-avatar.jpg
-2012-04-11 16:29:51,280 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Sayumi Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:51,281 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/96/479328-avatar.jpg
-2012-04-11 16:29:51,482 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Arramis Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:51,492 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/57/486969-avatar.jpg
-2012-04-11 16:29:51,649 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Salinia Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:51,651 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/187/494779-avatar.jpg
-2012-04-11 16:29:51,813 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Faludi Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:51,813 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/224/514784-avatar.jpg
-2012-04-11 16:29:51,951 ERROR [play-thread-2] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Faludi nicht vom UpdateJob holen. (404)
-2012-04-11 16:29:51,974 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Walios Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:51,975 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/234/574954-avatar.jpg
-2012-04-11 16:29:52,228 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Zirrom Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:52,229 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/79/589135-avatar.jpg
-2012-04-11 16:29:52,604 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Andrix Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:52,605 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/141/659597-avatar.jpg
-2012-04-11 16:29:52,702 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Balanor Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:52,703 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/222/797150-avatar.jpg
-2012-04-11 16:29:52,827 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Avatan Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:52,832 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/79/906831-avatar.jpg
-2012-04-11 16:29:52,873 ERROR [play-thread-2] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Avatan nicht vom UpdateJob holen. (404)
-2012-04-11 16:29:52,898 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Saarmagier Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:52,906 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/234/944618-avatar.jpg
-2012-04-11 16:29:53,050 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Okan Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:53,051 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/39/1308455-avatar.jpg
-2012-04-11 16:29:53,219 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Ferria Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:53,220 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/93/1509981-avatar.jpg
-2012-04-11 16:29:53,344 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Ahrtas Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:53,344 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/74/1532234-avatar.jpg
-2012-04-11 16:29:53,474 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Shalee Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:53,475 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/194/1708226-avatar.jpg
-2012-04-11 16:29:53,636 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Schaufel Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:53,637 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/54/1759542-avatar.jpg
-2012-04-11 16:29:53,857 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Cable Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:53,860 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/185/1881785-avatar.jpg
-2012-04-11 16:29:53,996 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Atua Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:53,997 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/234/2157546-avatar.jpg
-2012-04-11 16:29:54,184 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Ayenha Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:54,185 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/86/2393686-avatar.jpg
-2012-04-11 16:29:54,497 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Ralled Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:54,500 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/72/2653256-avatar.jpg
-2012-04-11 16:29:54,668 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Damonia Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:54,669 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/175/2774959-avatar.jpg
-2012-04-11 16:29:54,948 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Joossef Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:54,949 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/161/2784417-avatar.jpg
-2012-04-11 16:29:55,091 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Alena Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:55,092 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/90/3482202-avatar.jpg
-2012-04-11 16:29:55,134 ERROR [play-thread-2] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Alena nicht vom UpdateJob holen. (404)
-2012-04-11 16:29:55,156 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Marple Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:55,157 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/204/3493580-avatar.jpg
-2012-04-11 16:29:55,222 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Xecutioner Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:55,224 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/210/3562962-avatar.jpg
-2012-04-11 16:29:55,258 ERROR [play-thread-2] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Xecutioner nicht vom UpdateJob holen. (404)
-2012-04-11 16:29:55,279 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Sweenydot Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:55,280 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/27/6076443-avatar.jpg
-2012-04-11 16:29:55,411 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Candie Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:55,412 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/188/7571132-avatar.jpg
-2012-04-11 16:29:55,441 ERROR [play-thread-2] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Candie nicht vom UpdateJob holen. (404)
-2012-04-11 16:29:55,464 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Ànaconda Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:55,470 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/173/10056621-avatar.jpg
-2012-04-11 16:29:55,541 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Dinei Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:55,542 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/152/10439320-avatar.jpg
-2012-04-11 16:29:55,738 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Aglaya Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:55,739 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/171/12232875-avatar.jpg
-2012-04-11 16:29:55,805 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Magno Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:55,805 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/73/13415497-avatar.jpg
-2012-04-11 16:29:56,236 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Nihma Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:56,237 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/79/16860751-avatar.jpg
-2012-04-11 16:29:56,267 ERROR [play-thread-2] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Nihma nicht vom UpdateJob holen. (404)
-2012-04-11 16:29:56,303 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Anácondá Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:56,304 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/12/16866316-avatar.jpg
-2012-04-11 16:29:56,546 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Tretdich Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:56,546 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/250/17936634-avatar.jpg
-2012-04-11 16:29:56,626 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Anrianna Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:56,626 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/245/18025461-avatar.jpg
-2012-04-11 16:29:56,953 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Chatera Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:56,954 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/22/18907158-avatar.jpg
-2012-04-11 16:29:57,190 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Ceitlyn Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:57,193 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/156/20382620-avatar.jpg
-2012-04-11 16:29:57,321 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Grohmbina Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:57,322 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/178/21397682-avatar.jpg
-2012-04-11 16:29:57,441 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Grahmbort Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:57,456 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/90/27240794-avatar.jpg
-2012-04-11 16:29:57,533 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Tasi Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:57,534 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/35/27753507-avatar.jpg
-2012-04-11 16:29:57,648 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Sóriòn Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:57,649 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/233/30822377-avatar.jpg
-2012-04-11 16:29:57,759 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Jakarta Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:57,760 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/32/30914336-avatar.jpg
-2012-04-11 16:29:57,858 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Dikay Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:57,859 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/182/30934198-avatar.jpg
-2012-04-11 16:29:58,075 ERROR [play-thread-2] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Dikay nicht vom UpdateJob holen. (404)
-2012-04-11 16:29:58,097 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Leobald Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:58,098 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/136/30955912-avatar.jpg
-2012-04-11 16:29:58,199 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Deadwolf Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:58,200 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/3/31006211-avatar.jpg
-2012-04-11 16:29:58,303 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Grohmarthas Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:58,304 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/98/31017826-avatar.jpg
-2012-04-11 16:29:58,479 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Galana Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:58,480 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/74/31270986-avatar.jpg
-2012-04-11 16:29:58,555 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Zyrria Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:58,556 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/15/31291663-avatar.jpg
-2012-04-11 16:29:58,673 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Shutgunner Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:58,674 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/254/32053502-avatar.jpg
-2012-04-11 16:29:58,829 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Gnomine Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:58,830 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/69/32370245-avatar.jpg
-2012-04-11 16:29:58,968 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Bisuayel Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:58,969 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/78/33072974-avatar.jpg
-2012-04-11 16:29:59,195 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Lyiana Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:59,195 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/221/34100445-avatar.jpg
-2012-04-11 16:29:59,377 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Almanar Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:59,377 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/101/34127205-avatar.jpg
-2012-04-11 16:29:59,518 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Sweenydead Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:59,520 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/60/38449468-avatar.jpg
-2012-04-11 16:29:59,689 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Coffy Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:59,690 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/158/38708126-avatar.jpg
-2012-04-11 16:29:59,719 ERROR [play-thread-2] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Coffy nicht vom UpdateJob holen. (404)
-2012-04-11 16:29:59,746 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Alucart Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:59,746 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/86/40280406-avatar.jpg
-2012-04-11 16:29:59,823 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Bunan Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:59,824 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/194/43214530-avatar.jpg
-2012-04-11 16:29:59,983 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Rivêr Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:29:59,984 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/3/43490819-avatar.jpg
-2012-04-11 16:30:00,320 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Akimbo Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:00,321 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/215/44184535-avatar.jpg
-2012-04-11 16:30:00,475 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Zirroom Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:00,476 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/191/46135487-avatar.jpg
-2012-04-11 16:30:00,660 ERROR [play-thread-2] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Zirroom nicht vom UpdateJob holen. (404)
-2012-04-11 16:30:00,682 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Zèratul Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:00,682 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/210/47681746-avatar.jpg
-2012-04-11 16:30:00,757 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Julyn Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:00,757 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/248/49478136-avatar.jpg
-2012-04-11 16:30:00,914 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Lipsh Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:00,914 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/174/52760750-avatar.jpg
-2012-04-11 16:30:01,064 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Grohmbart Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:01,064 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/241/53954289-avatar.jpg
-2012-04-11 16:30:01,322 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Nibbith Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:01,323 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/50/54042418-avatar.jpg
-2012-04-11 16:30:01,555 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Cortok Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:01,556 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/223/54137055-avatar.jpg
-2012-04-11 16:30:01,773 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Amberian Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:01,773 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/194/55699394-avatar.jpg
-2012-04-11 16:30:01,979 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Lorok Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:01,980 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/204/56124108-avatar.jpg
-2012-04-11 16:30:02,113 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Growlen Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:02,114 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/189/56267453-avatar.jpg
-2012-04-11 16:30:02,201 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Lèonidas Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:02,202 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/123/57630843-avatar.jpg
-2012-04-11 16:30:02,361 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Ethandriel Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:02,363 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/151/57677975-avatar.jpg
-2012-04-11 16:30:02,522 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Zirrp Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:02,522 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/115/57714803-avatar.jpg
-2012-04-11 16:30:02,656 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Sadlex Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:02,657 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/48/58606640-avatar.jpg
-2012-04-11 16:30:02,843 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Mythicangel Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:03,022 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/114/59684978-avatar.jpg
-2012-04-11 16:30:03,202 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Mariposa Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:03,203 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/97/60288865-avatar.jpg
-2012-04-11 16:30:03,355 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Bóöòse Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:03,356 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/112/60308848-avatar.jpg
-2012-04-11 16:30:03,503 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Lacure Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:03,504 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/175/60438703-avatar.jpg
-2012-04-11 16:30:03,725 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Pawn Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:03,725 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/186/60724922-avatar.jpg
-2012-04-11 16:30:03,875 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Agelicia Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:03,875 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/53/60984373-avatar.jpg
-2012-04-11 16:30:04,016 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Calenria Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:04,017 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/196/61714372-avatar.jpg
-2012-04-11 16:30:04,077 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Chrisar Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:04,078 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/167/62256807-avatar.jpg
-2012-04-11 16:30:04,306 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Littlebottom Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:04,307 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/198/62487494-avatar.jpg
-2012-04-11 16:30:04,493 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Alchiton Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:04,494 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/7/62656775-avatar.jpg
-2012-04-11 16:30:04,614 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Zulmira Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:04,615 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/241/62752753-avatar.jpg
-2012-04-11 16:30:04,766 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Valrineya Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:04,767 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/102/63010918-avatar.jpg
-2012-04-11 16:30:04,900 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Monnky Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:04,900 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/16/63023120-avatar.jpg
-2012-04-11 16:30:05,195 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Larysina Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:05,195 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/45/63221293-avatar.jpg
-2012-04-11 16:30:05,281 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Fenerica Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:05,281 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/23/63467031-avatar.jpg
-2012-04-11 16:30:05,348 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Ralath Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:05,348 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/76/63508044-avatar.jpg
-2012-04-11 16:30:05,456 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Lüpre Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:05,457 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/176/63606448-avatar.jpg
-2012-04-11 16:30:05,760 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Docmiro Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:05,761 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/249/63606521-avatar.jpg
-2012-04-11 16:30:05,860 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Montrax Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:05,860 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/139/64222347-avatar.jpg
-2012-04-11 16:30:05,956 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Lesla Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:05,957 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/68/64304452-avatar.jpg
-2012-04-11 16:30:06,102 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Medizin Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:06,103 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/45/64560685-avatar.jpg
-2012-04-11 16:30:06,210 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Yfur Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:06,211 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/9/64561673-avatar.jpg
-2012-04-11 16:30:06,431 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Rynei Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:06,432 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/239/64613615-avatar.jpg
-2012-04-11 16:30:06,495 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Arachnon Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:06,496 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/151/64923799-avatar.jpg
-2012-04-11 16:30:06,637 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Grohmbimse Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:06,638 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/214/65136598-avatar.jpg
-2012-04-11 16:30:06,795 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Alumera Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:06,795 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/44/65225516-avatar.jpg
-2012-04-11 16:30:06,888 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Samwise Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:06,889 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/65/65321025-avatar.jpg
-2012-04-11 16:30:07,036 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Tiratrice Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:07,037 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/135/65515911-avatar.jpg
-2012-04-11 16:30:07,132 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Winela Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:07,133 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/223/65567199-avatar.jpg
-2012-04-11 16:30:07,303 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Demroth Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:07,304 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/143/65575055-avatar.jpg
-2012-04-11 16:30:07,654 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Mcnoob Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:07,655 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/225/65575649-avatar.jpg
-2012-04-11 16:30:07,739 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Krykz Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:07,740 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/92/65608028-avatar.jpg
-2012-04-11 16:30:07,936 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Jozie Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:07,937 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/1/65701889-avatar.jpg
-2012-04-11 16:30:08,247 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Rìver Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:08,248 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/234/65771754-avatar.jpg
-2012-04-11 16:30:08,357 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Schmierkäse Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:08,358 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/102/65830502-avatar.jpg
-2012-04-11 16:30:08,445 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Êlfî Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:08,446 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/67/65840451-avatar.jpg
-2012-04-11 16:30:08,544 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Chàntàl Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:08,544 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/79/65840463-avatar.jpg
-2012-04-11 16:30:08,615 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Chántâl Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:08,616 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/86/65840470-avatar.jpg
-2012-04-11 16:30:08,819 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Véndor Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:08,819 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/97/65840481-avatar.jpg
-2012-04-11 16:30:08,926 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Melliza Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:08,927 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/151/65957527-avatar.jpg
-2012-04-11 16:30:09,018 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Falstad Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:09,019 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/60/65996348-avatar.jpg
-2012-04-11 16:30:09,095 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Yfúr Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:09,096 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/217/66076377-avatar.jpg
-2012-04-11 16:30:09,219 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Logoß Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:09,221 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/13/66104589-avatar.jpg
-2012-04-11 16:30:09,353 INFO  [play-thread-2] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Jaedan Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:09,353 INFO  [play-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/40/66189608-avatar.jpg
-2012-04-11 16:30:09,447 INFO  [play-thread-2] play: [/app/models/wowapi/guild/Guild.java:172] setGuildAchievements() ::  [Guild][setGuildAchievements] Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:10,058 INFO  [play-thread-2] play: [/app/models/wowapi/guild/Guild.java:217] setGuildEmblem() ::  [Guild][setGuildEmblem] Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:10,143 INFO  [play-thread-2] play: [/app/models/wowapi/guild/Guild.java:251] setGuildRank() ::  [Guild][setGuildRank] Novus Ordo Mundi (Anub'arak (EU))
-2012-04-11 16:30:10,145 INFO  [play-thread-2] play: [%s:%s] %s() ::  [Armory][fetchFromWoWProgress][url] http://www.wowprogress.com/guild/eu/anub-arak/Novus%20Ordo%20Mundi/json_rank
-2012-04-11 16:35:10,315 INFO  [jobs-thread-3] play: [/app/jobs/Minute.java:26] doJob() ::  [MinuteJob][setAvatar]
-2012-04-11 16:35:10,316 INFO  [jobs-thread-3] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
-2012-04-11 16:35:10,321 INFO  [jobs-thread-3] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
-2012-04-11 16:35:10,322 INFO  [jobs-thread-3] play: [/app/models/wowapi/character/Avatar.java:55] createAvatar() ::  [Avatar][createAvatar] Amemiel (Anub'arak (EU))
-2012-04-11 16:35:10,322 INFO  [jobs-thread-3] play: [/app/models/wowapi/character/Avatar.java:76] fetchAvatar() ::  [Avatar][fetchAvatar] Amemiel (Anub'arak (EU))
-2012-04-11 16:35:10,323 INFO  [jobs-thread-3] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/character/Anub%27arak/Amemiel?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
-2012-04-11 16:35:10,399 ERROR [jobs-thread-3] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][error] 404 http://eu.battle.net/api/wow/character/Anub%27arak/Amemiel?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
-2012-04-11 16:35:10,403 WARN  [jobs-thread-3] play: [/app/models/wowapi/character/Avatar.java:86] fetchAvatar() ::  [Avatar][fetchAvatar] Creating new Char from Guildmember: Amemiel (Anub'arak (EU))
-2012-04-11 16:35:10,415 INFO  [jobs-thread-3] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
-2012-04-11 16:35:10,419 INFO  [jobs-thread-3] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
-2012-04-11 16:35:10,419 INFO  [jobs-thread-3] play: [/app/models/wowapi/character/Avatar.java:55] createAvatar() ::  [Avatar][createAvatar] Gobbo (Anub'arak (EU))
-2012-04-11 16:35:10,420 INFO  [jobs-thread-3] play: [/app/models/wowapi/character/Avatar.java:76] fetchAvatar() ::  [Avatar][fetchAvatar] Gobbo (Anub'arak (EU))
-2012-04-11 16:35:10,421 INFO  [jobs-thread-3] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/character/Anub%27arak/Gobbo?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
-2012-04-11 16:35:10,531 ERROR [jobs-thread-3] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][error] 404 http://eu.battle.net/api/wow/character/Anub%27arak/Gobbo?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
-2012-04-11 16:35:10,536 WARN  [jobs-thread-3] play: [/app/models/wowapi/character/Avatar.java:86] fetchAvatar() ::  [Avatar][fetchAvatar] Creating new Char from Guildmember: Gobbo (Anub'arak (EU))
-2012-04-11 16:40:10,604 INFO  [jobs-thread-10] play: [/app/jobs/Minute.java:26] doJob() ::  [MinuteJob][setAvatar]
-2012-04-11 16:40:10,605 INFO  [jobs-thread-10] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
-2012-04-11 16:40:10,606 INFO  [jobs-thread-10] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
-2012-04-11 16:40:10,607 INFO  [jobs-thread-10] play: [/app/models/wowapi/character/Avatar.java:55] createAvatar() ::  [Avatar][createAvatar] Aneca (Anub'arak (EU))
-2012-04-11 16:40:10,607 INFO  [jobs-thread-10] play: [/app/models/wowapi/character/Avatar.java:76] fetchAvatar() ::  [Avatar][fetchAvatar] Aneca (Anub'arak (EU))
-2012-04-11 16:40:10,607 INFO  [jobs-thread-10] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/character/Anub%27arak/Aneca?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
-2012-04-11 16:40:10,814 INFO  [jobs-thread-10] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
-2012-04-11 16:40:10,815 INFO  [jobs-thread-10] play: [/app/models/wowapi/guild/Guild.java:137] findByNameAndRealm() ::  [Guild][findByNameAndRealm] Guild Novus Ordo Mundi found
-2012-04-11 16:40:10,831 INFO  [jobs-thread-10] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
-2012-04-11 16:40:10,835 INFO  [jobs-thread-10] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/93/197213-avatar.jpg
-2012-04-11 16:40:10,864 INFO  [jobs-thread-10] play: [/app/models/wowapi/Armory.java:452] fetchProfile() ::  [Armory][fetchProfile] http://eu.battle.net/static-render/eu/anubarak/93/197213-profilemain.jpg
-2012-04-11 16:40:11,360 INFO  [jobs-thread-10] play: [/app/models/wowapi/Armory.java:336] fetchInset() ::  [Armory][fetchInset] http://eu.battle.net/static-render/eu/anubarak/93/197213-inset.jpg
-2012-04-11 16:40:58,494 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 50047
-2012-04-11 16:40:58,495 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=50047&xml
-2012-04-11 16:40:59,466 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 48574
-2012-04-11 16:40:59,466 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=48574&xml
-2012-04-11 16:41:00,273 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 47702
-2012-04-11 16:41:00,282 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=47702&xml
-2012-04-11 16:41:01,021 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 47662
-2012-04-11 16:41:01,022 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=47662&xml
-2012-04-11 16:41:01,796 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 47511
-2012-04-11 16:41:01,796 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=47511&xml
-2012-04-11 16:41:02,549 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 48566
-2012-04-11 16:41:02,550 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=48566&xml
-2012-04-11 16:41:03,343 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 48724
-2012-04-11 16:41:03,344 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=48724&xml
-2012-04-11 16:41:04,113 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 48568
-2012-04-11 16:41:04,122 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=48568&xml
-2012-04-11 16:41:04,919 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 45826
-2012-04-11 16:41:04,919 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=45826&xml
-2012-04-11 16:41:05,672 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 40700
-2012-04-11 16:41:05,673 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=40700&xml
-2012-04-11 16:41:06,435 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 47681
-2012-04-11 16:41:06,435 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=47681&xml
-2012-04-11 16:41:07,199 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 47733
-2012-04-11 16:41:07,199 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=47733&xml
-2012-04-11 16:41:08,038 INFO  [jobs-thread-10] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
-2012-04-11 16:41:08,040 INFO  [jobs-thread-10] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
-2012-04-11 16:41:08,040 INFO  [jobs-thread-10] play: [/app/models/wowapi/character/Avatar.java:55] createAvatar() ::  [Avatar][createAvatar] Saarzwerg (Anub'arak (EU))
-2012-04-11 16:41:08,041 INFO  [jobs-thread-10] play: [/app/models/wowapi/character/Avatar.java:76] fetchAvatar() ::  [Avatar][fetchAvatar] Saarzwerg (Anub'arak (EU))
-2012-04-11 16:41:08,041 INFO  [jobs-thread-10] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/character/Anub%27arak/Saarzwerg?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
-2012-04-11 16:41:08,348 INFO  [jobs-thread-10] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
-2012-04-11 16:41:08,349 INFO  [jobs-thread-10] play: [/app/models/wowapi/guild/Guild.java:137] findByNameAndRealm() ::  [Guild][findByNameAndRealm] Guild Novus Ordo Mundi found
-2012-04-11 16:41:08,366 INFO  [jobs-thread-10] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
-2012-04-11 16:41:08,367 INFO  [jobs-thread-10] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/132/203908-avatar.jpg
-2012-04-11 16:41:08,396 INFO  [jobs-thread-10] play: [/app/models/wowapi/Armory.java:452] fetchProfile() ::  [Armory][fetchProfile] http://eu.battle.net/static-render/eu/anubarak/132/203908-profilemain.jpg
-2012-04-11 16:41:08,540 INFO  [jobs-thread-10] play: [/app/models/wowapi/Armory.java:336] fetchInset() ::  [Armory][fetchInset] http://eu.battle.net/static-render/eu/anubarak/132/203908-inset.jpg
-2012-04-11 16:44:46,671 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 77091
-2012-04-11 16:44:46,672 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=77091&xml
-2012-04-11 16:44:47,766 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 77194
-2012-04-11 16:44:47,766 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=77194&xml
-2012-04-11 16:44:51,179 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 71415
-2012-04-11 16:44:51,180 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=71415&xml
-2012-04-11 16:44:52,185 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 77028
-2012-04-11 16:44:52,186 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=77028&xml
-2012-04-11 16:44:53,170 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 77247
-2012-04-11 16:44:53,170 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=77247&xml
-2012-04-11 16:44:54,157 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 77251
-2012-04-11 16:44:54,157 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=77251&xml
-2012-04-11 16:44:55,080 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 77241
-2012-04-11 16:44:55,081 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=77241&xml
-2012-04-11 16:44:55,981 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 77111
-2012-04-11 16:44:55,981 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=77111&xml
-2012-04-11 16:44:56,883 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 78011
-2012-04-11 16:44:56,884 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=78011&xml
-2012-04-11 16:44:57,838 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 78362
-2012-04-11 16:44:57,839 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=78362&xml
-2012-04-11 16:44:58,774 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 77032
-2012-04-11 16:44:58,774 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=77032&xml
-2012-04-11 16:44:59,754 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 69210
-2012-04-11 16:44:59,754 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=69210&xml
-2012-04-11 16:45:00,758 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 78359
-2012-04-11 16:45:00,759 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=78359&xml
-2012-04-11 16:45:01,755 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 77974
-2012-04-11 16:45:01,756 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=77974&xml
-2012-04-11 16:45:02,675 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 77031
-2012-04-11 16:45:02,675 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=77031&xml
-2012-04-11 16:45:03,649 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 69112
-2012-04-11 16:45:03,649 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=69112&xml
-2012-04-11 16:45:04,573 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 77030
-2012-04-11 16:45:04,573 INFO  [jobs-thread-10] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=77030&xml
+2012-04-11 19:00:15,126 INFO  [main] play: Starting /home/guildpress/guildpress
+2012-04-11 19:00:15,146 INFO  [main] play: Module greenscript is available (/home/guildpress/guildpress/modules/greenscript-1.2.8)
+2012-04-11 19:00:15,147 INFO  [main] play: Module secure is available (/home/guildpress/play/modules/secure)
+2012-04-11 19:00:15,148 INFO  [main] play: Module crud is available (/home/guildpress/play/modules/crud)
+2012-04-11 19:00:15,149 INFO  [main] play: Module betterlogs is available (/home/guildpress/guildpress/modules/betterlogs-1.0)
+2012-04-11 19:00:15,149 INFO  [main] play: Module log4play is available (/home/guildpress/guildpress/modules/log4play-0.4)
+2012-04-11 19:00:15,150 INFO  [main] play: Module messages is available (/home/guildpress/guildpress/modules/messages-1.3)
+2012-04-11 19:00:17,853 INFO  [main] play: GreenScript-1.2.7> rythm not presented
+2012-04-11 19:00:17,855 WARN  [main] play: You're running Play! in DEV mode
+2012-04-11 19:00:18,121 INFO  [main] play: Listening for HTTP at /127.0.0.1:9000 (Waiting a first request to start) ...
+2012-04-11 19:00:36,657 INFO  [play-thread-1] play: GreenScript-1.2.7> minimizer initialized
+2012-04-11 19:00:36,658 DEBUG [play-thread-1] play: route added: /public/gs/{key} handled by greenscript.Service.getInMemoryCache
+2012-04-11 19:00:37,051 INFO  [play-thread-1] play: GreenScript-1.2.7> dependency loaded
+2012-04-11 19:00:37,052 INFO  [play-thread-1] play: GreenScript-1.2.7> initialized
+2012-04-11 19:00:40,248 INFO  [play-thread-1] play: Connected to jdbc:mysql://localhost/guildpress?useUnicode=yes&characterEncoding=UTF-8
+2012-04-11 19:00:50,411 INFO  [play-thread-1] play: Application 'GuildPress' is now started !
+2012-04-11 19:02:52,000 INFO  [jobs-thread-8] play: [/app/jobs/Minute.java:31] doJob() ::  [MinuteJob][setToolTip]
+2012-04-11 19:02:52,500 INFO  [jobs-thread-8] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/54003/tooltip
+2012-04-11 19:02:53,258 INFO  [jobs-thread-8] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=54003
+2012-04-11 19:02:54,137 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 36933
+2012-04-11 19:02:54,139 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=36933&xml
+2012-04-11 19:02:54,853 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 40095
+2012-04-11 19:02:54,853 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=40095&xml
+2012-04-11 19:02:55,405 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41724
+2012-04-11 19:02:55,406 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41724&xml
+2012-04-11 19:02:55,947 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41781
+2012-04-11 19:02:55,951 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41781&xml
+2012-04-11 19:02:56,595 INFO  [jobs-thread-8] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/54009/tooltip
+2012-04-11 19:02:56,659 INFO  [jobs-thread-8] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=54009
+2012-04-11 19:02:57,605 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 40100
+2012-04-11 19:02:57,606 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=40100&xml
+2012-04-11 19:02:58,135 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41696
+2012-04-11 19:02:58,136 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41696&xml
+2012-04-11 19:02:58,671 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41782
+2012-04-11 19:02:58,672 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41782&xml
+2012-04-11 19:02:59,301 INFO  [jobs-thread-8] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/54017/tooltip
+2012-04-11 19:02:59,367 INFO  [jobs-thread-8] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=54017
+2012-04-11 19:03:00,171 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 39910
+2012-04-11 19:03:00,174 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=39910&xml
+2012-04-11 19:03:00,697 INFO  [jobs-thread-8] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/54019/tooltip
+2012-04-11 19:03:00,767 INFO  [jobs-thread-8] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=54019
+2012-04-11 19:03:01,569 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 40041
+2012-04-11 19:03:01,569 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=40041&xml
+2012-04-11 19:03:05,083 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41793
+2012-04-11 19:03:05,084 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41793&xml
+2012-04-11 19:03:05,625 INFO  [jobs-thread-8] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/55386/tooltip
+2012-04-11 19:03:05,678 INFO  [jobs-thread-8] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=55386
+2012-04-11 19:03:06,658 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41266
+2012-04-11 19:03:06,659 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41266&xml
+2012-04-11 19:03:07,173 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41375
+2012-04-11 19:03:07,173 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41375&xml
+2012-04-11 19:03:07,693 INFO  [jobs-thread-8] play: [/app/jobs/Minute.java:39] doJob() ::  [MinuteJob][setAvatar]
+2012-04-11 19:03:07,695 INFO  [jobs-thread-8] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:03:07,701 INFO  [jobs-thread-8] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:03:07,702 INFO  [jobs-thread-8] play: [/app/models/wowapi/character/Avatar.java:55] createAvatar() ::  [Avatar][createAvatar] Coffy (Anub'arak (EU))
+2012-04-11 19:03:07,702 INFO  [jobs-thread-8] play: [/app/models/wowapi/character/Avatar.java:76] fetchAvatar() ::  [Avatar][fetchAvatar] Coffy (Anub'arak (EU))
+2012-04-11 19:03:07,703 INFO  [jobs-thread-8] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/character/Anub%27arak/Coffy?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
+2012-04-11 19:03:07,754 ERROR [jobs-thread-8] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][error] 404 http://eu.battle.net/api/wow/character/Anub%27arak/Coffy?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
+2012-04-11 19:03:07,771 WARN  [jobs-thread-8] play: [/app/models/wowapi/character/Avatar.java:86] fetchAvatar() ::  [Avatar][fetchAvatar] Creating new Char from Guildmember: Coffy (Anub'arak (EU))
+2012-04-11 19:03:07,794 INFO  [jobs-thread-8] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:03:07,798 INFO  [jobs-thread-8] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:03:07,799 INFO  [jobs-thread-8] play: [/app/models/wowapi/character/Avatar.java:55] createAvatar() ::  [Avatar][createAvatar] Alucart (Anub'arak (EU))
+2012-04-11 19:03:07,800 INFO  [jobs-thread-8] play: [/app/models/wowapi/character/Avatar.java:76] fetchAvatar() ::  [Avatar][fetchAvatar] Alucart (Anub'arak (EU))
+2012-04-11 19:03:07,800 INFO  [jobs-thread-8] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/character/Anub%27arak/Alucart?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
+2012-04-11 19:03:08,005 INFO  [jobs-thread-8] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:03:08,007 INFO  [jobs-thread-8] play: [/app/models/wowapi/guild/Guild.java:137] findByNameAndRealm() ::  [Guild][findByNameAndRealm] Guild Novus Ordo Mundi found
+2012-04-11 19:03:08,036 INFO  [jobs-thread-8] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:03:08,037 INFO  [jobs-thread-8] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/86/40280406-avatar.jpg
+2012-04-11 19:03:08,250 INFO  [jobs-thread-8] play: [/app/models/wowapi/Armory.java:452] fetchProfile() ::  [Armory][fetchProfile] http://eu.battle.net/static-render/eu/anubarak/86/40280406-profilemain.jpg
+2012-04-11 19:03:08,452 INFO  [jobs-thread-8] play: [/app/models/wowapi/Armory.java:336] fetchInset() ::  [Armory][fetchInset] http://eu.battle.net/static-render/eu/anubarak/86/40280406-inset.jpg
+2012-04-11 19:03:08,993 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 75075
+2012-04-11 19:03:08,994 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=75075&xml
+2012-04-11 19:03:09,729 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 71229
+2012-04-11 19:03:09,730 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=71229&xml
+2012-04-11 19:03:10,350 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 71091
+2012-04-11 19:03:10,350 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=71091&xml
+2012-04-11 19:03:10,933 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 30992
+2012-04-11 19:03:10,934 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=30992&xml
+2012-04-11 19:03:11,586 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 77316
+2012-04-11 19:03:11,586 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=77316&xml
+2012-04-11 19:03:12,290 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 16858
+2012-04-11 19:03:12,291 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=16858&xml
+2012-04-11 19:03:13,127 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 30983
+2012-04-11 19:03:13,127 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=30983&xml
+2012-04-11 19:03:13,773 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 72864
+2012-04-11 19:03:13,773 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=72864&xml
+2012-04-11 19:03:14,303 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 30996
+2012-04-11 19:03:14,304 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=30996&xml
+2012-04-11 19:03:14,954 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 45574
+2012-04-11 19:03:14,955 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=45574&xml
+2012-04-11 19:03:15,710 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 77969
+2012-04-11 19:03:15,711 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=77969&xml
+2012-04-11 19:03:16,323 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 78812
+2012-04-11 19:03:16,324 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=78812&xml
+2012-04-11 19:03:17,139 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 55070
+2012-04-11 19:03:17,139 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=55070&xml
+2012-04-11 19:03:17,671 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 28316
+2012-04-11 19:03:17,671 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=28316&xml
+2012-04-11 19:03:18,289 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 30988
+2012-04-11 19:03:18,290 INFO  [jobs-thread-8] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=30988&xml
+2012-04-11 19:05:19,058 INFO  [jobs-thread-2] play: [/app/jobs/Minute.java:31] doJob() ::  [MinuteJob][setToolTip]
+2012-04-11 19:05:19,064 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/55394/tooltip
+2012-04-11 19:05:19,184 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=55394
+2012-04-11 19:05:20,167 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41339
+2012-04-11 19:05:20,167 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41339&xml
+2012-04-11 19:05:20,675 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/55397/tooltip
+2012-04-11 19:05:20,736 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=55397
+2012-04-11 19:05:21,531 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41334
+2012-04-11 19:05:21,531 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41334&xml
+2012-04-11 19:05:22,020 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41395
+2012-04-11 19:05:22,020 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41395&xml
+2012-04-11 19:05:22,523 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41798
+2012-04-11 19:05:22,523 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41798&xml
+2012-04-11 19:05:23,034 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/55398/tooltip
+2012-04-11 19:05:23,103 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=55398
+2012-04-11 19:05:24,102 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41396
+2012-04-11 19:05:24,102 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41396&xml
+2012-04-11 19:05:24,610 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41799
+2012-04-11 19:05:24,611 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41799&xml
+2012-04-11 19:05:25,118 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/55399/tooltip
+2012-04-11 19:05:25,185 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=55399
+2012-04-11 19:05:26,185 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41397
+2012-04-11 19:05:26,185 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41397&xml
+2012-04-11 19:05:26,697 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/55401/tooltip
+2012-04-11 19:05:26,764 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=55401
+2012-04-11 19:05:27,770 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41380
+2012-04-11 19:05:27,770 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://www.wowhead.com/item=41380&xml
+2012-04-11 19:05:28,864 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41797
+2012-04-11 19:05:28,865 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://www.wowhead.com/item=41797&xml
+2012-04-11 19:05:29,400 INFO  [jobs-thread-2] play: [/app/jobs/Minute.java:39] doJob() ::  [MinuteJob][setAvatar]
+2012-04-11 19:05:29,401 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:05:29,402 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:05:29,402 INFO  [jobs-thread-2] play: [/app/models/wowapi/character/Avatar.java:55] createAvatar() ::  [Avatar][createAvatar] Bunan (Anub'arak (EU))
+2012-04-11 19:05:29,403 INFO  [jobs-thread-2] play: [/app/models/wowapi/character/Avatar.java:76] fetchAvatar() ::  [Avatar][fetchAvatar] Bunan (Anub'arak (EU))
+2012-04-11 19:05:29,403 INFO  [jobs-thread-2] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/character/Anub%27arak/Bunan?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
+2012-04-11 19:05:29,442 ERROR [jobs-thread-2] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][error] 404 http://eu.battle.net/api/wow/character/Anub%27arak/Bunan?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
+2012-04-11 19:05:29,449 WARN  [jobs-thread-2] play: [/app/models/wowapi/character/Avatar.java:86] fetchAvatar() ::  [Avatar][fetchAvatar] Creating new Char from Guildmember: Bunan (Anub'arak (EU))
+2012-04-11 19:05:29,466 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:05:29,473 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:05:29,474 INFO  [jobs-thread-2] play: [/app/models/wowapi/character/Avatar.java:55] createAvatar() ::  [Avatar][createAvatar] Rivêr (Anub'arak (EU))
+2012-04-11 19:05:29,474 INFO  [jobs-thread-2] play: [/app/models/wowapi/character/Avatar.java:76] fetchAvatar() ::  [Avatar][fetchAvatar] Rivêr (Anub'arak (EU))
+2012-04-11 19:05:29,475 INFO  [jobs-thread-2] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/character/Anub%27arak/Riv%C3%AAr?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
+2012-04-11 19:05:29,641 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:05:29,643 INFO  [jobs-thread-2] play: [/app/models/wowapi/guild/Guild.java:137] findByNameAndRealm() ::  [Guild][findByNameAndRealm] Guild Novus Ordo Mundi found
+2012-04-11 19:05:29,655 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:05:29,658 INFO  [jobs-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/3/43490819-avatar.jpg
+2012-04-11 19:05:29,749 INFO  [jobs-thread-2] play: [/app/models/wowapi/Armory.java:452] fetchProfile() ::  [Armory][fetchProfile] http://eu.battle.net/static-render/eu/anubarak/3/43490819-profilemain.jpg
+2012-04-11 19:05:29,934 INFO  [jobs-thread-2] play: [/app/models/wowapi/Armory.java:336] fetchInset() ::  [Armory][fetchInset] http://eu.battle.net/static-render/eu/anubarak/3/43490819-inset.jpg
+2012-04-11 19:05:30,080 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 47566
+2012-04-11 19:05:30,080 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=47566&xml
+2012-04-11 19:05:30,675 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 50268
+2012-04-11 19:05:30,676 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=50268&xml
+2012-04-11 19:05:31,266 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 44188
+2012-04-11 19:05:31,266 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=44188&xml
+2012-04-11 19:05:31,868 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 57290
+2012-04-11 19:05:31,869 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=57290&xml
+2012-04-11 19:05:32,454 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 57303
+2012-04-11 19:05:32,455 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=57303&xml
+2012-04-11 19:05:33,025 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 47201
+2012-04-11 19:05:33,025 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=47201&xml
+2012-04-11 19:05:33,617 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 47227
+2012-04-11 19:05:33,617 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=47227&xml
+2012-04-11 19:05:34,208 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 47149
+2012-04-11 19:05:34,209 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=47149&xml
+2012-04-11 19:05:34,768 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 47731
+2012-04-11 19:05:34,769 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=47731&xml
+2012-04-11 19:05:35,338 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 48633
+2012-04-11 19:05:35,338 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=48633&xml
+2012-04-11 19:05:35,954 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 48636
+2012-04-11 19:05:35,955 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=48636&xml
+2012-04-11 19:05:36,570 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 47664
+2012-04-11 19:05:36,573 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=47664&xml
+2012-04-11 19:05:40,427 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 48635
+2012-04-11 19:05:40,427 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=48635&xml
+2012-04-11 19:05:41,090 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 50198
+2012-04-11 19:05:41,090 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=50198&xml
+2012-04-11 19:05:41,664 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 37220
+2012-04-11 19:05:41,665 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=37220&xml
+2012-04-11 19:05:42,239 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 49835
+2012-04-11 19:05:42,240 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=49835&xml
+2012-04-11 19:05:42,894 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 48634
+2012-04-11 19:05:42,894 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=48634&xml
+2012-04-11 19:07:43,602 INFO  [jobs-thread-2] play: [/app/jobs/Minute.java:31] doJob() ::  [MinuteJob][setToolTip]
+2012-04-11 19:07:43,607 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/55402/tooltip
+2012-04-11 19:07:43,728 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=55402
+2012-04-11 19:07:45,115 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41381
+2012-04-11 19:07:45,115 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41381&xml
+2012-04-11 19:07:45,601 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/56053/tooltip
+2012-04-11 19:07:45,698 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=56053
+2012-04-11 19:07:46,882 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 42225
+2012-04-11 19:07:46,883 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=42225&xml
+2012-04-11 19:07:47,373 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 42144
+2012-04-11 19:07:47,374 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=42144&xml
+2012-04-11 19:07:47,884 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 42300
+2012-04-11 19:07:47,885 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=42300&xml
+2012-04-11 19:07:48,443 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 42309
+2012-04-11 19:07:48,444 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=42309&xml
+2012-04-11 19:07:48,951 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/56193/tooltip
+2012-04-11 19:07:49,021 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=56193
+2012-04-11 19:07:49,999 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 37701
+2012-04-11 19:07:49,999 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=37701&xml
+2012-04-11 19:07:51,289 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 42336
+2012-04-11 19:07:51,289 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=42336&xml
+2012-04-11 19:07:51,799 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/56194/tooltip
+2012-04-11 19:07:51,864 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=56194
+2012-04-11 19:07:52,847 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 42337
+2012-04-11 19:07:52,848 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=42337&xml
+2012-04-11 19:07:53,406 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/56195/tooltip
+2012-04-11 19:07:53,474 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=56195
+2012-04-11 19:07:54,433 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 35624
+2012-04-11 19:07:54,434 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=35624&xml
+2012-04-11 19:07:54,952 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 42338
+2012-04-11 19:07:54,952 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=42338&xml
+2012-04-11 19:07:55,474 INFO  [jobs-thread-2] play: [/app/jobs/Minute.java:39] doJob() ::  [MinuteJob][setAvatar]
+2012-04-11 19:07:55,475 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:07:55,479 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:07:55,480 INFO  [jobs-thread-2] play: [/app/models/wowapi/character/Avatar.java:55] createAvatar() ::  [Avatar][createAvatar] Akimbo (Anub'arak (EU))
+2012-04-11 19:07:55,480 INFO  [jobs-thread-2] play: [/app/models/wowapi/character/Avatar.java:76] fetchAvatar() ::  [Avatar][fetchAvatar] Akimbo (Anub'arak (EU))
+2012-04-11 19:07:55,481 INFO  [jobs-thread-2] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/character/Anub%27arak/Akimbo?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
+2012-04-11 19:07:55,653 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:07:55,654 INFO  [jobs-thread-2] play: [/app/models/wowapi/guild/Guild.java:137] findByNameAndRealm() ::  [Guild][findByNameAndRealm] Guild Novus Ordo Mundi found
+2012-04-11 19:07:55,664 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:07:55,667 INFO  [jobs-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/215/44184535-avatar.jpg
+2012-04-11 19:07:55,798 INFO  [jobs-thread-2] play: [/app/models/wowapi/Armory.java:452] fetchProfile() ::  [Armory][fetchProfile] http://eu.battle.net/static-render/eu/anubarak/215/44184535-profilemain.jpg
+2012-04-11 19:07:56,026 INFO  [jobs-thread-2] play: [/app/models/wowapi/Armory.java:336] fetchInset() ::  [Armory][fetchInset] http://eu.battle.net/static-render/eu/anubarak/215/44184535-inset.jpg
+2012-04-11 19:07:56,224 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 70935
+2012-04-11 19:07:56,224 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=70935&xml
+2012-04-11 19:07:56,802 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 72844
+2012-04-11 19:07:56,803 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=72844&xml
+2012-04-11 19:07:57,510 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 70955
+2012-04-11 19:07:57,511 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=70955&xml
+2012-04-11 19:07:58,187 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 70937
+2012-04-11 19:07:58,187 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=70937&xml
+2012-04-11 19:07:58,758 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 77171
+2012-04-11 19:07:58,758 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=77171&xml
+2012-04-11 19:07:59,473 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 72837
+2012-04-11 19:07:59,474 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=72837&xml
+2012-04-11 19:08:00,054 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 70940
+2012-04-11 19:08:00,054 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=70940&xml
+2012-04-11 19:08:00,644 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 70953
+2012-04-11 19:08:00,645 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=70953&xml
+2012-04-11 19:08:01,601 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 77117
+2012-04-11 19:08:01,602 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=77117&xml
+2012-04-11 19:08:02,183 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 70952
+2012-04-11 19:08:02,183 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=70952&xml
+2012-04-11 19:08:02,966 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 72820
+2012-04-11 19:08:02,966 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=72820&xml
+2012-04-11 19:08:03,568 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:08:03,576 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:08:03,577 INFO  [jobs-thread-2] play: [/app/models/wowapi/character/Avatar.java:55] createAvatar() ::  [Avatar][createAvatar] Zirroom (Anub'arak (EU))
+2012-04-11 19:08:03,577 INFO  [jobs-thread-2] play: [/app/models/wowapi/character/Avatar.java:76] fetchAvatar() ::  [Avatar][fetchAvatar] Zirroom (Anub'arak (EU))
+2012-04-11 19:08:03,586 INFO  [jobs-thread-2] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/character/Anub%27arak/Zirroom?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
+2012-04-11 19:08:03,694 ERROR [jobs-thread-2] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][error] 404 http://eu.battle.net/api/wow/character/Anub%27arak/Zirroom?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
+2012-04-11 19:08:03,697 WARN  [jobs-thread-2] play: [/app/models/wowapi/character/Avatar.java:86] fetchAvatar() ::  [Avatar][fetchAvatar] Creating new Char from Guildmember: Zirroom (Anub'arak (EU))
+2012-04-11 19:10:00,875 ERROR [play-thread-5] play: 
+
+@6a2mpf2gp
+icons.color_wheel.png action not found
+
+Action not found
+Action icons.color_wheel.png could not be found. Error raised is Controller controllers.icons.color_wheel not found
+
+play.exceptions.ActionNotFoundException: Action icons.color_wheel.png not found
+	at play.mvc.ActionInvoker.getActionMethod(ActionInvoker.java:590)
+	at play.mvc.ActionInvoker.resolve(ActionInvoker.java:85)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.Exception: Controller controllers.icons.color_wheel not found
+	... 3 more
+2012-04-11 19:10:00,878 ERROR [play-thread-9] play: 
+
+@6a2mpf2h0
+icons.arrow_turn_left.png action not found
+
+Action not found
+Action icons.arrow_turn_left.png could not be found. Error raised is Controller controllers.icons.arrow_turn_left not found
+
+play.exceptions.ActionNotFoundException: Action icons.arrow_turn_left.png not found
+	at play.mvc.ActionInvoker.getActionMethod(ActionInvoker.java:590)
+	at play.mvc.ActionInvoker.resolve(ActionInvoker.java:85)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.Exception: Controller controllers.icons.arrow_turn_left not found
+	... 3 more
+2012-04-11 19:10:03,783 INFO  [jobs-thread-2] play: [/app/jobs/Minute.java:31] doJob() ::  [MinuteJob][setToolTip]
+2012-04-11 19:10:03,801 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/56196/tooltip
+2012-04-11 19:10:04,000 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=56196
+2012-04-11 19:10:05,017 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 42339
+2012-04-11 19:10:05,017 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=42339&xml
+2012-04-11 19:10:05,507 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/56197/tooltip
+2012-04-11 19:10:05,574 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=56197
+2012-04-11 19:10:06,574 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41163
+2012-04-11 19:10:06,575 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41163&xml
+2012-04-11 19:10:07,090 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 34052
+2012-04-11 19:10:07,091 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=34052&xml
+2012-04-11 19:10:07,583 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 42340
+2012-04-11 19:10:07,584 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=42340&xml
+2012-04-11 19:10:08,112 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/56199/tooltip
+2012-04-11 19:10:08,177 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=56199
+2012-04-11 19:10:09,146 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 42341
+2012-04-11 19:10:09,146 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=42341&xml
+2012-04-11 19:10:09,664 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/56201/tooltip
+2012-04-11 19:10:09,726 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=56201
+2012-04-11 19:10:10,711 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 42395
+2012-04-11 19:10:10,711 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=42395&xml
+2012-04-11 19:10:11,232 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/56202/tooltip
+2012-04-11 19:10:11,294 INFO  [jobs-thread-2] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=56202
+2012-04-11 19:10:12,299 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 42413
+2012-04-11 19:10:12,299 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=42413&xml
+2012-04-11 19:10:12,823 INFO  [jobs-thread-2] play: [/app/jobs/Minute.java:39] doJob() ::  [MinuteJob][setAvatar]
+2012-04-11 19:10:12,824 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:10:12,826 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:10:12,835 INFO  [jobs-thread-2] play: [/app/models/wowapi/character/Avatar.java:55] createAvatar() ::  [Avatar][createAvatar] Zèratul (Anub'arak (EU))
+2012-04-11 19:10:12,835 INFO  [jobs-thread-2] play: [/app/models/wowapi/character/Avatar.java:76] fetchAvatar() ::  [Avatar][fetchAvatar] Zèratul (Anub'arak (EU))
+2012-04-11 19:10:12,836 INFO  [jobs-thread-2] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/character/Anub%27arak/Z%C3%A8ratul?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
+2012-04-11 19:10:13,131 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:10:13,134 INFO  [jobs-thread-2] play: [/app/models/wowapi/guild/Guild.java:137] findByNameAndRealm() ::  [Guild][findByNameAndRealm] Guild Novus Ordo Mundi found
+2012-04-11 19:10:13,139 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:10:13,140 INFO  [jobs-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/210/47681746-avatar.jpg
+2012-04-11 19:10:13,239 INFO  [jobs-thread-2] play: [/app/models/wowapi/Armory.java:452] fetchProfile() ::  [Armory][fetchProfile] http://eu.battle.net/static-render/eu/anubarak/210/47681746-profilemain.jpg
+2012-04-11 19:10:13,428 INFO  [jobs-thread-2] play: [/app/models/wowapi/Armory.java:336] fetchInset() ::  [Armory][fetchInset] http://eu.battle.net/static-render/eu/anubarak/210/47681746-inset.jpg
+2012-04-11 19:11:02,296 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 52314
+2012-04-11 19:11:02,297 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=52314&xml
+2012-04-11 19:11:03,065 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 55777
+2012-04-11 19:11:03,065 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=55777&xml
+2012-04-11 19:11:03,819 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 66889
+2012-04-11 19:11:03,820 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=66889&xml
+2012-04-11 19:11:04,539 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 51190
+2012-04-11 19:11:04,539 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=51190&xml
+2012-04-11 19:11:05,281 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 66906
+2012-04-11 19:11:05,282 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=66906&xml
+2012-04-11 19:11:06,014 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 56494
+2012-04-11 19:11:06,014 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=56494&xml
+2012-04-11 19:11:06,791 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 67242
+2012-04-11 19:11:06,791 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=67242&xml
+2012-04-11 19:11:07,511 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 66893
+2012-04-11 19:11:07,511 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=66893&xml
+2012-04-11 19:11:08,227 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 52316
+2012-04-11 19:11:08,227 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=52316&xml
+2012-04-11 19:11:08,951 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 50064
+2012-04-11 19:11:08,951 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=50064&xml
+2012-04-11 19:11:09,695 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 66938
+2012-04-11 19:11:09,696 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=66938&xml
+2012-04-11 19:11:10,576 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 55821
+2012-04-11 19:11:10,576 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=55821&xml
+2012-04-11 19:11:11,289 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 50339
+2012-04-11 19:11:11,290 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=50339&xml
+2012-04-11 19:11:12,012 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 66899
+2012-04-11 19:11:12,012 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=66899&xml
+2012-04-11 19:11:12,753 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 55854
+2012-04-11 19:11:12,753 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=55854&xml
+2012-04-11 19:11:13,507 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 55880
+2012-04-11 19:11:13,507 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=55880&xml
+2012-04-11 19:11:14,228 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 55818
+2012-04-11 19:11:14,229 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=55818&xml
+2012-04-11 19:11:15,006 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:11:15,008 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:11:15,009 INFO  [jobs-thread-2] play: [/app/models/wowapi/character/Avatar.java:55] createAvatar() ::  [Avatar][createAvatar] Julyn (Anub'arak (EU))
+2012-04-11 19:11:15,009 INFO  [jobs-thread-2] play: [/app/models/wowapi/character/Avatar.java:76] fetchAvatar() ::  [Avatar][fetchAvatar] Julyn (Anub'arak (EU))
+2012-04-11 19:11:15,009 INFO  [jobs-thread-2] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/character/Anub%27arak/Julyn?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
+2012-04-11 19:11:15,180 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:11:15,193 INFO  [jobs-thread-2] play: [/app/models/wowapi/guild/Guild.java:137] findByNameAndRealm() ::  [Guild][findByNameAndRealm] Guild Novus Ordo Mundi found
+2012-04-11 19:11:15,213 INFO  [jobs-thread-2] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:11:15,228 INFO  [jobs-thread-2] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/248/49478136-avatar.jpg
+2012-04-11 19:11:15,268 INFO  [jobs-thread-2] play: [/app/models/wowapi/Armory.java:452] fetchProfile() ::  [Armory][fetchProfile] http://eu.battle.net/static-render/eu/anubarak/248/49478136-profilemain.jpg
+2012-04-11 19:11:15,482 INFO  [jobs-thread-2] play: [/app/models/wowapi/Armory.java:336] fetchInset() ::  [Armory][fetchInset] http://eu.battle.net/static-render/eu/anubarak/248/49478136-inset.jpg
+2012-04-11 19:11:16,395 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 76162
+2012-04-11 19:11:16,396 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=76162&xml
+2012-04-11 19:11:17,360 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 72801
+2012-04-11 19:11:17,360 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=72801&xml
+2012-04-11 19:11:18,055 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 59470
+2012-04-11 19:11:18,056 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=59470&xml
+2012-04-11 19:11:19,343 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 72821
+2012-04-11 19:11:19,344 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=72821&xml
+2012-04-11 19:11:20,427 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 72853
+2012-04-11 19:11:20,427 INFO  [jobs-thread-2] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=72853&xml
+2012-04-11 19:13:21,472 INFO  [jobs-thread-1] play: [/app/jobs/Minute.java:31] doJob() ::  [MinuteJob][setToolTip]
+2012-04-11 19:13:21,477 INFO  [jobs-thread-1] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/56203/tooltip
+2012-04-11 19:13:21,598 INFO  [jobs-thread-1] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=56203
+2012-04-11 19:13:22,849 INFO  [jobs-thread-1] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 42418
+2012-04-11 19:13:22,849 INFO  [jobs-thread-1] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=42418&xml
+2012-04-11 19:13:23,365 INFO  [jobs-thread-1] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/56205/tooltip
+2012-04-11 19:13:23,428 INFO  [jobs-thread-1] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=56205
+2012-04-11 19:13:24,443 INFO  [jobs-thread-1] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 41367
+2012-04-11 19:13:24,443 INFO  [jobs-thread-1] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=41367&xml
+2012-04-11 19:13:24,954 INFO  [jobs-thread-1] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/56206/tooltip
+2012-04-11 19:13:25,020 INFO  [jobs-thread-1] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=56206
+2012-04-11 19:13:25,997 INFO  [jobs-thread-1] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 42420
+2012-04-11 19:13:25,997 INFO  [jobs-thread-1] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=42420&xml
+2012-04-11 19:13:26,519 INFO  [jobs-thread-1] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/56208/tooltip
+2012-04-11 19:13:26,584 INFO  [jobs-thread-1] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=56208
+2012-04-11 19:13:27,559 INFO  [jobs-thread-1] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 42421
+2012-04-11 19:13:27,559 INFO  [jobs-thread-1] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=42421&xml
+2012-04-11 19:13:28,080 INFO  [jobs-thread-1] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://eu.battle.net/wow/de/spell/56530/tooltip
+2012-04-11 19:13:28,146 INFO  [jobs-thread-1] play: [/app/models/wowapi/core/FetchSite.java:49] fetch() ::  [FetchSite][fetch] http://de.wowhead.com/spell=56530
+2012-04-11 19:13:29,134 INFO  [jobs-thread-1] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 36783
+2012-04-11 19:13:29,134 INFO  [jobs-thread-1] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=36783&xml
+2012-04-11 19:13:29,623 INFO  [jobs-thread-1] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 34054
+2012-04-11 19:13:29,624 INFO  [jobs-thread-1] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=34054&xml
+2012-04-11 19:13:30,130 INFO  [jobs-thread-1] play: [/app/models/wowapi/WoWHead.java:58] checkItem() ::  Fetching Item: 42701
+2012-04-11 19:13:30,130 INFO  [jobs-thread-1] play: [/app/models/wowapi/WoWHead.java:333] getXMLDocument() ::  Fetch URL: http://de.wowhead.com/item=42701&xml
+2012-04-11 19:13:30,638 INFO  [jobs-thread-1] play: [/app/jobs/Minute.java:39] doJob() ::  [MinuteJob][setAvatar]
+2012-04-11 19:13:30,639 INFO  [jobs-thread-1] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:13:30,640 INFO  [jobs-thread-1] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:13:30,641 INFO  [jobs-thread-1] play: [/app/models/wowapi/character/Avatar.java:55] createAvatar() ::  [Avatar][createAvatar] Lipsh (Anub'arak (EU))
+2012-04-11 19:13:30,641 INFO  [jobs-thread-1] play: [/app/models/wowapi/character/Avatar.java:76] fetchAvatar() ::  [Avatar][fetchAvatar] Lipsh (Anub'arak (EU))
+2012-04-11 19:13:30,641 INFO  [jobs-thread-1] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/character/Anub%27arak/Lipsh?locale=de_DE&fields=guild,stats,talents,items,professions,appearance,progression,pvp
+2012-04-11 19:13:30,901 INFO  [jobs-thread-1] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:13:30,902 INFO  [jobs-thread-1] play: [/app/models/wowapi/guild/Guild.java:137] findByNameAndRealm() ::  [Guild][findByNameAndRealm] Guild Novus Ordo Mundi found
+2012-04-11 19:13:30,908 INFO  [jobs-thread-1] play: [/app/models/wowapi/resources/Realm.java:73] findByName() ::  [Realm][findByName] Realm Anub'arak found
+2012-04-11 19:13:30,920 INFO  [jobs-thread-1] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/174/52760750-avatar.jpg
+2012-04-11 19:13:31,051 INFO  [jobs-thread-1] play: [/app/models/wowapi/Armory.java:452] fetchProfile() ::  [Armory][fetchProfile] http://eu.battle.net/static-render/eu/anubarak/174/52760750-profilemain.jpg
+2012-04-11 19:13:31,273 INFO  [jobs-thread-1] play: [/app/models/wowapi/Armory.java:336] fetchInset() ::  [Armory][fetchInset] http://eu.battle.net/static-render/eu/anubarak/174/52760750-inset.jpg

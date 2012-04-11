@@ -19,7 +19,7 @@
 			#{list items:classes, as:'searchclass'}
 				<div class="prof-box prof-alchemie #{if searchclass_parity == 'odd'}left#{/if}#{if searchclass_parity == 'even'}right#{/if}" style="width:347px; height:320px; position: relative; overflow: hidden;  margin-bottom: 10px;">
 					
-					<div style="width: 350px; height: 320px; position: absolute; left: 0; bottom: 0; filter: alpha(opacity=60);	-moz-opacity: 0.6; -khtml-opacity: 0.6; opacity: 0.6; background: url('/public/images/world-of-warcraft/crest/${searchclass.name.toLowerCase()}.png') no-repeat center center;">
+					<div style="width: 350px; height: 320px; position: absolute; left: 0; bottom: 0; filter: alpha(opacity=60);	-moz-opacity: 0.6; -khtml-opacity: 0.6; opacity: 0.6; background: url('/public/images/world-of-warcraft/crest/${searchclass.name.toLowerCase().raw()}.png') no-repeat center center;">
 					</div>
 					
 					*{<div style="width: 150px; height: 150px; position: absolute; right: 20; bottom: 0;">
@@ -28,7 +28,7 @@
 					
 					
 					<div class="prof-box-content" style="width:350px; height:350px; position: absolute; top: 0px; padding-top:135px;">
-						<div style="height: 50px; width:350px; display: table; text-align:center; margin: auto; background: url('/public/images/world-of-warcraft/crest/${searchclass.name.toLowerCase()}_back.png');">
+						<div style="height: 50px; width:350px; display: table; text-align:center; margin: auto; background: url('/public/images/world-of-warcraft/crest/${searchclass.name.toLowerCase().raw()}_back.png');">
 							<div style="display: table-cell; vertical-align: middle;">
 
 							</div>

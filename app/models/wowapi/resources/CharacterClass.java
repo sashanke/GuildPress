@@ -15,16 +15,18 @@ import play.db.jpa.Model;
 @Entity
 public class CharacterClass extends Model {
 
-	public static final int JÄGER = 3;
-	public static final int SCHURKE = 4;
-	public static final int KRIEGER = 1;
-	public static final int PALADIN = 2;
-	public static final int SCHAMANE = 7;
-	public static final int MAGIER = 8;
-	public static final int PRIESTER = 5;
-	public static final int TODESRITTER = 6;
-	public static final int DRUIDE = 11;
-	public static final int HEXENMEISTER = 9;
+	public static final long JÄGER = 3;
+	public static final long SCHURKE = 4;
+	public static final long KRIEGER = 1;
+	public static final long PALADIN = 2;
+	public static final long SCHAMANE = 7;
+	public static final long MAGIER = 8;
+	public static final long PRIESTER = 5;
+	public static final long TODESRITTER = 6;
+	public static final long DRUIDE = 11;
+	public static final long HEXENMEISTER = 9;
+	//TODO Monk!
+	public static final long MÖNCH = 12;
 
 	public Long ccId;
 	public Long mask;

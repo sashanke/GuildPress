@@ -6,6 +6,7 @@ require:
     - play -> greenscript 1.2.8
     - play -> betterlogs 1.0
     - play -> log4play 0.4
+    - play -> messages 1.3
     - commons-io -> commons-io 2.0.1
     - net.sf.jtidy -> jtidy r938
     - org.jsoup -> jsoup 1.6.1

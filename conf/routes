@@ -7,6 +7,9 @@ GET			/login			SecureC.login
 POST        /login          SecureC.authenticate
 GET         /logout         SecureC.logout
 
+#Import Messages routes
+*     /    module:messages
+
 # Service
 GET		/ws/update											Service.update
 GET		/ws/guild/{name}/{realm}/update						Service.updateGuild
@@ -101,3 +104,4 @@ GET     /public/                                staticDir:public
 
 # Import CRUD routes
 *      /admin              module:crud
+*      /crud/index         module:crud

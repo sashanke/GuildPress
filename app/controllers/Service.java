@@ -140,7 +140,7 @@ public class Service extends Controller {
 	public static void update() throws ApiException, SQLException {
 
 		Gson gson = new Gson();
-		AuctionDump result = gson.fromJson(FetchSite.fetch("http://eu.battle.net/auction-data/anubarak/auctions.json", FetchType.API).response, AuctionDump.class);
+		AuctionDump result = gson.fromJson(FetchSite.fetch("http://eu.battle.net/auction-data/04dcab1403d283a261d5d416a1e151a7/auctions.json", FetchType.API).response, AuctionDump.class);
 		List<Auction> auctions = result.get(Faction.ALLIANCE).getAuctions();
 		Connection con = DB.getConnection();
 		con.setAutoCommit(false);

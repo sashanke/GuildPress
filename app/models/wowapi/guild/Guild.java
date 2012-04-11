@@ -334,4 +334,13 @@ public class Guild extends Model {
 		return this.name + " (" + this.realm + ")";
 	}
 
+	/**
+	 * Guildjob
+	 * 
+	 */
+	public static void job() {
+		// TODO Gildenjob
+		Guild.fetchGuild(getMainGuild());
+	}
+
 }

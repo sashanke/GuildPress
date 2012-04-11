@@ -1,0 +1,114 @@
+#{extends 'main.html' /}
+#{set title: messages.get('recruitment.title') +' - ' + guildTitle /}
+#{js 'recruitment.js' /}
+#{css 'recruitment.css' /}
+
+<div class="box">
+	<div class="artheadline" style="background: black url(${play.configuration.getProperty("conf.artworksdir")}recruitment.jpg) no-repeat top center  !important;">
+		<div class="artheadlinshadow">
+			<div class="postdate"></div>
+			<h2 class="post-title">
+				<a href="@{Recipes.index()}">&{'recruitment.title'}</a>
+			</h2>
+		</div>
+	</div>
+	<div class="page clear">
+		<div class="page-content">
+			<div class="classes-search-list">
+
+			#{list items:classes, as:'searchclass'}
+				<div class="prof-box prof-alchemie #{if searchclass_parity == 'odd'}left#{/if}#{if searchclass_parity == 'even'}right#{/if}" style="width:347px; height:320px; position: relative; overflow: hidden;  margin-bottom: 10px;">
+					
+					<div style="width: 350px; height: 320px; position: absolute; left: 0; bottom: 0; filter: alpha(opacity=60);	-moz-opacity: 0.6; -khtml-opacity: 0.6; opacity: 0.6; background: url('/public/images/world-of-warcraft/crest/${searchclass.name.toLowerCase()}.png') no-repeat center center;">
+					</div>
+					
+					*{<div style="width: 150px; height: 150px; position: absolute; right: 20; bottom: 0;">
+						<img style="width: 250px; height: 250px; filter: alpha(opacity=10);	-moz-opacity: 0.1; -khtml-opacity: 0.1; opacity: 0.1;" alt="" src="/public/images/world-of-warcraft/crest/${searchclass.name.toLowerCase()}.png">
+					</div>}*
+					
+					
+					<div class="prof-box-content" style="width:350px; height:350px; position: absolute; top: 0px; padding-top:135px;">
+						<div style="height: 50px; width:350px; display: table; text-align:center; margin: auto; background: url('/public/images/world-of-warcraft/crest/${searchclass.name.toLowerCase()}_back.png');">
+							<div style="display: table-cell; vertical-align: middle;">
+
+							</div>
+						</div>
+					</div>
+
+					
+					<div class="prof-box-content" style="width:350px; height:350px; position: absolute; top: 0px; padding-top:210px;">
+						<div style="height: 50px; display: table; text-align:center; margin: auto;">
+							<div style="display: table-cell; vertical-align: middle">
+							#{list items:recruitment.specs, as:'spec'}
+								#{if spec.cclass.id == searchclass.id}
+										<img alt="${spec.name}" title="${spec.name}" style="margin:15px; border-color: #9E0036; border-style: solid; border-width: 1px;" src="/public/images/static/icons/${spec.icon.icon.toLowerCase()}.png" width="30px" height="30px" />
+								#{/if}
+							#{/list}
+							</div>
+						</div>
+
+
+						
+					</div>
+				</div>
+			#{/list}
+			
+			
+			
+			
+			
+			
+			
+				*{#{list items:classes, as:'searchclass'}
+					<div class="classes-search-box right" style="width: 100%; height: 250px; position: relative;">
+						<h2 class="nav_t" style="text-align: left;">
+							${searchclass.name}
+						</h2>
+						<div class="colBreak clear"></div>
+						Wir suchen zur Zeit einen <span class="class-${searchclass.name.toLowerCase()}">${searchclass.name}</span> der folgenden Spezialisierung: <br />
+						<div style="width: 300px;">
+						<div style="height: 150px; display: table; text-align:center; margin: auto;">
+							<div style="display: table-cell; vertical-align: middle">
+							#{list items:recruitment.specs, as:'spec'}
+								#{if spec.cclass.id == searchclass.id}
+										<img alt="${spec.name}" style="margin:15px;" title="${spec.name}" src="/public/images/static/icons/${spec.icon.icon.toLowerCase()}.png" width="50px" height="50px" />
+								#{/if}
+							#{/list}
+							</div>
+						</div>
+						</div>
+						<div style="position: absolute; right: 0; bottom: 0;"><img class="noborder" style="width: 200px; height: 200px; opacity:0.5;" src="/public/images/world-of-warcraft/crest/${searchclass.name.toLowerCase()}.png" /></div>
+					</div>
+				#{/list}}*
+			
+			
+				*{#{list items:classes, as:'searchclass'}
+				<div class="classes-search-box left" style="width: 250px; height: 250px; margin-bottom: 20px;">
+					<div class="classes-search-box-content">
+						<div><img class="noborder" style="width: 250px; height: 250px;" src="/public/images/world-of-warcraft/crest/${searchclass.name.toLowerCase()}.png" /></div>
+					</div>
+				</div>
+				<div class="classes-search-box right" style="width: 450px; height: 250px; margin-bottom: 20px;">
+					<div class="classes-search-box-content">
+						<h2 class="nav_t" style="text-align: left;">
+							${searchclass.name}
+						</h2>
+						<div class="colBreak clear"></div>
+						Wir suchen zur Zeit einen <span class="class-${searchclass.name.toLowerCase()}">${searchclass.name}</span> der folgenden Spezialisierung: <br />
+						<div style="height: 150px; display: table; text-align:center; margin: auto;">
+							<div style="display: table-cell; vertical-align: middle">
+							#{list items:recruitment.specs, as:'spec'}
+								#{if spec.cclass.id == searchclass.id}
+										<img alt="${spec.name}" style="margin:15px;" title="${spec.name}" src="/public/images/static/icons/${spec.icon.icon.toLowerCase()}.png" width="50px" height="50px" />
+								#{/if}
+							#{/list}
+							</div>
+						</div>
+					</div>
+				</div>
+				#{/list}}*
+			</div>
+			<div class="colBreak clear"></div>
+		</div>
+	</div>
+</div>

@@ -112,4 +112,13 @@ public class Auction extends Model {
 	public String toString() {
 		return "Auction [id=" + this.id + ", itemId=" + this.itemId + ", owner=" + this.owner + ", bid=" + this.bid + ", buyout=" + this.buyout + ", quantity=" + this.quantity + ", timeLeft=" + this.timeLeft + "]";
 	}
+	
+	/**
+	 * Auctionjob
+	 * 
+	 */
+	public static void job() {
+		// TODO Auctionjob
+		
+	}
 }

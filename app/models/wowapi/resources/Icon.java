@@ -17,7 +17,7 @@ import play.db.jpa.Model;
  */
 @Entity
 public class Icon extends Model {
-
+	
 	public static Icon setIcon(Long id, String icon) {
 		Icon iq = Icon.find("iconId = ?", id).first();
 		if (iq == null) {
@@ -35,7 +35,7 @@ public class Icon extends Model {
 		}
 		return iq;
 	}
-
+	
 	public Long iconId;
 
 	public String icon;
@@ -61,6 +61,7 @@ public class Icon extends Model {
 		this.icon = icon.toLowerCase();
 		this.lastUpdate = new Date();
 	}
+
 
 	/**
 	 * @return the image

@@ -8,7 +8,7 @@ import play.jobs.Every;
 import play.jobs.Job;
 
 @Every("1mn")
-public class MinuteJob extends Job {
+public class Minute extends Job {
 	@Override
 	public void doJob() {
 		List<Recipe> recipes = Recipe.find("name is null").fetch(5);

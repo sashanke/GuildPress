@@ -2,11 +2,13 @@ import models.wowapi.Armory;
 import models.wowapi.guild.Guild;
 import models.wowapi.resources.CharacterClass;
 import models.wowapi.resources.CharacterRace;
+import models.wowapi.resources.CharacterSpec;
 import models.wowapi.resources.Gender;
 import models.wowapi.resources.GuildPerk;
 import models.wowapi.resources.ItemClass;
 import models.wowapi.resources.RaceClassMap;
 import models.wowapi.resources.Realm;
+import models.wowapi.resources.Role;
 import models.wowapi.resources.Side;
 import models.wowapi.resources.Skill;
 import models.wowapi.resources.SkillCategorie;
@@ -57,23 +59,19 @@ public class Bootstrap extends Job {
 			Guild.createGuild(Play.configuration.getProperty("wowapi.guildName"), Play.configuration.getProperty("wowapi.realmName"));
 		}
 
+		if (Role.findAll().size() == 0) {
+			Role.createRoles();
+		}
+		
+		if (CharacterSpec.findAll().size() == 0) {
+			CharacterSpec.createSpecs();
+		}
+		
+
+		
 		Source.createSources();
 		SkillCategorie.createSkillCategories();
 		Skill.createSkills();
-
-		// {"-6":"Haustiere","-5":"Reittiere","-4":"Völkerfertigkeiten","6":"Waffenfertigkeiten","8":"Rüstungssachverstand","9":"Nebenberufe","10":"Sprachen","11":"Berufe"}
-
-		// List<Recipe> recipes = Recipe.find("lastUpdate between ? and ?",new
-		// Date(new Date().getTime() - 1900000L),new Date()).fetch();
-		//
-		// for (Recipe recipe : recipes) {
-		// recipe.setTooltip();
-		// }
-
-		// Item.setItem(3371L); //Kristallphiole
-		// Item.setItem(52980L); //Makelloser Balg
-		// Item.setItem(3819L); //Drachenzahn
-
 	}
 
 }

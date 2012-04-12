@@ -35,11 +35,10 @@
 		</div>
 		<div class="right form-content">
 			<div class="content">
-				<p><input type="text" name="title" id="title" value="${params.title}" />
-				<input type="text" name="description" id="description" value="${params.description}" /></p>
-				<p><input type="text" name="image" id="image" value="${params.image}" />
+				<p>Titel: <input type="text" name="title" id="title" value="${params.title}" />	Beschreibung: <input type="text" name="description" id="description" value="${params.description}" /></p>
+				#{if user.isNewsAdmin}<p><input type="text" name="image" id="image" value="${params.image}" />
 				<input type="text" name="frontpageImage" id="frontpageImage" value="${params.frontpageImage}" />
-				<input type="text" name="frontpageAbstract" id="frontpageAbstract" value="${params.frontpageAbstract}" /></p>				
+				<input type="text" name="frontpageAbstract" id="frontpageAbstract" value="${params.frontpageAbstract}" /></p>#{/if}				
 				
 				<textarea name="content" id="content">${params.content}</textarea></div>
 			<input type="hidden" name="authorId" value="${user.id}" />

@@ -75,18 +75,7 @@ public class Application extends Controller {
 	}
 
 	public static void index() {
-		// News frontPost = News.find("order by postedAt desc").first();
-		// List<News> olderPosts =
-		// News.find("order by postedAt desc").from(1).fetch(10);
-		//
-
-		User user = User.getConnectedUser(session.get("username"));
-		if (user != null) {
-			user.activity();
-		}
-
 		List<Topic> topics = Topic.find("forum.isNewsBoard = ? ORDER BY created desc", true).fetch();
-
 		render(topics);
 	}
 

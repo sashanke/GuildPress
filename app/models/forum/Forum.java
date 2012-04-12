@@ -56,6 +56,10 @@ public class Forum extends Model {
 		this.postCount = 0L;
 	}
 
+	public List<Topic> getTopics() {
+		return Topic.find("forum = ? order by lastPost.created desc", this).fetch();
+	}
+	
 	public Topic addTopic(User postAuthor, String content, String title, String description, String image, String frontpageImage, String frontpageAbstract) {
 		Topic newTopic = new Topic(this, postAuthor, description, title, image, frontpageImage, frontpageAbstract).save();
 		Post newPost = new Post(newTopic, postAuthor, content, title).save();

@@ -20,6 +20,7 @@ import models.wowapi.resources.CharacterRace;
 import models.wowapi.resources.Gender;
 import models.wowapi.resources.Item;
 import models.wowapi.resources.ItemSlotType;
+import models.wowapi.resources.RaceClassMap;
 import models.wowapi.resources.Realm;
 import play.Logger;
 import play.Play;
@@ -106,6 +107,18 @@ public class Avatar extends Model {
 			}
 		}
 
+		if (avatarJson == null) {
+			avatar.cclass = CharacterClass.all().first();
+			avatar.race = CharacterRace.all().first();
+			avatar.gender = Gender.all().first();
+			avatar.level = 0L;
+			avatar.achievementPoints = 0L;
+			avatar.lastModified = new Date(0L);
+			avatar.isGuildMember = false;
+			avatar.lastUpdate = new Date();
+			return avatar;
+		}
+		
 		if (avatarJson.has("guild")) {
 			String avatarRealm = avatarJson.getAsJsonObject("guild").get("realm").getAsString();
 			String avatarGuildName = avatarJson.getAsJsonObject("guild").get("name").getAsString();

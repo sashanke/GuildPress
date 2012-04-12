@@ -116,6 +116,7 @@ public class Avatar extends Model {
 			avatar.lastModified = new Date(0L);
 			avatar.isGuildMember = false;
 			avatar.lastUpdate = new Date();
+			avatar.save();
 			return avatar;
 		}
 		

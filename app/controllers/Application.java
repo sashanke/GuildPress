@@ -85,7 +85,7 @@ public class Application extends Controller {
 			user.activity();
 		}
 
-		List<Topic> topics = Topic.find("forum.isNewsBoard = ? order by id desc", true).fetch();
+		List<Topic> topics = Topic.find("forum.isNewsBoard = ? ORDER BY created desc", true).fetch();
 
 		render(topics);
 	}
@@ -113,7 +113,7 @@ public class Application extends Controller {
 	}
 
 	public static void postListXml() {
-		List<Topic> topics = Topic.find("forum.isNewsBoard = ? order by id desc", true).fetch(15);
+		List<Topic> topics = Topic.find("forum.isNewsBoard = ? ORDER BY created desc", true).fetch(15);
 		render(topics);
 	}
 

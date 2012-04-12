@@ -1,5 +1,6 @@
 package jobs;
 
+import models.wowapi.Armory;
 import models.wowapi.auction.Auction;
 import models.wowapi.guild.Guild;
 import play.jobs.Every;
@@ -11,5 +12,6 @@ public class Hour extends Job{
 	public void doJob() {
 		Guild.job();
 		Auction.job();
+		Armory.setLastLogs();
 	}
 }

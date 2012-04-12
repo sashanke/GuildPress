@@ -67,7 +67,7 @@ public class Bootstrap extends Job {
 		//	CharacterSpec.createSpecs();
 		//}
 		
-
+		Armory.setLastLogs();
 		
 		Source.createSources();
 		SkillCategorie.createSkillCategories();

@@ -66,3 +66,4 @@ logs/system.out
 logs/application.log
 logs/*.log
 logs/*
+.checkstyle

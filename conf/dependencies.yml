@@ -11,4 +11,4 @@ require:
     - net.sf.jtidy -> jtidy r938
     - org.jsoup -> jsoup 1.6.1
     - net.sf.flexjson -> flexjson 2.1
-    
+    - org.im4java -> im4java 1.2.0

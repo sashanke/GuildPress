@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -9,6 +10,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
+import org.im4java.core.CompositeCmd;
+import org.im4java.core.ConvertCmd;
+import org.im4java.core.IM4JavaException;
+import org.im4java.core.IMOperation;
+import org.im4java.core.Info;
+import org.im4java.core.InfoException;
+import org.im4java.process.ProcessStarter;
 
 import models.wowapi.ApiException;
 import models.wowapi.ArmoryTooltip;
@@ -137,37 +146,87 @@ public class Service extends Controller {
 		}
 	}
 
-	public static void update() throws ApiException, SQLException {
+	public static void update() throws ApiException, SQLException, IOException, InterruptedException, IM4JavaException {
 
-		Gson gson = new Gson();
-		AuctionDump result = gson.fromJson(FetchSite.fetch("http://eu.battle.net/auction-data/04dcab1403d283a261d5d416a1e151a7/auctions.json", FetchType.API).response, AuctionDump.class);
-		List<Auction> auctions = result.get(Faction.ALLIANCE).getAuctions();
-		Connection con = DB.getConnection();
-		con.setAutoCommit(false);
-		PreparedStatement ps = con.prepareStatement("REPLACE INTO Auction (`id`, `itemId`, `owner`, `bid`, `buyout`, `quantity`, `timeLeft`, `faction`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-		int cnt = 0;
-		int comcnt = 0;
-		for (Auction auction : auctions) {
-			cnt++;
+		
+		
+		String myPath="C:\\Program Files (x86)\\ImageMagick-6.7.6-Q16";
+		ProcessStarter.setGlobalSearchPath(myPath);
+		
+		
+		String image1 = "C:\\nom\\GuildPress\\public\\tabard\\png\\hooks.png";
+		String image2 = "C:\\nom\\GuildPress\\public\\tabard\\png\\emblem_164.png";
+		String image3 = "C:\\nom\\GuildPress\\public\\tabard\\png\\border_00.png";
+		String image4 = "C:\\nom\\GuildPress\\public\\tabard\\png\\overlay_00.png";
+		String image5 = "C:\\nom\\GuildPress\\public\\tabard\\png\\bg_00.png";
+		String image6 = "C:\\nom\\GuildPress\\public\\tabard\\png\\shadow_00.png";
+		String image7 = "C:\\nom\\GuildPress\\public\\tabard\\png\\ring-alliance.png";
+		
+		String imageOut = "C:\\nom\\GuildPress\\public\\tabard\\png\\test.png";
+		
+		Info imageInfo = new Info(image1,true);
+		System.out.println("Format: " + imageInfo.getImageFormat());
+		System.out.println("Width: " + imageInfo.getImageWidth());
+		System.out.println("Height: " + imageInfo.getImageHeight());
+		System.out.println("Geometry: " + imageInfo.getImageGeometry());
+		System.out.println("Depth: " + imageInfo.getImageDepth());
+		System.out.println("Class: " + imageInfo.getImageClass());
+		
+		
+		//Long[] _position = new Long[0]{};
+//				[
+//		 			[ 0, 0, (_width*216/240), (_width*216/240) ],
+//		 			[ (_width*18/240), (_width*27/240), (_width*179/240), (_width*216/240) ],
+//		 			[ (_width*18/240), (_width*27/240), (_width*179/240), (_width*210/240) ],
+//		 			[ (_width*18/240), (_width*27/240), (_width*179/240), (_width*210/240) ],
+//		 			[ (_width*31/240), (_width*40/240), (_width*147/240), (_width*159/240) ],
+//		 			[ (_width*33/240), (_width*57/240), (_width*125/240), (_width*125/240) ],
+//		 			[ (_width*18/240), (_width*27/240), (_width*179/240), (_width*32/240) ]
+//		 		];
+		
+	
 
-			ps.setLong(1, auction.getId());
-			ps.setLong(2, auction.getItemId());
-			ps.setString(3, auction.getOwner());
-			ps.setLong(4, auction.getBid());
-			ps.setLong(5, auction.getBuyout());
-			ps.setLong(6, auction.getQuantity());
-			ps.setString(7, auction.getTimeLeft());
-			ps.setInt(8, Faction.ALLIANCE.getFaction());
-			ps.executeUpdate();
-			comcnt++;
+		// create the operation, add images and operators/options
+		IMOperation op = new IMOperation();
+		op.addImage("[179x32+10+20]");  // read and crop second image
+		op.addImage("[216x216+0+0]");  // read and crop first image
 
-			if (comcnt == 500) {
-				comcnt = 0;
-				con.commit();
-			}
-		}
-		Logger.info("[Auction][insert] " + cnt + " eingefügt ");
-		con.commit();
+		op.addImage();
+
+		
+		CompositeCmd composite = new CompositeCmd();
+		
+		composite.run(op,image1,image7,imageOut);
+		
+//		Gson gson = new Gson();
+//		AuctionDump result = gson.fromJson(FetchSite.fetch("http://eu.battle.net/auction-data/04dcab1403d283a261d5d416a1e151a7/auctions.json", FetchType.API).response, AuctionDump.class);
+//		List<Auction> auctions = result.get(Faction.ALLIANCE).getAuctions();
+//		Connection con = DB.getConnection();
+//		con.setAutoCommit(false);
+//		PreparedStatement ps = con.prepareStatement("REPLACE INTO Auction (`id`, `itemId`, `owner`, `bid`, `buyout`, `quantity`, `timeLeft`, `faction`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+//		int cnt = 0;
+//		int comcnt = 0;
+//		for (Auction auction : auctions) {
+//			cnt++;
+//
+//			ps.setLong(1, auction.getId());
+//			ps.setLong(2, auction.getItemId());
+//			ps.setString(3, auction.getOwner());
+//			ps.setLong(4, auction.getBid());
+//			ps.setLong(5, auction.getBuyout());
+//			ps.setLong(6, auction.getQuantity());
+//			ps.setString(7, auction.getTimeLeft());
+//			ps.setInt(8, Faction.ALLIANCE.getFaction());
+//			ps.executeUpdate();
+//			comcnt++;
+//
+//			if (comcnt == 500) {
+//				comcnt = 0;
+//				con.commit();
+//			}
+//		}
+//		Logger.info("[Auction][insert] " + cnt + " eingefügt ");
+//		con.commit();
 
 		// Recipe recipe = Recipe.find("spellId = ?", 17635L).first();
 		// recipe.setTooltip();

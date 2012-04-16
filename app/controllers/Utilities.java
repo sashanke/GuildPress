@@ -1,5 +1,6 @@
 package controllers;
 
+import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -10,6 +11,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
+import org.im4java.core.ConvertCmd;
+import org.im4java.core.Info;
+import org.im4java.core.InfoException;
+import org.im4java.process.ProcessStarter;
 
 import play.Logger;
 import play.libs.WS;
@@ -29,11 +35,11 @@ public class Utilities extends Controller {
 		renderNPCAvatar(name);
 	}
 
-	public static void fetchTabardImages(String name) {
+	public static void fetchTabardImages(String name) throws InfoException {
 		renderAvatar(name);
 	}
 
-	public static void renderAvatar(String thumbnail) {
+	public static void renderAvatar(String thumbnail) throws InfoException {
 		Map<String, File> files = new HashMap<String, File>();
 		Map<String, Boolean> test = new HashMap<String, Boolean>();
 
@@ -59,13 +65,16 @@ public class Utilities extends Controller {
 			}
 		}
 
+		File file = files.get("png");
+		
+		
 		if (!test.containsValue(true) && thumbnail != null) {
 			Logger.info("Hole: http://eu.battle.net/wow/static/images/guild/tabards/" + thumbnail);
 			WSRequest wsr = WS.url("http://eu.battle.net/wow/static/images/guild/tabards/" + thumbnail + "");
 			HttpResponse hr = wsr.get();
 			if (hr.success()) {
 
-				File file = files.get(hr.getContentType().substring(6));
+				file = files.get(hr.getContentType().substring(6));
 
 				File tmp = new File(org.apache.commons.io.FilenameUtils.getPath(file.getPath()));
 
@@ -98,6 +107,11 @@ public class Utilities extends Controller {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				
+				
+
+				
+				
 			}
 		}
 

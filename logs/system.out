@@ -1,9 +1,0 @@
-2012-04-16 10:56:06,301 INFO  [main] play: Starting /home/guildpress/guildpress
-2012-04-16 10:56:06,320 INFO  [main] play: Module greenscript is available (/home/guildpress/guildpress/modules/greenscript-1.2.8)
-2012-04-16 10:56:06,321 INFO  [main] play: Module secure is available (/home/guildpress/play/modules/secure)
-2012-04-16 10:56:06,322 INFO  [main] play: Module crud is available (/home/guildpress/play/modules/crud)
-2012-04-16 10:56:06,323 INFO  [main] play: Module betterlogs is available (/home/guildpress/guildpress/modules/betterlogs-1.0)
-2012-04-16 10:56:06,324 INFO  [main] play: Module log4play is available (/home/guildpress/guildpress/modules/log4play-0.4)
-2012-04-16 10:56:06,325 INFO  [main] play: Module messages is available (/home/guildpress/guildpress/modules/messages-1.3)
-2012-04-16 10:56:07,206 INFO  [main] play: GreenScript-1.2.7> rythm not presented
-2012-04-16 10:56:07,207 INFO  [main] play: Precompiling ...

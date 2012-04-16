@@ -1,9 +1,272 @@
-2012-04-16 10:56:06,301 INFO  [main] play: Starting /home/guildpress/guildpress
-2012-04-16 10:56:06,320 INFO  [main] play: Module greenscript is available (/home/guildpress/guildpress/modules/greenscript-1.2.8)
-2012-04-16 10:56:06,321 INFO  [main] play: Module secure is available (/home/guildpress/play/modules/secure)
-2012-04-16 10:56:06,322 INFO  [main] play: Module crud is available (/home/guildpress/play/modules/crud)
-2012-04-16 10:56:06,323 INFO  [main] play: Module betterlogs is available (/home/guildpress/guildpress/modules/betterlogs-1.0)
-2012-04-16 10:56:06,324 INFO  [main] play: Module log4play is available (/home/guildpress/guildpress/modules/log4play-0.4)
-2012-04-16 10:56:06,325 INFO  [main] play: Module messages is available (/home/guildpress/guildpress/modules/messages-1.3)
-2012-04-16 10:56:07,206 INFO  [main] play: GreenScript-1.2.7> rythm not presented
-2012-04-16 10:56:07,207 INFO  [main] play: Precompiling ...
+Listening for transport dt_socket at address: 8000
+2012-04-16 11:09:39,788 INFO  [main] play: Starting /home/guildpress/guildpress
+2012-04-16 11:09:39,801 INFO  [main] play: Module greenscript is available (/home/guildpress/guildpress/modules/greenscript-1.2.8)
+2012-04-16 11:09:39,802 INFO  [main] play: Module secure is available (/home/guildpress/play/modules/secure)
+2012-04-16 11:09:39,809 INFO  [main] play: Module crud is available (/home/guildpress/play/modules/crud)
+2012-04-16 11:09:39,809 INFO  [main] play: Module betterlogs is available (/home/guildpress/guildpress/modules/betterlogs-1.0)
+2012-04-16 11:09:39,810 INFO  [main] play: Module log4play is available (/home/guildpress/guildpress/modules/log4play-0.4)
+2012-04-16 11:09:39,810 INFO  [main] play: Module messages is available (/home/guildpress/guildpress/modules/messages-1.3)
+2012-04-16 11:09:42,405 INFO  [main] play: GreenScript-1.2.7> rythm not presented
+2012-04-16 11:09:42,408 WARN  [main] play: You're running Play! in DEV mode
+2012-04-16 11:09:42,745 INFO  [main] play: Listening for HTTP at /127.0.0.1:9000 (Waiting a first request to start) ...
+2012-04-16 11:10:47,382 INFO  [play-thread-1] play: GreenScript-1.2.7> minimizer initialized
+2012-04-16 11:10:47,383 DEBUG [play-thread-1] play: route added: /public/gs/{key} handled by greenscript.Service.getInMemoryCache
+2012-04-16 11:10:47,736 INFO  [play-thread-1] play: GreenScript-1.2.7> dependency loaded
+2012-04-16 11:10:47,736 INFO  [play-thread-1] play: GreenScript-1.2.7> initialized
+2012-04-16 11:10:50,478 INFO  [play-thread-1] play: Connected to jdbc:mysql://localhost/guildpress?useUnicode=yes&characterEncoding=UTF-8
+2012-04-16 11:10:58,918 INFO  [play-thread-1] play: Application 'GuildPress' is now started !
+2012-04-16 12:11:00,237 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/Guild.java:88] fetchGuild() ::  [Guild][fetchGuild] Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:00,254 INFO  [jobs-thread-4] play: [%s:%s] %s() ::  [Armory][fetchFromArmory][url] http://eu.battle.net/api/wow/guild/Anub%27arak/Novus%20Ordo%20Mundi?locale=de_DE&fields=achievements,members
+2012-04-16 12:11:00,779 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:50] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:00,819 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Amemiel Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:00,820 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/95/185183-avatar.jpg
+2012-04-16 12:11:00,882 ERROR [jobs-thread-4] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Amemiel nicht vom UpdateJob holen. (404)
+2012-04-16 12:11:00,902 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Gobbo Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:00,903 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/229/186853-avatar.jpg
+2012-04-16 12:11:00,989 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Aneca Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:00,990 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/93/197213-avatar.jpg
+2012-04-16 12:11:01,183 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Saarzwerg Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:01,184 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/132/203908-avatar.jpg
+2012-04-16 12:11:01,302 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Farramir Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:01,302 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/85/420693-avatar.jpg
+2012-04-16 12:11:01,372 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Shaadaa Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:01,372 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/17/449553-avatar.jpg
+2012-04-16 12:11:01,544 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Sayumi Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:01,544 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/96/479328-avatar.jpg
+2012-04-16 12:11:01,776 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Arramis Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:01,778 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/57/486969-avatar.jpg
+2012-04-16 12:11:02,091 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Salinia Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:02,092 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/187/494779-avatar.jpg
+2012-04-16 12:11:02,225 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Faludi Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:02,226 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/224/514784-avatar.jpg
+2012-04-16 12:11:02,269 ERROR [jobs-thread-4] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Faludi nicht vom UpdateJob holen. (404)
+2012-04-16 12:11:02,289 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Walios Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:02,290 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/234/574954-avatar.jpg
+2012-04-16 12:11:02,459 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Zirrom Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:02,460 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/79/589135-avatar.jpg
+2012-04-16 12:11:02,600 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Andrix Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:02,601 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/141/659597-avatar.jpg
+2012-04-16 12:11:02,746 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Balanor Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:02,747 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/222/797150-avatar.jpg
+2012-04-16 12:11:02,866 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Avatan Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:02,867 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/79/906831-avatar.jpg
+2012-04-16 12:11:02,965 ERROR [jobs-thread-4] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Avatan nicht vom UpdateJob holen. (404)
+2012-04-16 12:11:02,986 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Saarmagier Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:02,994 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/234/944618-avatar.jpg
+2012-04-16 12:11:03,071 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Okan Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:03,072 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/39/1308455-avatar.jpg
+2012-04-16 12:11:03,201 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Ferria Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:03,201 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/93/1509981-avatar.jpg
+2012-04-16 12:11:03,276 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Ahrtas Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:03,277 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/74/1532234-avatar.jpg
+2012-04-16 12:11:03,434 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Shalee Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:03,435 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/194/1708226-avatar.jpg
+2012-04-16 12:11:03,559 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Schaufel Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:03,560 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/54/1759542-avatar.jpg
+2012-04-16 12:11:03,640 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Cable Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:03,641 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/185/1881785-avatar.jpg
+2012-04-16 12:11:03,746 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Atua Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:03,747 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/234/2157546-avatar.jpg
+2012-04-16 12:11:03,851 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Ayenha Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:03,852 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/86/2393686-avatar.jpg
+2012-04-16 12:11:03,982 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Ralled Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:03,983 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/72/2653256-avatar.jpg
+2012-04-16 12:11:04,210 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Damonia Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:04,211 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/175/2774959-avatar.jpg
+2012-04-16 12:11:04,321 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Joossef Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:04,322 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/161/2784417-avatar.jpg
+2012-04-16 12:11:04,389 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Alena Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:04,390 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/90/3482202-avatar.jpg
+2012-04-16 12:11:04,420 ERROR [jobs-thread-4] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Alena nicht vom UpdateJob holen. (404)
+2012-04-16 12:11:04,452 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Marple Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:04,452 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/204/3493580-avatar.jpg
+2012-04-16 12:11:04,550 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Xecutioner Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:04,551 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/210/3562962-avatar.jpg
+2012-04-16 12:11:04,770 ERROR [jobs-thread-4] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Xecutioner nicht vom UpdateJob holen. (404)
+2012-04-16 12:11:04,792 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Sweenydot Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:04,792 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/27/6076443-avatar.jpg
+2012-04-16 12:11:04,869 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Candie Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:04,870 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/188/7571132-avatar.jpg
+2012-04-16 12:11:05,058 ERROR [jobs-thread-4] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Candie nicht vom UpdateJob holen. (404)
+2012-04-16 12:11:05,079 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Ànaconda Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:05,080 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/173/10056621-avatar.jpg
+2012-04-16 12:11:05,153 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Dinei Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:05,154 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/152/10439320-avatar.jpg
+2012-04-16 12:11:05,239 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Aglaya Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:05,240 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/171/12232875-avatar.jpg
+2012-04-16 12:11:05,392 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Magno Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:05,393 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/73/13415497-avatar.jpg
+2012-04-16 12:11:05,550 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Nihma Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:05,551 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/79/16860751-avatar.jpg
+2012-04-16 12:11:05,582 ERROR [jobs-thread-4] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Nihma nicht vom UpdateJob holen. (404)
+2012-04-16 12:11:05,603 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Anácondá Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:05,604 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/12/16866316-avatar.jpg
+2012-04-16 12:11:05,718 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Tretdich Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:05,719 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/250/17936634-avatar.jpg
+2012-04-16 12:11:05,940 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Anrianna Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:05,941 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/245/18025461-avatar.jpg
+2012-04-16 12:11:06,055 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Chatera Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:06,056 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/22/18907158-avatar.jpg
+2012-04-16 12:11:06,160 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Ceitlyn Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:06,161 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/156/20382620-avatar.jpg
+2012-04-16 12:11:06,239 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Grohmbina Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:06,240 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/178/21397682-avatar.jpg
+2012-04-16 12:11:06,595 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Grahmbort Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:06,596 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/90/27240794-avatar.jpg
+2012-04-16 12:11:06,682 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Tasi Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:06,683 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/35/27753507-avatar.jpg
+2012-04-16 12:11:06,782 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Sóriòn Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:06,783 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/233/30822377-avatar.jpg
+2012-04-16 12:11:06,913 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Jakarta Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:06,914 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/32/30914336-avatar.jpg
+2012-04-16 12:11:07,007 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Dikay Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:07,008 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/182/30934198-avatar.jpg
+2012-04-16 12:11:07,191 ERROR [jobs-thread-4] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Dikay nicht vom UpdateJob holen. (404)
+2012-04-16 12:11:07,213 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Leobald Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:07,214 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/136/30955912-avatar.jpg
+2012-04-16 12:11:07,359 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Deadwolf Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:07,359 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/3/31006211-avatar.jpg
+2012-04-16 12:11:07,504 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Grohmarthas Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:07,505 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/98/31017826-avatar.jpg
+2012-04-16 12:11:07,612 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Galana Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:07,613 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/74/31270986-avatar.jpg
+2012-04-16 12:11:07,693 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Zyrria Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:07,694 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/15/31291663-avatar.jpg
+2012-04-16 12:11:07,811 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Shutgunner Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:07,812 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/254/32053502-avatar.jpg
+2012-04-16 12:11:07,927 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Gnomine Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:07,928 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/69/32370245-avatar.jpg
+2012-04-16 12:11:07,997 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Bisuayel Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:07,998 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/78/33072974-avatar.jpg
+2012-04-16 12:11:08,173 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Lyiana Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:08,174 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/221/34100445-avatar.jpg
+2012-04-16 12:11:08,332 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Almanar Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:08,333 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/101/34127205-avatar.jpg
+2012-04-16 12:11:08,471 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Sweenydead Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:08,472 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/60/38449468-avatar.jpg
+2012-04-16 12:11:08,629 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Coffy Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:08,630 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/158/38708126-avatar.jpg
+2012-04-16 12:11:08,794 ERROR [jobs-thread-4] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Coffy nicht vom UpdateJob holen. (404)
+2012-04-16 12:11:08,817 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Alucart Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:08,817 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/86/40280406-avatar.jpg
+2012-04-16 12:11:08,935 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Bunan Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:08,935 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/194/43214530-avatar.jpg
+2012-04-16 12:11:09,056 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Rivêr Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:09,058 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/3/43490819-avatar.jpg
+2012-04-16 12:11:09,160 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Akimbo Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:09,160 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/215/44184535-avatar.jpg
+2012-04-16 12:11:09,250 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Zirroom Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:09,250 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/191/46135487-avatar.jpg
+2012-04-16 12:11:09,286 ERROR [jobs-thread-4] play: [/app/models/wowapi/Armory.java:129] fetchAvatar() ::  Konnte Avatar von Zirroom nicht vom UpdateJob holen. (404)
+2012-04-16 12:11:09,309 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Zèratul Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:09,310 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/210/47681746-avatar.jpg
+2012-04-16 12:11:09,414 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Julyn Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:09,415 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/248/49478136-avatar.jpg
+2012-04-16 12:11:09,590 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Lipsh Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:09,591 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/174/52760750-avatar.jpg
+2012-04-16 12:11:09,718 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Grohmbart Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:09,719 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/241/53954289-avatar.jpg
+2012-04-16 12:11:09,800 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Nibbith Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:09,801 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/50/54042418-avatar.jpg
+2012-04-16 12:11:09,913 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Cortok Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:09,914 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/223/54137055-avatar.jpg
+2012-04-16 12:11:10,093 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Amberian Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:10,093 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/194/55699394-avatar.jpg
+2012-04-16 12:11:10,298 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Lorok Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:10,299 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/204/56124108-avatar.jpg
+2012-04-16 12:11:10,460 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Lèonidas Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:10,461 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/123/57630843-avatar.jpg
+2012-04-16 12:11:10,526 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Ethandriel Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:10,526 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/151/57677975-avatar.jpg
+2012-04-16 12:11:10,654 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Zirrp Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:10,655 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/115/57714803-avatar.jpg
+2012-04-16 12:11:10,770 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Sadlex Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:10,771 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/48/58606640-avatar.jpg
+2012-04-16 12:11:11,050 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Mythicangel Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:11,051 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/114/59684978-avatar.jpg
+2012-04-16 12:11:11,128 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Mariposa Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:11,129 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/97/60288865-avatar.jpg
+2012-04-16 12:11:11,439 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Bóöòse Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:11,440 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/112/60308848-avatar.jpg
+2012-04-16 12:11:11,659 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Lacure Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:11,660 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/175/60438703-avatar.jpg
+2012-04-16 12:11:11,747 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Pawn Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:11,748 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/186/60724922-avatar.jpg
+2012-04-16 12:11:11,815 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Agelicia Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:11,817 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/53/60984373-avatar.jpg
+2012-04-16 12:11:11,921 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Calenria Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:11,921 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/196/61714372-avatar.jpg
+2012-04-16 12:11:11,974 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Chrisar Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:11,975 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/167/62256807-avatar.jpg
+2012-04-16 12:11:12,127 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Littlebottom Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:12,127 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/198/62487494-avatar.jpg
+2012-04-16 12:11:12,270 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Alchiton Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:12,271 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/7/62656775-avatar.jpg
+2012-04-16 12:11:12,426 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Zulmira Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:12,429 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/241/62752753-avatar.jpg
+2012-04-16 12:11:12,639 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Valrineya Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:12,640 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/102/63010918-avatar.jpg
+2012-04-16 12:11:12,756 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Monnky Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:12,757 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/16/63023120-avatar.jpg
+2012-04-16 12:11:12,870 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Larysina Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:12,871 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/45/63221293-avatar.jpg
+2012-04-16 12:11:12,939 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Fenerica Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:12,940 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/23/63467031-avatar.jpg
+2012-04-16 12:11:13,005 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Ralath Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:13,006 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/76/63508044-avatar.jpg
+2012-04-16 12:11:13,101 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Lüpre Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:13,102 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/176/63606448-avatar.jpg
+2012-04-16 12:11:13,254 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Docmiro Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:13,255 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/249/63606521-avatar.jpg
+2012-04-16 12:11:13,375 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Montrax Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:13,375 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/139/64222347-avatar.jpg
+2012-04-16 12:11:13,510 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Lesla Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:13,510 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/68/64304452-avatar.jpg
+2012-04-16 12:11:13,587 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Medizin Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:13,587 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/45/64560685-avatar.jpg
+2012-04-16 12:11:13,696 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Rynei Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:13,696 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/239/64613615-avatar.jpg
+2012-04-16 12:11:13,808 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Arachnon Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:13,809 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/151/64923799-avatar.jpg
+2012-04-16 12:11:13,982 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Grohmbimse Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:13,983 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/214/65136598-avatar.jpg
+2012-04-16 12:11:14,071 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Alumera Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:14,072 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/44/65225516-avatar.jpg
+2012-04-16 12:11:14,216 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Samwise Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:14,217 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/65/65321025-avatar.jpg
+2012-04-16 12:11:14,330 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Tiratrice Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:14,330 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/135/65515911-avatar.jpg
+2012-04-16 12:11:14,487 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Winela Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:14,488 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/223/65567199-avatar.jpg
+2012-04-16 12:11:14,569 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Demroth Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:14,570 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/143/65575055-avatar.jpg
+2012-04-16 12:11:14,783 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Mcnoob Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:14,784 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/225/65575649-avatar.jpg
+2012-04-16 12:11:14,922 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Krykz Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:14,923 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/92/65608028-avatar.jpg
+2012-04-16 12:11:15,141 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Jozie Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:15,142 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/1/65701889-avatar.jpg
+2012-04-16 12:11:15,237 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Rìver Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:15,238 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/234/65771754-avatar.jpg
+2012-04-16 12:11:15,344 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Schmierkäse Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:15,345 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/102/65830502-avatar.jpg
+2012-04-16 12:11:15,429 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Êlfî Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:15,429 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/67/65840451-avatar.jpg
+2012-04-16 12:11:15,508 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Chántâl Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:15,509 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/86/65840470-avatar.jpg
+2012-04-16 12:11:15,587 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Véndor Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:15,588 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/97/65840481-avatar.jpg
+2012-04-16 12:11:15,724 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Melliza Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:15,725 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/151/65957527-avatar.jpg
+2012-04-16 12:11:15,784 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Falstad Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:15,785 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/60/65996348-avatar.jpg
+2012-04-16 12:11:15,867 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Yfúr Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:15,868 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/217/66076377-avatar.jpg
+2012-04-16 12:11:15,933 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Logoß Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:15,933 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/13/66104589-avatar.jpg
+2012-04-16 12:11:16,024 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/GuildMember.java:81] fetchGuildMembers() ::  [GuildMember][fetchGuildMembers] Jaedan Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:16,025 INFO  [jobs-thread-4] play: [/app/models/wowapi/Armory.java:99] fetchAvatar() ::  [Armory][fetchAvatar] http://eu.battle.net/static-render/eu/anubarak/40/66189608-avatar.jpg
+2012-04-16 12:11:16,147 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/Guild.java:172] setGuildAchievements() ::  [Guild][setGuildAchievements] Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:16,617 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/Guild.java:217] setGuildEmblem() ::  [Guild][setGuildEmblem] Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:16,626 INFO  [jobs-thread-4] play: [/app/models/wowapi/guild/Guild.java:251] setGuildRank() ::  [Guild][setGuildRank] Novus Ordo Mundi (Anub'arak (EU))
+2012-04-16 12:11:16,627 INFO  [jobs-thread-4] play: [%s:%s] %s() ::  [Armory][fetchFromWoWProgress][url] http://www.wowprogress.com/guild/eu/anub-arak/Novus%20Ordo%20Mundi/json_rank

@@ -62,3 +62,7 @@ build/config/buildinfo.properties
 
 
 server.pid
+logs/system.out
+logs/application.log
+logs/*.log
+logs/*

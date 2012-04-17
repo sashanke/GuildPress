@@ -834,20 +834,7 @@ public class Armory {
 	}
 
 	public static void setLastLogs() {
-		Logs log = Logs.find("order by lastUpdate desc").first();
-		Boolean update = false;
-		try {
-			if (checkUpdate(new Date(), log.lastUpdate, Armory.QUATERDAYUPDATE)) {
-				update = true;
-			}
-		} catch (NullPointerException e) {
-			update = true;
-		}
-		if (update) {
-			Logger.info("Fetching Logs");
 			fetchLogs();
-		}
-
 	}
 
 	public static void setRealms() {

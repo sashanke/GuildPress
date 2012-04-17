@@ -1,5 +1,6 @@
 package jobs;
 
+import java.util.Date;
 import java.util.List;
 
 import models.wowapi.Armory;
@@ -13,7 +14,7 @@ import play.jobs.Every;
 import play.jobs.Job;
 import play.jobs.On;
 
-@On("10 0 23 * * ?")
+@On("0 15 23 * * ?")
 public class AfterRaid extends Job {
 	@Override
 	public void doJob() {

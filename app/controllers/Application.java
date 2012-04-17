@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -26,9 +27,16 @@ import play.libs.Codec;
 import play.libs.Images;
 import play.mvc.Before;
 import play.mvc.Controller;
+import play.mvc.Http;
+import play.mvc.Http.Header;
+import play.mvc.Http.Request;
 import play.mvc.Scope.Session;
+import play.templates.Template;
+import play.templates.TemplateLoader;
+import play.vfs.VirtualFile;
 import utils.FileUtils;
 import utils.StringUtils;
+import utils.UAgentInfo;
 import flexjson.JSONSerializer;
 
 public class Application extends Controller {
@@ -53,7 +61,6 @@ public class Application extends Controller {
 		}
 
 		renderArgs.put("user", user);
-
 	}
 
 	public static void captcha(String id) {
@@ -78,6 +85,7 @@ public class Application extends Controller {
 		List<Topic> topics = Topic.find("forum.isNewsBoard = ? ORDER BY created desc", true).fetch();
 		render(topics);
 	}
+
 
 	public static void listTagged(String tag) {
 		List<News> posts = News.findTaggedWith(tag);
@@ -194,7 +202,31 @@ public class Application extends Controller {
 		JSONSerializer characterSerializer = new JSONSerializer().include("date", "id", "msg_date", "message", "name", "raw_message", "user.wowCharacter").exclude("*");
 		renderJSON(characterSerializer.serialize(cm));
 	}
+	public static void shoutboxAddMessageMobile(String nickname, String message) {
+		User user = null;
+		if (Session.current().contains("username")) {
+			String username = Session.current().get("username");
+			user = User.getConnectedUser(username);
+		}
 
+		Message cm = new Message(nickname, message, user);
+		cm.save();
+		message = Jsoup.clean(message, Whitelist.none()).trim();
+		cm.raw_message = message;
+
+		if (message.length() > 60) {
+			message = message.substring(0, 60) + " <span class=\"shoutbox-more\" rel=\"/shoutbox/message/" + cm.id + "\">... </span>";
+		}
+
+		message = StringUtils.replaceUrls(message, "shoutbox-url", "target=\"_new\"");
+
+		message = StringUtils.replaceSmilies(message, "/public/images/emoticons/blacy/", "emoteicon noborder", "");
+
+		cm.message = message;
+		cm.save();
+		redirect("/#shoutbox");
+	}
+	
 	public static void shoutboxGetMessage(Long id) {
 		Message cm = Message.findById(id);
 
@@ -210,5 +242,4 @@ public class Application extends Controller {
 		String randomID = Codec.UUID();
 		render(post, randomID);
 	}
-
 }

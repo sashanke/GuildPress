@@ -24,6 +24,7 @@ import play.cache.Cache;
 import play.data.validation.Required;
 import play.data.validation.Validation;
 import play.libs.Codec;
+import play.libs.Crypto;
 import play.libs.Images;
 import play.mvc.Before;
 import play.mvc.Controller;
@@ -43,6 +44,16 @@ public class Application extends Controller {
 
 	@Before
 	static void addDefaults() {
+		
+		Http.Cookie remember = request.cookies.get("rememberme");
+		if (remember != null && remember.value.indexOf("-") > 0) {
+			String sign = remember.value.substring(0, remember.value.indexOf("-"));
+			String username = remember.value.substring(remember.value.indexOf("-") + 1);
+			if (Crypto.sign(username).equals(sign)) {
+				session.put("username", username);
+			}
+		}
+		
 		renderArgs.put("guildTitle", Play.configuration.getProperty("guild.title"));
 		renderArgs.put("guildTag", Play.configuration.getProperty("guild.tag"));
 		renderArgs.put("guildServer", Play.configuration.getProperty("guild.server"));

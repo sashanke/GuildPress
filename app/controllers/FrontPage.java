@@ -34,8 +34,10 @@ public class FrontPage extends Controller {
 		
 		UAgentInfo uai = new UAgentInfo(useragent, accept);
 		renderArgs.put("isIphone", uai.isTierIphone);
+		if (uai.detectMobileLong()) {
+			redirect("/mobile");
+		}
 		
-		redirect("/mobile");
 	}
 
 	public static void index() {

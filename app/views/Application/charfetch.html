@@ -1,10 +1,6 @@
 <div id="char-banner-request">
 <div class="register_avatar">
-	<a href="/character/${avatar.name.toLowerCase().urlEncode()}">
-		<img src="${avatar.image}" height="84" width="84" alt="${avatar.name}s avatar" />
-	</a>
-	<div class="register_character_rank"><a href="" title="${avatar.cclass.name}"><img class="noborder" src="/public/images/class/${avatar.cclass.ccId}.png" height="16" width="16" alt="${avatar.name}s Klasse"/></a></div>
-	<div class="register_character_name"><a href="/character/${avatar.name.toLowerCase().urlEncode()}" class="character character-member character-unverified character-${avatar.cclass.name.toLowerCase()} character-class-wow character-class-wow-${avatar.cclass.name.toLowerCase()} character-name-${avatar.name.toLowerCase()}">${avatar.name}</a></div>
+	<div class="avatar-box">#{avatar avatar:avatar, as:'avatar_with_class_icon' /}</div>
 </div>
 <div class="register_avatar_info">
 	Du hast <span class="text-highlight">${avatar.name}</span> #{if avatar.guild != null}
@@ -13,4 +9,5 @@
 	wenn du dir sicher bist das dies dein World of Warcraft Charakter ist bestätige 
 	es durch einen klick auf den Button "Mitglied werden!"
 </div>
+<div id="avatarId" style="display:none;">${avatar.id}</div>
 </div>

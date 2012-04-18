@@ -81,11 +81,11 @@
 }
 
 
-.post-content ul { color: #F2FAFF;   }
-.post-content ul li { list-style-type:none; margin-left: 7px; padding-left:14px; background: url(/public/images/redbullet.png) no-repeat left 7px;}
-.post-content ul li span { color: #F2FAFF; }
-.post-content ul li span+span {  }
-.post-content ul li p em { display:block; }
+.text-content ul { color: #F2FAFF;   }
+.text-content ul li { list-style-type:none; margin-left: 7px; padding-left:14px; background: url(/public/images/redbullet.png) no-repeat left 7px;}
+.text-content ul li span { color: #F2FAFF; }
+.text-content ul li span+span {  }
+.text-content ul li p em { display:block; }
 
 div.menu {z-index:5;position:relative;top:0px;left:15px;width:968px;height:44px;font-size:14px;padding:0px;text-align: center;}
 

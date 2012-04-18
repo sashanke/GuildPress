@@ -10,7 +10,7 @@
 			$(this).addClass("active");
 			
 			// slide all content up
-			$(".content").slideUp();
+			$(".tab-content").slideUp();
 			
 			// slide this content up
 			var content_show = $(this).attr("href");
@@ -47,7 +47,7 @@
 		var anchor = $(location).attr('hash');
 		if(anchor != "") {
 			$(".active").removeClass("active");
-			$(".content").slideUp();
+			$(".tab-content").slideUp();
 			$("#"+"tab-"+anchor.substring(1)).addClass("active");
 			$(anchor).slideDown();
 			var form_url = $("#switch-pool").attr("action");

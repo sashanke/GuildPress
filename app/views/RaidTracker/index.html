@@ -31,7 +31,7 @@
 		            <li><a href="#tab-addraid" id="tab-tab-addraid" title="Raid Hinzufügen" class="tab">Raid hinzufügen</a></li>
 		        </ul>
 		        
-		        <div id="tab-uebersicht" style="width:100%;" class="content">
+		        <div id="tab-uebersicht" style="width:100%;" class="tab-content">
 		        	<div class="clear raidinfo" style="text-align: center;">
 		        		<br><span><b>Pool:</b> #{if selectedPool == null}Alle#{/if}#{else}${selectedPool.name}#{/else} <b>Raiders:</b> ${members.size()} <b>Raids:</b> ${raids.size()}</span>
 		        	</div>
@@ -153,7 +153,7 @@
 					</table>
 					</div>
 		        </div>
-		        <div id="tab-addraid" class="content">
+		        <div id="tab-addraid" class="tab-content">
 		        	<div class="colBlurb" style="margin-top:5px; margin-bottom:5px;">
 		        	<div class="avatar">
 					<a href="http://www.curse.com/addons/wow/mizusraidtracker" target="_new">

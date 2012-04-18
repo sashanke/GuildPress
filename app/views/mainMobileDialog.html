@@ -1,0 +1,34 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <title>#{get 'title' /}</title>
+        
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        
+        <link rel="icon" href="@{'/public/images/favicon.png'}" sizes="32x32">
+        <link rel="shortcut icon" href="@{'/public/images/favicon.ico'}">
+		<link rel="apple-touch-icon" href="@{'/public/images/touch-icon-iphone.png'}" />
+		<link rel="apple-touch-icon" sizes="72x72" href="@{'/public/images/touch-icon-ipad.png'}" />
+		<link rel="apple-touch-icon" sizes="114x114" href="@{'/public/images/touch-icon-iphone4.png'}" />
+		<link rel="apple-touch-startup-image" href="@{'/public/images/startup.png'}">
+		
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/jquery.mobile-1.1.0.css'}" />
+		#{css output: "all"}
+        #{/css}
+		
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery-1.7.1.min.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.mobile-1.1.0.min.js'}"></script>
+		#{js output: "all"}
+		#{/js}
+		
+	</head>
+	<body>
+		<div data-role="dialog" data-theme="a" id="#{get 'dataId' /}" data-title="#{get 'title' /}">
+			#{doLayout /}
+		</div>
+	</body>
+</html>

@@ -202,30 +202,7 @@ public class Application extends Controller {
 		JSONSerializer characterSerializer = new JSONSerializer().include("date", "id", "msg_date", "message", "name", "raw_message", "user.wowCharacter").exclude("*");
 		renderJSON(characterSerializer.serialize(cm));
 	}
-	public static void shoutboxAddMessageMobile(String nickname, String message) {
-		User user = null;
-		if (Session.current().contains("username")) {
-			String username = Session.current().get("username");
-			user = User.getConnectedUser(username);
-		}
 
-		Message cm = new Message(nickname, message, user);
-		cm.save();
-		message = Jsoup.clean(message, Whitelist.none()).trim();
-		cm.raw_message = message;
-
-		if (message.length() > 60) {
-			message = message.substring(0, 60) + " <span class=\"shoutbox-more\" rel=\"/shoutbox/message/" + cm.id + "\">... </span>";
-		}
-
-		message = StringUtils.replaceUrls(message, "shoutbox-url", "target=\"_new\"");
-
-		message = StringUtils.replaceSmilies(message, "/public/images/emoticons/blacy/", "emoteicon noborder", "");
-
-		cm.message = message;
-		cm.save();
-		redirect("/#shoutbox");
-	}
 	
 	public static void shoutboxGetMessage(Long id) {
 		Message cm = Message.findById(id);

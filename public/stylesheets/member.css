@@ -1,0 +1,17 @@
+
+#tab-addchar, #tab-items { display:none; }
+
+table.dataTable td {
+padding: 0;
+padding-left: 13px;
+vertical-align: middle;
+text-align: center;
+height: 40px;
+}
+
+.datatable_name {
+text-align: left !important;
+}
+.datatable_guild {
+text-align: left !important;
+}

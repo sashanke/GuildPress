@@ -11,6 +11,17 @@
 	</div>
 </div>
 #{/if}
+#{if _as == 'avatar_with_class_icon'}
+<div class="avatar">
+	<div class="character-rank">
+		<img class="noborder" src="/public/images/world-of-warcraft/class-icons/16/${_avatar?.cclass?.name?.toLowerCase()}.png" height="16" width="16" title="${_avatar?.cclass?.name}" alt="${_avatar?.cclass?.name}" />
+	</div>
+		#{name_with_link avatar:_avatar, as:'avatar', image:true /}
+	<div class="character-name">
+		#{name_with_link avatar:_avatar, as:'avatar', image:false /}
+	</div>
+</div>
+#{/if}
 #{if _as == 'topic'}
 <div class="avatar">
 	<div class="character-rank">

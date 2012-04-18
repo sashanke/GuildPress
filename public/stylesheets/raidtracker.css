@@ -1,64 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700|Droid+Sans:700);
 
-/*
-.box {
-	background-color: #0E0F11;
-	border-color: #12202E;
-	border-style: solid;
-	border-width: 1px;
-	color: #F2FAFF;
-	display: block;
-	font-family: arial;
-	font-size: 12px;
-	margin: 0px;
-	padding: 10px;
-	text-align: left;
-}
-*/
-.tabbed_area {
-	border:0;
-	background:0;
-	padding:0;
-	padding-top:7px;
-}
 
-ul.tabs {
-	margin:0px; padding:0px;
-	margin-top:5px;
-	margin-bottom:6px;
-}
-ul.tabs li {
-	list-style:none;
-	display:inline;
-}
-ul.tabs li a {
-	background-color:#0E0F11;
-	color:#282e32;
-	padding:8px 14px 8px 14px;
-	text-decoration:none;
-	font-size:9px;
-	font-weight:bold;
-	text-transform:uppercase;
-	font-family: "Droid Sans", Arial, Helvetica, sans-serif;
-	letter-spacing: 2px;
-	border:1px solid #12202E;
-	border-bottom:0;
-}
-ul.tabs li a:hover {
-	background-color:#262626;
-	border-color:#2f343a;
-}
-ul.tabs li a.active {
-	color:#DFDBC9;
-	border:1px solid #12202E; 
-	border-bottom:0;
-}
-.content {
-	margin-top:-1px;
-	padding:0px;
-	border-top:1px solid #9E0036; 	
-	font-family:Arial, Helvetica, sans-serif;
-}
 #tab-addraid, #tab-items { display:none; }
 
 .pool {
@@ -87,26 +28,4 @@ ul.tabs li a.active {
 	padding:0px;
 	border-top:1px solid #9E0036; 	
 	font-family:Arial, Helvetica, sans-serif;
-}
-ul.tabs li {
-	list-style:none;
-	display:inline;
-}
-ul.tabs li.tab {
-	background-color:#0E0F11;
-	color:#282e32;
-	padding:8px 14px 8px 14px;
-	text-decoration:none;
-	font-size:9px;
-	font-weight:bold;
-	text-transform:uppercase;
-	font-family: "Droid Sans", Arial, Helvetica, sans-serif;
-	letter-spacing: 2px;
-	border:1px solid #12202E;
-	border-bottom:0;
-}
-ul.tabs li.headline {
-	color:#DFDBC9;
-	border:1px solid #12202E; 
-	border-bottom:0;
 }

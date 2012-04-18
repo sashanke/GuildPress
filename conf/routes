@@ -13,6 +13,9 @@ GET         /logout         SecureC.logout
 # Mobile Routes
 GET		/mobile												Mobile.index
 
+# Member Routes
+GET		/member/alt/delete/{<[0-9]+>id}						Member.delAlt
+
 # Service
 GET		/ws/update											Service.update
 GET		/ws/guild/{name}/{realm}/update						Service.updateGuild

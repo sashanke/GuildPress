@@ -1,0 +1,228 @@
+#{extends 'main.html' /} 
+#{set title: 'Character hinzufügen' /}
+#{js "member jquery.dataTables.js" /}
+#{css "member jquery.dataTables.css" /}
+
+<div class="box">
+	<div class="artheadline" style="background: black url(${user.avatar.getAvatarBanner()})  no-repeat top center;">
+		<div class="artheadlinshadow">
+			<div class="postdate" style="width: 40px;">
+			</div>
+			<h2 class="post-title">
+				<a href="@{Char.show(user.avatar.id, user.avatar.name, user.avatar.realm.name)}">${user.avatar.name}</a>
+			</h2>
+			<span class="post-subtitle">${user.avatar.guild?.name}</span>
+		</div>
+	</div>
+	<div class="post">
+		<div class="clear"></div>
+		<div class="tabbed_area">
+	        <ul class="tabs">
+	        	<li><a href="#tab-settings" id="tab-tab-settings" title="Einstellungen" class="tab">Einstellungen</a></li>
+	            <li><a href="#tab-character" id="tab-tab-character" title="Character Übersicht" class="tab active">Übersicht</a></li>
+	            <li><a href="#tab-addchar" id="tab-tab-addchar" title="Character hinzufügen" class="tab">Character hinzufügen</a></li>
+	        </ul>
+	        <div id="tab-settings" style="width:100%;" class="tab-content">
+	        </div>
+	        <div id="tab-character" style="width:100%;" class="tab-content">
+					<table cellpadding="0" cellspacing="0" border="0" class="display" id="datatable-alts">
+					<thead>
+						<tr>
+							<th width="20"></th>
+							<th>Name</th>
+							<th>Gilde</th>
+							<th width="20">Level</th>
+							<th width="20">iLevel</th>
+							<th width="20">Löschen</th>
+						</tr>
+					</thead>
+					<tbody>
+						#{list items:user.alts, as:'avatar'}
+						<tr>
+							<td>#{name_with_link avatar:avatar, as:'icon', image:true, size:'24px' /}</td>
+							<td>#{name_with_link avatar:avatar, as:'avatar', image:false /}</td>
+							<td>${avatar.guild?.name}</td>
+							<td>${avatar.level}</td>
+							<td>${avatar.averageItemLevel}</td>
+							<td><a class="char-remove" href="#${avatar.id}" rel="${avatar.id}"><span class="icon-trash"/>&nbsp;</span></a></td>
+						</tr>									
+						#{/list}
+					</tbody>
+					<tfoot>
+						<tr>
+							<th width="20"></th>
+							<th>Name</th>
+							<th>Gilde</th>
+							<th width="20">Level</th>
+							<th width="20">iLevel</th>
+							<th width="20">Löschen</th>
+						</tr>
+					</tfoot>
+					</table>
+
+
+
+	        </div>
+	        <div id="tab-addchar" class="tab-content">
+	        	<form action="@{Application.register()}" method="get" class="register_form">
+					<input type="text" name="name" class="register_form_charname" size="25" maxlength="100" value="${params.name}">
+					<select name="id">
+						<option value="">Wähle einen Realm</option>
+			 			#{list items:realms, as:'realm'}
+			 			<option value="${realm.id}" #{if params.id != null && realm.id.toLong() == params.id.toLong()} selected="selected" #{/if} >${realm.name} (${realm.region})</option>
+			 			#{/list}
+					</select>
+					<input id="register_form_submit_button" type="submit" value=" Absenden ">
+				</form>
+				<div id="char-banner"></div>
+				<div class="register_mitglied_werden">
+					<form action="" method="get" class="register_form">
+						<input id="add_alt_form_submit_button" type="submit" value="Hinzufügen!">
+					</form>
+				</div>
+	        </div>
+	    </div>
+   		<div class="colBreak clear"></div>
+   		<br>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+$('.register_mitglied_werden').hide();
+// click event für submit button
+$('#register_form_submit_button').click(function() {
+
+	// Daten von den HTML Feldern in JS-Vars übersetzen
+	var name = $('input[name=name]');
+	var realm = $('select[name=id]');
+
+	if (name.val() == "") {
+		$("#dialog-form-error").dialog("open")
+		return false;
+	}
+	if (realm.val() == "") {
+		$("#dialog-form-error").dialog("open")
+		return false;
+	}
+	// die Daten sollen per GET an das PHP Skript weitergeleitet werden.
+	// Dafür bauen wir einen
+	// String
+	var data = 'name=' + name.val() + '&id=' + realm.val();
+
+	// alle Textfelder deaktivieren
+	$('.text').attr('disabled', 'true');
+
+	// Request abschicken
+	$.ajax({
+		// Ort des Skriptes in dem die per GET übertragenen Daten
+		// verarbeitet werden sollen
+		url : "@{Application.charfetch()}",
+		// Angabe der GET Methode, auch POST wäre möglich. Allerdings nur
+		// sinnvoll
+		// bei größeren Datenmengen
+		type : "GET",
+		// Daten die gesendet werden sollen
+		data : data,
+		beforeSend : function() {
+			$.blockUI({
+				message : $('#waitMessage'),
+				css : {
+					backgroundColor : 'transparent',
+					border : '0'
+				}
+			});
+		},
+		error : function() {
+			$.unblockUI();
+		},
+		// bei Antwort des Requests (Response)
+		success : function(html) {
+			// wenn Response true bzw. den Status 1 zurückliefert
+
+			$("#char-banner-request").remove();
+			$("#char-banner").append(html);
+
+			// if (reqCode==1) {
+			// verstecken des Formulars
+			// $('.register_mitglied_werden').fadeOut('slow');
+			// anzeigen der Erfolgsmeldung
+			$.unblockUI();
+			$('.register_mitglied_werden').fadeIn('slow');
+			
+			// wenn der Request eine Form von false zurückschickt, Fehler
+			// ausgeben.
+			// } else{
+			// alert(reqCode);
+			// }
+		}
+	});
+
+	return false;
+	// der return wird benötigt, damit das Formular nicht tatsächlich
+	// abgeschickt wird und
+	// sich nicht wie ein normales Form mit Seiten Refresh verhält.
+});
+
+$('#add_alt_form_submit_button').click(function() {
+
+	// Daten von den HTML Feldern in JS-Vars übersetzen
+	var name = $('input[name=name]');
+	var id = $('#avatarId').text();
+
+	if (name.val() == "") {
+		$("#dialog-form-error").dialog("open")
+		return false;
+	}
+	if (id == "") {
+		$("#dialog-form-error").dialog("open")
+		return false;
+	}
+	// die Daten sollen per GET an das PHP Skript weitergeleitet werden.
+	// Dafür bauen wir einen
+	// String
+	var data = 'name=' + name.val() + '&id=' + id;
+
+	// alle Textfelder deaktivieren
+	$('.text').attr('disabled', 'true');
+
+	// Request abschicken
+	$.ajax({
+		// Ort des Skriptes in dem die per GET übertragenen Daten
+		// verarbeitet werden sollen
+		url : "@{Member.addAlt()}",
+		// Angabe der GET Methode, auch POST wäre möglich. Allerdings nur
+		// sinnvoll
+		// bei größeren Datenmengen
+		type : "GET",
+		// Daten die gesendet werden sollen
+		data : data,
+		beforeSend : function() {
+			$.blockUI({
+				message : $('#waitMessage'),
+				css : {
+					backgroundColor : 'transparent',
+					border : '0'
+				}
+			});
+		},
+		error : function() {
+			$.unblockUI();
+			$("#dialog-form-error").dialog("open")
+			return false;
+		},
+		// bei Antwort des Requests (Response)
+		success : function(html) {
+			// wenn Response true bzw. den Status 1 zurückliefert
+			location.reload(true);
+			$.unblockUI();
+		}
+	});
+
+	return false;
+	// der return wird benötigt, damit das Formular nicht tatsächlich
+	// abgeschickt wird und
+	// sich nicht wie ein normales Form mit Seiten Refresh verhält.
+});
+
+</script>

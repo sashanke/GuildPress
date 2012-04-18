@@ -1,0 +1,80 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700|Droid+Sans:700);
+#char-banner {
+	margin-top: 7px;
+	margin-bottom: 7px;
+}
+.tabbed_area {
+	border:0;
+	background:0;
+	padding:0;
+	padding-top:7px;
+}
+.tab-content {
+	margin-top:-1px;
+	padding:0px;
+	border-top:1px solid #9E0036; 	
+	font-family:Arial, Helvetica, sans-serif;
+}
+ul.tabs {
+	margin:0px; padding:0px;
+	margin-top:5px;
+	margin-bottom:6px;
+}
+ul.tabs li {
+	list-style:none;
+	display:inline;
+}
+ul.tabs li a {
+	background-color:#0E0F11;
+	color:#282e32;
+	padding:8px 14px 8px 14px;
+	text-decoration:none;
+	font-size:9px;
+	font-weight:bold;
+	text-transform:uppercase;
+	font-family: "Droid Sans", Arial, Helvetica, sans-serif;
+	letter-spacing: 2px;
+	border:1px solid #12202E;
+	border-bottom:0;
+}
+ul.tabs li a:hover {
+	background-color:#262626;
+	border-color:#2f343a;
+}
+ul.tabs li a.active {
+	color:#DFDBC9;
+	border:1px solid #12202E; 
+	border-bottom:0;
+}
+ul.tabs li {
+	list-style:none;
+	display:inline;
+}
+ul.tabs li.tab {
+	background-color:#0E0F11;
+	color:#282e32;
+	padding:8px 14px 8px 14px;
+	text-decoration:none;
+	font-size:9px;
+	font-weight:bold;
+	text-transform:uppercase;
+	font-family: "Droid Sans", Arial, Helvetica, sans-serif;
+	letter-spacing: 2px;
+	border:1px solid #12202E;
+	border-bottom:0;
+}
+ul.tabs li.headline {
+	color:#DFDBC9;
+	border:1px solid #12202E; 
+	border-bottom:0;
+}
+div.thinline {
+height: 1px;
+background-color: #950505;
+background-color: #C30;
+background-color: #9E0036;
+overflow: hidden;
+margin-bottom: 10px;
+margin-top: 0px;
+padding-top:0px;
+}

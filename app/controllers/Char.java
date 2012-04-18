@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.User;
 import models.raidtracker.Raid;
 import models.raidtracker.RaidItem;
 import models.raidtracker.RaidMember;
@@ -70,6 +71,8 @@ public class Char extends Controller {
 		// }
 		// }
 
+		session.put("lastPage", request.url);
+		
 		List<RaidItem> raidItems = new ArrayList<RaidItem>();
 		RaidMember raidMember = RaidMember.findByName(name);
 		List<RaidItem> mitems = RaidItem.find("order by raid desc").fetch();
@@ -91,9 +94,11 @@ public class Char extends Controller {
 			}
 		}
 
+		User avatarUser = User.find("select distinct u from User u join u.alts as a where a.id = ?", id).first();
+		
 		Avatar avatar = Avatar.findById(id);
 		List<AvatarItem> items = AvatarItem.getOrderedItemList(avatar);
-		render(avatar, items, raidMember, raidItems, raids);
+		render(avatar, items, raidMember, raidItems, raids, avatarUser);
 	}
 
 	public static void showArmoryItemTooltip(Long avatarItemId) {

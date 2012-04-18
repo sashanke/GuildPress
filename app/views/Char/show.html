@@ -1,5 +1,5 @@
 #{extends 'main.html' /} 
-#{set title: avatar.name + ' von ' + (avatar.isGuildMember ? guildTitle : avatar.guild.name) /}
+#{set title: avatar.name + ' von ' + (avatar.isGuildMember ? guildTitle : avatar.guild?.name) /}
 #{js "char" /}
 #{css "char" /}
 <div class="box">
@@ -46,9 +46,12 @@
 		</div>
 		
 		
-		<div class="colBreak clear"></div>
+     		<ul class="tabs">
+		    	<li class="tab headline">Raidaktivität</li>
+		    </ul>
+		    <div class="thinline"></div>     
 		
-		<br>
+
         	
         	<div class="avatar left" style="padding-right: 10px;">
 					#{avatar avatar:avatar, as:'avatar' /}
@@ -100,6 +103,23 @@
 			</div>
 			<div class="clear"></div>
 			<br>
+     		<ul class="tabs">
+		    	<li class="tab headline">Twinks</li>
+		    </ul>
+		    <div class="thinline"></div>
+		    #{if avatarUser != null && avatarUser.alts.size() > 0}  		
+     		<div class="roster">
+        	%{cnt = 0}%
+			#{list items:avatarUser.alts, as:'member'}
+			#{if cnt == 0}<div class="avatar_row">#{/if}
+				<div class="avatar_box #{if cnt == 0}avatar_box_first#{/if}#{elseif cnt == 6}avatar_box_last#{/elseif}">
+				#{avatar avatar:member, as:'avatar_with_class_icon' /}
+				</div>
+			#{if cnt == 6 || member_isLast}</div>#{/if}
+				%{cnt++; if(cnt == 7) cnt=0;}%
+			#{/list}
+			</div>
+     		#{/if}#{else}<div style="text-align: center; width: 100%;"><h3>${avatar.name} hat bisher keine Twinks angegeben!</h3>#{if session.username && user != null}<br>Dein Twink? <a href="@{Member.addAlt(avatar.name,avatar.id)}">Hinzufügen!</a>#{/if}</div>#{/else}
      		<div class="colBreak"></div>
      		<br>
 	</div>

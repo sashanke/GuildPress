@@ -13,6 +13,7 @@ import play.data.validation.Validation;
 import play.libs.Crypto;
 import play.mvc.Before;
 import play.mvc.Controller;
+import play.mvc.Http;
 import play.mvc.Http.Request;
 import play.mvc.Scope.Session;
 import utils.StringUtils;
@@ -22,8 +23,6 @@ public class Mobile extends Controller {
 	@Before
 	static void addDefaults() {
 		Application.addDefaults();
-		//System.out.println(request.action);
-		System.out.println(request.url);
 	}
 //	@Before
 //	static void setFormat() {		
@@ -83,10 +82,11 @@ public class Mobile extends Controller {
 			flash.keep("url");
 			flash.error("secure.error");
 			params.flash();
-			redirect("/#shoutbox");
+			redirect("/mobile/login");
 		}
 		// Mark user as connected
 		session.put("username", username);
+		response.setCookie("rememberme", Crypto.sign(username) + "-" + username, "30d");
 		// Remember if needed
 		if (remember) {
 			response.setCookie("rememberme", Crypto.sign(username) + "-" + username, "30d");

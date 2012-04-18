@@ -1,0 +1,26 @@
+#{extends 'mainMobileDialog.html' /} #{set title: '[NOM] Login von ' + guildTitle /} #{set shortTitle: 'Login' /} #{set dataId: 'login' /} #{js "mobile" /} #{css "mobile" /}
+<!-- start content -->
+	<div data-role="header" data-theme="a">
+		<h1>Login</h1>
+	</div>
+	<div data-role="content" data-inset="true">
+		<form action="@{Mobile.dologin()}" method="get" data-ajax="false" id="form-shoutbox">
+			#{if flash.error}
+			<p id="box-login-error" class="msg error colBlurb">&{flash.error}</p>
+			#{/if} #{if flash.success}
+			<p id="box-login-success" class="msg success colBlurb">&{flash.success}</p>
+			#{/if}
+	
+			<p id="username-field">
+				<label class="username" for="username">Email</label> <input class="username" type="text" name="username" id="username" value="${flash.username}" />
+			</p>
+			<p id="password-field">
+				<label class="password" for="password">Passwort</label> <input class="password" type="password" name="password" id="password" value="" />
+			</p>
+			<p id="remember-field">
+				<label class="remember" for="remember">Merken</label> <input class="remember" type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true" ' : ''} />
+			</p>
+			<input type="submit" id="box-login-signin" value="Einloggen" />
+		</form>
+	</div>
+<!-- end content -->

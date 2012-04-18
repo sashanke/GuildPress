@@ -1,0 +1,17 @@
+#{extends 'mainMobile.html' /} #{set title: '[NOM] Neuigkeiten von ' + guildTitle /} #{set shortTitle: 'Neuigkeiten' /} #{set dataId: 'neuigkeiten' /} #{js "mobile" /} #{css "mobile" /}
+<!-- start content -->
+	<div data-role="content" data-inset="true">
+		<div id="welcome-message" style="margin-top: 5px; margin-bottom: 5px;" class="ui-body ui-body-a ui-corner-all">
+			<center><h2>Willkommen</h2></center>
+			<center><p>${guildTitle} - Mobile Info Center</p></center>
+		</div>
+		<div data-role="collapsible-set" data-theme="a" data-content-theme="a">
+			#{if topics.size() > 0} #{list items:topics, as:'topic'}
+			<div data-role="collapsible" data-collapsed="true">
+				<h3>${topic.title}</h3>
+				<p>${topic.firstPost.content.raw()}</p>
+			</div>
+			#{/list} #{/if}
+		</div>
+	</div>
+<!-- end content -->

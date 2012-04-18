@@ -10,6 +10,9 @@ GET         /logout         SecureC.logout
 #Import Messages routes
 *     /    module:messages
 
+# Mobile Routes
+GET		/mobile												Mobile.index
+
 # Service
 GET		/ws/update											Service.update
 GET		/ws/guild/{name}/{realm}/update						Service.updateGuild

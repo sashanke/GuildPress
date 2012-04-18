@@ -21,9 +21,7 @@ public class FrontPage extends Controller {
 	@Before
 	static void addDefaults() {
 		Application.addDefaults();
-	}
-	@Before
-	static void setFormat() {		
+		
 		String useragent = "";
 		String accept = "";
 
@@ -33,57 +31,16 @@ public class FrontPage extends Controller {
 		} catch (NullPointerException e) {
 			// TODO: handle exception
 		}
-
-		renderArgs.put("header.user-agent", useragent);
-		renderArgs.put("header.accept", accept);
-
+		
 		UAgentInfo uai = new UAgentInfo(useragent, accept);
 		renderArgs.put("isIphone", uai.isTierIphone);
 		
-		System.out.println(uai.detectMobileLong());
-		
-		if (uai.detectMobileLong()) {
-			request.format = "mobile";
-		}
-		response.setHeader("Content-Type", "text/html; charset=utf-8");
+		redirect("/mobile");
 	}
+
 	public static void index() {
-		List<Message> shouts = Message.find("order by date desc").fetch(10);
-		List<Topic> topics = Topic.find("forum.isNewsBoard = ? ORDER BY created desc", true).fetch();
-		render(topics,shouts);
+		render();
 	}
 	
-	public static void login(@Required String username, String password, boolean remember) throws Throwable {
-		// Check tokens
-		Boolean allowed = false;
 
-		User check = User.connect(username, password);
-		
-		if (check != null) {
-			allowed = true;
-		}
-		
-		if (Validation.hasErrors() || !allowed) {
-			flash.keep("url");
-			flash.error("secure.error");
-			params.flash();
-			redirect("/#shoutbox");
-		}
-		// Mark user as connected
-		session.put("username", username);
-		// Remember if needed
-		if (remember) {
-			response.setCookie("rememberme", Crypto.sign(username) + "-" + username, "30d");
-		}
-		
-		redirect("/#shoutbox");
-	}
-
-	public static void logout() throws Throwable {
-		session.clear();
-		response.removeCookie("rememberme");
-		flash.success("secure.logout");
-		String url = flash.get("url");
-		redirect("/");
-	}
 }

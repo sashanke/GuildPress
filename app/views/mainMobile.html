@@ -1,0 +1,53 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <title>#{get 'title' /}</title>
+        
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        
+        <link rel="icon" href="@{'/public/images/favicon.png'}" sizes="32x32">
+        <link rel="shortcut icon" href="@{'/public/images/favicon.ico'}">
+		<link rel="apple-touch-icon" href="@{'/public/images/touch-icon-iphone.png'}" />
+		<link rel="apple-touch-icon" sizes="72x72" href="@{'/public/images/touch-icon-ipad.png'}" />
+		<link rel="apple-touch-icon" sizes="114x114" href="@{'/public/images/touch-icon-iphone4.png'}" />
+		<link rel="apple-touch-startup-image" href="@{'/public/images/startup.png'}">
+		
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/jquery.mobile-1.1.0.css'}" />
+		#{css output: "all"}
+        #{/css}
+        <style type="text/css">
+        	.ui-icon-nom {
+				background: url(@{'/public/images/touch-icon-iphone.png'}) 50% 50% no-repeat;
+				background-size: 18px 18px;
+			}
+        </style>
+		
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery-1.7.1.min.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.mobile-1.1.0.min.js'}"></script>
+		#{js output: "all"}
+		#{/js}
+		
+	</head>
+	<body>
+		<div data-role="page" data-theme="a" id="#{get 'dataId' /}" data-title="#{get 'title' /}">
+			<div data-theme="a" data-position="inline" data-role="header">
+				#{if !session.username && user == null}<a href="@{Mobile.login()}" data-icon="nom" data-rel="dialog" class="ui-btn-left"  data-transition="slideup">Login</a>#{/if}
+				#{else}<a href="@{Mobile.dologout()}" data-icon="nom" class="ui-btn-left"  data-transition="slideup">Logout</a>#{/else}
+				<h3>#{get 'shortTitle' /}</h3>
+			</div>
+			#{doLayout /}
+			<div data-role="footer" data-position="fixed" data-fullscreen="true">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="@{Mobile.news()}" class="${request?.action == 'Mobile.news' ? 'ui-btn-active ui-state-persist' : ''}" data-transition="slidedown">News</a></li>
+						<li><a href="@{Mobile.shoutbox()}" class="${request?.action == 'Mobile.shoutbox' ? 'ui-btn-active ui-state-persist' : ''}" data-transition="slidedown">Shoutbox</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

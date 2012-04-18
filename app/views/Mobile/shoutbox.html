@@ -1,0 +1,31 @@
+#{extends 'mainMobile.html' /} #{set title: '[NOM] Shoutbox von ' + guildTitle /} #{set shortTitle: 'Shoutbox' /} #{set dataId: 'shoutbox' /} #{js "mobile" /} #{css "mobile" /}
+	<div data-role="content">
+		#{if session.username && user != null} <br>
+		<form action="@{Mobile.shoutboxAddMessageMobile()}" method="get" data-ajax="false" id="form-shoutbox" class="ui-body ui-body-a ui-corner-all">
+			<input type="hidden" name="nickname" value="${user.avatar.name}" /> <input type="hidden" name="mobile" value="true" />
+			<fieldset>
+				<div data-role="fieldcontain" class="ui-hide-label">
+					<label for="message" class="text">Nachricht:</label> <input type="text" name="message" placeholder="Nachricht" />
+				</div>
+				<button type="submit" data-theme="a" name="submit" value="submit-value">Shout!</button>
+			</fieldset>
+		</form>
+		#{/if} #{else}
+		<div id="welcome-message" style="margin-top: 5px; margin-bottom: 5px;" class="ui-body ui-body-a ui-corner-all">
+			<center><p>Du musst eingeloggt sein um etwas zu schreiben.</p></center>
+		</div>
+		#{/else} #{if shouts.size() > 0} #{list items:shouts, as:'message'}
+		<div class="ui-body ui-body-a ui-corner-all" style="margin-top: 5px;">
+			<img style="float: left; margin-right: 20px;" src="${message.user.avatar.getImage()}" height="84" width="84" alt="${message.user.avatar?.name}s avatar" />
+			<h3 style="margin-top: 0px;">${message.name}</h3>
+			<p>${message.raw_message.raw()}</p>
+			<p class="ui-li-aside">am ${message.date.format('dd. MMMM yyyy','de')} um ${message.date.format('HH:mm')}</p>
+		</div>
+		#{/list} #{/if}
+
+
+
+
+
+	</div>
+

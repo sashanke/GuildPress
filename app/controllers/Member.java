@@ -21,8 +21,8 @@ public class Member extends Controller {
 		
 	public static void addAlt(String name, Long id) {
 		
-		System.out.println(name);
-		System.out.println(session.get("lastPage"));
+//		System.out.println(name);
+//		System.out.println(session.get("lastPage"));
 		
 		Avatar alt = Avatar.findById(id);
 		User user = User.getConnectedUser(session.get("username"));

@@ -119,7 +119,7 @@
 				%{cnt++; if(cnt == 7) cnt=0;}%
 			#{/list}
 			</div>
-     		#{/if}#{else}<div style="text-align: center; width: 100%;"><h3>${avatar.name} hat bisher keine Twinks angegeben!</h3>#{if session.username && user != null}<br>Dein Twink? <a href="@{Member.addAlt(avatar.name,avatar.id)}">Hinzufügen!</a>#{/if}</div>#{/else}
+     		#{/if}#{else}<div style="text-align: center; width: 100%;"><h3>${avatar.name} hat bisher keine Twinks angegeben!</h3>#{if session.username && user != null}<br>Dein Charakter? <a href="@{Member.addAlt(avatar.name,avatar.id)}">Hinzufügen!</a>#{/if}</div>#{/else}
      		<div class="colBreak"></div>
      		<br>
 	</div>

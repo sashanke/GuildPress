@@ -76,6 +76,7 @@ public class Topic extends Model {
 		this.lastPost = newPost;
 		this.postCount = this.postCount + 1L;
 		this.save();
+		this.forum.lastPost = newPost;
 		this.forum.postCount = this.forum.postCount + 1L;
 		this.forum.save();
 		return newPost;

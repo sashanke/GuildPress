@@ -14,7 +14,7 @@
 #{if _as == 'avatar_with_class_icon'}
 <div class="avatar">
 	<div class="character-rank">
-		<img class="noborder" src="/public/images/world-of-warcraft/class-icons/16/${_avatar?.cclass?.name?.toLowerCase()}.png" height="16" width="16" title="${_avatar?.cclass?.name}" alt="${_avatar?.cclass?.name}" />
+		<img class="noborder" src="/public/images/world-of-warcraft/class-icons/16/${_avatar?.cclass?.name?.toLowerCase().raw()}.png" height="16" width="16" title="${_avatar?.cclass?.name}" alt="${_avatar?.cclass?.name}" />
 	</div>
 		#{name_with_link avatar:_avatar, as:'avatar', image:true /}
 	<div class="character-name">

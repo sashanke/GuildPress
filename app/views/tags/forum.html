@@ -21,9 +21,9 @@
 			<td class="col-count">${forum.topicCount}</td>
 			<td class="col-count">${forum.postCount}</td>
 			<td class="col-last-post"><span class="description">
-					#{if forum.lastTopic}von
-					<span class="class class-${forum.lastTopic.lastPost.author.avatar.cclass.name.toLowerCase()}">${forum.lastTopic.lastPost.author.avatar.name}</span>&nbsp;&nbsp;&nbsp;<a href="@{Board.showTopic(forum.lastTopic.getSlug(),forum.lastTopic.id)}#${forum.lastTopic.lastPost.id}"><span class="icon-share-alt forum-goto-last-post"></span></a><br>
-					<span class="icon-time"> ${forum.lastTopic.lastPost.created.format('dd. MMMM yyyy HH:mm','de')}</span>
+					#{if forum.lastPost}von
+					<span class="class class-${forum.lastPost.author.avatar.cclass.name.toLowerCase()}">${forum.lastPost.author.avatar.name}</span>&nbsp;&nbsp;&nbsp;<a href="@{Board.showTopic(forum.lastPost.topic.getSlug(),forum.lastPost.topic.id)}#${forum.lastPost.id}"><span class="icon-share-alt forum-goto-last-post"></span></a><br>
+					<span class="icon-time"> ${forum.lastPost.created.format('dd. MMMM yyyy HH:mm','de')}</span>
 					#{/if}#{else}
 					<span>Keine Beiträge vorhanden</span>
 					#{/else}

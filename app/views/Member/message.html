@@ -74,7 +74,7 @@
 						<div class="form-content">
 							<div style="width: 708px;">
 								<div class="left" style="width: 374px; height:100px; position: relative; padding-top: 10px;">
-									<span style="position: absolute; height:20px; left:10px; padding-top: 5px;">An: <input type="text" style="width: 300px; position: absolute; left:45px; top:0px;" name="toUser" id="toUser" value="#{if params.toUser == null}${toUser?.avatar?.getAvatarMail()}#{/if}#{else}${params.toUser}#{/else}" /></span>
+									<span style="position: absolute; height:20px; left:10px; padding-top: 5px;">An: <input type="text" style="width: 300px; position: absolute; left:45px; top:0px;" name="toUser" id="toUser" value="#{if params.toUser == null}${toUser?.getAvatarMail()}#{/if}#{else}${params.toUser}#{/else}" /></span>
 									<span style="position: absolute; height:20px; left:10px; padding-top: 5px; top:40px;">CC:<input type="text" style="width: 300px; position: absolute; left:45px; top:0px" name="ccUser" id="ccUser" value="${params.ccUser}" /></span>
 									<span style="position: absolute; height:20px; left:10px; padding-top: 5px; top:70px;">Betreff:<input type="text" style="width: 300px; position: absolute; left:45px; top:0px" name="subject" id="subject" value="${params.subject}" /></span>
 								</div>

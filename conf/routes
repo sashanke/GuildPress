@@ -15,6 +15,7 @@ GET		/mobile												Mobile.index
 
 # Member Routes
 GET		/member/alt/delete/{<[0-9]+>id}						Member.delAlt
+GET		/member/message/delete/{<[0-9]+>id}					Member.delMessage
 
 # Service
 GET		/ws/update											Service.update
@@ -24,7 +25,8 @@ GET		/ws/avatar/{name}/{realm}/update					Service.updateAvatar
 GET		/ws/item/{<[0-9]+>itemId}/update					Service.updateItem
 GET		/ws/recipe/{<[0-9]+>spellId}/update					Service.updateRecipe
 GET		/ws/recipe/crafter/{<[0-9]+>id}						Service.getRecipeCrafter
-
+GET		/ws/message/{<[0-9]+>id}							Service.getMessage
+GET		/ws/message/quote/{<[0-9]+>id}						Service.getMessageQuote
 # Recipes & Professions
 GET		/recipes											Recipes.index
 GET		/recipe/save/{<[0-9]+>id}							Recipes.save

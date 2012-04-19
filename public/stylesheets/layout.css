@@ -78,3 +78,46 @@ margin-bottom: 10px;
 margin-top: 0px;
 padding-top:0px;
 }
+
+
+ul.buttons {
+	margin:0px; padding:0px;
+	margin-top:5px;
+	margin-bottom:6px;
+}
+ul.buttons li {
+	list-style:none;
+	display:inline;
+}
+
+ul.buttons li {
+	list-style:none;
+	display:inline;
+}
+
+ul.buttons li.button {
+	background-color:#0E0F11;
+	color:#DFDBC9;
+	padding:8px 14px 8px 14px;
+	text-decoration:none;
+	font-size:9px;
+	font-weight:bold;
+	text-transform:uppercase;
+	font-family: "Droid Sans", Arial, Helvetica, sans-serif;
+	letter-spacing: 2px;
+	border:1px solid #12202E;
+}
+
+ul.buttons li.button:hover {
+	background-color:#262626;
+	border-color:#2f343a;
+}
+
+blockquote {
+  font: 14px/22px normal helvetica, sans-serif;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  padding-left: 15px;
+  border-left: 1px solid #9E0036;
+} 

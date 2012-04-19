@@ -1,17 +1,56 @@
-
-#tab-addchar, #tab-items { display:none; }
+#tab-addchar,#tab-items {
+	display: none;
+}
 
 table.dataTable td {
-padding: 0;
-padding-left: 13px;
-vertical-align: middle;
-text-align: center;
-height: 40px;
+	padding: 0;
+	padding-left: 13px;
+	vertical-align: middle;
+	text-align: center;
+	height: 25px;
 }
 
 .datatable_name {
-text-align: left !important;
+	text-align: left !important;
 }
+
 .datatable_guild {
-text-align: left !important;
+	text-align: left !important;
+}
+
+.form-content {
+	width: 708px !important;
+	background-color: #19191D;
+}
+
+.datatable_subject {
+	text-align: left !important;
+}
+
+.datatable_from {
+	padding-top: 4px !important;
+	margin-bottom: -2px;
+}
+table.dataTable td.details {
+	padding: 0;
+}
+
+.mail-unreaded {
+	font-style: oblique !important;
+	font-weight: bolder !important;
+	color: #FFF !important;
+}
+
+.mail-readed {
+	color: #FFF !important;
+}
+
+.mail-unreaded a:hover {
+	font-style: oblique !important;
+	font-weight: bolder !important;
+	color: #FFF !important;
+}
+
+.mail-readed a:hover {
+	color: #FFF !important;
 }

@@ -32,45 +32,6 @@ public class Char extends Controller {
 			show(avatar.id, name, realm);
 		}
 
-		// String banner = Play.configuration.getProperty("conf.bannerdir") +
-		// this.race.side.name.toLowerCase() + "/" +
-		// this.race.name.toLowerCase() + "/" + this.race.name.toLowerCase() +
-		// "_" + Tools.replaceUmlauts(this.cclass.name.toLowerCase()) + "_" +
-		// Tools.replaceUmlauts(this.gender.name_loc.toLowerCase()) + ".jpg";
-
-		// List<CharacterClass> cr = CharacterClass.findAll();
-		// for (CharacterClass characterRace : cr) {
-		// System.out.println("public static final int "+characterRace.name.toUpperCase()+" = "+characterRace.ccId+";");
-		// }
-
-		// RaceClassMap.createMap();
-
-		// List<RaceClassMap> rcm = RaceClassMap.findAll();
-		// for (RaceClassMap raceClassMap : rcm) {
-		// for (CharacterClass cclass : raceClassMap.cclass) {
-		// File one = new File("." +
-		// Play.configuration.getProperty("conf.bannerdir") +
-		// raceClassMap.side.name.toLowerCase() + "/" +
-		// raceClassMap.race.name.toLowerCase() + "/" +
-		// raceClassMap.race.name.toLowerCase() + "_" +
-		// Tools.replaceUmlauts(cclass.name.toLowerCase()) + "_" +
-		// Tools.replaceUmlauts("männlich") + ".jpg");
-		// File two = new File("." +
-		// Play.configuration.getProperty("conf.bannerdir") +
-		// raceClassMap.side.name.toLowerCase() + "/" +
-		// raceClassMap.race.name.toLowerCase() + "/" +
-		// raceClassMap.race.name.toLowerCase() + "_" +
-		// Tools.replaceUmlauts(cclass.name.toLowerCase()) + "_" +
-		// Tools.replaceUmlauts("weiblich") + ".jpg");
-		// if(!one.exists()){
-		// one.createNewFile();
-		// }
-		// if(!two.exists()){
-		// two.createNewFile();
-		// }
-		// }
-		// }
-
 		session.put("lastPage", request.url);
 		
 		List<RaidItem> raidItems = new ArrayList<RaidItem>();

@@ -44,7 +44,7 @@
 							<td>${avatar.guild?.name}</td>
 							<td>${avatar.level}</td>
 							<td>${avatar.averageItemLevel}</td>
-							<td><a class="char-remove" href="#${avatar.id}" rel="${avatar.id}"><span class="icon-trash"/>&nbsp;</span></a></td>
+							<td><a class="char-remove" href="javascript:void(0)" rel="${avatar.id}"><span class="icon-trash"/>&nbsp;</span></a></td>
 						</tr>									
 						#{/list}
 					</tbody>
@@ -59,8 +59,6 @@
 						</tr>
 					</tfoot>
 					</table>
-
-
 
 	        </div>
 	        <div id="tab-addchar" class="tab-content">
@@ -88,6 +86,26 @@
 </div>
 
 <script type="text/javascript">
+
+var anchor = $(location).attr('hash');
+if(anchor != "") {
+	$(".active").removeClass("active");
+	$(".tab-content").slideUp();
+	$("#"+"tab-"+anchor.substring(1)).addClass("active");
+	$(anchor).slideDown();
+	$.cookie("member-tab", anchor);
+}
+
+$(window).bind('hashchange', function () { //detect hash change
+	var anchor = $(location).attr('hash');
+	if(anchor != "") {
+		$(".active").removeClass("active");
+		$(".tab-content").slideUp();
+		$("#"+"tab-"+anchor.substring(1)).addClass("active");
+		$(anchor).slideDown();
+		$.cookie("member-tab", anchor);
+	}
+});
 
 $('.register_mitglied_werden').hide();
 // click event für submit button

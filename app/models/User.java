@@ -88,6 +88,29 @@ public class User extends Model {
 		return Post.count("byAuthor", this);
 	}
 
+	public Long getMailCount() {
+		Long count = 0L;
+		if (this.alts.contains(this.avatar)) {
+			count = PrivateMessage.count("toUser IN (?1) and readed = false", this.alts);
+		} else {
+			count = PrivateMessage.count("toUser = ? and readed = false", this.avatar);
+			count += PrivateMessage.count("toUser IN (?1) and readed = false", this.alts);
+			this.alts.add(this.avatar);
+			this.save();
+		}
+		return count;
+	}
+	
+	public Boolean hasMail() {
+		
+		if (!this.alts.contains(this.avatar)) {
+			this.alts.add(this.avatar);
+			this.save();
+		}
+		
+		return PrivateMessage.count("toUser IN (?1) and readed = false", this.alts) > 0;
+	}
+	
 	@Override
 	public String toString() {
 		return this.email;

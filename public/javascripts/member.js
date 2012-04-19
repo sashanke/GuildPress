@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
 	
 	var oTable;
@@ -30,6 +32,7 @@ $(document).ready(function() {
 		});
 	});
 	
+
 	
 	oTable = $('#datatable-alts').dataTable({
 		"bProcessing" : true,
@@ -112,25 +115,7 @@ $(document).ready(function() {
 //	});
 
 	
-	var anchor = $(location).attr('hash');
-	if(anchor != "") {
-		$(".active").removeClass("active");
-		$(".tab-content").slideUp();
-		$("#"+"tab-"+anchor.substring(1)).addClass("active");
-		$(anchor).slideDown();
-		$.cookie("member-tab", anchor);
-	}
-	
-	$(window).bind('hashchange', function () { //detect hash change
-		var anchor = $(location).attr('hash');
-		if(anchor != "") {
-			$(".active").removeClass("active");
-			$(".tab-content").slideUp();
-			$("#"+"tab-"+anchor.substring(1)).addClass("active");
-			$(anchor).slideDown();
-			$.cookie("member-tab", anchor);
-		}
-	});
+
 	
 	$(function() {
 		$("#dialog-form-error").dialog({

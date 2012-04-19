@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import org.im4java.core.Info;
 import org.im4java.core.InfoException;
 import org.im4java.process.ProcessStarter;
 
+import models.PrivateMessage;
 import models.wowapi.ApiException;
 import models.wowapi.ArmoryTooltip;
 import models.wowapi.AuctionData;
@@ -89,7 +91,21 @@ public class Service extends Controller {
 		Recipe recipe = Recipe.findById(id);
 		render(recipe);
 	}
-
+	
+	public static void getMessage(Long id) {
+		PrivateMessage message = PrivateMessage.findById(id);
+		if (!message.readed) {
+			message.readed = true;
+			message.readDate = new Date();
+			message.save();
+		}
+		render(message);
+	}
+	public static void getMessageQuote(Long id) {
+		PrivateMessage message = PrivateMessage.findById(id);
+		render(message);
+	}
+	
 	public static void showRecipeDataTable(Long id, Long sEcho, String sSearch, Integer iDisplayStart, Integer iDisplayLength, Boolean iSortingCols, Integer iSortCol_0, String sSortDir_0) {
 
 		List<String> recipeIdsList = new ArrayList<String>();

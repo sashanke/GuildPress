@@ -67,18 +67,17 @@
     		</div>
 		</div> 
 		
-		
 		<div class="guildbar">
 			<ul class="link-bar">
 				<li class="link-cell link-annoucement suckerfish">
 					<a href="#" class="nyi" title="Ankündigungen">Ankündigungen</a>
 					<ul class="section-drop">
-						<li class="annoucement-message" "=""><span class="icon icon-annoucement"></span>World of Logs ( <a href="http://www.worldoflogs.com/guilds/189912/">more</a> )</li>
+						<li class="annoucement-message"><span class="icon icon-annoucement"></span>World of Logs ( <a href="http://www.worldoflogs.com/guilds/189912/">more</a> )</li>
 					</ul>
 				</li>
 
-		        <li class="link-cell link-messages ">
-		            <a href="#" class="nyi" title="Private Nachrichten"><span>0</span></a>
+		        <li class="link-cell link-messages #{if session.username && user != null && user.hasMail()}link-messages-unread#{/if}" id="message-notifier">
+		            <a href="@{Member.message()}#tab-pm" title="Private Nachrichten"><span class="unreadedmessages">${user?.getMailCount()}</span></a>
 				</li>
 
 		        <li class="link-cell link-support">
@@ -126,6 +125,8 @@
 		                <ul class="section-drop">
 		                    <li class="add-character"><a href="@{Member.index()}#tab-addchar">Char hinzufügen</a></li>
 		                    <li><a href="@{Member.index()}#tab-character">Chars verwalten</a></li>
+		                    <li class="separator ir">------------</li>
+		                    <li><a href="@{Member.message()}#tab-pm">Private Nachrichten</a></li>
 		                    <li class="separator ir">------------</li>
 		                    <li><a href="@{Member.index()}#tab-settings">Einstellungen</a></li>
 							<li><a href="/logout">Ausloggen</a></li>

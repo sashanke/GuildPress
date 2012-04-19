@@ -7,6 +7,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import models.User;
+import models.wowapi.character.Avatar;
+
 /**
  * @author azrail
  * 
@@ -288,6 +291,17 @@ public class StringUtils {
 	public static String seoURL(String string) {
 		string = string.replaceAll(" ", "_");
 		return string;
+	}
+
+	public static Avatar parseAvatarMail(String avatarMail) {
+		avatarMail = avatarMail.trim();
+		String[] mailparts = avatarMail.split("@");
+		String username = mailparts[0];
+		String[] realmparts = mailparts[1].split("\\.");
+		username = username.substring(0, 1).toUpperCase() + username.substring(1, username.length()).toLowerCase();
+		String realm = realmparts[0].substring(0, 1).toUpperCase() + realmparts[0].substring(1, realmparts[0].length()).toLowerCase();
+		Avatar avatar = Avatar.findByNameAndRealm(username, realm);
+		return avatar;
 	}
 
 }

@@ -1,0 +1,318 @@
+#{extends 'main.html' /} 
+#{set title: 'Nachrichten' /}
+#{js "forum member jquery.dataTables.js" /}
+#{css "forum member<jquery.dataTables.css" /}
+
+<div class="box">
+	<div class="artheadline" style="background: black url(${user.avatar.getAvatarBanner()})  no-repeat top center;">
+		<div class="artheadlinshadow">
+			<div class="postdate" style="width: 40px;">
+			</div>
+			<h2 class="post-title">
+				<a href="@{Char.show(user.avatar.id, user.avatar.name, user.avatar.realm.name)}">${user.avatar.name}</a>
+			</h2>
+			<span class="post-subtitle">${user.avatar.guild?.name}</span>
+		</div>
+	</div>
+	<div class="post">
+		<div class="clear"></div>
+		<div class="tabbed_area">
+	        <ul class="tabs">
+	        	<li><a href="#tab-pm" id="tab-tab-pm" title="Einstellungen" class="tab active">Nachrichten (<span class="unreadedmessages">${user?.getMailCount()}</span>)</a></li>
+	            <li><a href="#tab-new-pm" id="tab-tab-new-pm" title="Character Übersicht" class="tab">Neue Nachricht</a></li>
+	        </ul>
+	        <div id="tab-pm" style="width:100%;" class="tab-content">
+	        
+					<table cellpadding="0" cellspacing="0" border="0" class="display" id="datatable-mails">
+					<thead>
+						<tr>
+							<th>Subject</th>
+							<th width="80">Datum</th>
+							<th width="10"></th>
+							<th width="100">Von</th>
+							<th width="20"></th>
+							<th width="0"></th>
+							<th width="0"></th>
+						</tr>
+					</thead>
+					<tbody>
+						#{list items:mails, as:'mail'}
+						<tr>
+							<td><a title="An ${mail.toUser.getAvatarMail()}" class="mail-show #{if mail.readed}mail-readed#{/if}#{else}mail-unreaded#{/else}" id="${mail.id}" href="javascript:void(0)">${mail.subject}</a></td>
+							<td><span title="${mail.sendDate.format('HH:mm', 'de')}" id="${mail.sendDate.getTime()}">${mail.sendDate.format('dd. MMMM yyyy', 'de')}</span></td>
+							<td>#{name_with_link avatar:mail.fromUser, as:'icon', image:true, size:'18px' /}</td>
+							<td>#{name_with_link avatar:mail.fromUser, as:'avatar', image:false /}</td>
+							<td><a class="mail-remove" href="javascript:void(0)" rel="${mail.id}"><span class="icon-trash"/>&nbsp;</span></a>&nbsp;<a class="mail-answer" href="javascript:void(0)" rel="${mail.id}"><span class="icon-share-alt"/>&nbsp;</span></a></td>
+							<td>${mail.id}</td>
+							<td>${mail.fromUser.getAvatarMail()}</td>
+						</tr>									
+						#{/list}
+					</tbody>
+					<tfoot>
+						<tr>
+							<th>Subject</th>
+							<th>Datum</th>
+							<th width="10"></th>
+							<th width="100">Von</th>
+							<th width="20"></th>
+							<th width="0"></th>
+							<th width="0"></th>
+						</tr>
+					</tfoot>
+					</table>
+	        
+	        
+	        </div>
+	        <div id="tab-new-pm" style="width:100%;" class="tab-content">
+				<ul class="listing forum-listing">
+					#{form @Member.sendMessage()}
+					<li class="form-row form-row-odd">
+						<div class="gradient form-tools">
+							<span class="" style="min-width:200px">Scheibe eine Nachricht: </span>
+							<span class="right small"><input class="right" type="submit" value="Absenden" /></a></span>
+						</div>
+						<div class="form-content">
+							<div style="width: 708px;">
+								<div class="left" style="width: 374px; height:100px; position: relative; padding-top: 10px;">
+									<span style="position: absolute; height:20px; left:10px; padding-top: 5px;">An: <input type="text" style="width: 300px; position: absolute; left:45px; top:0px;" name="toUser" id="toUser" value="#{if params.toUser == null}${toUser?.avatar?.getAvatarMail()}#{/if}#{else}${params.toUser}#{/else}" /></span>
+									<span style="position: absolute; height:20px; left:10px; padding-top: 5px; top:40px;">CC:<input type="text" style="width: 300px; position: absolute; left:45px; top:0px" name="ccUser" id="ccUser" value="${params.ccUser}" /></span>
+									<span style="position: absolute; height:20px; left:10px; padding-top: 5px; top:70px;">Betreff:<input type="text" style="width: 300px; position: absolute; left:45px; top:0px" name="subject" id="subject" value="${params.subject}" /></span>
+								</div>
+								<div class="right" style="width: 334px; padding-top: 10px;">Um eine Nachricht zu schreiben gib einen oder mehrere Empfänger (Komma separiert) im Format charactername@server.region ein (z.B. calenria@anub'arak.eu)</div>
+							</div>
+
+							<div class="clear" style="margin-bottom: 20px;"></div>
+							<textarea name="bodyText" id="bodyText">${params.content}</textarea>
+							<input type="hidden" name="authorId" value="${user.id}" />
+						</div>
+					</li>
+					#{/form}
+				</ul>
+
+			</div>
+	    </div>
+   		<div class="colBreak clear"></div>
+   		<br>
+	</div>
+</div>
+<script type="text/javascript">
+	function calculate_date(date) {
+
+		date.match(/id="(.*?)"/g);
+		var time = RegExp.$1
+
+		return time;
+	}
+
+	$(document).ready(function() {
+
+		$('.register_mitglied_werden').hide();
+		
+		
+		var anchor = $(location).attr('hash');
+		if(anchor != "") {
+			$(".active").removeClass("active");
+			$(".tab-content").slideUp();
+			$("#"+"tab-"+anchor.substring(1)).addClass("active");
+			$(anchor).slideDown();
+			$.cookie("member-message-tab", anchor);
+		} else {
+			$(".active").removeClass("active");
+			$(".tab-content").slideUp();
+			$("#tab-tab-pm").addClass("active");
+			$("#tab-pm").slideDown();
+			$.cookie("member-message-tab", "#tab-pm");
+		}
+		$(window).bind('hashchange', function () { //detect hash change
+			var anchor = $(location).attr('hash');
+			if(anchor != "") {
+				$(".active").removeClass("active");
+				$(".tab-content").slideUp();
+				$("#"+"tab-"+anchor.substring(1)).addClass("active");
+				$(anchor).slideDown();
+				$.cookie("member-message-tab", anchor);
+			}
+		});
+		
+		
+		
+		jQuery.fn.dataTableExt.oSort['eu_date-asc'] = function(a, b) {
+			x = calculate_date(a);
+			y = calculate_date(b);
+
+			return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+		};
+
+		jQuery.fn.dataTableExt.oSort['eu_date-desc'] = function(a, b) {
+			x = calculate_date(a);
+			y = calculate_date(b);
+
+			return ((x < y) ? 1 : ((x > y) ? -1 : 0));
+		};
+
+		var oTable;
+
+		
+		function fnFormatDetails(nTr) {
+			var aData = oTable.fnGetData(nTr);
+			$.ajax({
+				url : '/ws/message/' + aData[5],
+				type : 'GET',
+				async : true,
+				cache : false,
+				timeout : 30000,
+				success : function(msg) {
+					$("#body-row-" + aData[5]).replaceWith(msg);
+					$("#"+ aData[5]).removeClass("mail-unreaded");
+					$("#"+ aData[5]).removeClass("mail-readed");
+					$("#"+ aData[5]).addClass("mail-readed");
+					var count = $("#unread-messages-left").text();
+					$(".unreadedmessages").text(count);
+					if(count == 0) {
+						$("#message-notifier").removeClass("link-messages-unread");
+					}
+				}
+			});
+			
+			var sOut = '<div class="content" id="body-row-'+aData[5]+'"></div>';
+			return sOut;
+		}
+		
+		$('.mail-show').live(
+				'click',
+				function() {
+					var nTr = $(this).parents('tr')[0];
+					if (oTable.fnIsOpen(nTr)) {
+						$(this).css('color', '#DFDBC9');
+						oTable.fnClose(nTr);
+
+					} else {
+						$(this).css('color', 'red');
+						oTable
+								.fnOpen(nTr,
+										fnFormatDetails(nTr),
+										'details');
+						
+					}
+				});
+		
+		$(".mail-answer").live('click',	function() {
+			var nTr = $(this).parents('tr')[0];
+			var aData = oTable.fnGetData(nTr);
+			
+			$("#subject").val("Re: " + $("#"+ aData[5]).text());
+			$("#toUser").val(aData[6]);
+			$(location).attr('hash', '#tab-new-pm');
+			
+			$.ajax({
+				url : '/ws/message/quote/' + aData[5],
+				type : 'GET',
+				async : true,
+				cache : false,
+				timeout : 30000,
+				success : function(msg) {
+					tinyMCE.activeEditor.setContent(msg);
+				}
+			});
+			
+		});
+		
+		
+		$(".mail-remove").live('click',	function() {
+			var nTr = $(this).parents('tr')[0];
+			$.ajax({
+				url : '/member/message/delete/' + $(this).attr('rel'),
+				type : 'GET',
+				async : true,
+				cache : false,
+				timeout : 30000,
+				beforeSend : function() {
+					$.blockUI({
+						message : $('#waitMessage'),
+						css : {
+							backgroundColor : 'transparent',
+							border : '0'
+						}
+					});
+				},
+				error : function() {
+					$.unblockUI();
+				},
+				success : function(msg) {
+					oTable.fnDeleteRow( nTr );
+					$.unblockUI();
+				}
+			});
+		});
+		
+		
+		
+		oTable = $('#datatable-mails').dataTable({
+			"bProcessing" : true,
+			"bStateSave" : true,
+			"sPaginationType" : "full_numbers",
+			"aaSorting" : [ [ 1, "desc" ] ],
+			"aoColumnDefs" : [ {
+				"sClass" : "datatable_subject",
+				"bSearchable" : true,
+				"bSortable" : true,
+				"bVisible" : true,
+				"aTargets" : [ 0 ]
+			}, {
+				"sClass" : "datatable_date",
+				"bSearchable" : true,
+				"sType" : "eu_date",
+				"bSortable" : true,
+				"bVisible" : true,
+				"aTargets" : [ 1 ]
+			}, {
+				"sClass" : "datatable_from",
+				"bSearchable" : false,
+				"bSortable" : false,
+				"bVisible" : true,
+				"aTargets" : [ 2 ]
+			}, {
+				"sClass" : "datatable_from_name",
+				"bSearchable" : true,
+				"bSortable" : true,
+				"bVisible" : true,
+				"aTargets" : [ 3 ]
+			}, {
+				"sClass" : "datatable_options",
+				"bSearchable" : false,
+				"bSortable" : false,
+				"bVisible" : true,
+				"aTargets" : [ 4 ]
+			}, {
+				"sClass" : "datatable_message_id",
+				"bSearchable" : false,
+				"bSortable" : false,
+				"bVisible" : false,
+				"aTargets" : [ 5 ]
+			}, {
+				"sClass" : "datatable_from_mail",
+				"bSearchable" : false,
+				"bSortable" : false,
+				"bVisible" : false,
+				"aTargets" : [ 6 ]
+			} ],
+			"oLanguage" : {
+				"sProcessing" : "",
+				"sLengthMenu" : "_MENU_ Einträge anzeigen",
+				"sZeroRecords" : "Keine Einträge vorhanden.",
+				"sInfo" : "_START_ bis _END_ von _TOTAL_ Einträgen",
+				"sInfoEmpty" : "0 bis 0 von 0 Einträgen",
+				"sInfoFiltered" : "(gefiltert von _MAX_  Einträgen)",
+				"sInfoPostFix" : "",
+				"sSearch" : "Suchen",
+				"sUrl" : "",
+				"oPaginate" : {
+					"sFirst" : "Erster",
+					"sPrevious" : "Zurück",
+					"sNext" : "Nächster",
+					"sLast" : "Letzter"
+				}
+			}
+		});
+	});
+</script>

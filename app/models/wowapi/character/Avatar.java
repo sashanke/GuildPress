@@ -423,6 +423,13 @@ public class Avatar extends Model {
 		return banner;
 	}
 
+	public String getAvatarMail() {
+		String mail = this.name.toLowerCase();
+		mail += "@" + this.realm.name.toLowerCase();
+		mail += "." + this.realm.region.toLowerCase();
+		return mail;
+	}
+	
 	/**
 	 * For javascript/json!
 	 */

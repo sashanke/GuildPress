@@ -1,0 +1,9 @@
+<ul>
+	<li>
+		<div class="mail-content text-content" style="text-align: left; padding:5px;">
+			${message.body.raw()}
+		</div>
+		<div class="clear"></div>
+		<span id="unread-messages-left" style="display: none;">${user?.getMailCount()}</span>
+	</li>
+</ul>

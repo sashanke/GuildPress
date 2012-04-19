@@ -26,7 +26,10 @@ public class Member extends Controller {
 	public static void message(Long to) {
 		User user =  User.getConnectedUser(session.get("username"));
 		List<PrivateMessage> mails = PrivateMessage.find("toUser IN (?1)", user.alts).fetch();
-		Avatar toUser = Avatar.findById(to);
+		Avatar toUser = null;
+		if (to != null) {
+			toUser = Avatar.findById(to);
+		}
 		render(toUser,mails);
 	}
 	public static void sendMessage(String toUser, String ccUser, String subject, String bodyText, Long authorId) {

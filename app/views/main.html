@@ -17,7 +17,7 @@
 		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/shoutbox.css'}" />
 		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/menu.css'}" />
 		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/layout.css'}" />
-		
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/jquery.gritter.css'}" />
 		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/highslide/highslide.css'}" />
 		<!--[if lt IE 7]>
 		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/highslide/highslide-ie6.css'}" />
@@ -44,9 +44,20 @@
 		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/superfish.js'}"></script>
 		
 		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/global.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.gritter.js'}"></script>
+
+
+		<script type="text/javascript" charset="${_response_encoding}" src="http://js.pusher.com/1.11/pusher.min.js"></script>
 
 		#{js output: "all"}
+			var pusher = new Pusher('${pusherkey}');
+			var shoutListChannel = pusher.subscribe('shoutListChannel');
+			var shoutBoxChannel = pusher.subscribe('shoutBoxChannel');
+			var userOnlineChannel = pusher.subscribe('presence-userOnlineChannel');
 		#{/js}
+		
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/async.js'}"></script>
+		
 </head>
     <body>
 		<div id="dialog-nyi" title="Funktion noch nicht verfügbar" style="display:none;">
@@ -89,7 +100,7 @@
 			<!-- If Admin, Admin link group -->
 			<ul class="admin-link-bar">
 				<li class="admin-link-cell admin-link-cp">
-					<a href="/admin" title="Einstellungen"><span class="icon ir">Control Panel Icon</span></a>
+					<a href="@{Admin.index()}" title="Einstellungen"><span class="icon ir">Control Panel Icon</span></a>
 				</li>
 			</ul>
 			#{/if}
@@ -127,6 +138,7 @@
 		                    <li><a href="@{Member.index()}#tab-character">Chars verwalten</a></li>
 		                    <li class="separator ir">------------</li>
 		                    <li><a href="@{Member.message()}#tab-pm">Private Nachrichten</a></li>
+		                    <li><a href="@{Shoutbox.index()}">Shoutbox</a></li>
 		                    <li class="separator ir">------------</li>
 		                    <li><a href="@{Member.index()}#tab-settings">Einstellungen</a></li>
 							<li><a href="/logout">Ausloggen</a></li>
@@ -142,17 +154,22 @@
 				<div id="header">
 					<div id="header_t">
 						<a href="@{Application.index()}"><img src="/public/images/bannerlogo.png"></a>
-						<div id="daddy-shoutbox">
-							<div id="daddy-shoutbox-list"></div>
+						<div id="shoutbox">
+							<div id="shoutbox-list" rel="@{ShoutBox.index()}">
+								#{list items:shoutMessages, as:'shout'}
+								<div class="shoutbox-list" id="list-${shout.id}" style="display: block;"><a href="@{ShoutBox.index()}#${shout.id}"><span class="shoutbox-list-message" id="shoutbox-list-message-${shout.id}" style="white-space:nowrap; overflow:hidden;">${shout.shortMessage.raw()}</span></a><span class="shoutbox-list-nick">${shout.user?.avatar?.getAvatarLink()?.raw()}</span></div>
+								#{/list}
+							</div>
 							#{if session.username && user != null}
-							<div id="daddy-shoutbox-div">
-								<form id="daddy-shoutbox-form" action="/shoutbox/add" method="post">
-									<span id="daddy-shoutbox-response"></span>
-									<input type="hidden" name="nickname" value="${user.avatar.name}" /><input type="text" name="message" />
-									<input type="hidden" name="submit" value="Submit" />
+							<div class="shout-row shoutbox-top-input shout-input" id="shoutbox-top-input">
+								<form id="shoutbox-form" action="/shoutbox/message/add" method="post">
+									<input type="hidden" name="avatarId" value="${user?.avatar?.id}">
+									<input class="shoutbox-input" id="shoutbox-input" type="text" name="message">
+									<input type="hidden" name="submit" value="Submit">
 									<input type="image" src="/public/images/type_article.png" width="14" height="14">
 								</form>
 							</div>
+
 							#{/if}
 						</div>
 					</div>
@@ -201,7 +218,7 @@
 							<h2 class="nav_t">Login</h2>
 							<div class="colBreak clear"></div>
 							
-							#{form @SecureC.authenticate(), class: 'login_user_form'}
+							#{form @Secure.authenticate(), class: 'login_user_form'}
 								
 								#{if flash.error}
 									<p id="box-login-error" class="msg error colBlurb">
@@ -225,9 +242,8 @@
 								<p id="remember-field">
 									<label class="remember" for="remember">Merken</label>
 									<input class="remember" type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
-									
 								</p>
-						
+									<input type="hidden" id="redirect" name="redirect" value="${flash.url}" />
 									<input type="submit" id="box-login-signin" value="Einloggen" />
 								
 							#{/form}

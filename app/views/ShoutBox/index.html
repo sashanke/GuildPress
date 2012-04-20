@@ -1,0 +1,164 @@
+#{extends 'main.html' /} 
+#{set title: 'ShoutBox' + ' - ' + guildTitle /}
+#{js "shoutbox" /}
+#{css "shoutbox" /}
+<div class="box">
+	<div class="artheadline" style="background: black url(${play.configuration.getProperty("conf.artworksdir")}schlund.png) no-repeat top center  !important;">
+		<div class="artheadlinshadow">
+			<div class="postdate" style="width: 40px;">
+			</div>
+			<h2 class="post-title">
+				<a href="@{Application.index()}">Shoutbox</a>
+			</h2>
+			<span class="post-subtitle"></span>
+		</div>
+	</div>
+	<div class="post clear">
+		#{if session.username && user != null}
+		<div class="shout-row shout-row-odd shout-input">
+			<form id="big-shoutbox-form" action="/shoutbox/message/add" method="post">
+				<input type="hidden" name="avatarId" value="${user?.avatar?.id}">
+				<input class="big-shoutbox-input" id="big-shoutbox-input" type="text" name="message">
+				<input type="hidden" name="submit" value="Submit">
+				<input type="image" src="/public/images/type_article.png" width="14" height="14">
+			</form>
+		</div>
+		#{/if}
+		<div class="shouts">
+		#{list items:shouts, as:'shout'}
+			<div class="shout-row shout-row-${shout_parity}" id="${shout.id}"><a name="${shout.id}"></a>
+				<div class="shout-avatar">#{avatar avatar:shout.user.avatar, as:'topic' /}</div>
+				<div class="shout-info">am ${shout.messageDate.format('dd. MMMM yyyy','de')} um ${shout.messageDate.format('HH:mm')}&nbsp;&nbsp;</div>
+				#{if user?.isAdmin || user == shout.user}<div class="shout-tools shout-tools-${shout_parity}">&nbsp;<a class="shout-edit" title="Nachricht Editieren" href="javascript:void(0)" rel="${shout.id}"><span class="icon-edit"/></span></a>&nbsp;&nbsp;<a class="shout-remove" title="Nachricht Löschen" href="javascript:void(0)" rel="/shoutbox/message/remove/${shout.id}"><span class="icon-trash"/></span></a>&nbsp;</div>#{/if}
+				<div class="shout-content-wrapper">
+					<div id="outer">
+						<div id="middle">
+							<div id="inner">
+								<blockquote class="shout-content" cite="@{Char.show(shout.user.avatar.id,shout.user.avatar.name, shout.user.avatar.realm.name)}">
+										<span class="outer-quote"></span><span id="shout-content-${shout.id}">${shout.getFullMessage().raw()}</span><span class="inner-quote"></span>
+								</blockquote>
+							</div>
+						</div>
+					</div>
+ 				</div>
+ 				<div class="shout-content-edit" id="shout-content-${shout.id}-edit">
+					<textarea style="width: 612px; height: 86px; vertical-align: middle; text-align: center;">${shout.getRawMessage().raw()}</textarea>
+ 				</div>
+			</div>
+		#{/list}
+		</div>
+	</div>
+</div>
+
+<style type="text/css">
+	#outer {height: 86px; overflow: hidden; position: relative; width: 100%; }
+	#outer[id] {display: table; position: static;}
+	
+	#middle {position: absolute; top: 50%; width: 100%; text-align: center; } /* for explorer only*/
+	#middle[id] {display: table-cell; vertical-align: middle; position: static;}
+	
+	#inner {position: relative; top: -50%; text-align: left;} /* for explorer only */
+	#inner {margin-left: auto; margin-right: auto; text-align: center} /* for all browsers*/
+	/* optional: #inner[id] {position: static;} */
+</style>
+
+<script>
+var lastparity;
+
+function shoutboxInit() {
+	$(".shout-info").hide();
+	$(".shout-row").hover(function() {
+		$(".shout-info", this).show('slow');
+	}, function() {
+		$(".shout-info", this).hide('slow');
+	});
+	
+	$(".shout-tools").hide();
+	$(".shout-row").hover(function() {
+		$(".shout-tools", this).show('slow');
+	}, function() {
+		$(".shout-tools", this).hide('slow');
+	});
+	
+	$(".shout-remove").click(function() {
+		$.get($(this).attr('rel'));
+	});
+	$(".shout-edit").click(function() {	
+		var id = $(this).attr('rel');
+		var edit = "#shout-content-"+ id + "-edit";
+		var quote = "#shout-content-"+ id;
+
+		$(edit).css('visibility', 'visible');
+
+		$(edit).focus().mouseleave(function(){
+			var editedText = $(edit + " textarea").val();
+		    $(quote).text(editedText);
+		    $(edit).css('visibility', 'hidden');
+		    $.post('/shoutbox/message/update/' + id, { message: editedText, id: id } );
+		 });
+	});
+}
+
+function getParity(parity) {
+	console.log(parity);
+	if(parity == "shout-row-odd") {
+		lastparity = "shout-row-even";
+		return lastparity;
+	} else {
+		lastparity = "shout-row-odd";
+		return lastparity;
+	}
+}
+
+shoutListChannel.bind('newMessage', function(msgId) {
+    $.get("/shoutbox/message/"+msgId+"/"+true, function(response){
+    	var content = $(response);
+    	$(content).hide();
+    	$(".shouts").prepend(content);
+    	$(content).show('slow');	    	
+    	$("#big-shoutbox-input").val("");
+    	shoutboxInit();
+    	$("#" + msgId).addClass(getParity(lastparity));
+    });
+});
+
+shoutListChannel.bind('deleteMessage', function(msgId) {
+	$("#" + msgId).effect('highlight', {color:"#9E0036"}, 3000).stop().fadeOut(500, function() { $(this).remove(); });
+});
+
+shoutListChannel.bind('updateMessage', function(msgId) {
+    $.get("/shoutbox/message/json/"+msgId, function(response){
+    	$("#shout-content-" + msgId).replaceWith(response.fullMessage);
+    	$("#shout-content-" + msgId + "-edit textarea").val(response.rawMessage);
+    });
+	$("#" + msgId).effect("highlight", {color:"#9E0036"}, 3000);
+});
+
+$(document).ready(function() {
+
+	lastparity = $(".shouts div:first-child").attr('class');
+	if (typeof parity === "undefined") {
+		lastparity = "shout-row-odd";
+	} else {
+		var tmparity = parity.split(' ').slice(-1);
+		lastparity = tmparity[0];
+	}
+	
+	shoutboxInit();
+	
+	$("#big-shoutbox-form").submit(function(event) {
+	    /* stop form from submitting normally */
+	    event.preventDefault(); 
+	    /* get some values from elements on the page: */
+	    var $form = $( this ),
+	        message = $form.find( 'input[name="message"]' ).val(),
+	        avatarId = $form.find( 'input[name="avatarId"]' ).val(),
+	        url = $form.attr( 'action' );
+	    if(message.trim().length == 0) {
+	    	return false;
+	    }
+	    /* Send the data using post and put the results in a div */
+	    $.post( url, { message: message, id: avatarId, fullsize: true});
+	  });
+});
+</script>

@@ -1,4 +1,4 @@
-#daddy-shoutbox {
+#shoutbox {
 	position: relative;
 	float: right;
 	padding: 5px;
@@ -10,13 +10,13 @@
 	font-size: 11px;
 }
 
-#daddy-shoutbox-list {
+#shoutbox-list {
 	width: 500px;
 	height: 125px;
 	overflow: hidden;
 }
 
-#daddy-shoutbox-div {
+#shoutbox-div {
 	text-align: right;
 }
 
@@ -25,13 +25,15 @@
 	padding: 5px;
 	display: none;
 }
-
-#daddy-shoutbox-list {
+.shoutbox-list a {
+	color:white;
+}
+#shoutbox-list {
 	text-align: right;
 	margin: 0px auto;
 }
 
-#daddy-shoutbox-form {
+#shoutbox-form {
 	text-align: right;
 }
 
@@ -48,7 +50,7 @@
 	margin-right: 5px;
 }
 
-#daddy-shoutbox-response img {
+#shoutbox-response img {
 	vertical-align: baseline;
 	margin-bottom: -3px;
 }
@@ -60,3 +62,113 @@ input[type=image] {
 	margin: 0;
 	vertical-align: middle;
 }
+
+.shout-input {
+	margin-bottom: 10px;
+}
+
+.big-shoutbox-input {
+	width: 675px;
+}
+.shoutbox-input	{
+	width: 465px;
+}
+.shoutbox-top-input {
+	background-color: #0E0F11;
+}
+
+.shouts {
+	
+}
+
+.shout-row {
+	border: 1px solid #12202E;
+	padding: 3px;
+	margin-top: 3px;
+	position: relative;
+}
+
+.shout-avatar {
+	
+}
+
+.shout-tools {
+	border: 1px solid #12202E;
+	padding: 3px;
+	position: absolute;
+	top: -1px;
+	right: -1px;
+	z-index: 3000;
+}
+
+.shout-tools span {
+	padding-right: 10px;
+}
+
+.shout-tools span:last-child {
+	padding-right: 0px;
+}
+
+.shout-tools-odd {
+	background-color: #19191d;
+}
+
+.shout-tools-even {
+	background-color: #222427;
+}
+
+.shout-info {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	white-space: nowrap;
+}
+
+.shout-row-odd {
+	background-color: #19191d;
+}
+
+.shout-row-even {
+	background-color: #222427;
+}
+
+.shout-content-wrapper {
+	position: absolute;
+	left: 90px;
+	top: 0px;
+	width: 618px;
+	min-height:92px;
+}
+
+.shout-content-edit {
+	position: absolute;
+	left: 90px;
+	top: 0px;
+	width: 618px;
+	min-height:92px;
+	visibility: hidden;
+}
+
+.shout-content {
+	
+	font: 16px/24px normal helvetica, sans-serif;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding-left: 0px;
+	border-left: 0;
+}
+
+
+.outer-quote {
+	background: url(/public/images/icons/start_quote.png) top left no-repeat;
+	padding-left: 30px;
+	height: 22px;
+}
+
+.inner-quote {
+	background: url(/public/images/icons/end_quote.png) bottom right no-repeat;
+	padding-right: 30px;
+	height: 22px;
+}
+

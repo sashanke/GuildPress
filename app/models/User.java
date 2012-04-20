@@ -21,6 +21,7 @@ import play.db.jpa.Model;
 
 @Entity
 public class User extends Model {
+	
 	public static Boolean checkGuildmember(String email) {
 		User user = find("byEmail", email).first();
 
@@ -113,6 +114,6 @@ public class User extends Model {
 	
 	@Override
 	public String toString() {
-		return this.email;
+		return this.fullname + " (" + this.avatar + ")";
 	}
 }

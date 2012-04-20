@@ -86,7 +86,7 @@
 
 /** Tables **/
 
-#crud #crudContent table {
+#crudListTable table {
 	width: 100%;
 	border: 1px solid #ddd;
 	border-top: none;
@@ -94,39 +94,39 @@
 	table-layout: fixed;
 }
 
-#crud #crudContent table thead tr {
+#crudListTable table thead tr {
 	background: #0A65AF;
 }
 
-#crud #crudContent table th {
+#crudListTable table th {
 	color: #fff;
 	font-weight: bold;
 }
 
-#crud #crudContent table th a {
+#crudListTable table th a {
 	color: #fff;
 	font-weight: bold;
 }
 
-#crud #crudContent table th {
+#crudListTable table th {
 	text-align: left;
 	padding: 6px 5px;
 }
 
-#crud #crudContent table td {
+#crudListTable table td {
 	text-align: left;
 	padding: 4px 5px;
 }
 
-#crud #crudContent table td {
+#crudListTable table td {
 	border-bottom: 1px solid #eee;
 }
 
-#crud #crudContent table tr.even {
+#crudListTable table tr.even {
 	background: #f9f9f9;
 }
 
-#crud #crudContent table tr:last-child td {
+#crudListTable table tr:last-child td {
 	border-bottom: 1px solid #ddd;
 }
 

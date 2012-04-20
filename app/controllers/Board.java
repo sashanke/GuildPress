@@ -74,7 +74,14 @@ public class Board extends Controller {
 		} else {
 			forum = Forum.find("id = ? and isPublic = ? order by position asc", id, true).first();
 		}
-		render(forum);
+		
+		if (forum != null && (forum.isPublic || User.checkGuildmember(session.get("username")))) {
+			render(forum);
+		} else {
+			redirect("/login");
+		}
+		
+		
 	}
 
 	public static void showPost(String slug, Long id) {
@@ -85,6 +92,13 @@ public class Board extends Controller {
 	public static void showTopic(String slug, Long id) {
 		Topic topic = Topic.findById(id);
 		topic.onView();
-		render(topic);
+		
+		if (topic.forum.isPublic || User.checkGuildmember(session.get("username"))) {
+			render(topic);
+		} else {
+			redirect("/login");
+		}
+		
+		
 	}
 }

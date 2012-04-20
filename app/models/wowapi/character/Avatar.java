@@ -39,7 +39,12 @@ import com.google.gson.JsonParser;
 
 @Entity
 public class Avatar extends Model {
-
+	
+	@Override
+	public String toString() {
+		return this.getAvatarMail();
+	}
+	
 	public static void createAsyncAvatar(String name, String realm) {
 		Promise<Avatar> futureAvatar = new Promise<Avatar>();
 		futureAvatar.invoke(Avatar.createAvatar(name, realm));

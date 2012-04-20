@@ -3,9 +3,7 @@
 # ~~~~
 
 # Import Secure routes
-GET			/login			SecureC.login
-POST        /login          SecureC.authenticate
-GET         /logout         SecureC.logout
+*       /                                       module:secure
 
 #Import Messages routes
 *     /    module:messages
@@ -17,7 +15,17 @@ GET		/mobile												Mobile.index
 GET		/member/alt/delete/{<[0-9]+>id}						Member.delAlt
 GET		/member/message/delete/{<[0-9]+>id}					Member.delMessage
 
+# Shoutbox New
+GET		/shoutbox											ShoutBox.index
+POST	/shoutbox/message/add								ShoutBox.addMessage
+GET		/shoutbox/message/{<[0-9]+>id}/{fullsize}			ShoutBox.getMessage
+GET		/shoutbox/message/json/{<[0-9]+>id}					ShoutBox.getMessageJson
+GET		/shoutbox/message/json/list							ShoutBox.getMessageJsonList
+GET		/shoutbox/message/remove/{<[0-9]+>id}				ShoutBox.removeShout
+POST	/shoutbox/message/update/{<[0-9]+>id}				ShoutBox.updateShout
 # Service
+*		/pusher/auth										Service.pusherAuth
+GET		/ws/check/privatemessages/							Service.checkPrivateMessages
 GET		/ws/update											Service.update
 GET		/ws/guild/{name}/{realm}/update						Service.updateGuild
 GET		/ws/realm/update									Service.updateRealms
@@ -27,6 +35,7 @@ GET		/ws/recipe/{<[0-9]+>spellId}/update					Service.updateRecipe
 GET		/ws/recipe/crafter/{<[0-9]+>id}						Service.getRecipeCrafter
 GET		/ws/message/{<[0-9]+>id}							Service.getMessage
 GET		/ws/message/quote/{<[0-9]+>id}						Service.getMessageQuote
+
 # Recipes & Professions
 GET		/recipes											Recipes.index
 GET		/recipe/save/{<[0-9]+>id}							Recipes.save
@@ -111,6 +120,6 @@ GET     /public/                                staticDir:public
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
 
-# Import CRUD routes
-*      /admin              module:crud
-*      /crud/index         module:crud
+# Administration
+GET     /admin/?                                Admin.index
+*       /admin                                  module:crud

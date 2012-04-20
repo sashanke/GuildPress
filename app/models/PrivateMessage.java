@@ -43,5 +43,9 @@ public class PrivateMessage extends Model {
 		this.reply = reply;
 		this.readed = false;
 	}
-	
+	@Override
+	public String toString() {
+		return this.subject;
+	}
+
 }

@@ -1,0 +1,5 @@
+<div id="shoutbox-list" rel="@{ShoutBox.index()}">
+#{list items:shoutMessages, as:'shout'}
+	<div class="shoutbox-list" id="list-${shout.id}" style="display: block;"><a href="@{ShoutBox.index()}#${shout.id}"><span class="shoutbox-list-message" id="shoutbox-list-message-${shout.id}" style="white-space:nowrap; overflow:hidden;">${shout.shortMessage.raw()}</span></a><span class="shoutbox-list-nick">${shout.user?.avatar?.getAvatarLink()?.raw()}</span></div>
+#{/list}
+</div>

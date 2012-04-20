@@ -24,32 +24,6 @@ public class Mobile extends Controller {
 	static void addDefaults() {
 		Application.addDefaults();
 	}
-//	@Before
-//	static void setFormat() {		
-//		String useragent = "";
-//		String accept = "";
-//
-//		try {
-//			useragent = Request.current().headers.get("user-agent").value();
-//			accept = Request.current().headers.get("accept").value();
-//		} catch (NullPointerException e) {
-//			// TODO: handle exception
-//		}
-//
-//		renderArgs.put("header.user-agent", useragent);
-//		renderArgs.put("header.accept", accept);
-//
-//		UAgentInfo uai = new UAgentInfo(useragent, accept);
-//		renderArgs.put("isIphone", uai.isTierIphone);
-//		
-//		System.out.println(uai.detectMobileLong());
-//		
-//		if (uai.detectMobileLong()) {
-//			request.format = "mobile";
-//		}
-//		response.setHeader("Content-Type", "text/html; charset=utf-8");
-//	}
-	
 
 	public static void index() {
 		news();
@@ -109,21 +83,7 @@ public class Mobile extends Controller {
 			user = User.getConnectedUser(username);
 		}
 
-		Message cm = new Message(nickname, message, user);
-		cm.save();
-		message = Jsoup.clean(message, Whitelist.none()).trim();
-		cm.raw_message = message;
-
-		if (message.length() > 60) {
-			message = message.substring(0, 60) + " <span class=\"shoutbox-more\" rel=\"/shoutbox/message/" + cm.id + "\">... </span>";
-		}
-
-		message = StringUtils.replaceUrls(message, "shoutbox-url", "target=\"_new\"");
-
-		message = StringUtils.replaceSmilies(message, "/public/images/emoticons/blacy/", "emoteicon noborder", "");
-
-		cm.message = message;
-		cm.save();
+		Message cm = new Message(message, user).save();
 		redirect("/mobile/shoutbox");
 	}
 }

@@ -1,0 +1,100 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <title>#{get 'title' /}</title>		
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="icon" href="@{'/public/images/favicon.png'}" sizes="32x32">
+        <link rel="shortcut icon" href="@{'/public/images/favicon.ico'}">
+
+
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/style.css'}" />
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/global.css'}" />
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/layout.css'}" />
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/admin.css'}" />
+		
+        #{css output: "all"}
+        #{/css}
+        
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery-1.7.1.min.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/tiny_mce/tiny_mce.js'}"></script>
+
+		#{js output: "all"}
+		#{/js}
+</head>
+    <body>
+    	
+		<div id="waitMessage" style="display:none;">
+			<div id="waitMessageMiddle">
+				<div id="waitMessageImage">
+    				<img src="/public/images/peon.gif" />
+    				<div id="waitMessageText">
+    					Arbeit, Arbeit...
+    				</div>
+    			</div>
+    		</div>
+		</div> 
+		
+
+        <div id="adminbar">
+                <h1 class="title"><a href="@{Admin.index()}">Novus Ordo Mundi Control Panel</a></h1>           
+        </div>
+
+
+				
+			<div id="navigation">
+				<ul id="adminMenu">
+			        #{secure.check 'admin'}
+			        	<li class="${request.controller == 'helper.crud.GuildRanks' ? 'selected' : ''}">
+			                <a href="@{administration.Configs.list()}"><span>Configuration</span></a>
+			            </li>
+			            <li class="${request.controller == 'helper.crud.Posts' ? 'selected' : ''}">
+			                <a href="@{administration.Posts.list()}"><span>Posts</span></a>
+			            </li>
+			            <li class="${request.controller == 'helper.crud.Users' ? 'selected' : ''}">
+			                <a href="@{administration.Users.list()}"><span>Users</span></a>
+			            </li>
+			            <li class="${request.controller == 'helper.crud.Categorys' ? 'selected' : ''}">
+			                <a href="@{administration.Categorys.list()}"><span>Categorys</span></a>
+			            </li>
+			            <li class="${request.controller == 'helper.crud.PrivateMessages' ? 'selected' : ''}">
+			                <a href="@{administration.PrivateMessages.list()}"><span>PrivateMessages</span></a>
+			            </li>
+			            <li class="${request.controller == 'helper.crud.GuildRanks' ? 'selected' : ''}">
+			                <a href="@{administration.GuildRanks.list()}"><span>GuildRanks</span></a>
+			            </li>
+			            
+			        #{/secure.check}
+			    </ul>
+			</div>
+
+			<div id="content">
+				#{doLayout /}
+			</div>
+
+<script type="text/javascript">
+tinyMCE.init({
+        // General options
+        mode : "textareas",
+        theme : "advanced",
+        plugins : "autolink,lists,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+
+        // Theme options
+        theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
+        theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+        theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+        theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage",
+        theme_advanced_toolbar_location : "top",
+        theme_advanced_toolbar_align : "left",
+        theme_advanced_statusbar_location : "bottom",
+        theme_advanced_resizing : true,
+
+        // Skin options
+        skin : "o2k7",
+        skin_variant : "silver",
+
+
+});
+</script>
+    </body>
+</html>
+				

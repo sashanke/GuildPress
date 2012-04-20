@@ -28,7 +28,7 @@
 		    <div class="tabbed_area">
 		        <ul class="tabs">
 		            <li><a href="#tab-uebersicht" id="tab-tab-uebersicht" title="Raid Übersicht" class="tab active">Übersicht</a></li>
-		            <li><a href="#tab-addraid" id="tab-tab-addraid" title="Raid Hinzufügen" class="tab">Raid hinzufügen</a></li>
+		            #{if user != null && user.isGuildMember}<li><a href="#tab-addraid" id="tab-tab-addraid" title="Raid Hinzufügen" class="tab">Raid hinzufügen</a></li>#{/if} 
 		        </ul>
 		        
 		        <div id="tab-uebersicht" style="width:100%;" class="tab-content">
@@ -153,7 +153,7 @@
 					</table>
 					</div>
 		        </div>
-		        <div id="tab-addraid" class="tab-content">
+		        #{if user != null && user.isGuildMember}<div id="tab-addraid" class="tab-content">
 		        	<div class="colBlurb" style="margin-top:5px; margin-bottom:5px;">
 		        	<div class="avatar">
 					<a href="http://www.curse.com/addons/wow/mizusraidtracker" target="_new">
@@ -172,7 +172,7 @@
 						<input type="submit" value="Raid Hinzufügen" />
 						<textarea name="raidxml"></textarea>
 		     		</form>
-		        </div>
+		        </div>#{/if} 
 		    
 		    </div>
 

@@ -111,12 +111,12 @@ function getParity(parity) {
 }
 
 function newMessageDelayed(msgId) {
+	$("#big-shoutbox-input").val("");
 	$.get("/shoutbox/message/"+msgId+"/"+true, function(response){
     	var content = $(response);
     	$(content).hide();
     	$(".shouts").prepend(content);
     	$(content).show('slow');	    	
-    	$("#big-shoutbox-input").val("");
     	shoutboxInit();
     	$("#" + msgId).addClass(getParity(lastparity));
     }).error(function() { setTimeout('newMessageDelayed('+msgId+')',500); })

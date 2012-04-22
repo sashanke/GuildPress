@@ -18,36 +18,14 @@
 		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/menu.css'}" />
 		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/layout.css'}" />
 		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/jquery.gritter.css'}" />
-		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/highslide/highslide.css'}" />
-		<!--[if lt IE 7]>
-		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/highslide/highslide-ie6.css'}" />
-		<![endif]-->
 		
         #{css output: "all"}
         #{/css}
         
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery-1.7.1.min.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery-ui-1.8.18.custom.min.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/highslide/highslide.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/highslide/highslide.config.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.hoverIntent.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/tiny_mce/tiny_mce.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/flexigrid.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/guild-tabard.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.cluetip.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.ae.image.resize.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/templating.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.scrollTo-min.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.form.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.cookie.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.blockUI.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/superfish.js'}"></script>
-		
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/global.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.gritter.js'}"></script>
-
-
-		<script type="text/javascript" charset="${_response_encoding}" src="http://js.pusher.com/1.11/pusher.min.js"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.js'}?v=${version}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/tiny_mce/tiny_mce.js'}?v=${version}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/guild-tabard.js'}?v=${version}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/global.js'}?v=${version}"></script>
 
 		#{js output: "all"}
 			var pusher = new Pusher('${pusherkey}');
@@ -55,21 +33,18 @@
 			var shoutBoxChannel = pusher.subscribe('shoutBoxChannel');
 			var userOnlineChannel = pusher.subscribe('presence-userOnlineChannel');
       
-       var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-31085580-1']);
-  _gaq.push(['_trackPageview']);
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-31085580-1']);
+			_gaq.push(['_trackPageview']);
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-      
-      
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
 		#{/js}
 		
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/async.js'}"></script>
-		
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/async.js'}?v=${version}"></script>
 </head>
     <body>
 		<div id="dialog-nyi" title="Funktion noch nicht verfügbar" style="display:none;">

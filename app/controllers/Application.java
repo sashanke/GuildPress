@@ -58,6 +58,7 @@ public class Application extends Controller {
 		renderArgs.put("wowpet", FileUtils.getRandomFile("./public/images/pets/"));
 		renderArgs.put("randomArtwork", Play.configuration.getProperty("conf.artworksdir") + FileUtils.getRandomFile("./public/images/artworks/"));
 		renderArgs.put("pusherkey", Config.getConfig("pusher.key"));
+		renderArgs.put("version", Play.configuration.getProperty("application.version"));
 		
 		List<Message> shoutMessages = Message.find("order by messageDate desc").fetch(5);
 		Collections.reverse(shoutMessages);

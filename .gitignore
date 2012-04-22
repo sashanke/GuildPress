@@ -67,3 +67,5 @@ logs/application.log
 logs/*.log
 logs/*
 .checkstyle
+/public/javascripts/min
+/public/javascripts/old

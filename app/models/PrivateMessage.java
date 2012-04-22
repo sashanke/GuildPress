@@ -35,6 +35,11 @@ public class PrivateMessage extends Model {
 	public PrivateMessage reply;
 	
 	public PrivateMessage(String subject, String body, Date date, Avatar from, Avatar to, PrivateMessage reply) {
+		
+		if (subject == null || subject.trim().length() == 0) {
+			subject = "Kein Betreff";
+		}
+		
 		this.subject = subject;
 		this.body = body;
 		this.sendDate = date;

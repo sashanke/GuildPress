@@ -62,6 +62,7 @@ function removeMember(member){
 
 
 function addMessage(msgId) {
+	$("#shoutbox-input").val("");
     $.get("/shoutbox/message/"+msgId+"/"+false, function(response){
     	var content = $(response);
     	$(content).hide();
@@ -72,7 +73,6 @@ function addMessage(msgId) {
     	} else {
     		$(content).show('slow');
     	}
-    	$("#shoutbox-input").val("");
     }).error(function() { setTimeout('addMessage('+msgId+')',500); })
     .complete(function() { });
 }

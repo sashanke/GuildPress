@@ -58,7 +58,10 @@ function removeMember(member){
 }
 
 
-shoutBoxChannel.bind('newMessage', function(msgId) {
+
+
+
+function addMessage(msgId) {
     $.get("/shoutbox/message/"+msgId+"/"+false, function(response){
     	var content = $(response);
     	$(content).hide();
@@ -66,12 +69,16 @@ shoutBoxChannel.bind('newMessage', function(msgId) {
     	var count = $("#shoutbox-list div").length;
     	if (count > 5) {
     		$("#shoutbox-list div:first-child").hide(500, function() { $(this).remove(); $(content).show('slow'); });
-		} else {
-			$(content).show('slow');
-		}
-    	
+    	} else {
+    		$(content).show('slow');
+    	}
     	$("#shoutbox-input").val("");
-    });
+    }).error(function() { setTimeout('addMessage('+msgId+')',500); })
+    .complete(function() { });
+}
+
+shoutBoxChannel.bind('newMessage', function(msgId) {
+	addMessage(msgId);
 });
 
 shoutBoxChannel.bind('deleteMessage', function(msgId) {
@@ -85,10 +92,9 @@ shoutBoxChannel.bind('deleteMessage', function(msgId) {
 
 shoutBoxChannel.bind('updateMessage', function(msgId) {
     $.get("/shoutbox/message/json/"+msgId, function(response){
-    	$("#shoutbox-list-message-" + msgId).clear().html(response.shortMessage);
+    	$("#shoutbox-list-message-" + msgId).text(response.shortMessage);
     });
-	$("#list-" + msgId).effect("bounce", 
-	          {times:3}, 200 );
+	$("#list-" + msgId).effect("bounce", {times:3}, 200 );
 });
 
 

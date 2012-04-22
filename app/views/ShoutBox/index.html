@@ -15,7 +15,7 @@
 	</div>
 	<div class="post clear">
 		#{if session.username && user != null}
-		<div class="shout-row shout-row-odd shout-input">
+		<div class="shout-row shout-row-odd shout-input" id="shout-input-div">
 			<form id="big-shoutbox-form" action="/shoutbox/message/add" method="post">
 				<input type="hidden" name="avatarId" value="${user?.avatar?.id}">
 				<input class="big-shoutbox-input" id="big-shoutbox-input" type="text" name="message">
@@ -110,8 +110,8 @@ function getParity(parity) {
 	}
 }
 
-shoutListChannel.bind('newMessage', function(msgId) {
-    $.get("/shoutbox/message/"+msgId+"/"+true, function(response){
+function newMessageDelayed(msgId) {
+	$.get("/shoutbox/message/"+msgId+"/"+true, function(response){
     	var content = $(response);
     	$(content).hide();
     	$(".shouts").prepend(content);
@@ -119,23 +119,28 @@ shoutListChannel.bind('newMessage', function(msgId) {
     	$("#big-shoutbox-input").val("");
     	shoutboxInit();
     	$("#" + msgId).addClass(getParity(lastparity));
-    });
-});
-
-shoutListChannel.bind('deleteMessage', function(msgId) {
-	$("#" + msgId).effect('highlight', {color:"#9E0036"}, 3000).stop().fadeOut(500, function() { $(this).remove(); });
-});
-
-shoutListChannel.bind('updateMessage', function(msgId) {
-    $.get("/shoutbox/message/json/"+msgId, function(response){
-    	$("#shout-content-" + msgId).replaceWith(response.fullMessage);
-    	$("#shout-content-" + msgId + "-edit textarea").val(response.rawMessage);
-    });
-	$("#" + msgId).effect("highlight", {color:"#9E0036"}, 3000);
-});
+    }).error(function() { setTimeout('newMessageDelayed('+msgId+')',500); })
+    .complete(function() {  });
+}
 
 $(document).ready(function() {
 
+	shoutListChannel.bind('newMessage', function(msgId) {
+		newMessageDelayed(msgId);
+	});
+
+	shoutListChannel.bind('deleteMessage', function(msgId) {
+		$("#" + msgId).effect('highlight', {color:"#9E0036"}, 3000).stop().fadeOut(500, function() { $(this).remove(); });
+	});
+
+	shoutListChannel.bind('updateMessage', function(msgId) {
+	    $.get("/shoutbox/message/json/"+msgId, function(response){
+	    	$("#shout-content-" + msgId).replaceWith(response.fullMessage);
+	    	$("#shout-content-" + msgId + "-edit textarea").val(response.rawMessage);
+	    });
+		$("#" + msgId).effect("highlight", {color:"#9E0036"}, 3000);
+	});
+	
 	lastparity = $(".shouts div:first-child").attr('class');
 	if (typeof parity === "undefined") {
 		lastparity = "shout-row-odd";

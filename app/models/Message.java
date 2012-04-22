@@ -58,7 +58,7 @@ public class Message extends Model {
 		return replace(clean(this.rawMessage));
 	}
 	public String getShortMessage() {
-		return replace(shorten(clean(this.rawMessage),this.id));
+		return replace(shorten(this.rawMessage,this.id));
 	}
 	
 	private static String shorten(String message, Long id) {

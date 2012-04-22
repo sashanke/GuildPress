@@ -92,11 +92,11 @@ GET     /post/{tag}                    Application.listTagged
 POST    /post/{postId}/comments                Application.postComment
 GET     /captcha                                Application.captcha
 
-#GET     /shoutbox/{<[0-9]+>time}                                    Application.shoutbox
-#GET     /shoutbox/message/{<[0-9]+>id}                              Application.shoutboxGetMessage
-#POST	/shoutbox/add												Application.shoutboxAddMessage
-#GET		/shoutbox/add												Application.shoutboxAddMessageMobile
-#WS		/shoutboxSocket				            					ShoutBox.socket
+GET     /shoutbox/{<[0-9]+>time}                                    404
+GET     /shoutbox/message/{<[0-9]+>id}                              404
+POST	/shoutbox/add												404
+GET		/shoutbox/add												404
+WS		/shoutboxSocket				            					404
       
 
 # Long polling demo

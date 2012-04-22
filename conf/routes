@@ -91,16 +91,12 @@ GET     /post/{<[0-9]+>id}             Application.show
 GET     /post/{tag}                    Application.listTagged
 POST    /post/{postId}/comments                Application.postComment
 GET     /captcha                                Application.captcha
-# Ignore favicon requests
-GET     /favicon.ico                            404
 
-
-
-GET     /shoutbox/{<[0-9]+>time}                                       Application.shoutbox
-GET     /shoutbox/message/{<[0-9]+>id}                                       Application.shoutboxGetMessage
-POST	/shoutbox/add												Application.shoutboxAddMessage
-GET		/shoutbox/add												Application.shoutboxAddMessageMobile
-WS		/shoutboxSocket				            ShoutBox.socket
+#GET     /shoutbox/{<[0-9]+>time}                                    Application.shoutbox
+#GET     /shoutbox/message/{<[0-9]+>id}                              Application.shoutboxGetMessage
+#POST	/shoutbox/add												Application.shoutboxAddMessage
+#GET		/shoutbox/add												Application.shoutboxAddMessageMobile
+#WS		/shoutboxSocket				            					ShoutBox.socket
       
 
 # Long polling demo

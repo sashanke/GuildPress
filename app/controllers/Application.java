@@ -45,7 +45,6 @@ public class Application extends Controller {
 
 	@Before
 	static void addDefaults() {
-	
 		renderArgs.put("guildTitle", Play.configuration.getProperty("guild.title"));
 		renderArgs.put("guildTag", Play.configuration.getProperty("guild.tag"));
 		renderArgs.put("guildServer", Play.configuration.getProperty("guild.server"));
@@ -68,11 +67,7 @@ public class Application extends Controller {
 		if (user != null) {
 			user.activity();
 		}
-
-		if (!request.action.equals("Application.shoutbox")) {
-			session.put("url", request.url);
-		}
-		
+		session.put("url", request.url);
 		renderArgs.put("user", user);
 	}
 
@@ -162,59 +157,6 @@ public class Application extends Controller {
 
 		Application.index();
 	}
-
-//	public static void shoutbox(Long time) {
-//
-//		List<Message> cm;
-//		ArrayList<Message> acm = new ArrayList<Message>();
-//		if (time == 0) {
-//			cm = Message.find("order by date desc").fetch(4);
-//			acm.addAll(cm);
-//			Collections.reverse(acm);
-//			cm.removeAll(cm);
-//			cm.addAll(acm);
-//		} else {
-//			cm = Message.find("date > ? order by date desc", new Date(time)).fetch(1);
-//		}
-//
-//		JSONSerializer characterSerializer = new JSONSerializer().include("date", "id", "msg_date", "message", "name", "raw_message").exclude("*").prettyPrint(true);
-//
-//		Date date = new Date();
-//		List<User> lastActiveUsers;
-//
-//		lastActiveUsers = User.find("lastActiveTime BETWEEN ? and ? order by lastActiveTime desc", new Date(date.getTime() - 300000L), date).fetch();
-//
-//		JSONSerializer onlineUsersSerializer = new JSONSerializer().include("id", "avatar.avatarLink", "lastActiveTime", "avatar.name", "avatar.race.name", "avatar.cclass.name").exclude("*").prettyPrint(true);
-//
-//		User user = User.getConnectedUser(session.get("username"));
-//		JSONSerializer userSerializer = new JSONSerializer().include("mailCount").exclude("*").prettyPrint(true);
-//		
-//		renderJSON("{ \"messages\":" + characterSerializer.serialize(cm) + ", \n \"onlineUsers\":" + onlineUsersSerializer.serialize(lastActiveUsers) +", \n \"user\":" + userSerializer.serialize(user) + "}");
-//	}
-//
-//	public static void shoutboxAddMessage(String nickname, String message) {
-//		User user = null;
-//		if (Session.current().contains("username")) {
-//			String username = Session.current().get("username");
-//			user = User.getConnectedUser(username);
-//		}
-//
-//		Message cm = new Message(message, user).save();		
-//
-//		JSONSerializer characterSerializer = new JSONSerializer().include("date", "id", "msg_date", "message", "name", "raw_message", "user.wowCharacter").exclude("*");
-//		renderJSON(characterSerializer.serialize(cm));
-//	}
-//
-//	
-//	public static void shoutboxGetMessage(Long id) {
-//		Message cm = Message.findById(id);
-//
-//		cm.rawMessage = StringUtils.replaceUrls(cm.rawMessage, "shoutbox-url", "target=\"_new\"");
-//
-//		cm.rawMessage = StringUtils.replaceSmilies(cm.rawMessage, "/public/images/emoticons/blacy/", "emoteicon noborder", "");
-//
-//		render(cm);
-//	}
 
 	public static void show(Long id) {
 		News post = News.findById(id);

@@ -58,12 +58,10 @@ import com.google.gson.Gson;
 import flexjson.JSONSerializer;
 
 public class Service extends Controller {
-	@Before
+	@Before(unless={"pusherAuth", "checkPrivateMessages", "getShoppingCart", "showTooltip", "getRecipeCrafter"})
 	static void addDefaults() {
 		Application.addDefaults();
 	}
-
-	
 	
 	public static void checkPrivateMessages() {
 		User user = User.getConnectedUser(session.get("username"));

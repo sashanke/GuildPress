@@ -22,6 +22,7 @@ import models.wowapi.resources.Item;
 import models.wowapi.resources.ItemSlotType;
 import models.wowapi.resources.RaceClassMap;
 import models.wowapi.resources.Realm;
+import models.wowapi.resources.RecipeReagent;
 import play.Logger;
 import play.Play;
 import play.data.validation.Required;
@@ -474,6 +475,47 @@ public class Avatar extends Model {
 		return this.inset;
 	}
 
+	public String getKeywords() {
+		String keywords = this.name;
+		if (this.guild != null) {
+			keywords += ", " + this.guild.name;
+		}
+		keywords += ", " + this.race.name;
+		keywords += ", " + this.cclass.name;
+		keywords += ", " + this.level;
+		keywords += ", " + this.realm.name;
+		keywords += ", " + this.gender.name;
+		keywords += ", " + this.race.side.name;
+		return keywords;
+	}
+	
+	public String getDescription() {
+		String description = "Informationen über " + this.name + " ein " + this.race.name + " " + this.cclass.name + " mit Level " + this.level + " auf dem Server " + this.realm.name;
+		if (this.guild != null) {
+			description += " und Mitglied der Gilde " + this.guild.name;
+		}
+		description += ".";
+		if (this.professions != null) {
+			description += " " + this.name + " hat die Berufe: ";
+			for (AvatarProfession profession : this.professions) {
+				description += profession.name + " (" + profession.rank + "), ";
+			}
+			description = description.substring(0, description.length() - 2);
+		}
+		description += ".";
+
+		description += " " + this.name + " trägt folgende Gegenstände: ";
+		
+		List<AvatarItem> items =  AvatarItem.find("byAvatar", this).fetch();
+		
+		for (AvatarItem item : items ) {
+			description += item.item.name + ", ";
+		}
+		description = description.substring(0, description.length() - 2);
+		return description;
+	}
+	
+	
 	/**
 	 * @return the profile
 	 */

@@ -203,6 +203,21 @@ public class Item extends Model {
 		this.refresh();
 	}
 
+	public String getKeywords() {
+		String keywords = this.name;
+		keywords += ", " + this.itemId;
+		keywords += ", " + this.itemClass.name;
+		keywords += ", " + this.itemSubClass.name;
+		keywords += ", " + this.itemQuality.name;
+		keywords += ", " + this.slot.name;
+		return keywords;
+	}
+	
+	public String getDescription() {
+		String description = this.name + " ist eine " + this.itemQuality.name + "e " + this.itemSubClass.name + " der Geganstandstufe " + this.level + " und kann am " + this.slot.name + " ausgerüstet werden";
+		return description;
+	}
+	
 	@Override
 	public String toString() {
 		return this.name;

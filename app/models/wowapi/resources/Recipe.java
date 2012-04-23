@@ -16,6 +16,7 @@ import javax.persistence.Transient;
 
 import models.wowapi.ArmoryTooltip;
 import models.wowapi.Type;
+import models.wowapi.character.AvatarProfession;
 import models.wowapi.core.FetchSite;
 import models.wowapi.core.FetchType;
 import play.db.jpa.Model;
@@ -215,6 +216,28 @@ public class Recipe extends Model {
 
 	}
 
+	public String getKeywords() {
+		String keywords = this.name;
+		keywords += ", " + ((AvatarProfession) AvatarProfession.find("profId = ?", this.profId).first()).name;
+		keywords += ", " + this.item.itemClass.name;
+		keywords += ", " + this.item.itemSubClass.name;
+		keywords += ", " + this.item.itemQuality.name;
+		for (RecipeReagent reagent : this.reagents) {
+			keywords += ", " + reagent.item.name;
+		}
+		return keywords;
+	}
+	
+	public String getDescription() {
+		String description = this.name + " kann ein Spieler mit dem Beruf " + ((AvatarProfession) AvatarProfession.find("profId = ?", this.profId).first()).name+ " ("+this.profLevel+")" + " benutzen um den Gegenstand "
+				+ this.item.name + " der Geganstandstufe " + this.item.level + " herzustellen. Er benötigt dazu folgende Materialien:";
+		for (RecipeReagent reagent : this.reagents) {
+			description += " "+reagent.count+"x " +reagent.item.name;
+		}
+		return description;
+	}
+	
+	
 	private void setExtraInfos() {
 		String url = "http://de.wowhead.com/spell=" + this.spellId;
 		FetchSite site = FetchSite.fetch(url, FetchType.WOWHEAD);

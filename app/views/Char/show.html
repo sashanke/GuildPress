@@ -1,5 +1,7 @@
 #{extends 'main.html' /} 
 #{set title: avatar.name + ' von ' + (avatar.isGuildMember ? guildTitle : avatar.guild?.name) /}
+#{set keywords: avatar.getKeywords().raw() /}
+#{set description: avatar.getDescription().raw() /}
 #{js "char" /}
 #{css "char" /}
 <div class="box">

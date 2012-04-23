@@ -1,5 +1,7 @@
 #{extends 'main.html' /}
 #{set title: item.name + ' - ' + guildTitle /}
+#{set keywords: item.getKeywords().raw() /}
+#{set description: item.getDescription().raw() /}
 #{js "char" /}
 #{css "char" /}
 <div class="box">

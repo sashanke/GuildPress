@@ -1,5 +1,7 @@
 #{extends 'main.html' /}
 #{set title: recipe.name + ' - ' + guildTitle /}
+#{set keywords: recipe.getKeywords().raw() /}
+#{set description: recipe.getDescription().raw() /}
 #{js "char recipe" /}
 #{css "char recipe" /}
 <div class="box">

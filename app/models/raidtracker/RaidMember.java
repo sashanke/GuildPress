@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import models.wowapi.character.Avatar;
 import play.db.jpa.Model;
 import play.libs.Codec;
+import utils.StringUtils;
 
 @Entity
 public class RaidMember extends Model {
@@ -20,28 +21,8 @@ public class RaidMember extends Model {
 	 * @return RaidMember
 	 */
 	public static RaidMember findByName(String name) {
+		name = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
 		return RaidMember.find("hash = ?", Codec.hexMD5(name)).first();
-		// try {
-		// PreparedStatement ps =
-		// DB.getConnection().prepareStatement("select id from RaidMember where BINARY name = ?");
-		// ps.setString(1, name);
-		// ResultSet rs = ps.executeQuery();
-		// if (rs.first()) {
-		// Logger.info("[RaidMember][findByNameAndRealm] RaidMember " + name +
-		// " found");
-		// return Avatar.findById(rs.getLong("id"));
-		// } else {
-		// Logger.info("[RaidMember][findByNameAndRealm] RaidMember " + name +
-		// " not found");
-		// return null;
-		// }
-		//
-		// } catch (SQLException e) {
-		// Logger.warn("[RaidMember][FindByNameAndRealm] " +
-		// e.getLocalizedMessage(), e);
-		// return null;
-		// }
-
 	}
 
 	public String name;

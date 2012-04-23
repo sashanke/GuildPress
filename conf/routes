@@ -8,6 +8,9 @@
 #Import Messages routes
 *     /    module:messages
 
+#robots
+*		/robots.txt											Service.robots
+
 # Mobile Routes
 GET		/mobile												Mobile.index
 

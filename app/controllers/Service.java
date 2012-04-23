@@ -63,6 +63,10 @@ public class Service extends Controller {
 		Application.addDefaults();
 	}
 	
+	public static void robots() {
+		renderText("User-agent: *\nAllow: /");
+	}
+	
 	public static void checkPrivateMessages() {
 		User user = User.getConnectedUser(session.get("username"));
 		

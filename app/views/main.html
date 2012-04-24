@@ -152,9 +152,7 @@
 						<a href="@{Application.index()}"><img src="/public/images/bannerlogo.png"></a>
 						<div id="shoutbox">
 							<div id="shoutbox-list" rel="@{ShoutBox.index()}">
-								*{#{list items:shoutMessages, as:'shout'}
-								<div class="shoutbox-list" id="list-${shout.id}" style="display: block;"><a href="@{ShoutBox.index()}#${shout.id}"><span class="shoutbox-list-message" id="shoutbox-list-message-${shout.id}" style="white-space:nowrap; overflow:hidden;">${shout.shortMessage.raw()}</span></a><span class="shoutbox-list-nick">${shout.user?.avatar?.getAvatarLink()?.raw()}</span></div>
-								#{/list}}*
+								<div class="shoutbox-list" id="list-0" style="display: block;"><a href="@{ShoutBox.index()}"><span class="shoutbox-list-message" id="shoutbox-list-message-0" style="white-space:nowrap; overflow:hidden;">zur Shoutbox</span></a></div>
 							</div>
 							#{if session.username && user != null}
 							<div class="shout-row shoutbox-top-input shout-input" id="shoutbox-top-input">

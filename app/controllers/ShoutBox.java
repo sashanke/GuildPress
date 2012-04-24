@@ -12,6 +12,7 @@ import models.Config;
 import models.Message;
 import models.User;
 import models.wowapi.guild.Guild;
+import play.Logger;
 import play.libs.WS.HttpResponse;
 import play.modules.pusher.Pusher;
 import play.mvc.Before;
@@ -33,6 +34,10 @@ public class ShoutBox extends Controller {
 	public static void addMessage(Long id, String message, Boolean fullsize) {
 		User user = User.getConnectedUser(session.get("username"));
 		Message shout = new Message(message, user).save();
+		while (shout.isPersistent()) {
+			Logger.info("Warte auf Persistentes Object");
+			await("1s");
+		}
 		Pusher pusher = new Pusher(Config.getConfig("pusher.appId"), Config.getConfig("pusher.key"), Config.getConfig("pusher.secret"));
 		pusher.trigger("shoutListChannel", "newMessage", shout.id.toString());
 		pusher.trigger("shoutBoxChannel", "newMessage", shout.id.toString());

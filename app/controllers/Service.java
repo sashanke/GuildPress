@@ -66,14 +66,13 @@ public class Service extends Controller {
 	public static void robots() {
 		renderText("User-agent: *\nAllow: /");
 	}
-
-	public static void search() {
-		render();
-	}
 	
 	public static void search(String search) {
 		render(search);
 	}
+
+	
+
 	
 	public static void checkPrivateMessages() {
 		User user = User.getConnectedUser(session.get("username"));

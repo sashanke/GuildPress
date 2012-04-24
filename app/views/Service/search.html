@@ -19,13 +19,21 @@
 <script type="text/javascript"> 
   google.load('search', '1', {language : 'de', style : google.loader.themes.MINIMALIST});
   google.setOnLoadCallback(function() {
-    var customSearchOptions = {};  var customSearchControl = new google.search.CustomSearchControl(
+ 	var customSearchOptions = {};
+    var imageSearchOptions = {};
+    imageSearchOptions['layout'] = google.search.ImageSearch.LAYOUT_POPUP;
+    customSearchOptions['enableImageSearch'] = true;
+    customSearchOptions['imageSearchOptions'] = imageSearchOptions;
+    var googleAnalyticsOptions = {};
+    googleAnalyticsOptions['queryParameter'] = 'search';
+    googleAnalyticsOptions['categoryParameter'] = '';
+    customSearchOptions['googleAnalyticsOptions'] = googleAnalyticsOptions;  var customSearchControl = new google.search.CustomSearchControl(
       '001654034995439448773:WMX313765560', customSearchOptions);
-    customSearchControl.setResultSetSize(google.search.Search.LARGE_RESULTSET);
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
     var options = new google.search.DrawOptions();
     options.setAutoComplete(true);
     customSearchControl.draw('cse', options);
-    #{if search.trim().length() > 0}
+    #{if search != null && search.trim().length() > 0}
     customSearchControl.execute('${search}');
     #{/if}
   }, true);

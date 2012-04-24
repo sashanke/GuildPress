@@ -5,12 +5,14 @@ import java.util.List;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
+import models.Config;
 import models.Message;
 import models.User;
 import models.forum.Topic;
 import play.data.validation.Required;
 import play.data.validation.Validation;
 import play.libs.Crypto;
+import play.modules.pusher.Pusher;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.Http;
@@ -35,7 +37,7 @@ public class Mobile extends Controller {
 	}
 	
 	public static void shoutbox() {
-		List<Message> shouts = Message.find("order by date desc").fetch(10);
+		List<Message> shouts = Message.find("order by messageDate desc").fetch(10);
 		render(shouts);
 	}
 	
@@ -83,7 +85,11 @@ public class Mobile extends Controller {
 			user = User.getConnectedUser(username);
 		}
 
-		Message cm = new Message(message, user).save();
+		Message shout = new Message(message, user).save();
+		Pusher pusher = new Pusher(Config.getConfig("pusher.appId"), Config.getConfig("pusher.key"), Config.getConfig("pusher.secret"));
+		pusher.trigger("shoutListChannel", "newMessage", shout.id.toString());
+		pusher.trigger("shoutBoxChannel", "newMessage", shout.id.toString());
+		
 		redirect("/mobile/shoutbox");
 	}
 }

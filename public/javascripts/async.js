@@ -99,6 +99,11 @@ shoutBoxChannel.bind('updateMessage', function(msgId) {
 
 
 $(document).ready(function() {
+	
+	$.get("/shoutbox/message/json/list", function(response) {
+    	$("#shoutbox-list").replaceWith(response);
+    });
+	
 	$('ul.top-navigation').superfish(); 
 	$("#shoutbox-top-input", this).hide();
 	$("#shoutbox").hover(function() {

@@ -27,6 +27,7 @@ GET		/shoutbox/message/json/list							ShoutBox.getMessageJsonList
 GET		/shoutbox/message/remove/{<[0-9]+>id}				ShoutBox.removeShout
 POST	/shoutbox/message/update/{<[0-9]+>id}				ShoutBox.updateShout
 # Service
+GET		/search												Service.search
 *		/pusher/auth										Service.pusherAuth
 GET		/ws/check/privatemessages/							Service.checkPrivateMessages
 GET		/ws/update											Service.update

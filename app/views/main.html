@@ -40,7 +40,11 @@
       
 			var _gaq = _gaq || [];
 			_gaq.push(['_setAccount', 'UA-31085580-1']);
+			_gaq.push(['_gat._anonymizeIp']);
+			_gaq.push(['_setSiteSpeedSampleRate', 20]);
 			_gaq.push(['_trackPageview']);
+			_gaq.push(['_trackPageLoadTime']);
+			setTimeout('_gaq.push([\'_trackEvent\', \'NoBounce\', \'Over 10 seconds\'])',10000);
 
 			(function() {
 				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
@@ -148,9 +152,9 @@
 						<a href="@{Application.index()}"><img src="/public/images/bannerlogo.png"></a>
 						<div id="shoutbox">
 							<div id="shoutbox-list" rel="@{ShoutBox.index()}">
-								#{list items:shoutMessages, as:'shout'}
+								*{#{list items:shoutMessages, as:'shout'}
 								<div class="shoutbox-list" id="list-${shout.id}" style="display: block;"><a href="@{ShoutBox.index()}#${shout.id}"><span class="shoutbox-list-message" id="shoutbox-list-message-${shout.id}" style="white-space:nowrap; overflow:hidden;">${shout.shortMessage.raw()}</span></a><span class="shoutbox-list-nick">${shout.user?.avatar?.getAvatarLink()?.raw()}</span></div>
-								#{/list}
+								#{/list}}*
 							</div>
 							#{if session.username && user != null}
 							<div class="shout-row shoutbox-top-input shout-input" id="shoutbox-top-input">

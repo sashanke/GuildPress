@@ -27,7 +27,11 @@ public class Char extends Controller {
 
 	public static void show(Long id, String name, String realm) throws IOException, SQLException {
 
-		if (id == 0L) {
+		if (id == null && name.trim().length() > 0) {
+			Service.search(name);
+		}
+		
+		if (id == 0L && name.trim().length() > 0 && realm.trim().length() > 0) {
 			Avatar avatar = Avatar.createAvatar(name, realm);
 			show(avatar.id, name, realm);
 		}

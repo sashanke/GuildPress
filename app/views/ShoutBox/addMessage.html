@@ -7,7 +7,7 @@
 			<div id="outer">
 				<div id="middle">
 					<div id="inner">
-						<blockquote class="shout-content" cite="@{Char.show(shout.user.avatar.id,shout.user.avatar.name, shout.user.avatar.realm.name)}">
+						<blockquote rel="@{Char.show(shout.user.avatar.id,shout.user.avatar.name, shout.user.avatar.realm.name)}" class="shout-content" cite="@{Char.show(shout.user.avatar.id,shout.user.avatar.name, shout.user.avatar.realm.name)}">
 								<span class="outer-quote"></span><span id="shout-content-${shout.id}">${shout.getFullMessage().raw()}</span><span class="inner-quote"></span>
 						</blockquote>
 					</div>

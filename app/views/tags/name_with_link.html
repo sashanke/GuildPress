@@ -1,12 +1,12 @@
 #{if _as == 'avatar'}
-	<a href="@{Char.show(_avatar.id, _avatar.name, _avatar.realm.name)}" class="class class-${_avatar.cclass.name.toLowerCase()} character-name-${_avatar.name.toLowerCase()}">
-		#{if _image}<img src="${_avatar.getImage()}" height="84" width="84" alt="${_avatar?.name}s avatar" />#{/if}#{else}${_avatar.name}#{/else}
+	<a href="@{Char.show(_avatar.id, _avatar.name, _avatar.realm.name)}" itemprop="url" class="class class-${_avatar.cclass.name.toLowerCase()} character-name-${_avatar.name.toLowerCase()}">
+		#{if _image}<img src="${_avatar.getImage()}" itemprop="image" height="84" width="84" alt="${_avatar?.name}s avatar" />#{/if}#{else}<span itemprop="name">${_avatar.name}</span>#{/else}
 	</a>
 #{/if}
 #{if _as == 'member'}
 %{id = _avatar.avatar ? _avatar.avatar.id : 0L;}%
-	<a href="@{Char.show(id, _avatar.name, _avatar.realm.name)}" class="class class-${_avatar.cclass.name.toLowerCase()} character-name-${_avatar.name.toLowerCase()}">
-		#{if _image}<img src="${_avatar.getImage()}" height="84" width="84" alt="${_avatar?.name}s avatar" />#{/if}#{else}${_avatar.name}#{/else}
+	<a href="@{Char.show(id, _avatar.name, _avatar.realm.name)}" itemprop="url" class="class class-${_avatar.cclass.name.toLowerCase()} character-name-${_avatar.name.toLowerCase()}">
+		#{if _image}<img src="${_avatar.getImage()}" itemprop="image" height="84" width="84" alt="${_avatar?.name}s avatar" />#{/if}#{else}<span itemprop="name">${_avatar.name}</span>#{/else}
 	</a>
 #{/if}
 

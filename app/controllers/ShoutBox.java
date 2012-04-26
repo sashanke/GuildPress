@@ -21,7 +21,7 @@ import play.mvc.Scope.Session;
 import utils.StringUtils;
 
 public class ShoutBox extends Controller {
-	@Before
+	@Before(unless={"getMessageJsonList","addMessage","getMessage","getMessageJson","updateShout","removeShout"})
 	static void addDefaults() {
 		Application.addDefaults();
 	}

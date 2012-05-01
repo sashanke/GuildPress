@@ -375,7 +375,8 @@ public class Service extends Controller {
 	public static void updateAvatar(Long id) throws IOException, SQLException {
 		Avatar avatar = Avatar.findById(id);
 		avatar.updateAvatar(avatar,true);
-		Char.show(id, avatar.name, avatar.realm.name);
+
+		Char.show(id, java.net.URLEncoder.encode(avatar.name, "UTF-8"), avatar.realm.name);
 	}
 	
 	public static void updateAvatar(String name, String realm) {

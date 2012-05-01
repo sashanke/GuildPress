@@ -112,7 +112,7 @@
 		            <li class="user-meta-cell user-meta-name">
 		                #{if session.username && user != null}
 		                <a href="@{Char.show(user.avatar.id, user.avatar.name, user.avatar.realm.name)}" id="register" class="no-tooltip user-name character character-member character-unverified character-${user.avatar.cclass.name.toLowerCase()} character-class-wow character-class-wow-${user.avatar.cclass.name.toLowerCase()} character-name-${user.avatar.name.toLowerCase()}">${user.avatar.name}</a>
-		                <a href="@{Application.guild(user.avatar.guild.id,user.avatar.guild?.name?)}">${user.avatar.guild?.name?}</a>
+		                <a href="@{Application.guild(user.avatar.guild?.id,user.avatar.guild?.name)}">${user.avatar.guild?.name}</a>
 		                #{/if}
 		                #{else}
 		                <a href="@{Application.register()}" id="register" class="no-tooltip user-name character character-member character-unverified">Mitglied Werden?</a>

@@ -47,6 +47,9 @@ public class Application extends Controller {
 
 	@Before
 	static void addDefaults() {
+		
+		
+		
 		renderArgs.put("guildTitle", Play.configuration.getProperty("guild.title"));
 		renderArgs.put("guildTag", Play.configuration.getProperty("guild.tag"));
 		renderArgs.put("guildServer", Play.configuration.getProperty("guild.server"));
@@ -78,6 +81,23 @@ public class Application extends Controller {
 		if (user != null) {
 			user.activity();
 		}
+
+		Http.Cookie remember = request.cookies.get("rememberme");
+        if(remember != null && user == null) {
+            int firstIndex = remember.value.indexOf("-");
+            int lastIndex = remember.value.lastIndexOf("-");
+            if (lastIndex > firstIndex) {
+                String sign = remember.value.substring(0, firstIndex);
+                String restOfCookie = remember.value.substring(firstIndex + 1);
+                String username = remember.value.substring(firstIndex + 1, lastIndex);
+                String time = remember.value.substring(lastIndex + 1);
+                if(Crypto.sign(restOfCookie).equals(sign)) {
+                    session.put("username", username);
+                }
+            }
+        }
+		
+		
 		session.put("url", request.url);
 		renderArgs.put("user", user);
 	}

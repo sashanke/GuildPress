@@ -1,8 +1,49 @@
 .planner-day {
-	width: 97px;
-	height: 97px;
+	width: 96px;
+	height: 96px;
 	padding:1px;
 	border-color: #12202E;
 	border-style: solid;
 	border-width: 1px;
+	margin-right: 1px;
+	margin-bottom: 1px;
+	position: relative;
+}
+.planner-week {
+	padding-left: 3px; 
+}
+.planner-day-number {
+	position:absolute;
+	top: 0px;
+	left: 3px;
+	color: #DFDBC9;
+	text-shadow: 1px 1px 1px #000;
+}
+.planner-info {
+	position:absolute;
+	top: 0px;
+	right: 3px;
+}
+.planner-event-list {
+	position:absolute;
+	left: 3px;
+	bottom: 3px;
+}
+.planner-now {
+	border-color: #9E0036 !important;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.event-icon {
+	margin-right: 10px;
+}
+h2.event-title {
+	padding-bottom: 5px;
+	color: #DFDBC9;
+	font-size: 15px;
+	text-align: left;
+	font-family: Georgia,serif !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.3ex;
 }

@@ -26,8 +26,6 @@ public class PlannerMonth {
 		this.week = date.getWeekOfWeekyear();
 		this.date = date.toDate();
 		
-		System.out.println(this.date);
-		
 		MutableDateTime startDate = new MutableDateTime();
 		startDate.setWeekOfWeekyear(this.week);
 		startDate.setDayOfWeek(1);

@@ -23,10 +23,7 @@ public class PlannerWeek {
 		this.end = endDate.toDate();
 		
 		for (int i = 1; i <= 7; i++) {
-			startDate.setDayOfWeek(i);
-			
-			System.out.println(startDate);
-			
+			startDate.setDayOfWeek(i);			
 			days.put(i, new PlannerDay(startDate.toDate()));
 		}
 		

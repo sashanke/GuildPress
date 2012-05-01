@@ -349,6 +349,19 @@ public class Avatar extends Model {
 		}
 		return avatar;
 	}
+	
+	/**
+	 * Update an Avatar
+	 * 
+	 * @param avatar
+	 * 
+	 * @return Avatar
+	 */
+	public static Avatar updateAvatar(Avatar avatar, Boolean force) {
+		Logger.info("[Avatar][updateAvatar] " + avatar.name + " (" + avatar.realm + ")");
+		return fetchAvatar(avatar);
+	}
+	
 
 	@Required
 	public String name;

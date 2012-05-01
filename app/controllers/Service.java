@@ -371,6 +371,13 @@ public class Service extends Controller {
 		// }
 	}
 
+	
+	public static void updateAvatar(Long id) throws IOException, SQLException {
+		Avatar avatar = Avatar.findById(id);
+		avatar.updateAvatar(avatar,true);
+		Char.show(id, avatar.name, avatar.realm.name);
+	}
+	
 	public static void updateAvatar(String name, String realm) {
 
 		List<Recipe> recipes = Recipe.find("spellId = ?", 101937L).fetch(1);
@@ -385,6 +392,8 @@ public class Service extends Controller {
 		renderJSON(avatarSerializer.serialize(Avatar.createAvatar(name, realm)));
 	}
 
+	
+	
 	public static void updateGuild(String name, String realm) {
 		Logger.info("[Service][Request][updateGuild] " + name + " (" + realm + ")");
 		JSONSerializer guildSerializer = new JSONSerializer().prettyPrint(true);

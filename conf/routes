@@ -15,6 +15,12 @@
 GET		/mobile												Mobile.index
 
 # Member Routes
+GET		/calendar/event/{<[0-9]+>id}						Planner.event
+GET		/calendar											Planner.index
+GET		/calendar/{year}/{<[0-9]+>month}					Planner.calendar
+
+
+# Member Routes
 GET		/member/alt/delete/{<[0-9]+>id}						Member.delAlt
 GET		/member/message/delete/{<[0-9]+>id}					Member.delMessage
 
@@ -33,6 +39,7 @@ GET		/ws/check/privatemessages/							Service.checkPrivateMessages
 GET		/ws/update											Service.update
 GET		/ws/guild/{name}/{realm}/update						Service.updateGuild
 GET		/ws/realm/update									Service.updateRealms
+GET		/ws/avatar/{<[0-9]+>id}/update						Service.updateAvatar
 GET		/ws/avatar/{name}/{realm}/update					Service.updateAvatar
 GET		/ws/item/{<[0-9]+>itemId}/update					Service.updateItem
 GET		/ws/recipe/{<[0-9]+>spellId}/update					Service.updateRecipe

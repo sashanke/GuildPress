@@ -68,6 +68,12 @@
 			            <li class="${request.controller == 'helper.crud.RaidTimes' ? 'selected' : ''}">
 			                <a href="@{administration.RaidTimes.list()}"><span>RaidTimes</span></a>
 			            </li>
+			            <li class="${request.controller == 'helper.crud.Events' ? 'selected' : ''}">
+			                <a href="@{administration.Events.list()}"><span>Events</span></a>
+			            </li>
+			            <li class="${request.controller == 'helper.crud.EventTypes' ? 'selected' : ''}">
+			                <a href="@{administration.EventTypes.list()}"><span>EventTypes</span></a>
+			            </li>
 			        #{/secure.check}
 			    </ul>
 			</div>

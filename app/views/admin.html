@@ -15,8 +15,8 @@
         #{css output: "all"}
         #{/css}
         
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery-1.7.1.min.js'}"></script>
-		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/tiny_mce/tiny_mce.js'}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/javascripts/jquery.js'}?v=${version}"></script>
+		<script type="text/javascript" charset="${_response_encoding}" src="@{'/public/tiny_mce/tiny_mce.js'}?v=${version}"></script>
 
 		#{js output: "all"}
 		#{/js}
@@ -62,7 +62,12 @@
 			            <li class="${request.controller == 'helper.crud.GuildRanks' ? 'selected' : ''}">
 			                <a href="@{administration.GuildRanks.list()}"><span>GuildRanks</span></a>
 			            </li>
-			            
+			            <li class="${request.controller == 'helper.crud.Recruitments' ? 'selected' : ''}">
+			                <a href="@{administration.Recruitments.list()}"><span>Recruitment</span></a>
+			            </li>
+			            <li class="${request.controller == 'helper.crud.RaidTimes' ? 'selected' : ''}">
+			                <a href="@{administration.RaidTimes.list()}"><span>RaidTimes</span></a>
+			            </li>
 			        #{/secure.check}
 			    </ul>
 			</div>

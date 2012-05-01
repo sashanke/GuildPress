@@ -40,6 +40,11 @@ GET		/ws/recipe/crafter/{<[0-9]+>id}						Service.getRecipeCrafter
 GET		/ws/message/{<[0-9]+>id}							Service.getMessage
 GET		/ws/message/quote/{<[0-9]+>id}						Service.getMessageQuote
 
+# Recruitment
+GET		/recruitment										Recruitments.index
+GET		/recruitment/{<[0-9]+>id}/{specName}/{className}	Recruitments.apply
+GET		/recruitment/register								Recruitments.info
+
 # Recipes & Professions
 GET		/recipes											Recipes.index
 GET		/recipe/save/{<[0-9]+>id}							Recipes.save

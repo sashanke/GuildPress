@@ -245,3 +245,10 @@ div.menu {
 #daddy-shoutbox-list :hover {
 	cursor:pointer;
 }
+
+#last-threads hr {
+	background-color: #12202E; /* Farbe für Opera und Firefox */ 
+	color: #12202E; /* Farbe für Internet Explorer (IE) */
+	border: 0; 
+	height: 1px;
+}

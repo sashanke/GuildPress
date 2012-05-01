@@ -1,6 +1,8 @@
 package controllers;
 
+import play.mvc.Http;
 import models.User;
+import models.wowapi.resources.CharacterSpec;
 
 public class Security extends Secure.Security {
 
@@ -24,6 +26,16 @@ public class Security extends Secure.Security {
         if(url == null) {
             url = "/";
         }
+        Http.Cookie recruitmentApplyCookie = request.cookies.get("recruitmentApply");
+        if (recruitmentApplyCookie != null) {
+        	Long recruitmentApplySpecc = Long.parseLong(recruitmentApplyCookie.value);
+            if (recruitmentApplySpecc > 0L) {
+            	CharacterSpec spec = CharacterSpec.findById(recruitmentApplySpecc);
+            	response.removeCookie("recruitmentApply");
+            	Recruitments.apply(recruitmentApplySpecc, spec.name, spec.cclass.name);
+    		}
+		}
+        
         redirect(url);
     }
 	

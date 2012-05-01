@@ -29,7 +29,11 @@ public class Member extends Controller {
 
 	public static void message(Long to) {
 		User user = User.getConnectedUser(session.get("username"));
-		List<PrivateMessage> mails = PrivateMessage.find("toUser IN (?1)", user.alts).fetch();
+		List<PrivateMessage> mails = new ArrayList<PrivateMessage>();
+		if (user.alts != null) {
+			mails = PrivateMessage.find("toUser IN (?1)", user.alts).fetch();
+		}
+		
 		Avatar toUser = null;
 		if (to != null) {
 			toUser = Avatar.findById(to);

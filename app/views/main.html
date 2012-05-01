@@ -189,7 +189,7 @@
 	
 								<!--  <li><a href="@{Progress.index()}" class="${request?.controller == 'RaidFortschritt' ? 'sel' : ''}" title="${guildTag} Progress">Progress</a></li> -->
 								<li><a href="#nyi" class="nyi" title="${guildTag} Galerie">Galerie</a></li>
-								<li class="last"><a href="#nyi" class="nyi" title="${guildTag} Kalender">Kalender</a></li>
+								<li class="last"><a href="@{Planner.index()}" class="${request?.controller == 'Planner' ? 'current' : ''}" title="${guildTag} Kalender">Kalender</a></li>
 							</ul>
 						</div>
 					</div>
@@ -205,6 +205,24 @@
 								<div class="colBlurb">${guildWellcomemsg}<br></div>
 							</div>
 						</div>
+						
+						<div class="box spacer">
+							<div id="last-threads">
+								<h2 class="nav_t">Foren Themen</h2>
+								<div class="colBreak clear"></div>
+								<div class="colBlurb">
+								#{if posts.size() > 0}
+									#{list items:posts, as:'post'}
+										<a href="@{Board.showTopic(post.topic.getSlug(),post.topic.id)}#${post.id}">${post.title}</a><br>
+										<span class="description small">von <span class="class class-${post.author.avatar.cclass.name.toLowerCase()}">${post.author.avatar.name}</span>&nbsp;<span class="icon-time small"> ${post.created.format('dd. MMMM yyyy HH:mm','de')}</span></span><br>
+										#{if !posts_last}<hr />#{/if}
+									#{/list}
+								#{/if}
+								
+								</div>
+							</div>
+						</div>
+						
 						
 						#{if !session.username}				
 						<div class="box spacer">

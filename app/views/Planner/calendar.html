@@ -1,0 +1,30 @@
+#{extends 'main.html' /}
+#{set title: messages.get('planner.title') +' - ' + guildTitle /}
+#{js 'planner.js' /}
+#{css 'planner.css' /}
+
+<div class="box">
+	<div class="artheadline" style="background: black url(${play.configuration.getProperty("conf.artworksdir")}sunrise.jpg) no-repeat top center  !important;">
+		<div class="artheadlinshadow">
+			<div class="postdate"></div>
+			<h2 class="post-title">
+				<a href="@{Planner.index()}">&{'planner.title'}</a>
+			</h2>
+		</div>
+	</div>
+	<div class="page clear">
+		<div class="page-content">
+			#{list items:displayMonth.weeks.values(), as:'plannerWeek'}
+			<div class="planner planner-week">
+				*{write: ${plannerWeek.week} <br/>}*
+				#{list items:plannerWeek.days.values(), as:'plannerDay'}
+				<div class="planner-day left#{if plannerDay.date.getMonth() != displayMonth.month} planner-transparent#{/if}">
+				write: ${plannerDay.date.getMonth()} <br/>
+				</div>
+				#{/list}
+			</div>
+			#{/list}
+			<div class="colBreak clear"></div>
+		</div>
+	</div>
+</div>

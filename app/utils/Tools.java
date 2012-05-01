@@ -85,4 +85,16 @@ public class Tools {
 		String slug = NONLATIN.matcher(normalized).replaceAll("");
 		return slug.toLowerCase(Locale.GERMAN);
 	}
+
+	public static String long2raidTime(Long raidTime) {
+		if (raidTime == null) {
+			return null;
+		}
+		
+		String time = raidTime.toString();
+		String first = time.substring(0, 2);
+		String last = time.substring(2);
+		
+		return first + ":" + last;
+	}
 }

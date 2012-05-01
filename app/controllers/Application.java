@@ -10,6 +10,8 @@ import models.Config;
 import models.Message;
 import models.News;
 import models.User;
+import models.forum.Category;
+import models.forum.Post;
 import models.forum.Topic;
 import models.wowapi.character.Avatar;
 import models.wowapi.guild.Guild;
@@ -58,6 +60,15 @@ public class Application extends Controller {
 		renderArgs.put("randomArtwork", Play.configuration.getProperty("conf.artworksdir") + FileUtils.getRandomFile("./public/images/artworks/"));
 		renderArgs.put("pusherkey", Config.getConfig("pusher.key"));
 		renderArgs.put("version", Play.configuration.getProperty("application.version"));
+		
+		List<Post> posts;
+		
+		if (User.checkGuildmember(session.get("username"))) {
+			posts = Post.find("ORDER BY created desc").fetch(4);
+		} else {
+			posts = Post.find("topic.forum.isPublic = ? ORDER BY created desc", true).fetch(4);
+		}
+		renderArgs.put("posts", posts);
 		
 		List<Message> shoutMessages = Message.find("order by messageDate desc").fetch(5);
 		Collections.reverse(shoutMessages);

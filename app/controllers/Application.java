@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import models.Config;
+import models.Event;
 import models.Message;
 import models.News;
 import models.User;
@@ -64,14 +65,25 @@ public class Application extends Controller {
 		renderArgs.put("pusherkey", Config.getConfig("pusher.key"));
 		renderArgs.put("version", Play.configuration.getProperty("application.version"));
 		
-		List<Post> posts;
+		List<Topic> boardTopics;
 		
 		if (User.checkGuildmember(session.get("username"))) {
-			posts = Post.find("ORDER BY created desc").fetch(4);
+			boardTopics = Topic.find("ORDER BY lastPost.created desc").fetch(4);
 		} else {
-			posts = Post.find("topic.forum.isPublic = ? ORDER BY created desc", true).fetch(4);
+			boardTopics = Topic.find("forum.isPublic = ? ORDER BY lastPost.created desc", true).fetch(4);
 		}
-		renderArgs.put("posts", posts);
+		
+		renderArgs.put("boardTopics", boardTopics);
+		
+		
+		List<Event> nextEvents = null;
+		
+		if (User.checkGuildmember(session.get("username"))) {
+			nextEvents = Event.find("? <= eventStart", new Date()).fetch(4);
+		}
+		
+		renderArgs.put("nextEvents", nextEvents);
+		
 		
 		List<Message> shoutMessages = Message.find("order by messageDate desc").fetch(5);
 		Collections.reverse(shoutMessages);

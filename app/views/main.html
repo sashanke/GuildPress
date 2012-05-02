@@ -23,6 +23,8 @@
 		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/menu.css'}" />
 		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/layout.css'}" />
 		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/jquery.gritter.css'}" />
+		<link rel="stylesheet" type="text/css" charset="${_response_encoding}" media="screen" href="@{'/public/stylesheets/colorbox.css'}" />
+		
 		
         #{css output: "all"}
         #{/css}
@@ -198,6 +200,24 @@
 				<div id="content_wrapper">
 					#{if !fullSize}
 					<div id="content_left">
+						#{if session.username && user != null}
+						<div class="box">
+							<div id="upcoming-events">
+								<h2 class="nav_t">Nächste Events</h2>
+								<div class="colBreak clear"></div>
+								<div class="colBlurb">
+								#{if nextEvents.size() > 0}
+									#{list items:nextEvents, as:'event'}
+										<a href="@{Planner.event(event.id)}" class="planner-event ${event.type}">${event.title}</a><br>
+										<span class="icon-time small"> ${event.eventStart.format('dd. MMMM yyyy HH:mm','de')}</span></span><br>
+										#{if !nextEvents_last}<hr />#{/if}
+									#{/list}
+								#{/if}
+								</div>
+							</div>
+						</div>
+						#{/if}
+						#{else}
 						<div class="box">
 							<div id="welcome-message">
 								<h2 class="nav_t">Willkommen</h2>
@@ -205,17 +225,17 @@
 								<div class="colBlurb">${guildWellcomemsg}<br></div>
 							</div>
 						</div>
-						
+						#{/else}
 						<div class="box spacer">
 							<div id="last-threads">
 								<h2 class="nav_t">Foren Themen</h2>
 								<div class="colBreak clear"></div>
 								<div class="colBlurb">
-								#{if posts.size() > 0}
-									#{list items:posts, as:'post'}
-										<a href="@{Board.showTopic(post.topic.getSlug(),post.topic.id)}#${post.id}">${post.title}</a><br>
-										<span class="description small">von <span class="class class-${post.author.avatar.cclass.name.toLowerCase()}">${post.author.avatar.name}</span>&nbsp;<span class="icon-time small"> ${post.created.format('dd. MMMM yyyy HH:mm','de')}</span></span><br>
-										#{if !posts_last}<hr />#{/if}
+								#{if boardTopics.size() > 0}
+									#{list items:boardTopics, as:'topic'}
+										<a href="@{Board.showTopic(topic.getSlug(),topic.id)}#${topic.lastPost.id}">${topic.title}</a><br>
+										<span class="description small">von <span class="class class-${topic.lastPost.author.avatar.cclass.name.toLowerCase()}">${topic.lastPost.author.avatar.name}</span>&nbsp;<span class="icon-time small"> ${topic.lastPost.created.format('dd. MMMM yyyy HH:mm','de')}</span></span><br>
+										#{if !boardTopics_last}<hr />#{/if}
 									#{/list}
 								#{/if}
 								

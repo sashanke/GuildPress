@@ -9,6 +9,20 @@
 	margin-bottom: 1px;
 	position: relative;
 }
+.planner-day-head {
+	color: #DFDBC9;
+	width: 96px;
+	height: 20px;
+	padding:1px;
+	border-color: #12202E;
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 1px;
+	margin-bottom: 1px;
+	position: relative;
+	text-align: center;
+	font-weight: bold;
+}
 .planner-week {
 	padding-left: 3px; 
 }
@@ -38,6 +52,12 @@
 .event-icon {
 	margin-right: 10px;
 }
+
+.planner-transparent {
+	opacity:0.2;
+	filter:alpha(opacity=20); /* For IE8 and earlier */
+}
+
 h2.event-title {
 	padding-bottom: 5px;
 	color: #DFDBC9;

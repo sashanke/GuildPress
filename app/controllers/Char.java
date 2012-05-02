@@ -32,7 +32,7 @@ public class Char extends Controller {
 		}
 		
 		if (id == 0L && name.trim().length() > 0 && realm.trim().length() > 0) {
-			Avatar avatar = Avatar.createAvatar(java.net.URLDecoder.decode(name, "UTF-8"), realm);
+			Avatar avatar = Avatar.createAvatar(name, realm);
 			show(avatar.id, java.net.URLEncoder.encode(name, "UTF-8"), realm);
 		}
 

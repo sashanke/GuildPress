@@ -19,10 +19,17 @@ import org.im4java.core.IMOperation;
 import org.im4java.core.Info;
 import org.im4java.core.InfoException;
 import org.im4java.process.ProcessStarter;
+import org.joda.time.DateTimeConstants;
+import org.joda.time.MutableDateTime;
+import org.joda.time.MutableInterval;
+import org.joda.time.MutablePeriod;
+import org.joda.time.Period;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
 import models.Config;
+import models.Event;
+import models.EventRepeatable;
 import models.Message;
 import models.PrivateMessage;
 import models.User;
@@ -58,32 +65,34 @@ import com.google.gson.Gson;
 import flexjson.JSONSerializer;
 
 public class Service extends Controller {
-	@Before(unless={"pusherAuth", "checkPrivateMessages", "getShoppingCart", "showTooltip", "getRecipeCrafter"})
+	@Before(unless = { "pusherAuth", "checkPrivateMessages", "getShoppingCart", "showTooltip", "getRecipeCrafter" })
 	static void addDefaults() {
 		Application.addDefaults();
 	}
-	
+
 	public static void robots() {
 		renderText("User-agent: *\nAllow: /");
 	}
-	
+
 	public static void search(String search) {
 		render(search);
 	}
 
-	
+	public static void test() {
 
-	
+	}
+
+
 	public static void checkPrivateMessages() {
 		User user = User.getConnectedUser(session.get("username"));
-		
+
 		PrivateMessage pm = PrivateMessage.find("toUser IN (?1) order by sendDate desc", user.alts).first();
-		
+
 		JSONSerializer userSerializer = new JSONSerializer().include("mailCount").exclude("*").prettyPrint(true);
-		JSONSerializer pmSerializer = new JSONSerializer().include("sendDate","subject","fromUser.avatarLink","fromUser.avatarLink","fromUser.image" ).exclude("*").prettyPrint(true);
+		JSONSerializer pmSerializer = new JSONSerializer().include("sendDate", "subject", "fromUser.avatarLink", "fromUser.avatarLink", "fromUser.image").exclude("*").prettyPrint(true);
 		renderJSON("{ \"message\":" + pmSerializer.serialize(pm) + ", \n \"user\":" + userSerializer.serialize(user) + "}");
 	}
-	
+
 	public static void pusherAuth(String channel_name, String socket_id) {
 
 		User user = User.getConnectedUser(session.get("username"));
@@ -95,7 +104,7 @@ public class Service extends Controller {
 			userInfo.avatarName = user.avatar.name;
 			userInfo.avatarEmail = user.avatar.getAvatarMail();
 			userInfo.avatarLink = user.avatar.getAvatarLink();
-			
+
 			PresenceChannelData channelData = new PresenceChannelData(user.id.toString(), userInfo);
 			renderJSON(pusher.createAuthString(socket_id, channel_name, channelData));
 		}
@@ -371,14 +380,13 @@ public class Service extends Controller {
 		// }
 	}
 
-	
 	public static void updateAvatar(Long id) throws IOException, SQLException {
 		Avatar avatar = Avatar.findById(id);
-		avatar.updateAvatar(avatar,true);
+		avatar.updateAvatar(avatar, true);
 
 		Char.show(id, java.net.URLEncoder.encode(avatar.name, "UTF-8"), avatar.realm.name);
 	}
-	
+
 	public static void updateAvatar(String name, String realm) {
 
 		List<Recipe> recipes = Recipe.find("spellId = ?", 101937L).fetch(1);
@@ -393,8 +401,6 @@ public class Service extends Controller {
 		renderJSON(avatarSerializer.serialize(Avatar.createAvatar(name, realm)));
 	}
 
-	
-	
 	public static void updateGuild(String name, String realm) {
 		Logger.info("[Service][Request][updateGuild] " + name + " (" + realm + ")");
 		JSONSerializer guildSerializer = new JSONSerializer().prettyPrint(true);

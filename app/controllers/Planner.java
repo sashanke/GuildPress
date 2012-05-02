@@ -30,7 +30,27 @@ public class Planner extends Controller {
 		int month = now.monthOfYear().get();
 		calendar(year, month);
 	}
-
+	
+	public static void previus(int year, int month) {
+		MutableDateTime mdt = new MutableDateTime();
+		mdt.setYear(year);
+		mdt.setMonthOfYear(month);
+		mdt.addMonths(-1);
+		year = mdt.year().get();
+		month = mdt.monthOfYear().get();
+		calendar(year, month);
+	}
+	
+	public static void next(int year, int month) {
+		MutableDateTime mdt = new MutableDateTime();
+		mdt.setYear(year);
+		mdt.setMonthOfYear(month);
+		mdt.addMonths(+1);
+		year = mdt.year().get();
+		month = mdt.monthOfYear().get();
+		calendar(year, month);
+	}
+	
 	public static void calendar(int year, int month) {
 		PlannerMonth displayMonth = new PlannerMonth(year, month);
 		render(displayMonth);

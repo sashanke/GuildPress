@@ -252,3 +252,9 @@ div.menu {
 	border: 0; 
 	height: 1px;
 }
+#upcoming-events hr {
+	background-color: #12202E; /* Farbe für Opera und Firefox */ 
+	color: #12202E; /* Farbe für Internet Explorer (IE) */
+	border: 0; 
+	height: 1px;
+}

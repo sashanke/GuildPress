@@ -19,6 +19,7 @@ public class Event extends Model {
 	public Date eventEnd;
 	public String title;
 	public String info;
+	public Long size;
 	
 	@ManyToOne
 	public Avatar manager;
@@ -26,10 +27,11 @@ public class Event extends Model {
 	@ManyToOne
 	public EventType type;
 	
+	@ManyToOne
+	public EventRepeatable repeatable;
+	
 	@OneToMany
 	public List<EventAttendee> attendees;
-	
-	public Long size;
 	
 	public Event(Date eventStart, Date eventEnd, String title,String info, Avatar manager, Long size) {
 		this.eventStart = eventStart;

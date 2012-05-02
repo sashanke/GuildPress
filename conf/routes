@@ -17,6 +17,8 @@ GET		/mobile												Mobile.index
 # Member Routes
 GET		/calendar/event/{<[0-9]+>id}						Planner.event
 GET		/calendar											Planner.index
+GET		/calendar/{year}/{<[0-9]+>month}/next				Planner.next
+GET		/calendar/{year}/{<[0-9]+>month}/previus			Planner.previus
 GET		/calendar/{year}/{<[0-9]+>month}					Planner.calendar
 
 

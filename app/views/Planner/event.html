@@ -8,12 +8,14 @@
 		<br>
 		<span class="post-subtitle">${event.info}</span>
 	</div>
+	#{if session.username}
 	<div class="colBreak clear"><br></div>
 	<ul class="buttons left">
 		<li class="button"><a href="@{Planner.signEvent(event.id)}">Anmelden</a></li>
 		<li class="button"><a href="@{Planner.signTentativeEvent(event.id)}">Vorläufig</a></li>
 		<li class="button"><a href="@{Planner.unsignEvent(event.id)}">Abmelden</a></li>
 	</ul>
+	#{/if}
 	<div class="clear"><br></div>
 	<h2 class="event-title">Teilnehmer</h2>
 	<div class="colBreak clear"></div>

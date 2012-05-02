@@ -1,20 +1,29 @@
 #{extends 'main.html' /}
 #{set title: messages.get('planner.title') +' - ' + guildTitle /}
 #{js 'planner.js' /}
-#{css 'planner.css colorbox.css' /}
+#{css 'planner.css' /}
 
 <div class="box">
 	<div class="artheadline" style="background: black url(${play.configuration.getProperty("conf.artworksdir")}sunrise.jpg) no-repeat top center  !important;">
 		<div class="artheadlinshadow">
 			<div class="postdate"></div>
 			<h2 class="post-title">
-				<a href="@{Planner.index()}">&{'planner.title'}</a>
+				<a href="@{Planner.previus(displayMonth.year,displayMonth.month)}"><<</a> <a href="@{Planner.index()}">&{'planner.title'}</a> <a href="@{Planner.next(displayMonth.year,displayMonth.month)}">>></a>
 			</h2>
 			<span class="post-subtitle">vom ${displayMonth.start.format('dd. MM. yyyy', 'de')} bis zum ${displayMonth.end.format('dd. MM. yyyy', 'de')}</span>
 		</div>
 	</div>
 	<div class="page clear">
 		<div class="page-content">
+			<div class="planner planner-week">
+				<div class="planner-day-head left">Montag</div>
+				<div class="planner-day-head left">Dienstag</div>
+				<div class="planner-day-head left">Mittwoch</div>
+				<div class="planner-day-head left">Donnerstag</div>
+				<div class="planner-day-head left">Freitag</div>
+				<div class="planner-day-head left">Samstag</div>
+				<div class="planner-day-head left">Sonntag</div>
+			</div>
 			#{list items:displayMonth.weeks.values(), as:'plannerWeek'}
 			<div class="planner planner-week">
 				*{write: ${plannerWeek.week} <br/>}*
@@ -40,8 +49,3 @@
 		</div>
 	</div>
 </div>
-<script>
-	$(document).ready(function() {
-		$(".planner-event").colorbox();
-	});
-</script>

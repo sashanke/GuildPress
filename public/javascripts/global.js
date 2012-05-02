@@ -193,6 +193,8 @@
 
 // wait for the DOM to be loaded
 $(document).ready(function() {
+
+	$(".planner-event").colorbox();
 	$('ul.top-navigation').superfish(); 
 	
 	$(".class").click(

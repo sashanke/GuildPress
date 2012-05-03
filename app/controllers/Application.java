@@ -96,17 +96,12 @@ public class Application extends Controller {
 
 		Http.Cookie remember = request.cookies.get("rememberme");
         if(remember != null && user == null) {
-            int firstIndex = remember.value.indexOf("-");
-            int lastIndex = remember.value.lastIndexOf("-");
-            if (lastIndex > firstIndex) {
-                String sign = remember.value.substring(0, firstIndex);
-                String restOfCookie = remember.value.substring(firstIndex + 1);
-                String username = remember.value.substring(firstIndex + 1, lastIndex);
-                String time = remember.value.substring(lastIndex + 1);
-                if(Crypto.sign(restOfCookie).equals(sign)) {
-                    session.put("username", username);
-                }
-            }
+            try {
+				Secure.login();
+			} catch (Throwable e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
 		
 		

@@ -13,7 +13,7 @@ public class Security extends Secure.Security {
 	static void onDisconnect() {
 		String url = session.get("url");
         if(url == null) {
-            url = "/";
+            url = "/news";
         }
         session.clear();
         response.removeCookie("rememberme");
@@ -24,7 +24,7 @@ public class Security extends Secure.Security {
 	static void onAuthenticated() {
 		String url = session.get("url");
         if(url == null) {
-            url = "/";
+            url = "/news";
         }
         Http.Cookie recruitmentApplyCookie = request.cookies.get("recruitmentApply");
         if (recruitmentApplyCookie != null) {

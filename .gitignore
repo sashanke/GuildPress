@@ -69,3 +69,4 @@ logs/*
 .checkstyle
 /public/javascripts/min
 /public/javascripts/old
+precompiled

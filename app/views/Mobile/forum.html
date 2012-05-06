@@ -1,0 +1,71 @@
+#{extends 'mainMobile.html' /} #{set title: '[NOM] Forum von ' + guildTitle /} #{set shortTitle: 'Forum' /} #{set dataId: 'forum' /} #{js "mobile" /} #{css "mobile" /}
+<!-- start content -->
+	<div data-role="content" data-inset="true">
+		<div data-role="collapsible-set" data-theme="a" data-content-theme="a">
+		
+		#{if session.username && user != null}
+			<div data-role="collapsible" data-collapsed="true">
+				<h3>Neues Thema erstellen</h3>
+				<form action="@{Mobile.addTopicMobile()}" method="post" data-ajax="true" id="form-forum-addtopic" class="ui-body ui-body-a ui-corner-all">
+					<input type="hidden" name="authorId" placeholder="Nachricht" value="${user.id}" />					
+					<fieldset>
+
+						<div data-role="fieldcontain" class="ui-hide-label">
+							<label for="select-choice-custom" class="select">Choose shipping method:</label>
+							<select name="forumId" id="select-choice-custom" data-native-menu="false">
+							#{if categories.size() > 0} #{list items:categories, as:'category'}
+								<optgroup label="${category.title}" id="${category.id}">
+								#{if category.getForums().size() > 0} #{list items:category.getForums(), as:'forum'}
+									<option value="${forum.id}">${forum.title}</option>
+								#{/list} #{/if}
+								</optgroup>
+							#{/list} #{/if}
+							</select>
+						</div>
+						
+						<div data-role="fieldcontain" class="ui-hide-label">
+							<label for="content" class="text">Titel: </label><input type="text" name="title" id="title" placeholder="Titel" value="${params.title}" />
+						</div>
+						<div data-role="fieldcontain" class="ui-hide-label">
+							<label for="content" class="text">Beschreibung: </label><input type="text" name="description" id="description" placeholder="Beschreibung" value="${params.description}" />
+						</div>
+						<div data-role="fieldcontain" class="ui-hide-label">
+							<label for="content" class="text">Text: </label><textarea name="content" id="content" placeholder="Nachricht">${params.content}</textarea>
+						</div>
+						<button type="submit" data-theme="a" name="submit" value="submit-value">Absenden</button>
+					</fieldset>
+				</form>
+			</div>
+		#{/if}
+		
+		
+		
+			#{if boardTopics.size() > 0} #{list items:boardTopics, as:'topic'}
+			<div data-role="collapsible" data-collapsed="true">
+				<h3>${topic.title}</h3>
+				#{if topic.posts.size() > 0} #{list items:topic.posts, as:'message'}
+				<div class="ui-body ui-body-a ui-corner-all" style="margin-top: 5px;">
+					<img style="float: left; margin-right: 20px;" src="${message.author.avatar.getImage()}" height="84" width="84" alt="${message.author.avatar?.name}s avatar" />
+					<h3 style="margin-top: 0px;">${message.author.avatar?.name}</h3>
+					<p>${message.content.raw()}</p>
+					<p class="ui-li-aside">am ${message.created.format('dd. MMMM yyyy','de')} um ${message.created.format('HH:mm')}</p>
+				</div>
+				#{/list} #{/if}
+				
+				#{if session.username && user != null} <br>
+				<form action="@{Mobile.addPostMobile(topic.id)}" method="post" data-ajax="true" id="form-forum-addpost" class="ui-body ui-body-a ui-corner-all">
+					<input type="hidden" name="authorId" value="${user.id}" /> <input type="hidden" name="mobile" value="true" />
+					<fieldset>
+						<div data-role="fieldcontain" class="ui-hide-label">
+							<label for="content" class="text">Antwort: </label><textarea name="content" id="content" placeholder="Nachricht">${params.content}</textarea>
+						</div>
+						<button type="submit" data-theme="a" name="submit" value="submit-value">Absenden</button>
+					</fieldset>
+				</form>
+				#{/if}
+				
+			</div>
+			#{/list} #{/if}
+		</div>
+	</div>
+<!-- end content -->

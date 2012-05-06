@@ -8,6 +8,9 @@ import org.jsoup.safety.Whitelist;
 import models.Config;
 import models.Message;
 import models.User;
+import models.forum.Category;
+import models.forum.Forum;
+import models.forum.Post;
 import models.forum.Topic;
 import play.data.validation.Required;
 import play.data.validation.Validation;
@@ -39,6 +42,26 @@ public class Mobile extends Controller {
 	public static void shoutbox() {
 		List<Message> shouts = Message.find("order by messageDate desc").fetch(10);
 		render(shouts);
+	}
+	
+	public static void forum() {
+		List<Topic> boardTopics;
+		
+		if (User.checkGuildmember(session.get("username"))) {
+			boardTopics = Topic.find("ORDER BY lastPost.created desc").fetch(30);
+		} else {
+			boardTopics = Topic.find("forum.isPublic = ? ORDER BY lastPost.created desc", true).fetch(30);
+		}
+		
+		
+		List<Category> categories;
+
+		if (User.checkGuildmember(session.get("username"))) {
+			categories = Category.find("order by position asc").fetch();
+		} else {
+			categories = Category.find("isPublic = ? order by position asc", true).fetch();
+		}
+		render(boardTopics,categories);
 	}
 	
 	public static void login() {
@@ -91,5 +114,28 @@ public class Mobile extends Controller {
 		pusher.trigger("shoutBoxChannel", "newMessage", shout.id.toString());
 		
 		redirect("/mobile/shoutbox");
+	}
+	
+	public static void addPostMobile(Long topicId, Long authorId, @Required(message = "A message is required") String content) {
+		Topic topic = Topic.findById(topicId);
+		User postAuthor = User.findById(authorId);
+		if (Validation.hasErrors()) {
+			redirect("/mobile/forum");
+		}
+		Post newPost = topic.addPost(postAuthor, content, topic.title);
+		flash.success("Thanks for posting %s", postAuthor.avatar.name);
+		flash.put("newPost", topic.lastPost.id);
+		redirect("/mobile/forum");
+	}
+	
+	public static void addTopicMobile(Long forumId, Long authorId, @Required(message = "A message is required") String content, @Required(message = "A title is required") String title, @Required(message = "A description is required") String description) {
+		Forum forum = Forum.findById(forumId);
+		User postAuthor = User.findById(authorId);
+		if (Validation.hasErrors()) {
+			redirect("/mobile/forum");
+		}
+		Topic newTopic = forum.addTopic(postAuthor, content, title, description, null, null, null);
+		flash.success("Thanks for posting %s", postAuthor.avatar.name);
+		redirect("/mobile/forum");
 	}
 }

@@ -8,7 +8,6 @@ import utils.UAgentInfo;
 public class FrontPage extends Controller {
 	@Before
 	static void addDefaults() {
-		Application.addDefaults();
 		
 		String useragent = "";
 		String accept = "";
@@ -26,6 +25,7 @@ public class FrontPage extends Controller {
 			redirect("/mobile");
 		}
 		
+		Application.addDefaults();
 	}
 
 	public static void index() {
